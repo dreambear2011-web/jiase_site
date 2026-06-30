@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>체감 지도 · 지아세 知我世</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;700;900&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1a1410;
+  --paper:#f4f0fa;
+  --paper-card:#fdfbff;
+  --accent:#6b3fa0;
+  --accent-lt:#9b72d4;
+  --accent-bg:rgba(107,63,160,.08);
+  --accent-line:rgba(107,63,160,.2);
+  --jade:#3a5a44;
+  --red:#8b2e22;
+  --gold:#9a7b3f;
+  --gold-lt:#c4a661;
+  --gold-bg:rgba(196,166,97,.09);
+  --line:#ddd4ee;
+  --mid:#7a6e8a;
+  --shadow:rgba(0,0,0,.06);
+  --blur-veil:rgba(244,240,250,.65);
+  --maxw:720px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Noto Serif KR',serif;
+  background:var(--paper);
+  color:var(--ink);
+  line-height:1.75;
+  min-height:100vh;
+  background-image:
+    radial-gradient(ellipse at 80% 0%,rgba(107,63,160,.07) 0%,transparent 50%),
+    radial-gradient(ellipse at 15% 100%,rgba(58,90,68,.05) 0%,transparent 50%);
+}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 18px 120px}
+.topbar{display:flex;align-items:center;justify-content:center;gap:7px;padding:13px 0 10px;border-bottom:1px solid var(--line);font-size:11px;letter-spacing:.4em;color:var(--accent);font-weight:700}
+.topbar-logo{width:20px;height:20px;border-radius:5px;flex-shrink:0}
+b{color:var(--gold);font-weight:800}
+
+/* ── 히어로 ── */
+header{text-align:center;padding:44px 0 8px}
+.tier-tag{display:inline-block;background:var(--accent-bg);border:1px solid var(--accent-line);border-radius:100px;font-size:11px;font-weight:700;color:var(--accent);letter-spacing:.18em;padding:4px 14px;margin-bottom:18px;font-family:'Noto Sans KR',sans-serif}
+.hero-title{font-size:30px;font-weight:900;letter-spacing:.02em;line-height:1.25;color:var(--ink)}
+.hero-hanja{font-size:13px;color:var(--accent);letter-spacing:.15em;margin-top:6px;font-weight:700}
+.rule{height:1px;background:linear-gradient(90deg,transparent,var(--accent-line),transparent);margin:20px 0}
+.hero-sub{font-size:13.5px;color:var(--mid);line-height:1.85}
+
+/* ── 섹션 공통 ── */
+section{margin-top:18px;scroll-margin-top:20px}
+.card{background:var(--paper-card);border:1px solid var(--line);border-radius:6px;padding:24px 22px;box-shadow:0 1px 6px var(--shadow)}
+.eyebrow{font-size:10.5px;letter-spacing:.25em;color:var(--accent);font-weight:700;margin-bottom:6px;font-family:'Noto Sans KR',sans-serif}
+.sec-title{font-size:20px;font-weight:900;letter-spacing:.02em;margin-bottom:14px}
+.sec-lead{font-size:13.5px;color:#6a6055;line-height:1.8;margin-bottom:16px}
+
+/* ── 공감 리스트 ── */
+.pain-list{display:flex;flex-direction:column;gap:10px;margin-top:4px}
+.pain-item{
+  display:flex;align-items:flex-start;gap:11px;
+  background:var(--accent-bg);border:1px solid var(--accent-line);
+  border-radius:4px;padding:12px 14px;
+  font-size:13.5px;color:#3a2e20;line-height:1.65;
+}
+.pain-item .icon{flex:0 0 18px;color:var(--accent);font-size:15px;padding-top:1px}
+
+/* ── 핵심 카피 블록 ── */
+.impact-block{margin:20px 0 4px;padding:20px 0 18px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.impact-pre{font-size:11px;letter-spacing:.25em;color:var(--accent);font-weight:700;margin-bottom:12px;font-family:'Noto Sans KR',sans-serif}
+.impact-headline{font-size:20px;font-weight:900;line-height:1.45;color:var(--ink);margin-bottom:14px}
+.impact-headline em{font-style:normal;color:var(--accent)}
+.impact-list{display:flex;flex-direction:column;gap:7px;margin-bottom:16px}
+.impact-item{display:flex;align-items:baseline;gap:9px;font-size:13.5px;color:#3a2e20;line-height:1.6}
+.impact-item::before{content:"✦";color:var(--accent);font-size:10px;flex:0 0 12px;padding-top:2px}
+.impact-close{font-size:13px;color:#6a6055;line-height:1.75;padding-top:12px;border-top:1px dotted var(--line)}
+
+/* ── 무엇이 다른가 ── */
+.diff-wrap{display:flex;flex-direction:column;gap:12px;margin-top:6px}
+.diff-row{
+  display:grid;grid-template-columns:90px 1fr;gap:0;
+  border-bottom:1px dotted var(--line);padding:12px 0 12px 10px;
+  border-left:2px solid transparent;margin-left:-10px;
+}
+.diff-row:first-child{border-top:1px dotted var(--line)}
+.diff-row.dr-myeongri{border-left-color:rgba(196,166,97,.5)}
+.diff-row.dr-ziwei{border-left-color:var(--accent-line)}
+.diff-row.dr-both{border-left-color:transparent;background:linear-gradient(90deg,var(--gold-bg),var(--accent-bg));border-radius:0 4px 4px 0}
+.diff-label{font-size:12px;font-weight:900;color:var(--accent);letter-spacing:.04em;padding-right:10px;line-height:1.5;padding-top:1px;font-family:'Noto Sans KR',sans-serif}
+.diff-row.dr-myeongri .diff-label{color:var(--gold)}
+.diff-row.dr-both .diff-label{color:var(--ink)}
+.diff-val{font-size:13.5px;color:#3a2e20;line-height:1.65}
+.diff-val b{color:var(--ink);font-weight:700}
+
+/* ── 목차 ── */
+.toc{display:flex;flex-direction:column;gap:0}
+.toc-part{border-bottom:1px solid var(--line)}
+.toc-part:last-child{border-bottom:none}
+.toc-row{display:flex;align-items:flex-start;gap:13px;padding:14px 0}
+.toc-num{flex:0 0 32px;font-size:11px;letter-spacing:.08em;color:var(--accent);font-weight:700;padding-top:3px;font-family:'Noto Sans KR',sans-serif}
+.toc-body{flex:1}
+.toc-name{font-size:15px;font-weight:900;color:var(--ink);margin-bottom:3px;line-height:1.4}
+.toc-desc{font-size:12px;color:var(--mid);line-height:1.6}
+
+/* ── 기룡 그리드 ── */
+.kiryong-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:14px 0}
+.kg-item{text-align:center;padding:10px 6px;background:var(--accent-bg);border:1px solid var(--accent-line);border-radius:4px}
+.kg-name{font-size:10.5px;color:var(--mid);margin-bottom:4px;letter-spacing:.05em;font-family:'Noto Sans KR',sans-serif}
+.kg-score{font-size:20px;font-weight:900;font-family:'Noto Serif KR',serif}
+.kg-plus{color:var(--jade)}.kg-minus{color:var(--red)}.kg-zero{color:var(--mid)}
+.kg-area{font-size:10px;color:var(--mid);margin-top:2px}
+
+/* ── 블러 게이트 ── */
+.blur-gate{position:relative;overflow:hidden;border-radius:0 0 4px 4px}
+.blur-gate .blurred{filter:blur(5px);user-select:none;pointer-events:none;font-size:13px;color:#3a2e20;line-height:1.8;padding:14px 16px}
+.blur-gate::after{content:"";position:absolute;inset:0;background:linear-gradient(var(--blur-veil),var(--blur-veil))}
+.blur-gate .lock{position:absolute;inset:0;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px}
+.lock-icon{font-size:20px;color:var(--accent)}
+.lock-text{font-size:11.5px;color:var(--accent);letter-spacing:.08em;font-weight:700;text-align:center}
+
+/* ── 샘플 블록 ── */
+.sample-wrap{margin-top:6px}
+.sample-label{font-size:10.5px;letter-spacing:.2em;color:var(--accent);font-weight:700;margin-bottom:10px;font-family:'Noto Sans KR',sans-serif}
+.sample-block{background:var(--paper-card);border:1px solid var(--line);border-radius:4px;overflow:hidden;margin-bottom:14px}
+.sample-header{background:var(--accent);color:#fff;font-size:11px;letter-spacing:.15em;font-weight:700;padding:7px 14px;font-family:'Noto Sans KR',sans-serif}
+.sample-text{padding:14px 16px;font-size:13px;color:#3a2e20;line-height:1.85}
+.sample-text b{color:var(--ink);font-weight:700}
+.sample-text .hl{color:var(--accent);font-weight:700}
+
+/* ── 73궁 그리드 ── */
+.palace-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:6px}
+.palace{border:1px solid var(--line);border-radius:4px;padding:12px 13px;background:var(--paper-card)}
+.palace.open{border-color:var(--accent-line);background:linear-gradient(135deg,rgba(107,63,160,.06),transparent)}
+.palace.blur-palace{opacity:.55;filter:blur(1.5px);user-select:none;pointer-events:none}
+.palace-name{font-size:12px;font-weight:900;color:var(--ink);margin-bottom:6px;letter-spacing:.03em}
+.palace.open .palace-name{color:var(--accent)}
+.palace-themes{display:flex;flex-wrap:wrap;gap:4px}
+.pt{display:inline-block;font-size:10px;background:var(--accent-bg);border:1px solid var(--accent-line);color:var(--accent);border-radius:100px;padding:2px 7px;line-height:1.5;font-family:'Noto Sans KR',sans-serif}
+.palace-note{font-size:11px;color:var(--mid);text-align:center;margin-top:14px;line-height:1.7}
+
+/* ── 타임라인 ── */
+.timeline{display:flex;flex-direction:column;gap:0;margin-top:6px}
+.tl-item{display:flex;align-items:flex-start;gap:14px;padding:14px 0;border-bottom:1px solid var(--line)}
+.tl-item:last-child{border-bottom:none}
+.tl-dot{flex:0 0 10px;height:10px;border-radius:50%;border:2px solid var(--accent);margin-top:4px}
+.tl-step{flex:0 0 52px;font-size:10.5px;font-weight:700;color:var(--accent);letter-spacing:.08em;padding-top:1px;font-family:'Noto Sans KR',sans-serif}
+.tl-desc{font-size:13.5px;color:#3a2e20;line-height:1.65}
+
+/* ── 스펙 그리드 ── */
+.spec-list{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:4px}
+.spec-item{background:var(--accent-bg);border:1px solid var(--accent-line);border-radius:4px;padding:12px 14px}
+.spec-key{font-size:10.5px;color:var(--mid);letter-spacing:.1em;font-weight:700;margin-bottom:4px;font-family:'Noto Sans KR',sans-serif}
+.spec-val{font-size:14px;font-weight:900;color:var(--ink)}
+
+/* ── 차감 배너 ── */
+.discount-banner{
+  background:linear-gradient(135deg,rgba(107,63,160,.10),rgba(58,90,68,.06));
+  border:1px solid var(--accent-line);
+  border-radius:4px;padding:16px 18px;margin-top:14px;
+}
+.db-tag{font-size:10px;letter-spacing:.2em;color:var(--accent);font-weight:700;margin-bottom:6px;font-family:'Noto Sans KR',sans-serif}
+.db-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:4px}
+.db-original{font-size:13px;color:var(--mid);text-decoration:line-through}
+.db-arrow{color:var(--accent);font-weight:700}
+.db-final{font-size:22px;font-weight:900;color:var(--ink);font-family:'Noto Serif KR',serif}
+.db-note{font-size:11px;color:var(--mid);margin-top:4px;line-height:1.6}
+
+/* ── 업셀 박스 ── */
+.upsell-box{border:1px dashed var(--accent-line);border-radius:4px;padding:14px 16px;margin-top:14px;font-size:13px;color:#6a6055;line-height:1.7}
+.upsell-box b{color:var(--accent)}
+
+/* ── 비교표 ── */
+.compare-table{width:100%;border-collapse:collapse;margin-top:10px;font-size:12.5px}
+.compare-table th,.compare-table td{border:1px solid var(--line);padding:9px 10px;text-align:center;line-height:1.5}
+.compare-table th{font-weight:700;background:var(--accent-bg);color:var(--ink);font-size:11.5px}
+.compare-table td:first-child{text-align:left;color:var(--mid);font-size:12px}
+.col-ziwei{color:var(--mid)}
+.col-deep{color:var(--accent)}
+.compare-note{font-size:11.5px;color:var(--mid);text-align:center;margin-top:8px}
+
+/* ── FAQ ── */
+.faq-list{display:flex;flex-direction:column;gap:0;margin-top:4px}
+.faq-item{border-bottom:1px solid var(--line)}
+.faq-item:last-child{border-bottom:none}
+.faq-q{display:flex;justify-content:space-between;align-items:center;padding:14px 0;font-size:13.5px;font-weight:700;cursor:pointer;color:var(--ink);gap:8px}
+.faq-q .arrow{font-size:14px;color:var(--accent);flex:0 0 auto;transition:.2s}
+.faq-a{display:none;font-size:13px;color:#6a6055;line-height:1.8;padding:0 0 14px}
+.faq-item.open .faq-a{display:block}
+.faq-item.open .arrow{transform:rotate(180deg)}
+
+/* ── CTA 하단 고정 ── */
+.cta-fixed{position:fixed;bottom:0;left:0;right:0;background:rgba(244,240,250,.97);backdrop-filter:blur(10px);border-top:1px solid var(--line);padding:12px 18px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;z-index:100}
+.cf-left{display:flex;flex-direction:column;gap:2px}
+.cf-label{font-size:10px;color:var(--mid);letter-spacing:.05em;font-family:'Noto Sans KR',sans-serif}
+.cf-price{font-size:20px;font-weight:900;color:var(--accent);font-family:'Noto Serif KR',serif;line-height:1.2}
+.cf-btn{flex:0 0 auto;background:var(--accent);color:#fff;border:none;border-radius:100px;padding:13px 24px;font-size:14px;font-weight:700;cursor:pointer;white-space:nowrap;text-decoration:none;font-family:'Noto Sans KR',sans-serif;box-shadow:0 3px 14px rgba(107,63,160,.3);transition:.15s}
+.cf-btn:active{transform:scale(.97)}
+
+/* ── 구분선 ── */
+.divider{text-align:center;margin:8px 0;font-size:12px;letter-spacing:.4em;color:var(--accent-line)}
+
+/* ── 푸터 ── */
+.foot{font-size:10.5px;color:#a89878;text-align:center;margin-top:36px;line-height:2}
+
+/* ── 반응형 ── */
+@media(max-width:560px){
+  .hero-title{font-size:26px}
+  .kiryong-grid{grid-template-columns:repeat(3,1fr);gap:6px}
+  .spec-list{grid-template-columns:1fr 1fr}
+  .palace-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:380px){
+  .kiryong-grid{grid-template-columns:repeat(3,1fr)}
+}
+.oheng-divider{display:flex;justify-content:center;gap:6px;margin-top:14px}
+.oheng-divider span{width:7px;height:7px;border-radius:50%;display:inline-block}
+.oheng-divider span:nth-child(1){background:#3a8a4a}
+.oheng-divider span:nth-child(2){background:#c0392b}
+.oheng-divider span:nth-child(3){background:#9a7b3f}
+.oheng-divider span:nth-child(4){background:#7d8388}
+.oheng-divider span:nth-child(5){background:#2c3e6b}
+</style>
+</head>
+<body>
+
+<div class="topbar"><img src="./jiaseh_symbol_traced2_dark.png" class="topbar-logo" alt="지아세">知我世 · 지아세</div>
+
+<div class="wrap">
+
+<!-- ══ 히어로 ══ -->
+<header>
+  <div class="tier-tag">TIER 1 · 체감 진단</div>
+  <span style="font-size:32px;display:block;margin-bottom:8px">🌐</span>
+  <h1 class="hero-title">체감 지도</h1>
+  <div class="hero-hanja">體感地圖 · 자미두수 73궁</div>
+  <div class="rule"></div>
+  <p class="hero-sub">
+    삶의 12개 무대를 73개 좌표로 쪼갠 지도.<br>
+    어디서 받고, 어디서 새고, 어디서 충돌하는지 — 수치로 드러납니다.<br>
+    결과가 아니라 <b>체감</b>을 읽는 보고서입니다.
+  </p>
+  <div class="oheng-divider"><span></span><span></span><span></span><span></span><span></span></div>
+</header>
+
+<!-- ══ 이런 분께 ══ -->
+<section>
+  <div class="card">
+    <div class="eyebrow">이런 분께</div>
+    <div class="sec-title">숫자는 되는데 왜 이렇게 공허할까</div>
+    <div class="pain-list">
+      <div class="pain-item">
+        <span class="icon">◆</span>
+        <span>일도 하고 돈도 버는데, 막상 내 삶이 맞는 건지 모르겠어요.</span>
+      </div>
+      <div class="pain-item">
+        <span class="icon">◆</span>
+        <span>연애나 관계에서 늘 같은 패턴이 반복됩니다. 왜 그런지 알고 싶어요.</span>
+      </div>
+      <div class="pain-item">
+        <span class="icon">◆</span>
+        <span>지금 이 직업이, 이 공간이, 이 관계가 나한테 맞는 건지 확인하고 싶어요.</span>
+      </div>
+      <div class="pain-item">
+        <span class="icon">◆</span>
+        <span>체감 만족도가 낮은 구간과 높은 구간을 미리 알고 준비하고 싶습니다.</span>
+      </div>
+    </div>
+
+    <div class="impact-block">
+      <div class="impact-pre">체감 지도가 보여주는 것</div>
+      <div class="impact-headline">
+        어느 영역에서 에너지를 받고,<br>
+        <em>어디서 아무리 해도 안 되는지.</em>
+      </div>
+      <div class="impact-list">
+        <div class="impact-item">왜 그 영역에서만 유독 힘든지</div>
+        <div class="impact-item">금전이 들어오는 구조와 새는 구조가 각각 어디인지</div>
+        <div class="impact-item">이성운이 특정 시기에만 활성화되는 이유</div>
+        <div class="impact-item">지금 이 10년이 체감적으로 올라가는 시기인지 내려가는 시기인지</div>
+        <div class="impact-item">올해는 어떤 무대가 활성화되고, 어느 영역을 쉬어야 하는지</div>
+      </div>
+      <div class="impact-close">
+        노력의 양이 아니라 <b>방향</b>의 문제입니다.<br>
+        체감 지도는 당신이 힘을 써야 할 곳과 내려놓아야 할 곳을 동시에 보여줍니다.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 자미두수란 ══ -->
+<section>
+  <div class="card">
+    <div class="eyebrow">자미두수(紫微斗數)란</div>
+    <div class="sec-title">체감과 만족을 읽는 동양 천문학</div>
+    <p class="sec-lead">명리(사주)가 에너지의 절대값·결과를 보여준다면,<br>자미두수는 그 과정을 <b>어떻게 경험하고 느끼는지</b>를 봅니다.</p>
+
+    <div class="diff-wrap">
+      <div class="diff-row dr-myeongri">
+        <div class="diff-label">명리 사주</div>
+        <div class="diff-val"><b>절대값·객관 결과</b>. 에너지가 얼마나 강한지, 언제 오는지. "얼마나, 언제"</div>
+      </div>
+      <div class="diff-row dr-ziwei">
+        <div class="diff-label">자미두수</div>
+        <div class="diff-val"><b>체감·주관 만족</b>. 같은 결과를 어떻게 경험하는지. "어떻게 느끼는가"</div>
+      </div>
+      <div class="diff-row dr-both">
+        <div class="diff-label">지아세 방식</div>
+        <div class="diff-val">12궁(무대)을 각각 <b>6개 세부 자리</b>로 쪼개 총 <b>73개 좌표</b>로 읽습니다. 일반 자미두수보다 6배 세밀합니다.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 보고서 목차 ══ -->
+<section>
+  <div class="card">
+    <div class="eyebrow">보고서 목차</div>
+    <div class="sec-title">10~15페이지 안에 담기는 것들</div>
+    <div class="toc">
+
+      <div class="toc-part">
+        <div class="toc-row">
+          <div class="toc-num">PART 0</div>
+          <div class="toc-body">
+            <div class="toc-name">오프닝 — 오늘 당신의 기운</div>
+            <div class="toc-desc">보고서를 펼치는 순간, 지금 이 시기의 에너지를 먼저 짚습니다. "맞다"는 느낌으로 시작합니다.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="toc-part">
+        <div class="toc-row">
+          <div class="toc-num">PART 1</div>
+          <div class="toc-body">
+            <div class="toc-name">명반 — 당신의 73개 좌표</div>
+            <div class="toc-desc">명반 국수·명주·신궁과 12궁 기룡 전체 지도. 어느 무대가 강하고 어느 무대가 취약한지 한눈에 확인합니다.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="toc-part">
+        <div class="toc-row">
+          <div class="toc-num">PART 2</div>
+          <div class="toc-body">
+            <div class="toc-name">평생 체감 — 12궁 × 6세부 입체 리딩</div>
+            <div class="toc-desc">주요 질문 무대를 중심으로 삼방사정 6궁이 어떻게 맞물리는지 입체로 읽습니다. 단순 기룡 숫자가 아닌 흐름으로 연결됩니다.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="toc-part">
+        <div class="toc-row">
+          <div class="toc-num">PART 3</div>
+          <div class="toc-body">
+            <div class="toc-name">이 10년 — 대한(大限) 분석</div>
+            <div class="toc-desc">지금 이 10년 대한에서 별 배치가 어떻게 달라지는지 새로 계산합니다. 체감 황금기와 주의기를 특정합니다.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="toc-part">
+        <div class="toc-row">
+          <div class="toc-num">PART 4</div>
+          <div class="toc-body">
+            <div class="toc-name">올해 — 세운(歲運) × 대한 교차</div>
+            <div class="toc-desc">올해 세운에서 활성화되는 무대와 조심할 무대. 좋은 달과 신중한 달을 포함합니다.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="toc-part">
+        <div class="toc-row">
+          <div class="toc-num">PART 5</div>
+          <div class="toc-body">
+            <div class="toc-name">신궁(身宮) — 이 삶의 목적</div>
+            <div class="toc-desc">73번째 자리. 당신이 이 생에서 완성해야 할 것. 명반 전체를 관통하는 한 줄이 여기서 나옵니다.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="toc-part">
+        <div class="toc-row">
+          <div class="toc-num">PART 6</div>
+          <div class="toc-body">
+            <div class="toc-name">종합 — 지금 당장 할 것 3가지</div>
+            <div class="toc-desc">주요 질문에 대한 직접 답변, 핵심 행동 3가지, 보고서를 관통하는 한 문장.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="toc-part" style="background:rgba(107,63,160,.04);border-left:3px solid var(--accent)">
+        <div class="toc-row" style="padding-left:14px">
+          <div class="toc-num" style="color:var(--accent)">PART 7</div>
+          <div class="toc-body">
+            <div class="toc-name">당신의 질문 — 집중 답변</div>
+            <div class="toc-desc">신청 시 보내주신 질문 1~2가지. 명반 전체를 읽은 후 그 방향으로 조준해 — 육효·육임을 교차하여 맞춤으로 풀어드립니다.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ 보고서 미리보기 ══ -->
+<section>
+  <div class="card">
+    <div class="eyebrow">보고서 미리보기</div>
+    <div class="sec-title">실제 이런 내용이 들어갑니다</div>
+    <p class="sec-lead">아래는 실제 체감 지도 보고서 발췌입니다. 생년월일만 블러 처리했습니다.</p>
+
+    <div class="sample-wrap">
+
+      <!-- PART 1 샘플: 12궁 기룡 -->
+      <div class="sample-label">PART 1 · 12궁 기룡 전체 지도</div>
+      <div class="sample-block">
+        <div class="sample-header">체감 지도 · 12궁 기룡 (평생반)</div>
+        <div class="kiryong-grid">
+          <div class="kg-item">
+            <div class="kg-name">田宅</div>
+            <div class="kg-score kg-plus">+6</div>
+            <div class="kg-area">환경·부동산</div>
+          </div>
+          <div class="kg-item">
+            <div class="kg-name">父母</div>
+            <div class="kg-score kg-plus">+4</div>
+            <div class="kg-area">유산·사회성</div>
+          </div>
+          <div class="kg-item">
+            <div class="kg-name">夫妻</div>
+            <div class="kg-score kg-plus">+2</div>
+            <div class="kg-area">이성·결혼</div>
+          </div>
+          <div class="kg-item">
+            <div class="kg-name">遷移</div>
+            <div class="kg-score kg-plus">+1</div>
+            <div class="kg-area">외부이미지</div>
+          </div>
+          <div class="kg-item">
+            <div class="kg-name">財帛</div>
+            <div class="kg-score kg-plus">+1</div>
+            <div class="kg-area">금전운</div>
+          </div>
+          <div class="kg-item">
+            <div class="kg-name">疾厄</div>
+            <div class="kg-score kg-plus">+1</div>
+            <div class="kg-area">건강·활동력</div>
+          </div>
+          <div class="kg-item">
+            <div class="kg-name">命宮</div>
+            <div class="kg-score kg-zero">0</div>
+            <div class="kg-area">성격·생명력</div>
+          </div>
+          <div class="kg-item">
+            <div class="kg-name">兄弟</div>
+            <div class="kg-score kg-zero">0</div>
+            <div class="kg-area">조력·노력</div>
+          </div>
+          <div class="kg-item">
+            <div class="kg-name">奴僕</div>
+            <div class="kg-score kg-plus">+1</div>
+            <div class="kg-area">인간관계</div>
+          </div>
+          <div class="kg-item">
+            <div class="kg-name">子女</div>
+            <div class="kg-score kg-minus">−1</div>
+            <div class="kg-area">자손·비용</div>
+          </div>
+          <div class="kg-item">
+            <div class="kg-name">福德</div>
+            <div class="kg-score kg-minus">−3</div>
+            <div class="kg-area">영혼·행운</div>
+          </div>
+          <div class="kg-item" style="border-color:rgba(139,46,34,.3);background:rgba(139,46,34,.05)">
+            <div class="kg-name">官祿</div>
+            <div class="kg-score kg-minus">−3</div>
+            <div class="kg-area">커리어·직업</div>
+          </div>
+        </div>
+        <div class="sample-text" style="border-top:1px solid var(--line)">
+          <span class="hl">田宅 +6 · 최강</span> — 이 명반에서 공간과 환경이 가장 강력한 자산입니다. 어디에 있느냐가 삶 전체의 흐름을 결정합니다. 터의 기운이 이 사람의 모든 것을 받쳐주는 구조입니다.<br><br>
+          <span class="hl">官祿 −3 · 최약</span> — 커리어와 조직이 구조적으로 가장 소진되는 무대입니다. 노력과 무관하게 이 영역에서는 얻는 것보다 쓰는 것이 많습니다. 이것이 의지의 문제가 아닌 이유입니다.
+        </div>
+      </div>
+
+      <!-- PART 2 샘플: 6궁 세부 리딩 -->
+      <div class="sample-label" style="margin-top:16px">PART 2 · 재백궁 6세부 입체 리딩</div>
+      <div class="sample-block">
+        <div class="sample-header">財帛宮 · 금전 6궁 상세</div>
+        <div class="sample-text">
+          <b>재백궁 본궁 +1</b> — 수입 자체는 안정적으로 들어오는 구조입니다.<br><br>
+          <span class="hl">들어오는 구조</span>: 사적 수입(부처궁 삼방 +2) 쪽이 공적 수입보다 강하게 작동합니다. 부업·프리랜서·관계 기반 수익에서 더 잘 받습니다.<br><br>
+          <span class="hl">새는 구조</span>: 복덕궁 대충 −3. 행운·기대감의 영역이 마이너스라 투자·투기성 지출에서 반복적으로 손실이 발생합니다.
+        </div>
+        <div class="blur-gate">
+          <div class="blurred">
+            금전 만족도(재백궁 삼방 복덕궁 −3 교차): 돈이 들어와도 충분하다는 느낌이 들지 않는 구조입니다. 이것은 실제 금액의 문제가 아니라 복덕궁 마이너스가 만족 임계값을 높이기 때문입니다. 올해 세운 사화에 따라 이 흐름이 일시 전환되는 구간이 있습니다. 구체적 월은 PART 4에서 확인합니다.
+          </div>
+          <div class="lock">
+            <div class="lock-icon">✦</div>
+            <div class="lock-text">보고서 전문에서 확인됩니다</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PART 3 샘플: 대한 -->
+      <div class="sample-label" style="margin-top:16px">PART 3 · 이 10년 대한 분석</div>
+      <div class="sample-block">
+        <div class="sample-header">大限 · 체감 흐름 — 현재 대한</div>
+        <div class="blur-gate">
+          <div class="blurred">
+            현재 대한 명궁 이동: 평생 官祿宮이 이 대한에서 명궁으로 진입합니다. 평생 −3이었던 관록 에너지가 이 10년의 주무대가 됩니다. 대한 사화 천간이 추가로 작동하면서 官祿宮 기룡이 −3 → +1로 일시 전환됩니다. 이 10년이 커리어 재정비의 실질적 기회 구간인 이유입니다. 정확한 전환 타이밍과 주의 구간은 PART 3 전문에서 확인하세요.
+          </div>
+          <div class="lock">
+            <div class="lock-icon">✦</div>
+            <div class="lock-text">보고서 전문에서 확인됩니다</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ 73궁 시각화 ══ -->
+<section>
+  <div class="card">
+    <div class="eyebrow">지아세 자미두수의 차이</div>
+    <div class="sec-title">12칸을 73개 좌표로 읽습니다</div>
+    <p class="sec-lead">
+      일반 자미두수는 12궁을 봅니다.<br>
+      지아세는 각 궁을 6개 세부 자리로 쪼개 — <b>총 73개의 이야기</b>를 합니다.
+    </p>
+
+    <div class="palace-grid">
+      <div class="palace open">
+        <div class="palace-name">命宮 · 명궁</div>
+        <div class="palace-themes">
+          <span class="pt">성격</span>
+          <span class="pt">선천적 기질</span>
+          <span class="pt">후천적 변화</span>
+          <span class="pt">생명력</span>
+          <span class="pt">지능·두뇌</span>
+          <span class="pt">페르소나</span>
+        </div>
+      </div>
+      <div class="palace open">
+        <div class="palace-name">夫妻宮 · 부처궁</div>
+        <div class="palace-themes">
+          <span class="pt">이성운</span>
+          <span class="pt">친구같은 연애</span>
+          <span class="pt">성적 끌림</span>
+          <span class="pt">실질적 사랑</span>
+          <span class="pt">이상적 사랑</span>
+          <span class="pt">결혼 · 직업유지력</span>
+        </div>
+      </div>
+      <div class="palace open">
+        <div class="palace-name">財帛宮 · 재백궁</div>
+        <div class="palace-themes">
+          <span class="pt">금전운</span>
+          <span class="pt">돈이 들어오는 구조</span>
+          <span class="pt">돈이 새는 구조</span>
+          <span class="pt">사적 수익</span>
+          <span class="pt">공적 수익</span>
+          <span class="pt">금전적 만족도</span>
+        </div>
+      </div>
+      <div class="palace open">
+        <div class="palace-name">官祿宮 · 관록궁</div>
+        <div class="palace-themes">
+          <span class="pt">커리어 방향</span>
+          <span class="pt">직장 동료 관계</span>
+          <span class="pt">상사와의 관계</span>
+          <span class="pt">자영업 적합도</span>
+          <span class="pt">캐시플로우</span>
+          <span class="pt">직업 유지력</span>
+        </div>
+      </div>
+      <div class="palace blur-palace">
+        <div class="palace-name">兄弟宮 · 형제궁</div>
+        <div class="palace-themes">
+          <span class="pt">조력의 구조</span><span class="pt">자신의 노력</span><span class="pt">이성의 조력</span><span class="pt">악업</span><span class="pt">환경적 행운</span><span class="pt">동성의 조력</span>
+        </div>
+      </div>
+      <div class="palace blur-palace">
+        <div class="palace-name">子女宮 · 자녀궁</div>
+        <div class="palace-themes">
+          <span class="pt">자손 인연</span><span class="pt">비용·지출</span><span class="pt">생물학적 자손</span><span class="pt">유산</span><span class="pt">효도</span><span class="pt">양육 환경</span>
+        </div>
+      </div>
+      <div class="palace blur-palace">
+        <div class="palace-name">疾厄宮 · 질액궁</div>
+        <div class="palace-themes">
+          <span class="pt">육체 에너지</span><span class="pt">생명력</span><span class="pt">활동력</span><span class="pt">지구력·정력</span><span class="pt">건강</span><span class="pt">용모</span>
+        </div>
+      </div>
+      <div class="palace blur-palace">
+        <div class="palace-name">遷移宮 · 천이궁</div>
+        <div class="palace-themes">
+          <span class="pt">외부 이미지</span><span class="pt">이미지 긍·부정</span><span class="pt">동성 이미지</span><span class="pt">이미지 만족도</span><span class="pt">이성 이미지</span><span class="pt">내가 보는 나</span>
+        </div>
+      </div>
+      <div class="palace blur-palace">
+        <div class="palace-name">奴僕宮 · 노복궁</div>
+        <div class="palace-themes">
+          <span class="pt">인간관계 전반</span><span class="pt">직장 분위기</span><span class="pt">여가·취미</span><span class="pt">손윗사람</span><span class="pt">손아랫사람</span><span class="pt">동년배</span>
+        </div>
+      </div>
+      <div class="palace blur-palace">
+        <div class="palace-name">田宅宮 · 전택궁</div>
+        <div class="palace-themes">
+          <span class="pt">환경·부동산</span><span class="pt">정신적 환경</span><span class="pt">물질적 환경</span><span class="pt">건강 환경</span><span class="pt">사회적 환경</span><span class="pt">성적 환경</span>
+        </div>
+      </div>
+      <div class="palace blur-palace">
+        <div class="palace-name">福德宮 · 복덕궁</div>
+        <div class="palace-themes">
+          <span class="pt">영혼·내면</span><span class="pt">행운</span><span class="pt">머무름의 즐거움</span><span class="pt">움직임의 즐거움</span><span class="pt">즐거움의 비용</span>
+        </div>
+      </div>
+      <div class="palace blur-palace">
+        <div class="palace-name">父母宮 · 부모궁</div>
+        <div class="palace-themes">
+          <span class="pt">유산과 염려</span><span class="pt">물질적 유산</span><span class="pt">정신적 유산</span><span class="pt">사회성 염려</span><span class="pt">건강 염려</span>
+        </div>
+      </div>
+      <div class="palace blur-palace" style="grid-column:1/-1">
+        <div class="palace-name">身宮 · 신궁</div>
+        <div class="palace-themes">
+          <span class="pt">인생의 목적 · 업(業)</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="palace-note">
+      ✦ 밝은 4궁은 미리보기 샘플에서 일부 확인하실 수 있습니다.<br>
+      나머지 9궁 × 6자리 + 신궁은 보고서 전문에서 당신의 수치로 펼쳐집니다.
+    </div>
+  </div>
+</section>
+
+<!-- ══ 신청 절차 ══ -->
+<section>
+  <div class="card">
+    <div class="eyebrow">신청 절차</div>
+    <div class="sec-title">이렇게 진행됩니다</div>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-step">STEP 1</div>
+        <div class="tl-desc">카카오 채널로 <b>생년월일시 + 성별 + 가장 궁금한 것 1~2가지</b>를 보내주세요 — 해당 부분을 보고서에서 집중적으로 풀어드립니다</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-step">STEP 2</div>
+        <div class="tl-desc">결제 안내 후 <b>명반 포국 및 분석 시작</b></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-step">STEP 3</div>
+        <div class="tl-desc">술사 직접 검수 후 <b>3~5일 내</b> 온라인 문서로 납품</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot" style="border-color:var(--jade);background:var(--jade)"></div>
+        <div class="tl-step" style="color:var(--jade)">완료 ✓</div>
+        <div class="tl-desc">궁금한 점 1회 추가 질문 가능</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 상품 안내 ══ -->
+<section>
+  <div class="card">
+    <div class="eyebrow">상품 안내</div>
+    <div class="sec-title">무엇을 어떻게 받게 되나요</div>
+    <div class="spec-list">
+      <div class="spec-item">
+        <div class="spec-key">분량</div>
+        <div class="spec-val">A4 10~15p</div>
+      </div>
+      <div class="spec-item">
+        <div class="spec-key">납기</div>
+        <div class="spec-val">결제 후 3~5일</div>
+      </div>
+      <div class="spec-item">
+        <div class="spec-key">형태</div>
+        <div class="spec-val">온라인 문서</div>
+      </div>
+      <div class="spec-item">
+        <div class="spec-key">술사 검수</div>
+        <div class="spec-val">전량 직접 검수</div>
+      </div>
+    </div>
+
+    <div class="divider" style="margin-top:20px">· · ·</div>
+
+    <!-- 차감 배너 -->
+    <div class="discount-banner">
+      <div class="db-tag">이미 결제하셨다면 — 기납부액 차감</div>
+      <div class="db-row">
+        <span class="db-original">70,000원</span>
+        <span class="db-arrow">→</span>
+        <span class="db-final">60,100원</span>
+      </div>
+      <div class="db-note">AI 자미 리포트(9,900) 결제 이력이 있다면 차액 60,100원만 결제합니다.<br>문의 시 이전 결제 채널과 날짜를 함께 보내주세요.</div>
+    </div>
+
+    <div class="upsell-box" style="margin-top:14px">
+      <b>더 깊이 보고 싶다면 — 골든크로스 100,000</b><br>
+      체감 지도(자미두수) + 운명 설계도(명리)가 교차·충돌하는 지점까지 입체로 읽습니다.<br>두 단품 합산(120,000)보다 교차 해석까지 포함해 20,000 저렴합니다.
+    </div>
+  </div>
+</section>
+
+<!-- ══ 비교표 ══ -->
+<section>
+  <div class="card">
+    <div class="eyebrow">상품 비교</div>
+    <div class="sec-title">어떤 상품을 선택할까요</div>
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th></th>
+          <th class="col-ziwei">AI 자미 리포트<br><small style="font-weight:400;font-size:10px">9,900원</small></th>
+          <th class="col-deep">체감 지도<br><small style="font-weight:400;font-size:10px">70,000원</small></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>볼 수 있는 자리 수</td><td>12칸</td><td style="font-weight:900;color:var(--accent)">73칸</td></tr>
+        <tr><td>각 무대를 보는 깊이</td><td>결론 한 줄</td><td>6개 세부 항목</td></tr>
+        <tr><td>튀는 곳 TOP 3</td><td>✓</td><td>✓</td></tr>
+        <tr><td>무대끼리 어떻게 연결되는지</td><td>–</td><td>✓</td></tr>
+        <tr><td>지금 이 10년 흐름</td><td>–</td><td>✓</td></tr>
+        <tr><td>올해 세운 레이어</td><td>흐름 한 줄</td><td>상세</td></tr>
+        <tr><td>이 삶의 목적 (신궁)</td><td>–</td><td>✓</td></tr>
+        <tr><td>술사 검수</td><td>–</td><td>✓</td></tr>
+        <tr><td>납기</td><td>당일</td><td>3~5일</td></tr>
+      </tbody>
+    </table>
+    <p class="compare-note">12칸 전체를 먼저 확인 → 각 칸이 어떻게 맞물리는지 보고 싶으면 체감 지도로</p>
+  </div>
+</section>
+
+<!-- ══ FAQ ══ -->
+<section>
+  <div class="card">
+    <div class="eyebrow">자주 묻는 질문</div>
+    <div class="sec-title">궁금한 점</div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q">명리 설계도와 함께 봐야 하나요? <span class="arrow">▾</span></div>
+        <div class="faq-a">각각 다른 각도로 봐요. 체감 지도는 "어떻게 느끼는가"(주관 만족)를, 설계도는 "에너지 구조와 큰 흐름"(객관 결과)을 보여줍니다. 단독으로도 충분히 의미 있고, 나중에 함께 보고 싶으면 그때 추가하셔도 돼요. 두 가지를 동시에 원하신다면 골든크로스(10만)가 더 경제적입니다.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">태어난 시간을 모르면 어떻게 하나요? <span class="arrow">▾</span></div>
+        <div class="faq-a">시간 없이도 분석 가능해요. 다만 신궁 위치와 일부 궁의 정밀도가 낮아질 수 있어요. 시간이 있다면 함께 보내주시는 게 좋습니다. 알 수 없는 경우 안내드릴게요.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">AI 자미 리포트(9,900)와 어떻게 다른가요? <span class="arrow">▾</span></div>
+        <div class="faq-a">AI 자미는 12궁 전체를 한 줄씩 자동으로 풀어드리는 '전체 지도' 버전입니다. 체감 지도는 12칸을 각각 6개 세부 항목으로 쪼개 총 73개 좌표로 읽고, 각 무대가 서로 어떻게 연결되는지까지 봅니다. 대한(10년)·세운(올해) 레이어를 별도로 계산한 후 술사가 직접 검수합니다. AI가 결론을 보여준다면, 체감 지도는 그 결론의 구조를 풀어드립니다.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">기룡 수치가 높으면 무조건 좋은 건가요? <span class="arrow">▾</span></div>
+        <div class="faq-a">기룡은 그 무대에서 '얼마나 받느냐'의 지표예요. +면 노력보다 더 받는 구조, −면 노력해도 덜 돌아오는 구조입니다. 높다고 무조건 편한 건 아니에요 — 강한 무대는 그 영역에서 많은 사건이 일어나는 것을 의미하기도 합니다. 중요한 건 수치 자체가 아니라 그 무대를 어떻게 경영하느냐예요.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">어떤 질문을 가져오면 좋을까요? <span class="arrow">▾</span></div>
+        <div class="faq-a">지금 가장 궁금한 영역 1~3가지면 충분해요. "커리어 방향을 바꿔야 할지", "이 연애가 맞는 방향인지", "언제쯤 금전 흐름이 풀릴지" 같이 구체적일수록 해당 궁을 중심으로 깊이 읽어드릴 수 있습니다.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CTA 카드 ══ -->
+<section>
+  <div class="card">
+    <div class="eyebrow">신청</div>
+    <div class="sec-title">내 삶의 73개 좌표를 확인하세요</div>
+    <p class="sec-lead">카카오 채널로 문의주시면 안내드립니다. 생년월일시·성별·주요 고민을 함께 보내주시면 더 빠릅니다.</p>
+    <a href="http://pf.kakao.com/_xnZAxfX" class="cf-btn" style="display:block;text-align:center;border-radius:6px;padding:15px;margin-top:6px;font-size:15px;font-family:'Noto Serif KR',serif">카카오 채널 문의하기</a>
+    <p style="font-size:11px;color:var(--mid);text-align:center;margin-top:12px;line-height:1.7">
+      문의 시 생년월일시·성별·주요 고민을 함께 보내주세요.<br>
+      결제 완료 후 3~5일 내 온라인 문서로 납품됩니다.
+    </p>
+  </div>
+</section>
+
+<div class="foot">
+  知我世 · 지아세 — 명징투파 자평명리 + 유시자미두수 남파 73궁<br>
+  본 보고서는 참고용이며, 무엇도 단정하지 않습니다.
+</div>
+
+</div><!-- /wrap -->
+
+<!-- ── 하단 고정 CTA ── -->
+<div class="cta-fixed">
+  <div class="cf-left">
+    <div class="cf-label">체감 지도 · 자미두수 73궁 · 술사 검수</div>
+    <div class="cf-price">70,000원</div>
+  </div>
+  <a href="http://pf.kakao.com/_xnZAxfX" class="cf-btn">지금 신청하기</a>
+</div>
+
+<script>
+document.querySelectorAll('.faq-q').forEach(q=>{
+  q.addEventListener('click',()=>{
+    const item=q.closest('.faq-item');
+    const wasOpen=item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+    if(!wasOpen) item.classList.add('open');
+  });
+});
+</script>
+</body>
+</html>

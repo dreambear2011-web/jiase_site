@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 명리 리포트 · 지아세 知我世</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;700;900&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* ── 토큰 (TIER 0 — 밝고 가볍게) ── */
+:root{
+  --ink:#1a1410;
+  --paper:#fff8f0;           /* 자미와 동일 명도·채도, 주황빛 미색 */
+  --paper-card:#fffcf7;
+  --accent:#c96a1a;          /* 채도 올린 주황 */
+  --accent-lt:#e8954a;
+  --accent-bg:rgba(201,106,26,.09);
+  --accent-line:rgba(201,106,26,.22);
+  --teal:#2a7a6b;
+  --teal-bg:rgba(42,122,107,.08);
+  --line:#ead8c8;
+  --mid:#7a6858;
+  --shadow:rgba(0,0,0,.06);
+  --maxw:700px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Noto Sans KR',sans-serif;
+  background:var(--paper);
+  color:var(--ink);
+  line-height:1.75;
+  min-height:100vh;
+}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 18px 100px}
+
+/* ── 상단 브랜드 바 ── */
+.topbar{display:flex;align-items:center;justify-content:center;gap:7px;
+  padding:14px 0 10px;
+  border-bottom:1px solid var(--line);
+  font-size:11px;letter-spacing:.4em;color:var(--accent);font-weight:700;
+}
+.topbar-logo{width:20px;height:20px;border-radius:5px;flex-shrink:0}
+b{color:var(--accent);font-weight:800}
+
+/* ── 히어로 ── */
+header{text-align:center;padding:44px 0 8px}
+.tier-tag{
+  display:inline-block;
+  background:var(--accent-bg);
+  border:1px solid var(--accent-line);
+  border-radius:100px;
+  font-size:11px;font-weight:700;color:var(--accent);
+  letter-spacing:.18em;padding:4px 14px;margin-bottom:18px;
+}
+.hero-emoji{font-size:38px;display:block;margin-bottom:10px;line-height:1}
+.hero-title{
+  font-family:'Noto Serif KR',serif;
+  font-size:28px;font-weight:900;letter-spacing:.01em;line-height:1.3;
+}
+.hero-title em{color:var(--accent);font-style:normal}
+.hero-sub{
+  font-size:13.5px;color:var(--mid);margin-top:12px;line-height:1.8;
+}
+.rule{height:1px;background:linear-gradient(90deg,transparent,var(--line),transparent);margin:24px 0}
+
+/* ── 가격 (히어로 아래 작게) ── */
+.price-subtle{
+  text-align:center;margin:10px 0 0;
+  font-size:22px;font-weight:900;color:var(--ink);
+  font-family:'Noto Serif KR',serif;
+}
+.price-subtle span{font-size:13px;font-weight:400;color:var(--mid);margin-left:4px}
+
+/* ── CTA 버튼 ── */
+.btn-main{
+  display:block;width:100%;max-width:320px;margin:0 auto;
+  background:var(--accent);color:#fff;
+  text-align:center;padding:15px 0;border-radius:100px;
+  font-size:15px;font-weight:700;letter-spacing:.04em;
+  text-decoration:none;
+  box-shadow:0 4px 18px rgba(201,124,46,.28);
+  transition:transform .15s,box-shadow .15s;
+}
+.btn-main:active{transform:scale(.97)}
+.btn-ghost{
+  display:block;width:100%;max-width:320px;margin:10px auto 0;
+  border:1.5px solid var(--accent);color:var(--accent);
+  text-align:center;padding:13px 0;border-radius:100px;
+  font-size:14px;font-weight:700;letter-spacing:.04em;
+  text-decoration:none;transition:background .15s;
+}
+.btn-ghost:hover{background:var(--accent-bg)}
+
+/* ── 섹션 공통 ── */
+section{margin-top:20px}
+.card{
+  background:var(--paper-card);
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:22px 20px;
+  box-shadow:0 1px 6px var(--shadow);
+}
+.eyebrow{
+  font-size:10.5px;letter-spacing:.22em;color:var(--accent);
+  font-weight:700;margin-bottom:6px;
+}
+.sec-title{
+  font-family:'Noto Serif KR',serif;
+  font-size:19px;font-weight:900;letter-spacing:.01em;margin-bottom:12px;
+}
+.sec-lead{font-size:13.5px;color:#555;line-height:1.8;margin-bottom:14px}
+
+/* ── 공감 리스트 ── */
+.concern-list{display:flex;flex-direction:column;gap:9px}
+.concern-item{
+  display:flex;align-items:flex-start;gap:10px;
+  background:var(--accent-bg);
+  border:1px solid var(--accent-line);
+  border-radius:10px;padding:12px 14px;
+  font-size:13.5px;color:#2e2010;line-height:1.6;
+}
+.concern-item .ic{flex:0 0 20px;font-size:16px;padding-top:1px}
+
+/* ── 목차 카드 (KB 5칸) ── */
+.part-list{display:flex;flex-direction:column;gap:10px;margin-top:4px}
+.part-item{
+  display:flex;gap:14px;align-items:flex-start;
+  border-radius:10px;padding:14px 16px;
+  border:1px solid var(--line);background:var(--paper-card);
+}
+.part-item.star{
+  background:var(--accent-bg);
+  border-color:var(--accent-line);
+}
+.part-num{
+  flex:0 0 auto;
+  font-size:10px;letter-spacing:.12em;font-weight:700;
+  color:var(--mid);padding-top:3px;min-width:52px;
+}
+.part-item.star .part-num{color:var(--accent)}
+.part-body{}
+.part-title{font-size:14px;font-weight:700;margin-bottom:3px;color:var(--ink)}
+.part-item.star .part-title{color:var(--accent)}
+.part-desc{font-size:12.5px;color:var(--mid);line-height:1.65}
+
+/* ── 리포트 미리보기 ── */
+.preview-label{
+  font-size:10.5px;letter-spacing:.2em;color:var(--mid);
+  font-weight:700;margin-bottom:8px;padding-left:2px;
+}
+.preview-card{
+  background:#fafafa;border:1px solid var(--line);border-radius:10px;
+  overflow:hidden;
+}
+.preview-header{
+  background:linear-gradient(135deg,#2a2a2a 0%,#1c1c1c 100%);
+  color:#f7f2e8;padding:16px 18px;
+}
+.preview-header .ph-brand{font-size:9px;letter-spacing:.35em;color:var(--accent-lt);margin-bottom:4px;font-weight:700}
+.preview-header .ph-title{font-family:'Noto Serif KR',serif;font-size:17px;font-weight:900;line-height:1.3}
+.preview-header .ph-sub{font-size:10px;color:rgba(247,242,232,.55);margin-top:5px;letter-spacing:.04em}
+.preview-body{padding:16px 18px}
+.preview-section-title{
+  font-size:10px;letter-spacing:.22em;color:var(--accent);font-weight:700;
+  border-left:2.5px solid var(--accent);padding-left:8px;margin-bottom:10px;
+}
+.preview-row{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:7px 0;border-bottom:1px solid var(--line);
+  font-size:12.5px;
+}
+.preview-row:last-child{border-bottom:none}
+.preview-row .lbl{color:var(--mid)}
+.preview-row .val{font-weight:700;color:var(--ink)}
+.preview-row .val.good{color:var(--teal)}
+.preview-row .val.caution{color:#b84a2a}
+.preview-row .val.accent{color:var(--accent)}
+.preview-divider{height:1px;background:var(--line);margin:14px 0}
+
+/* ── 직격 한 줄 ── */
+.impact-box{
+  background:var(--ink);color:#f7f2e8;
+  border-radius:10px;padding:18px 18px;
+  margin-top:12px;text-align:center;
+}
+.impact-box .ib-label{font-size:9.5px;letter-spacing:.28em;color:var(--accent-lt);font-weight:700;margin-bottom:8px}
+.impact-box .ib-text{
+  font-family:'Noto Serif KR',serif;
+  font-size:16px;font-weight:900;line-height:1.6;
+  color:#f7f2e8;
+}
+.impact-box .ib-sub{font-size:11px;color:rgba(247,242,232,.5);margin-top:8px}
+
+/* ── 블러 오버레이 ── */
+.preview-blur-wrap{position:relative;margin-top:2px}
+.preview-blur-inner{filter:blur(4px);pointer-events:none;user-select:none}
+.preview-blur-veil{
+  position:absolute;inset:0;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:8px;
+  background:rgba(255,253,247,.75);
+  backdrop-filter:blur(1px);
+  border-radius:10px;
+  padding:16px;text-align:center;
+}
+.preview-blur-veil .lock{font-size:22px}
+.preview-blur-veil p{font-size:12px;color:var(--mid);line-height:1.6}
+.preview-blur-veil strong{color:var(--ink);font-weight:700}
+
+/* ── 타임라인 ── */
+.timeline{display:flex;flex-direction:column;gap:0;position:relative;padding-left:22px}
+.timeline::before{
+  content:'';position:absolute;left:7px;top:8px;bottom:8px;
+  width:1.5px;background:linear-gradient(180deg,var(--accent),var(--teal));
+}
+.tl-item{position:relative;padding:0 0 18px 18px}
+.tl-item:last-child{padding-bottom:0}
+.tl-dot{
+  position:absolute;left:-22px;top:4px;
+  width:14px;height:14px;border-radius:50%;
+  background:#fff;border:2.5px solid var(--accent);
+}
+.tl-step{font-size:10.5px;letter-spacing:.18em;color:var(--accent);font-weight:700;margin-bottom:2px}
+.tl-desc{font-size:13.5px;line-height:1.65}
+
+/* ── 비교 표 ── */
+.compare-table{width:100%;border-collapse:collapse;font-size:12.5px}
+.compare-table th{
+  padding:9px 10px;text-align:center;
+  font-size:11px;letter-spacing:.1em;font-weight:700;
+}
+.compare-table th:first-child{text-align:left;color:var(--mid)}
+.compare-table th.col-ai{background:var(--accent);color:#fff;border-radius:8px 8px 0 0}
+.compare-table th.col-deep{background:#f0ebe0;color:var(--mid)}
+.compare-table td{
+  padding:9px 10px;border-bottom:1px solid var(--line);
+  vertical-align:middle;
+}
+.compare-table td:first-child{color:#444;font-size:12px}
+.compare-table td:nth-child(2){text-align:center;font-weight:700;color:var(--accent)}
+.compare-table td:nth-child(3){text-align:center;color:var(--mid)}
+.compare-table tr:last-child td{border-bottom:none}
+.compare-note{font-size:11px;color:var(--mid);margin-top:10px;text-align:center;line-height:1.7}
+
+/* ── 업셀 배너 ── */
+.upgrade-banner{
+  background:linear-gradient(135deg,#1c1c1c 0%,#2e2010 100%);
+  border-radius:12px;padding:20px 20px;color:#f7f2e8;
+  margin-top:10px;
+}
+.upgrade-banner .ub-tag{font-size:10px;letter-spacing:.22em;color:var(--accent-lt);font-weight:700;margin-bottom:8px}
+.upgrade-banner .ub-title{font-family:'Noto Serif KR',serif;font-size:17px;font-weight:900;margin-bottom:8px;line-height:1.4}
+.upgrade-banner .ub-desc{font-size:12.5px;color:rgba(247,242,232,.7);line-height:1.7;margin-bottom:14px}
+.upgrade-banner .ub-desc b{color:var(--accent-lt);font-weight:700}
+.upgrade-banner .ub-pricing{
+  display:flex;align-items:center;flex-wrap:wrap;gap:6px;
+  margin:12px 0 14px;
+}
+.upgrade-banner .ub-original{font-size:13px;color:rgba(247,242,232,.4);text-decoration:line-through}
+.upgrade-banner .ub-arrow{font-size:13px;color:rgba(247,242,232,.4)}
+.upgrade-banner .ub-discounted{font-family:'Noto Serif KR',serif;font-size:20px;font-weight:900;color:var(--paper)}
+.upgrade-banner .ub-note{font-size:10px;color:var(--accent-lt);background:rgba(201,106,26,.25);border-radius:100px;padding:2px 10px;font-weight:700}
+.upgrade-banner .ub-price{display:inline-block;background:var(--accent);color:#fff;border-radius:100px;padding:9px 20px;font-size:13px;font-weight:700;text-decoration:none;letter-spacing:.04em}
+
+/* ── FAQ ── */
+.faq-list{display:flex;flex-direction:column;gap:10px}
+.faq-item{border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.faq-q{
+  padding:13px 16px;font-size:13.5px;font-weight:700;
+  background:var(--paper-card);
+  cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:8px;
+}
+.faq-q .arrow{color:var(--accent);font-size:14px;transition:transform .2s;flex:0 0 auto}
+.faq-a{
+  padding:0 16px;font-size:13px;color:#555;line-height:1.75;
+  max-height:0;overflow:hidden;transition:max-height .3s,padding .3s;
+}
+.faq-item.open .faq-a{max-height:220px;padding:12px 16px 14px}
+.faq-item.open .arrow{transform:rotate(180deg)}
+
+/* ── 하단 고정 CTA ── */
+.cta-fixed{
+  position:fixed;bottom:0;left:0;right:0;
+  background:rgba(255,253,247,.96);backdrop-filter:blur(8px);
+  border-top:1px solid var(--line);
+  padding:12px 18px 20px;
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  z-index:100;
+}
+.cta-fixed .cf-left .cf-label{font-size:10px;color:var(--mid);margin-bottom:2px}
+.cta-fixed .cf-left .cf-price{font-family:'Noto Serif KR',serif;font-size:20px;font-weight:900;color:var(--accent)}
+.cta-fixed .cf-btn{
+  flex:0 0 auto;
+  background:var(--accent);color:#fff;
+  border:none;border-radius:100px;
+  padding:12px 24px;font-size:14px;font-weight:700;
+  cursor:pointer;white-space:nowrap;
+  box-shadow:0 3px 14px rgba(201,124,46,.3);
+  text-decoration:none;
+}
+
+@media(max-width:400px){
+  .hero-title{font-size:24px}
+}
+.oheng-divider{display:flex;justify-content:center;gap:6px;margin-top:14px}
+.oheng-divider span{width:7px;height:7px;border-radius:50%;display:inline-block}
+.oheng-divider span:nth-child(1){background:#3a8a4a}
+.oheng-divider span:nth-child(2){background:#c0392b}
+.oheng-divider span:nth-child(3){background:#9a7b3f}
+.oheng-divider span:nth-child(4){background:#7d8388}
+.oheng-divider span:nth-child(5){background:#2c3e6b}
+</style>
+</head>
+<body>
+
+<div class="topbar"><img src="./jiaseh_symbol_traced2_dark.png" class="topbar-logo" alt="지아세">知我世 · 지아세</div>
+
+<div class="wrap">
+
+<!-- ── 히어로 ── -->
+<header>
+  <div class="tier-tag">TIER 0 · AI 리포트</div>
+  <span class="hero-emoji">🔮</span>
+  <h1 class="hero-title">
+    내 사주, 지금 바로<br><em>핵심만 꺼내 드릴게요</em>
+  </h1>
+  <p class="hero-sub">
+    생년월일시만 알려주시면 바로 분석해 드려요<br>
+    어려운 말 없이, 딱 필요한 것만
+  </p>
+
+  <div class="oheng-divider"><span></span><span></span><span></span><span></span><span></span></div>
+</header>
+
+<div class="rule"></div>
+
+<!-- ── 공감 ── -->
+<section>
+  <div class="card">
+    <div class="eyebrow">이런 분께 딱입니다</div>
+    <h2 class="sec-title">사주가 궁금한데<br>어디서 물어봐야 할지 모를 때</h2>
+    <div class="concern-list">
+      <div class="concern-item">
+        <span class="ic">💸</span>
+        <span>전문 상담은 비용이 부담스러운데, 일단 내 기운이 어떤지 알고 싶어요</span>
+      </div>
+      <div class="concern-item">
+        <span class="ic">🤯</span>
+        <span>사주책이나 앱을 봤는데 무슨 말인지 하나도 모르겠어요</span>
+      </div>
+      <div class="concern-item">
+        <span class="ic">📱</span>
+        <span>지금 이 결정, 올해 흐름이 어떤지 빨리 확인해 보고 싶어요</span>
+      </div>
+      <div class="concern-item">
+        <span class="ic">🌱</span>
+        <span>사주가 처음인데 나한테 맞는 상담인지 미리 경험해 보고 싶어요</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 목차 (KB 공식 5칸) ── -->
+<section>
+  <div class="card">
+    <div class="eyebrow">리포트 구성</div>
+    <h2 class="sec-title">이 순서로 꺼내드려요</h2>
+    <p class="sec-lead">어려운 용어 없이, 일상 언어로만 풀어드립니다</p>
+    <div class="part-list">
+      <div class="part-item">
+        <div class="part-num">PART 0</div>
+        <div class="part-body">
+          <div class="part-title">지금 당신</div>
+          <div class="part-desc">요즘 어떤 시기를 지나고 있는지 — 지금 이 흐름의 분위기부터</div>
+        </div>
+      </div>
+      <div class="part-item star">
+        <div class="part-num">PART 1 ★</div>
+        <div class="part-body">
+          <div class="part-title">직격 한 줄</div>
+          <div class="part-desc">당신 명식의 핵심을 한 문장으로 — 캡처하고 싶어지는 그 한 줄</div>
+        </div>
+      </div>
+      <div class="part-item">
+        <div class="part-num">PART 2</div>
+        <div class="part-body">
+          <div class="part-title">나라는 사람</div>
+          <div class="part-desc">타고난 작동 방식 — 나는 어떤 에너지 구조로 움직이는 사람인가</div>
+        </div>
+      </div>
+      <div class="part-item">
+        <div class="part-num">PART 3</div>
+        <div class="part-body">
+          <div class="part-title">에너지 균형</div>
+          <div class="part-desc">넘치는 기운과 비어있는 기운 — 지금 내 에너지 지형도</div>
+        </div>
+      </div>
+      <div class="part-item">
+        <div class="part-num">PART 4</div>
+        <div class="part-body">
+          <div class="part-title">인생 리듬 + 지금</div>
+          <div class="part-desc">큰 흐름의 어느 지점에 있는지, 올해 한 줄</div>
+        </div>
+      </div>
+      <div class="part-item">
+        <div class="part-num">PART 5</div>
+        <div class="part-body">
+          <div class="part-title">갈림길</div>
+          <div class="part-desc">여기서 어떻게 하면 달라지는지 — 지금 당장 할 수 있는 행동 하나</div>
+        </div>
+      </div>
+    </div>
+    <div style="font-size:11.5px;color:var(--mid);margin-top:14px;padding-left:2px">A4 3~5쪽 분량 · PDF 당일 발송</div>
+  </div>
+</section>
+
+<!-- ── 미리보기 ── -->
+<section>
+  <div class="card">
+    <div class="eyebrow">미리보기</div>
+    <h2 class="sec-title">실제 리포트는 이렇게 생겼어요</h2>
+
+    <!-- PART 0 오픈 -->
+    <div class="preview-label">PART 0 · 지금 당신</div>
+    <div class="preview-card">
+      <div class="preview-header">
+        <div class="ph-brand">知我世 · AI 명리 리포트</div>
+        <div class="ph-title">지금 이 시기, 당신에게 무슨 일이 일어나고 있나</div>
+        <div class="ph-sub">생년월일시 분석 결과</div>
+      </div>
+      <div class="preview-body">
+        <div class="preview-section-title">요즘 이런 시기입니다</div>
+        <div class="preview-row">
+          <span class="lbl">지금 대운의 성격</span>
+          <span class="val good">확장·도전의 흐름</span>
+        </div>
+        <div class="preview-row">
+          <span class="lbl">올해와의 궁합</span>
+          <span class="val accent">에너지 증폭 구간</span>
+        </div>
+        <div class="preview-row">
+          <span class="lbl">지금 이 시기 키워드</span>
+          <span class="val">움직임 · 선택 · 노출</span>
+        </div>
+        <div style="margin-top:12px;padding-top:10px;border-top:1px dotted var(--line);font-size:12.5px;color:#6a6055;line-height:1.7">
+          요즘 뭔가 움직여야 할 것 같은 느낌, 맞아요.<br>이 시기가 그렇게 설계돼 있습니다.
+        </div>
+      </div>
+    </div>
+
+    <!-- PART 1 직격 오픈 -->
+    <div class="preview-label" style="margin-top:14px">PART 1 ★ · 직격 한 줄</div>
+    <div class="impact-box">
+      <div class="ib-label">당신의 명식 핵심</div>
+      <div class="ib-text">"표현하고 만들어낼 때 가장 강해지는 사람.<br>당신이 만들어낸 것이 당신의 증거입니다."</div>
+      <div class="ib-sub">※ 실제 명식 기반으로 생성됩니다</div>
+    </div>
+
+    <!-- PART 2·3 블러 -->
+    <div class="preview-label" style="margin-top:14px">PART 2 · 나라는 사람 &amp; PART 3 · 에너지 균형</div>
+    <div class="preview-blur-wrap">
+      <div class="preview-card preview-blur-inner">
+        <div class="preview-body">
+          <div class="preview-section-title">타고난 작동 방식</div>
+          <div class="preview-row"><span class="lbl">에너지 구조</span><span class="val good">표현·성장 타입</span></div>
+          <div class="preview-row"><span class="lbl">강한 기운</span><span class="val">창의·돌파력</span></div>
+          <div class="preview-row"><span class="lbl">비어있는 기운</span><span class="val caution">안정·지속력</span></div>
+          <div class="preview-divider"></div>
+          <div class="preview-section-title">에너지 지형도</div>
+          <div class="preview-row"><span class="lbl">🌳 나무 기운</span><span class="val good">★★★★☆ 넘침</span></div>
+          <div class="preview-row"><span class="lbl">🔥 불 기운</span><span class="val accent">★★★☆☆ 보통</span></div>
+          <div class="preview-row"><span class="lbl">🌍 흙 기운</span><span class="val caution">★☆☆☆☆ 부족</span></div>
+        </div>
+      </div>
+      <div class="preview-blur-veil">
+        <span class="lock">🔒</span>
+        <p><strong>리포트에서 확인됩니다</strong><br>내 에너지 구조와 지형도 — 왜 이 패턴이 반복되는지</p>
+      </div>
+    </div>
+
+    <!-- PART 4·5 블러 -->
+    <div class="preview-label" style="margin-top:14px">PART 4 · 인생 리듬 &amp; PART 5 · 갈림길</div>
+    <div class="preview-blur-wrap">
+      <div class="preview-card preview-blur-inner">
+        <div class="preview-body">
+          <div class="preview-section-title">큰 흐름의 어느 지점인가</div>
+          <div class="preview-row"><span class="lbl">지금 대운 국면</span><span class="val good">도전 → 결실 전환점</span></div>
+          <div class="preview-row"><span class="lbl">올해 한 줄</span><span class="val">움직인 만큼 돌아오는 해</span></div>
+          <div class="preview-divider"></div>
+          <div class="preview-section-title">지금 당장 할 수 있는 것</div>
+          <div class="preview-row"><span class="lbl">행동 하나</span><span class="val good">드러내기 · 말하기</span></div>
+          <div class="preview-row"><span class="lbl">피할 것</span><span class="val caution">혼자 참고 버티기</span></div>
+        </div>
+      </div>
+      <div class="preview-blur-veil">
+        <span class="lock">🔒</span>
+        <p><strong>지금 어디쯤인지, 뭘 하면 달라지는지</strong><br>갈림길까지 담겨있어요</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 진행 과정 ── -->
+<section>
+  <div class="card">
+    <div class="eyebrow">이렇게 진행돼요</div>
+    <h2 class="sec-title">주문부터 수령까지</h2>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-step">STEP 1</div>
+        <div class="tl-desc">카카오 채널로 <b>생년월일시 + 성별</b> 보내주세요</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-step">STEP 2</div>
+        <div class="tl-desc">결제 안내 후 <b>바로 분석 시작</b></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-step">STEP 3</div>
+        <div class="tl-desc"><b>당일 내</b> 리포트 PDF 전달</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot" style="border-color:var(--teal);background:var(--teal)"></div>
+        <div class="tl-step" style="color:var(--teal)">완료 ✓</div>
+        <div class="tl-desc">궁금한 점 1회 추가 질문 가능</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 비교 표 ── -->
+<section>
+  <div class="card">
+    <div class="eyebrow">어떤 상품을 선택할까요</div>
+    <h2 class="sec-title">AI 리포트 vs 심층 분석</h2>
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th></th>
+          <th class="col-ai">AI 리포트<br><small style="font-weight:400;font-size:10px">4,900원</small></th>
+          <th class="col-deep">운명 설계도<br><small style="font-weight:400;font-size:10px">50,000원</small></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>내 에너지 구조 파악</td><td>결론만</td><td>논증 포함</td></tr>
+        <tr><td>올해 흐름</td><td>한 줄</td><td>월별 상세</td></tr>
+        <tr><td>10년 대운 분석</td><td>–</td><td>✓</td></tr>
+        <tr><td>직업·재물·관계 심층</td><td>–</td><td>✓</td></tr>
+        <tr><td>아로마·약차 처방</td><td>–</td><td>정규 3종</td></tr>
+        <tr><td>술사 검수</td><td>–</td><td>✓</td></tr>
+        <tr><td>납기</td><td>당일</td><td>3~5일</td></tr>
+      </tbody>
+    </table>
+    <p class="compare-note">처음 궁금증 해소 → 본격 운명 경영은 설계도로</p>
+  </div>
+</section>
+
+<!-- ── 업셀 배너 ── -->
+<section>
+  <div class="upgrade-banner">
+    <div class="ub-tag">이미 결제하셨다면</div>
+    <div class="ub-title">운명 설계도로 업그레이드</div>
+    <div class="ub-desc">
+      AI 리포트를 받아보셨다면,<br>
+      설계도는 그 결론의 <b>왜</b>를 논증으로 풀어드려요.<br>
+      10년 대운 · 희기신 처방 · 술사 검수까지.
+    </div>
+    <div class="ub-pricing">
+      <span class="ub-original">50,000원</span>
+      <span class="ub-arrow">→</span>
+      <span class="ub-discounted">45,100원</span>
+      <span class="ub-note">AI 리포트 4,900원 차감</span>
+    </div>
+    <a href="http://pf.kakao.com/_xnZAxfX" class="ub-price">업그레이드 문의하기 →</a>
+  </div>
+</section>
+
+<!-- ── FAQ ── -->
+<section>
+  <div class="card">
+    <div class="eyebrow">자주 묻는 질문</div>
+    <h2 class="sec-title">궁금한 점</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q">태어난 시간을 모르면 어떻게 하나요? <span class="arrow">▾</span></div>
+        <div class="faq-a">시간 없이도 분석 가능합니다. 에너지 구조·올해 흐름·직격 한 줄은 충분히 확인할 수 있어요. 시간이 없다고 꼭 말씀해 주세요. 아는 것만으로도 이미 경영이 시작됩니다.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">정확한가요? <span class="arrow">▾</span></div>
+        <div class="faq-a">지아세 술사가 직접 설계한 명징투파 자평명리 체계를 바탕으로 분석합니다. 에너지 구조·흐름 파악은 충분한 수준이에요. 더 정밀한 논증과 처방은 운명 설계도(5만 원)에서 제공됩니다. 일단 확인해보시면 "이게 나였구나" 하는 순간이 옵니다.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">어떤 형태로 받나요? <span class="arrow">▾</span></div>
+        <div class="faq-a">카카오 채널로 PDF 파일을 전달해 드립니다. A4 기준 3~5쪽 분량이에요.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">환불이 되나요? <span class="arrow">▾</span></div>
+        <div class="faq-a">분석 시작 전이면 전액 환불 가능합니다. 완료 후에는 디지털 콘텐츠 특성상 어려워요.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 본문 CTA ── -->
+<section style="text-align:center;padding:28px 0 0">
+  <a href="http://pf.kakao.com/_xnZAxfX" class="btn-main">카카오로 신청하기 →</a>
+  <a href="http://pf.kakao.com/_xnZAxfX" class="btn-ghost">문의 먼저 해볼게요</a>
+  <p style="font-size:11px;color:var(--mid);margin-top:14px;line-height:1.7">
+    생년월일시 + 성별 보내주시면 바로 안내해 드려요<br>
+    결제는 안내 후 진행됩니다
+  </p>
+</section>
+
+</div><!-- /wrap -->
+
+<!-- ── 하단 고정 CTA ── -->
+<div class="cta-fixed">
+  <div class="cf-left">
+    <div class="cf-label">AI 명리 리포트</div>
+    <div class="cf-price">4,900원</div>
+  </div>
+  <a href="http://pf.kakao.com/_xnZAxfX" class="cf-btn">지금 신청하기</a>
+</div>
+
+<script>
+document.querySelectorAll('.faq-q').forEach(q=>{
+  q.addEventListener('click',()=>{
+    const item=q.closest('.faq-item');
+    const wasOpen=item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+    if(!wasOpen) item.classList.add('open');
+  });
+});
+</script>
+</body>
+</html>

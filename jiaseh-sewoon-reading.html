@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>세운 정기 리딩 · 지아세 知我世</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;700;900&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1a1410;
+  --paper:#f4f0fa;
+  --paper-card:#fdfbff;
+  --accent:#6b3fa0;
+  --accent-lt:#9b72d4;
+  --accent-bg:rgba(107,63,160,.08);
+  --accent-line:rgba(107,63,160,.2);
+  --jade:#3a5a44;
+  --jade-bg:rgba(58,90,68,.07);
+  --jade-line:rgba(58,90,68,.2);
+  --gold:#9a7b3f;
+  --line:#ddd4ee;
+  --mid:#7a6e8a;
+  --shadow:rgba(0,0,0,.06);
+  --maxw:720px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Noto Serif KR',serif;
+  background:var(--paper);
+  color:var(--ink);
+  line-height:1.75;
+  min-height:100vh;
+  background-image:
+    radial-gradient(ellipse at 80% 0%,rgba(107,63,160,.06) 0%,transparent 55%),
+    radial-gradient(ellipse at 20% 100%,rgba(58,90,68,.05) 0%,transparent 50%);
+}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 18px 120px}
+.topbar{display:flex;align-items:center;justify-content:center;gap:7px;padding:13px 0 10px;border-bottom:1px solid var(--line);font-size:11px;letter-spacing:.4em;color:var(--accent);font-weight:700}
+.topbar-logo{width:20px;height:20px;border-radius:5px;flex-shrink:0}
+b{color:var(--gold);font-weight:800}
+
+/* ── 히어로 ── */
+header{text-align:center;padding:40px 0 8px}
+.tier-tag{display:inline-block;background:var(--jade-bg);border:1px solid var(--jade-line);border-radius:100px;font-size:11px;font-weight:700;color:var(--jade);letter-spacing:.18em;padding:4px 14px;margin-bottom:18px;font-family:'Noto Sans KR',sans-serif}
+.hero-title{font-size:30px;font-weight:900;letter-spacing:.02em;line-height:1.25;color:var(--ink)}
+.hero-hanja{font-size:13px;color:var(--accent);letter-spacing:.15em;margin-top:6px;font-weight:700}
+.rule{height:1px;background:linear-gradient(90deg,transparent,var(--accent-line),transparent);margin:20px 0}
+.hero-sub{font-size:13.5px;color:var(--mid);line-height:1.85}
+
+/* ── 섹션 공통 ── */
+section{margin-top:18px;scroll-margin-top:20px}
+.card{background:var(--paper-card);border:1px solid var(--line);border-radius:6px;padding:24px 22px;box-shadow:0 1px 6px var(--shadow)}
+.eyebrow{font-size:10.5px;letter-spacing:.25em;color:var(--accent);font-weight:700;margin-bottom:6px;font-family:'Noto Sans KR',sans-serif}
+.sec-title{font-size:20px;font-weight:900;letter-spacing:.02em;margin-bottom:14px}
+.sec-lead{font-size:13.5px;color:#6a6055;line-height:1.8;margin-bottom:16px}
+
+/* ── 공감 리스트 ── */
+.pain-list{display:flex;flex-direction:column;gap:10px;margin-top:4px}
+.pain-item{display:flex;align-items:flex-start;gap:11px;background:var(--accent-bg);border:1px solid var(--accent-line);border-radius:4px;padding:12px 14px;font-size:13.5px;color:#3a2e20;line-height:1.65}
+.pain-item .icon{flex:0 0 18px;color:var(--accent);font-size:15px;padding-top:1px}
+
+/* ── 핵심 카피 블록 ── */
+.impact-block{margin:20px 0 4px;padding:20px 0 18px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.impact-pre{font-size:11px;letter-spacing:.25em;color:var(--accent);font-weight:700;margin-bottom:12px;font-family:'Noto Sans KR',sans-serif}
+.impact-headline{font-size:20px;font-weight:900;line-height:1.45;color:var(--ink);margin-bottom:14px}
+.impact-headline em{font-style:normal;color:var(--accent)}
+.impact-list{display:flex;flex-direction:column;gap:7px;margin-bottom:16px}
+.impact-item{display:flex;align-items:baseline;gap:9px;font-size:13.5px;color:#3a2e20;line-height:1.6}
+.impact-item::before{content:"✦";color:var(--accent);font-size:10px;flex:0 0 12px}
+.impact-close{font-size:13px;color:#6a6055;line-height:1.75;padding-top:12px;border-top:1px dotted var(--line)}
+
+/* ── 세운 타임라인 뷰 ── */
+.sewoon-row{display:flex;align-items:stretch;gap:0;margin-top:14px;overflow:hidden;border-radius:6px;border:1px solid var(--line)}
+.sw-cell{flex:1;padding:14px 10px;text-align:center;border-right:1px solid var(--line);background:var(--paper-card)}
+.sw-cell:last-child{border-right:none}
+.sw-cell.past{opacity:.55}
+.sw-cell.current{background:linear-gradient(135deg,rgba(107,63,160,.1),rgba(107,63,160,.04));border-top:3px solid var(--accent)}
+.sw-cell.future{opacity:.7}
+.sw-year{font-size:11px;color:var(--mid);margin-bottom:3px;font-family:'Noto Sans KR',sans-serif}
+.sw-gan{font-size:15px;font-weight:900;color:var(--ink);margin-bottom:2px}
+.sw-keyword{font-size:10.5px;color:var(--mid);line-height:1.4}
+.sw-cell.current .sw-year{color:var(--accent);font-weight:700}
+.sw-cell.current .sw-gan{color:var(--accent)}
+.sw-star{font-size:9px;color:var(--accent);margin-bottom:2px}
+.sw-badge{display:inline-block;background:var(--accent);color:#fff;font-size:9.5px;font-family:'Noto Sans KR',sans-serif;padding:1px 8px;border-radius:100px;margin-bottom:5px}
+
+/* ── 월운 12개월 그리드 ── */
+.month-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-top:12px}
+.month-cell{border:1px solid var(--line);border-radius:4px;padding:10px 8px;text-align:center;background:var(--paper-card)}
+.mc-month{font-size:10px;color:var(--mid);margin-bottom:3px;font-family:'Noto Sans KR',sans-serif}
+.mc-label{font-size:12px;font-weight:700;color:var(--ink)}
+.mc-key{font-size:10.5px;color:var(--mid);margin-top:2px;line-height:1.35}
+.month-cell.strong{border-color:var(--jade-line);background:var(--jade-bg)}
+.month-cell.strong .mc-label{color:var(--jade)}
+.month-cell.caution{border-color:rgba(139,46,34,.2);background:rgba(139,46,34,.04)}
+.month-cell.caution .mc-label{color:#8b2e22}
+.month-legend{display:flex;gap:14px;margin-top:10px;font-size:11.5px;color:var(--mid);font-family:'Noto Sans KR',sans-serif}
+.ml-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:4px;vertical-align:middle}
+
+/* ── 4테마 간략 ── */
+.theme-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.theme-card{border:1px solid var(--line);border-radius:4px;padding:14px 14px;background:var(--paper-card)}
+.tc-head{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.tc-icon{font-size:18px}
+.tc-name{font-size:13px;font-weight:900;color:var(--ink)}
+.tc-body{font-size:12.5px;color:#6a6055;line-height:1.65}
+
+/* ── 처방 라인 ── */
+.remedy-list{display:flex;flex-direction:column;gap:10px;margin-top:8px}
+.remedy-item{display:flex;align-items:flex-start;gap:12px;padding:12px 14px;background:var(--accent-bg);border:1px solid var(--accent-line);border-radius:4px}
+.ri-label{font-size:10.5px;font-weight:700;color:var(--accent);letter-spacing:.1em;min-width:44px;padding-top:2px;font-family:'Noto Sans KR',sans-serif}
+.ri-text{font-size:13px;color:#3a2e20;line-height:1.65}
+
+/* ── 차감 배너 ── */
+.deduct-banner{background:var(--jade-bg);border:1px solid var(--jade-line);border-radius:6px;padding:16px 18px;margin-top:20px}
+.db-title{font-size:11px;font-weight:700;color:var(--jade);letter-spacing:.15em;margin-bottom:8px;font-family:'Noto Sans KR',sans-serif}
+.db-row{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:7px 0;border-bottom:1px dotted var(--jade-line)}
+.db-row:last-of-type{border-bottom:none}
+.db-from{font-size:12.5px;color:#3a5a44}
+.db-arrow{color:var(--jade);font-size:13px}
+.db-result{font-size:13px;font-weight:900;color:var(--jade)}
+.db-note{font-size:11px;color:var(--jade);margin-top:8px;opacity:.8}
+
+/* ── 목차 ── */
+.toc-list{display:flex;flex-direction:column;gap:10px;margin-top:10px}
+.toc-row{display:flex;align-items:flex-start;gap:14px}
+.toc-num{flex:0 0 52px;font-size:10.5px;font-weight:700;color:var(--accent);letter-spacing:.1em;padding-top:2px;font-family:'Noto Sans KR',sans-serif}
+.toc-body{}
+.toc-name{font-size:14px;font-weight:900;margin-bottom:2px}
+.toc-desc{font-size:12.5px;color:#6a6055;line-height:1.65}
+.toc-divider{height:1px;background:var(--line);margin:4px 0}
+
+/* ── 신청 절차 ── */
+.timeline{display:flex;flex-direction:column;gap:0;margin-top:10px}
+.tl-item{display:flex;align-items:flex-start;gap:14px;padding:12px 0;border-bottom:1px dotted var(--line)}
+.tl-item:last-child{border-bottom:none}
+.tl-dot{width:10px;height:10px;border-radius:50%;border:2px solid var(--accent);background:transparent;flex:0 0 10px;margin-top:6px}
+.tl-step{flex:0 0 48px;font-size:11px;font-weight:700;color:var(--accent);letter-spacing:.08em;font-family:'Noto Sans KR',sans-serif;padding-top:2px}
+.tl-desc{font-size:13.5px;color:#3a2e20;line-height:1.65}
+
+/* ── 상품 스펙 ── */
+.spec-list{display:flex;flex-direction:column;gap:0;margin-top:10px}
+.spec-item{display:flex;align-items:flex-start;gap:0;padding:9px 0;border-bottom:1px dotted var(--line)}
+.spec-item:last-child{border-bottom:none}
+.spec-key{flex:0 0 80px;font-size:12px;font-weight:700;color:var(--mid);font-family:'Noto Sans KR',sans-serif}
+.spec-val{font-size:13.5px;color:var(--ink)}
+
+/* ── 비교표 ── */
+.compare-table{width:100%;border-collapse:collapse;font-size:12.5px;margin-top:10px}
+.compare-table th,.compare-table td{padding:9px 8px;border-bottom:1px solid var(--line);text-align:center;line-height:1.4}
+.compare-table th{font-weight:700;font-size:12px;font-family:'Noto Sans KR',sans-serif;background:var(--accent-bg)}
+.compare-table td:first-child{text-align:left;color:var(--mid);font-size:12px}
+.compare-note{font-size:11.5px;color:var(--mid);margin-top:10px;line-height:1.65;text-align:center}
+
+/* ── 업셀 박스 ── */
+.upsell-box{background:linear-gradient(135deg,rgba(154,123,63,.08),rgba(107,63,160,.05));border:1px solid rgba(154,123,63,.2);border-radius:4px;padding:14px 16px;font-size:13px;color:#3a2e20;line-height:1.7;margin-top:16px}
+
+/* ── FAQ ── */
+.faq-list{display:flex;flex-direction:column;gap:6px;margin-top:10px}
+.faq-item{border:1px solid var(--line);border-radius:4px;overflow:hidden}
+.faq-q{padding:13px 16px;font-size:13.5px;font-weight:700;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:10px;user-select:none}
+.faq-q .arrow{flex:0 0 14px;font-size:11px;color:var(--mid);transition:transform .2s}
+.faq-item.open .faq-q .arrow{transform:rotate(180deg)}
+.faq-a{display:none;padding:0 16px 14px;font-size:13px;color:#6a6055;line-height:1.75}
+.faq-item.open .faq-a{display:block}
+
+/* ── CTA 버튼 ── */
+.cf-btn{background:linear-gradient(135deg,var(--accent),var(--accent-lt));color:#fff;border:none;border-radius:6px;padding:14px 22px;font-size:14.5px;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block;letter-spacing:.03em;font-family:'Noto Serif KR',serif;transition:opacity .15s}
+.cf-btn:hover{opacity:.88}
+
+/* ── 하단 고정 CTA ── */
+.cta-fixed{position:fixed;bottom:0;left:0;right:0;background:rgba(253,251,255,.96);backdrop-filter:blur(10px);border-top:1px solid var(--line);padding:12px 20px;display:flex;align-items:center;justify-content:space-between;gap:14px;z-index:100;max-width:100%}
+.cf-left{}
+.cf-label{font-size:11px;color:var(--mid);font-family:'Noto Sans KR',sans-serif;margin-bottom:1px}
+.cf-price{font-size:18px;font-weight:900;color:var(--ink)}
+.cf-price .won{font-size:13px;font-weight:400;margin-left:1px}
+
+/* ── 푸터 ── */
+.foot{text-align:center;font-size:11px;color:var(--mid);line-height:1.8;margin-top:28px;padding-bottom:8px}
+
+/* ── 분리선 ── */
+.divider{text-align:center;color:var(--line);font-size:14px;margin:18px 0}
+.oheng-divider{display:flex;justify-content:center;gap:6px;margin-top:14px}
+.oheng-divider span{width:7px;height:7px;border-radius:50%;display:inline-block}
+.oheng-divider span:nth-child(1){background:#3a8a4a}
+.oheng-divider span:nth-child(2){background:#c0392b}
+.oheng-divider span:nth-child(3){background:#9a7b3f}
+.oheng-divider span:nth-child(4){background:#7d8388}
+.oheng-divider span:nth-child(5){background:#2c3e6b}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="topbar"><img src="./jiaseh_symbol_traced2_dark.png" class="topbar-logo" alt="지아세">知我世 · 지아세</div>
+
+  <!-- ══ 히어로 ══ -->
+  <header>
+    <div class="tier-tag">TIER 3 · 정기 경영 · 연 1회</div>
+    <span style="font-size:32px;display:block;margin-bottom:8px">📅</span>
+  <h1 class="hero-title">세운 정기 리딩<br><span style="font-size:22px;font-weight:400">歲運 定期 리딩</span></h1>
+    <div class="hero-hanja">知我世 · 지아세</div>
+    <div class="rule"></div>
+    <p class="hero-sub">
+      올해는 어떤 해인가.<br>
+      이미 알고 있는 내 구조 위에서, 올해 에너지가 어떻게 작동하는지만 집중해서 봅니다.
+    </p>
+    <div class="oheng-divider"><span></span><span></span><span></span><span></span><span></span></div>
+</header>
+
+  <!-- ══ 공감 ══ -->
+  <section>
+    <div class="card">
+      <div class="eyebrow">이런 분께</div>
+      <div class="sec-title">진단을 받았는데, 올해가 궁금합니다</div>
+      <div class="pain-list">
+        <div class="pain-item"><div class="icon">◈</div><div>설계도나 골든크로스를 받았는데 — 올해는 어떤 해인지 따로 짚어보고 싶다</div></div>
+        <div class="pain-item"><div class="icon">◈</div><div>작년에 힘들었던 이유를 이제야 알 것 같고, 올해는 달리 대비하고 싶다</div></div>
+        <div class="pain-item"><div class="icon">◈</div><div>상반기가 벌써 지나갔다 — 하반기 남은 달을 어떻게 쓸지 방향이 필요하다</div></div>
+        <div class="pain-item"><div class="icon">◈</div><div>매년 초 내 에너지 지도를 업데이트하는 루틴을 갖고 싶다</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 핵심 카피 ══ -->
+  <section>
+    <div class="card">
+      <div class="impact-block">
+        <div class="impact-pre">이 보고서가 하는 것</div>
+        <div class="impact-headline">원국은 다시 보지 않습니다.<br><em>올해만</em> 집중해서 봅니다.</div>
+        <div class="impact-list">
+          <div class="impact-item">지금 대운과 올해 세운이 어떻게 맞물리는지 — 밀어붙일 해인지, 내실을 다질 해인지</div>
+          <div class="impact-item">12개월 월운을 한눈에 — 집중할 달과 조심할 달을 미리 알고 씁니다</div>
+          <div class="impact-item">일·돈·관계·몸 네 영역의 올해 흐름을 간략하게</div>
+          <div class="impact-item">올해 에너지에 맞는 처방 — 지금 쓸 수 있는 것만</div>
+        </div>
+        <div class="impact-close">진단 보고서가 5년·10년의 지도라면 — 세운 리딩은 올해의 내비게이션입니다.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 세운 타임라인 뷰 ══ -->
+  <section>
+    <div class="card">
+      <div class="eyebrow">보고서 구조</div>
+      <div class="sec-title">이런 내용이 들어갑니다</div>
+      <p class="sec-lead">전후 3년을 흐름으로 보면서 올해★ 를 집중 조명합니다.</p>
+
+      <!-- 세운 뷰 샘플 -->
+      <div class="sewoon-row">
+        <div class="sw-cell past">
+          <div class="sw-year">3년 전</div>
+          <div class="sw-gan">庚子</div>
+          <div class="sw-keyword">기신 작동<br>정체 구간</div>
+        </div>
+        <div class="sw-cell past">
+          <div class="sw-year">2년 전</div>
+          <div class="sw-gan">辛丑</div>
+          <div class="sw-keyword">전환 시작<br>내실 다짐</div>
+        </div>
+        <div class="sw-cell past">
+          <div class="sw-year">작년</div>
+          <div class="sw-gan">壬寅</div>
+          <div class="sw-keyword">희신 진입<br>움직임의 해</div>
+        </div>
+        <div class="sw-cell current">
+          <div class="sw-badge">올해 ★</div>
+          <div class="sw-year">올해</div>
+          <div class="sw-gan">甲辰</div>
+          <div class="sw-keyword">대운×세운<br>교차 분석</div>
+        </div>
+      </div>
+
+      <div class="divider" style="margin:20px 0 14px">· · ·</div>
+
+      <!-- 12월운 샘플 -->
+      <div style="font-size:12.5px;color:var(--mid);margin-bottom:10px;font-family:'Noto Sans KR',sans-serif">월운 12개월 요약 (샘플)</div>
+      <div class="month-grid">
+        <div class="month-cell"><div class="mc-month">1월</div><div class="mc-label" style="color:var(--mid)">중</div><div class="mc-key">준비·기획</div></div>
+        <div class="month-cell"><div class="mc-month">2월</div><div class="mc-label" style="color:var(--mid)">중</div><div class="mc-key">대기·관망</div></div>
+        <div class="month-cell strong"><div class="mc-month">3월</div><div class="mc-label">강</div><div class="mc-key">집중월 ✦</div></div>
+        <div class="month-cell strong"><div class="mc-month">4월</div><div class="mc-label">강</div><div class="mc-key">추진·성과</div></div>
+        <div class="month-cell"><div class="mc-month">5월</div><div class="mc-label" style="color:var(--mid)">중</div><div class="mc-key">속도 조절</div></div>
+        <div class="month-cell caution"><div class="mc-month">6월</div><div class="mc-label">주의</div><div class="mc-key">소모 많음</div></div>
+        <div class="month-cell caution"><div class="mc-month">7월</div><div class="mc-label">주의</div><div class="mc-key">충돌 주의</div></div>
+        <div class="month-cell"><div class="mc-month">8월</div><div class="mc-label" style="color:var(--mid)">중</div><div class="mc-key">회복·정비</div></div>
+        <div class="month-cell strong"><div class="mc-month">9월</div><div class="mc-label">강</div><div class="mc-key">재시동 ✦</div></div>
+        <div class="month-cell strong"><div class="mc-month">10월</div><div class="mc-label">강</div><div class="mc-key">수확·마무리</div></div>
+        <div class="month-cell"><div class="mc-month">11월</div><div class="mc-label" style="color:var(--mid)">중</div><div class="mc-key">결산·점검</div></div>
+        <div class="month-cell"><div class="mc-month">12월</div><div class="mc-label" style="color:var(--mid)">중</div><div class="mc-key">다음 해 준비</div></div>
+      </div>
+      <div class="month-legend">
+        <span><span class="ml-dot" style="background:var(--jade)"></span>집중월</span>
+        <span><span class="ml-dot" style="background:#8b2e22"></span>주의월</span>
+        <span style="font-size:11px">※ 실제 보고서는 각 월 키워드·흐름 한 줄씩 포함</span>
+      </div>
+
+      <div class="divider" style="margin:20px 0 14px">· · ·</div>
+
+      <!-- 4테마 -->
+      <div style="font-size:12.5px;color:var(--mid);margin-bottom:10px;font-family:'Noto Sans KR',sans-serif">4테마 올해 흐름 간략 (샘플)</div>
+      <div class="theme-grid">
+        <div class="theme-card">
+          <div class="tc-head"><div class="tc-icon">💼</div><div class="tc-name">일</div></div>
+          <div class="tc-body">올해 관성 에너지가 활성화되는 구간 — 조직 내 움직임이 생기거나 커리어 전환점을 맞습니다</div>
+        </div>
+        <div class="theme-card">
+          <div class="tc-head"><div class="tc-icon">💰</div><div class="tc-name">돈</div></div>
+          <div class="tc-body">재성 흐름은 상반기와 하반기가 갈립니다 — 집중 구간과 분산 구간을 미리 파악해 두면 대비됩니다</div>
+        </div>
+        <div class="theme-card">
+          <div class="tc-head"><div class="tc-icon">🤝</div><div class="tc-name">관계</div></div>
+          <div class="tc-body">인성 에너지가 강한 해 — 도움받는 인연이 들어오는 구간이 있습니다. 혼자 버티지 않아도 됩니다</div>
+        </div>
+        <div class="theme-card">
+          <div class="tc-head"><div class="tc-icon">🌿</div><div class="tc-name">몸</div></div>
+          <div class="tc-body">기신 구간에 소화·순환 계통 신경 쓸 것 — 주의월 전후 몸 관리를 먼저 챙기세요</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 목차 ══ -->
+  <section>
+    <div class="card">
+      <div class="eyebrow">목차</div>
+      <div class="sec-title">무엇을 알게 되나요</div>
+      <div class="toc-list">
+        <div class="toc-row">
+          <div class="toc-num">PART 0</div>
+          <div class="toc-body">
+            <div class="toc-name">오프닝</div>
+            <div class="toc-desc">래정 한 단락 — 지금 들어오는 에너지를 먼저 짚습니다. 올해 한 문장 핵심.</div>
+          </div>
+        </div>
+        <div class="toc-divider"></div>
+        <div class="toc-row">
+          <div class="toc-num">PART 1</div>
+          <div class="toc-body">
+            <div class="toc-name">올해 큰 흐름 — 대운 × 세운</div>
+            <div class="toc-desc">지금 대운과 올해가 만나는 방식. 밀어붙일 해인지 내실을 다질 해인지. 올해 희신·기신이 어떻게 작동하는지.</div>
+          </div>
+        </div>
+        <div class="toc-divider"></div>
+        <div class="toc-row">
+          <div class="toc-num">PART 2</div>
+          <div class="toc-body">
+            <div class="toc-name">12개월 월운</div>
+            <div class="toc-desc">한 달씩 강·중·약 흐름과 키워드. 집중해야 할 달과 에너지를 아껴야 할 달.</div>
+          </div>
+        </div>
+        <div class="toc-divider"></div>
+        <div class="toc-row">
+          <div class="toc-num">PART 3</div>
+          <div class="toc-body">
+            <div class="toc-name">테마 간략 — 일 · 돈 · 관계 · 몸</div>
+            <div class="toc-desc">네 영역의 올해 한정 흐름. 원국 재분석 없이 올해 에너지가 이 영역에서 어떻게 작동하는지만.</div>
+          </div>
+        </div>
+        <div class="toc-divider"></div>
+        <div class="toc-row">
+          <div class="toc-num">PART 4</div>
+          <div class="toc-body">
+            <div class="toc-name">처방 — 올해에 맞춘 것들</div>
+            <div class="toc-desc">아로마·약차·방위·색채. 올해 에너지 방향에 맞게 지금 쓸 수 있는 처방만.</div>
+          </div>
+        </div>
+        <div class="toc-divider"></div>
+        <div class="toc-row">
+          <div class="toc-num">PART 5</div>
+          <div class="toc-body">
+            <div class="toc-name">종합 — 올해의 전략</div>
+            <div class="toc-desc">황금기 타이밍. 피할 구간. 올해를 관통하는 한 문장.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 신청 절차 ══ -->
+  <section>
+    <div class="card">
+      <div class="eyebrow">신청 절차</div>
+      <div class="sec-title">이렇게 진행됩니다</div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-step">STEP 1</div>
+          <div class="tl-desc">카카오 채널로 <b>생년월일시 + 성별 + 올해 주요 고민</b>을 보내주세요</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-step">STEP 2</div>
+          <div class="tl-desc">결제 완료 후 <b>1~2일 내</b> 온라인 문서로 납품</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot" style="border-color:var(--jade);background:var(--jade)"></div>
+          <div class="tl-step" style="color:var(--jade)">완료 ✓</div>
+          <div class="tl-desc">술사 직접 검수 · 추가 질문 1회 가능</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 상품 안내 ══ -->
+  <section>
+    <div class="card">
+      <div class="eyebrow">상품 안내</div>
+      <div class="sec-title">무엇을 어떻게 받게 되나요</div>
+      <div class="spec-list">
+        <div class="spec-item"><div class="spec-key">분량</div><div class="spec-val">A4 5~8p</div></div>
+        <div class="spec-item"><div class="spec-key">납기</div><div class="spec-val">결제 후 1~2일</div></div>
+        <div class="spec-item"><div class="spec-key">주기</div><div class="spec-val">연 1회 (매년 초 또는 생일 전후 권장)</div></div>
+        <div class="spec-item"><div class="spec-key">형태</div><div class="spec-val">온라인 문서</div></div>
+        <div class="spec-item"><div class="spec-key">전제</div><div class="spec-val">진단(설계도·지도·골든크로스) 이력자 대상 · 원국 재분석 없음</div></div>
+        <div class="spec-item"><div class="spec-key">술사 검수</div><div class="spec-val">전량 직접 검수</div></div>
+      </div>
+
+      <div class="divider">· · ·</div>
+
+      <div class="upsell-box">
+        <b>더 촘촘하게 — 분기 에너지 점검 15,000</b><br>
+        세운 리딩이 올해 전체 지도라면, 분기 점검은 3개월 단위 내비게이션입니다. 세운 리딩 보유자 대상으로 분기마다 방향을 짧게 업데이트합니다.
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 비교표 ══ -->
+  <section>
+    <div class="card">
+      <div class="eyebrow">상품 비교</div>
+      <div class="sec-title">어떤 상품을 선택할까요</div>
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th></th>
+            <th style="color:var(--mid)">AI 명리 리포트<br><small style="font-weight:400;font-size:10px">4,900원</small></th>
+            <th style="color:var(--accent)">세운 정기 리딩<br><small style="font-weight:400;font-size:10px">20,000원</small></th>
+            <th style="color:var(--jade)">운명 설계도<br><small style="font-weight:400;font-size:10px">50,000원</small></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>보는 것</td><td>전체 결론 요약</td><td style="font-weight:900;color:var(--accent)">올해 집중</td><td>인생 전체 구조</td></tr>
+          <tr><td>원국 분석</td><td>요약</td><td>–</td><td>✓ 완전</td></tr>
+          <tr><td>대운×세운 교차</td><td>–</td><td>✓</td><td>✓</td></tr>
+          <tr><td>12개월 월운</td><td>–</td><td>✓</td><td>✓</td></tr>
+          <tr><td>4테마 올해 흐름</td><td>–</td><td>✓ (간략)</td><td>✓ (완전)</td></tr>
+          <tr><td>올해 처방</td><td>–</td><td>✓</td><td>✓</td></tr>
+          <tr><td>납기</td><td>즉시</td><td>1~2일</td><td>3~5일</td></tr>
+        </tbody>
+      </table>
+      <p class="compare-note">"올해만 빠르게 파악" → 세운 리딩 / "처음부터 원국까지 전체" → 설계도</p>
+    </div>
+  </section>
+
+  <!-- ══ FAQ ══ -->
+  <section>
+    <div class="card">
+      <div class="eyebrow">자주 묻는 질문</div>
+      <div class="sec-title">궁금한 점</div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <div class="faq-q">진단 보고서 없이 처음 신청할 수 있나요? <span class="arrow">▾</span></div>
+          <div class="faq-a">세운 정기 리딩은 설계도·체감지도·골든크로스 이력자를 대상으로 합니다. 처음이라면 운명 설계도(50,000)나 AI 명리 리포트(4,900)부터 시작하시고, 이후 세운 리딩으로 이어가시면 훨씬 깊이 있게 읽힙니다.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">언제 받는 게 좋나요? 연초만 되나요? <span class="arrow">▾</span></div>
+          <div class="faq-a">연초(1~2월)에 받으면 한 해 전체를 미리 볼 수 있어 가장 효율적입니다. 다만 하반기에 신청하셔도 남은 달 흐름과 연말 전략으로 충분히 활용됩니다. 음력 생일 전후나 중요한 결정이 몰린 시기에 받으시는 분도 많습니다.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">작년에 설계도를 받았는데 올해 세운 내용도 들어있지 않나요? <span class="arrow">▾</span></div>
+          <div class="faq-a">설계도에는 대운 흐름과 세운 전망이 포함되어 있습니다. 세운 리딩은 그 위에서 올해를 훨씬 더 촘촘하게 — 12개월 월운, 집중월/주의월, 4테마 간략, 올해 전용 처방까지 집중해서 봅니다. 설계도가 이정표라면, 세운 리딩은 올해 내비게이션입니다.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">분기 점검과 어떻게 다른가요? <span class="arrow">▾</span></div>
+          <div class="faq-a">세운 리딩이 올해 전체 그림이라면, 분기 점검은 3개월씩 줌인합니다. 세운 리딩을 먼저 받은 뒤 분기마다 짧게 업데이트하는 방식으로 함께 활용하면 가장 효과적입니다.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ CTA 카드 ══ -->
+  <section>
+    <div class="card">
+      <div class="eyebrow">신청</div>
+      <div class="sec-title">올해의 에너지 지도를 받아보세요</div>
+      <p class="sec-lead">카카오 채널로 문의주시면 안내드립니다.<br>생년월일시·성별·올해 주요 고민을 함께 보내주시면 더 빠릅니다.</p>
+      <a href="http://pf.kakao.com/_xnZAxfX" class="cf-btn" style="display:block;text-align:center;border-radius:6px;padding:15px;margin-top:6px;font-size:15px">카카오 채널 문의하기</a>
+      <p style="font-size:11px;color:var(--mid);text-align:center;margin-top:12px;line-height:1.7">
+        결제 완료 후 1~2일 내 온라인 문서로 납품됩니다.<br>
+        진단 이력자 대상 · 술사 직접 검수 포함.
+      </p>
+    </div>
+  </section>
+
+  <div class="foot">
+    知我世 · 지아세 — 명징투파 자평명리 + 유시자미두수 남파 73궁<br>
+    본 보고서는 참고용이며, 무엇도 단정하지 않습니다.
+  </div>
+
+</div><!-- /wrap -->
+
+<!-- ── 하단 고정 CTA ── -->
+<div class="cta-fixed">
+  <div class="cf-left">
+    <div class="cf-label">세운 정기 리딩 · TIER 3 · 술사 검수</div>
+    <div class="cf-price">20,000<span class="won">원</span></div>
+  </div>
+  <a href="http://pf.kakao.com/_xnZAxfX" class="cf-btn">지금 신청하기</a>
+</div>
+
+<script>
+document.querySelectorAll('.faq-q').forEach(q=>{
+  q.addEventListener('click',()=>{
+    const item=q.closest('.faq-item');
+    const wasOpen=item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+    if(!wasOpen) item.classList.add('open');
+  });
+});
+</script>
+</body>
+</html>

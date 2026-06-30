@@ -1,0 +1,2354 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>지아세 · 신생아 작명</title>
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FAFCFF;--ink:#1E1E2E;--ink2:#5a5870;--gold:#E8A84C;--gold2:#f5d08a;--line:#e2e0f0;--card:#fff;--soft:#f5f3ff;--accent:var(--gold);--glow:rgba(232,168,76,.15);--mok:#4a9e7a;--hwa:#c05040;--to:#c49a40;--geum:#8a8577;--su:#3a6090}
+body.boy{--accent:#5B8FD4;--soft:#e8f0fb;--glow:rgba(91,143,212,.15)}
+body.girl{--accent:#E06B8A;--soft:#fde8ef;--glow:rgba(224,107,138,.15)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,sans-serif;background:var(--bg);color:var(--ink);min-height:100vh;-webkit-font-smoothing:antialiased;padding-bottom:80px;transition:background .4s}
+.wrap{max-width:660px;margin:0 auto;padding:0 18px}
+.hero{text-align:center;padding:44px 20px 28px}
+b{color:var(--gold);font-weight:800}
+.hero-ey{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;letter-spacing:.2em;color:var(--accent);text-transform:uppercase;margin-bottom:10px;transition:color .4s;display:flex;align-items:center;justify-content:center;gap:7px}
+.hero-logo{width:20px;height:20px;border-radius:5px;flex-shrink:0}
+.oheng-divider{display:flex;justify-content:center;gap:6px;margin-top:14px}
+.oheng-divider span{width:7px;height:7px;border-radius:50%;display:inline-block}
+.oheng-divider span:nth-child(1){background:#3a8a4a}
+.oheng-divider span:nth-child(2){background:#c0392b}
+.oheng-divider span:nth-child(3){background:#9a7b3f}
+.oheng-divider span:nth-child(4){background:#7d8388}
+.oheng-divider span:nth-child(5){background:#2c3e6b}
+.hero h1{font-family:'Gowun Batang',serif;font-size:clamp(22px,5vw,28px);font-weight:400;line-height:1.5;color:var(--ink)}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.card{background:var(--card);border:1.5px solid var(--line);border-radius:18px;padding:22px 20px;margin-bottom:18px;box-shadow:0 4px 20px var(--glow);transition:box-shadow .4s}
+.card-title{font-family:'Gowun Batang',serif;font-size:16px;color:var(--ink);margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.step-num{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:19px;color:var(--accent);opacity:.7}
+label{display:block;font-size:11.5px;color:var(--ink2);margin-bottom:5px}
+input,select{width:100%;font-family:inherit;font-size:15px;padding:11px 13px;border:1.5px solid var(--line);border-radius:10px;background:var(--soft);color:var(--ink);outline:none;transition:.2s}
+input:focus,select:focus{border-color:var(--accent);background:#fff;box-shadow:0 0 0 3px var(--glow)}
+.hint{font-size:11.5px;color:var(--accent);margin-top:5px;min-height:16px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.row3{display:grid;grid-template-columns:2fr 1fr 1fr;gap:10px;margin-bottom:12px}
+.gender-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:18px}
+.g-card{border:2px solid var(--line);border-radius:13px;padding:16px;text-align:center;cursor:pointer;transition:.25s;background:var(--soft)}
+.g-card:hover{transform:translateY(-2px)}
+.g-card.on{border-color:var(--accent);background:var(--card);box-shadow:0 0 0 3px var(--glow)}
+.g-card .gi{font-size:28px;display:block;margin-bottom:5px}
+.g-card .gl{font-family:'Gowun Batang',serif;font-size:13px}
+.btn{width:100%;padding:14px;border:none;border-radius:11px;cursor:pointer;font-family:'Gowun Batang',serif;font-size:15px;background:var(--accent);color:#fff;box-shadow:0 5px 16px var(--glow);transition:.2s;margin-top:6px}
+.btn:hover{transform:translateY(-1px);box-shadow:0 8px 22px var(--glow)}
+.btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.btn-ghost{background:transparent;border:1.5px solid var(--accent);color:var(--accent);box-shadow:none}
+.btn-ghost:hover{background:var(--soft)}
+.btn-sm{padding:9px 16px;font-size:13px;width:auto;display:inline-block}
+
+/* 용신 배지 */
+.yong-badge{background:var(--soft);border-radius:12px;padding:14px 16px;margin-bottom:16px;line-height:1.7;font-size:13px;color:var(--ink2)}
+
+/* 탭 */
+.tabs{display:flex;gap:0;border:1.5px solid var(--line);border-radius:13px;overflow:hidden;margin-bottom:18px;background:var(--soft)}
+.tab{flex:1;padding:11px 6px;border:none;background:transparent;font-family:inherit;font-size:12.5px;color:var(--ink2);cursor:pointer;transition:.2s;text-align:center;line-height:1.3}
+.tab.on{background:var(--accent);color:#fff;font-weight:600}
+.tab-pane{display:none}.tab-pane.on{display:block}
+
+/* 이름 그리드 */
+.name-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:10px 0 14px}
+.n-card{border:1.5px solid var(--line);border-radius:13px;padding:14px 9px;text-align:center;cursor:pointer;transition:.25s;background:var(--card);position:relative;opacity:0;transform:translateY(8px);animation:cardIn .4s ease forwards}
+@keyframes cardIn{to{opacity:1;transform:none}}
+.n-card:hover{transform:translateY(-2px);box-shadow:0 5px 16px var(--glow)}
+.n-card.on{border-color:var(--accent);background:linear-gradient(160deg,#fff 60%,var(--soft));box-shadow:0 0 0 2px var(--glow)}
+.n-card.match::after{content:'✦';position:absolute;top:-7px;right:3px;font-size:12px;color:var(--accent)}
+.n-kor{font-family:'Gowun Batang',serif;font-size:20px;letter-spacing:.12em;color:var(--ink);margin-bottom:3px}
+.n-mean{font-size:10px;color:var(--ink2);line-height:1.4;margin-top:3px}
+.sdots{display:flex;gap:3px;justify-content:center;margin:5px 0 2px}
+.sdot{width:7px;height:7px;border-radius:50%}
+.sdot.gil{background:#4CAF7D}.sdot.jung,.sdot.flag{background:var(--gold)}.sdot.hyung{background:#e06b6b}
+.flow-badge{font-size:9.5px;padding:1px 6px;border-radius:8px;font-weight:600}
+.flow-ok{background:rgba(74,158,122,.15);color:#2a7040}
+.flow-bad{background:rgba(192,80,64,.12);color:#a04030}
+.cand-note{display:block;font-size:8.5px;color:var(--ink3);margin-top:3px}
+.pk-note{color:var(--mok);font-weight:600}
+
+/* 검색 */
+.search-row{display:flex;gap:8px;margin-bottom:12px}
+.search-row input{flex:1}
+
+/* 분석 결과 */
+.analysis-card{background:linear-gradient(160deg,var(--soft),var(--card));border:1.5px solid var(--accent);border-radius:16px;padding:20px 18px;margin-bottom:14px;animation:cardIn .4s ease}
+.ac-name{font-family:'Gowun Batang',serif;font-size:28px;letter-spacing:.18em;text-align:center;margin-bottom:10px}
+.ac-hanja{font-size:14px;color:var(--ink2);text-align:center;margin-bottom:12px;font-family:'Gowun Batang',serif}
+.flow-chips{display:flex;gap:3px;justify-content:center;align-items:center;flex-wrap:wrap;margin:8px 0}
+.fchip{width:30px;height:34px;border-radius:6px;display:grid;place-items:center;font-family:'Gowun Batang',serif;font-size:14px;color:#fff}
+.farr{font-size:11px;color:var(--ink2);font-weight:600;padding:0 1px}
+.farr.ok{color:var(--mok)}.farr.ng{color:var(--hwa)}
+.suri-row{display:flex;justify-content:center;gap:14px;margin:12px 0}
+.si{text-align:center}
+.si-val{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--accent)}
+.si-label{font-size:10px;color:var(--ink2)}
+.si-g{font-size:10px;font-weight:600;padding:1px 6px;border-radius:8px;margin-top:2px;display:inline-block}
+.sg-gil{background:rgba(74,175,121,.15);color:#2a7040}
+.sg-jung{background:rgba(232,168,76,.12);color:#8a5010}
+.sg-hyung{background:rgba(224,107,138,.12);color:#a02050}
+.score-bar{margin:10px 0}
+.score-label{font-size:11px;color:var(--ink2);margin-bottom:4px;display:flex;justify-content:space-between}
+.bar-track{height:7px;border-radius:7px;background:var(--line);overflow:hidden}
+.bar-fill{height:100%;border-radius:7px;background:linear-gradient(90deg,var(--accent),var(--gold2));transition:width .6s ease}
+
+/* 한자 카드 */
+.h-cards{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:6px 0 14px}
+.h-card{border:1.5px solid var(--line);border-radius:13px;padding:15px 12px;cursor:pointer;transition:.25s;background:var(--card);animation:cardIn .4s ease}
+.h-card:hover{transform:translateY(-2px);box-shadow:0 5px 16px var(--glow)}
+.h-card.on{border-color:var(--accent);background:linear-gradient(160deg,#fff 60%,var(--soft));box-shadow:0 0 0 2px var(--glow)}
+.h-hanja{font-family:'Gowun Batang',serif;font-size:24px;letter-spacing:.12em;text-align:center;margin-bottom:6px}
+.h-info{font-size:11.5px;color:var(--ink2);line-height:1.5;text-align:center}
+.h-tags{display:flex;gap:4px;justify-content:center;flex-wrap:wrap;margin-top:6px}
+.h-tag{font-size:9.5px;padding:2px 7px;border-radius:8px;font-weight:600}
+
+/* 완성 카드 */
+.result-card{background:linear-gradient(160deg,var(--soft) 0%,var(--card) 60%);border:2px solid var(--accent);border-radius:22px;padding:32px 24px;text-align:center;position:relative;overflow:hidden}
+.result-card::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 0%,var(--glow),transparent 70%);pointer-events:none}
+.rc-ey{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;letter-spacing:.18em;color:var(--accent);margin-bottom:14px}
+.rc-name{font-family:'Gowun Batang',serif;font-size:38px;letter-spacing:.28em;color:var(--ink);margin-bottom:4px;line-height:1.2}
+.rc-hanja{font-family:'Gowun Batang',serif;font-size:16px;letter-spacing:.15em;color:var(--ink2);margin-bottom:14px}
+.rc-divider{height:1px;background:linear-gradient(90deg,transparent,var(--line),transparent);margin:16px 0}
+.rc-blessing{font-family:'Gowun Batang',serif;font-size:14px;line-height:1.9;color:var(--ink2);font-style:italic}
+.share-row{display:flex;gap:9px;margin-top:18px}
+.btn-share{flex:1;padding:12px;border:none;border-radius:10px;cursor:pointer;font-family:'Gowun Batang',serif;font-size:13.5px;background:var(--accent);color:#fff;transition:.2s}
+.btn-redo{background:transparent;border:1.5px solid var(--line);color:var(--ink2)}
+
+/* 필터 태그 */
+.filter-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.f-tag{font-size:11.5px;padding:4px 11px;border-radius:18px;border:1.5px solid var(--line);background:var(--card);cursor:pointer;transition:.2s;color:var(--ink2)}
+.f-tag.on{background:var(--accent);border-color:var(--accent);color:#fff}
+
+/* 한자 검색 결과 */
+.hanja-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;max-height:300px;overflow-y:auto}
+.hj-item{border:1.5px solid var(--line);border-radius:10px;padding:10px 12px;cursor:pointer;transition:.2s;background:var(--card);text-align:center;min-width:80px}
+.hj-item:hover{border-color:var(--accent);background:var(--soft)}
+.hj-item.on{border-color:var(--accent);background:var(--soft);box-shadow:0 0 0 2px var(--glow)}
+.hj-char{font-family:'Gowun Batang',serif;font-size:22px;color:var(--ink)}
+.hj-info{font-size:10px;color:var(--ink2);margin-top:3px;line-height:1.4}
+
+/* 글자 고정 */
+.fix-row{display:flex;gap:8px;margin-bottom:12px;align-items:center}
+.fix-row input{flex:1;font-family:'Gowun Batang',serif;font-size:18px;text-align:center;letter-spacing:.1em}
+.pos-seg{display:flex;border:1.5px solid var(--line);border-radius:9px;overflow:hidden}
+.pos-seg button{border:none;background:transparent;padding:8px 12px;font-family:inherit;font-size:12px;color:var(--ink2);cursor:pointer;transition:.15s}
+.pos-seg button.on{background:var(--accent);color:#fff}
+
+
+/* ── 후보 저장 & 투표 ── */
+.candidate-row{display:flex;gap:8px;margin:6px 0;align-items:center}
+.cand-chip{font-family:'Gowun Batang',serif;font-size:16px;letter-spacing:.1em;
+  padding:8px 14px;border:1.5px solid var(--line);border-radius:10px;
+  background:var(--card);cursor:pointer;transition:.2s;flex:1;text-align:center}
+.cand-chip.on{border-color:var(--accent);background:var(--soft);font-weight:700}
+.cand-chip.winner{border-color:#4CAF7D;background:rgba(74,175,121,.1)}
+.vote-card{background:var(--card);border:1.5px solid var(--line);border-radius:16px;padding:20px 18px;margin-top:16px}
+.vote-item{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}
+.vote-item:last-child{border-bottom:none}
+.vote-name{font-family:'Gowun Batang',serif;font-size:20px;letter-spacing:.12em;flex:1}
+.vote-hanja{font-size:12px;color:var(--ink2);margin-top:2px}
+.vote-bar-wrap{flex:2}
+.vote-bar-bg{height:8px;border-radius:8px;background:var(--line);overflow:hidden;margin-bottom:4px}
+.vote-bar-fill{height:100%;border-radius:8px;background:linear-gradient(90deg,var(--accent),var(--gold2));transition:width .6s ease}
+.vote-count{font-size:12px;color:var(--ink2);text-align:right}
+.vote-btn{padding:10px 18px;border:none;border-radius:10px;cursor:pointer;
+  font-family:'Gowun Batang',serif;font-size:14px;background:var(--accent);color:#fff;
+  transition:.2s;white-space:nowrap}
+.vote-btn:hover{transform:translateY(-1px)}
+.vote-btn.voted{background:#4CAF7D}
+.vote-btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.winner-badge{font-size:11px;background:#4CAF7D;color:#fff;padding:2px 8px;border-radius:10px;margin-left:6px}
+
+footer{text-align:center;padding:28px 20px;font-size:11px;color:#bbb;line-height:1.7}
+@media(max-width:480px){.name-grid{grid-template-columns:repeat(2,1fr)}.h-cards{grid-template-columns:1fr}.row3{grid-template-columns:1fr 1fr 1fr}}
+</style>
+</head>
+<body>
+
+<!-- 만료 화면 (만료됐을 때만 표시) -->
+<div id="expiredScreen" style="display:none;position:fixed;inset:0;background:var(--bg);z-index:999;display:none;align-items:center;justify-content:center;padding:20px">
+  <div style="max-width:320px;width:100%;text-align:center">
+    <div style="font-size:40px;margin-bottom:16px">🌸</div>
+    <div style="font-family:'Gowun Batang',serif;font-size:20px;color:var(--ink);margin-bottom:8px">이용 기간이 만료됐어요</div>
+    <div style="font-size:13px;color:var(--ink2);margin-bottom:24px;line-height:1.8">
+      카카오 채널로 문의하시면<br>새 링크를 보내드려요
+    </div>
+    <button onclick="openKakao()" style="width:100%;padding:13px;background:var(--gold);color:#fff;border:none;border-radius:11px;font-family:'Gowun Batang',serif;font-size:15px;cursor:pointer">
+      카카오 채널 문의하기
+    </button>
+  </div>
+</div>
+
+<div class="hero">
+  <div class="hero-ey"><img src="./jiaseh_symbol_traced2_dark.png" class="hero-logo" alt="지아세">Jiaseh · Naming Studio</div>
+  <h1>우리 아이의 이름을<br><em>직접 완성해보세요</em></h1>
+  <div class="oheng-divider"><span></span><span></span><span></span><span></span><span></span></div>
+</div>
+
+<div class="wrap">
+
+<!-- PANE 1: 기본정보 -->
+<div id="pane1">
+  <div class="card">
+    <div class="card-title"><span class="step-num">一</span> 아이 정보</div>
+    <div class="gender-row">
+      <div class="g-card" id="gcBoy" onclick="setGender('남',this)"><span class="gi">👦</span><div class="gl">아들</div></div>
+      <div class="g-card" id="gcGirl" onclick="setGender('여',this)"><span class="gi">👧</span><div class="gl">딸</div></div>
+    </div>
+    <div style="margin-bottom:12px">
+      <label>성씨</label>
+      <input id="sungInput" maxlength="3" placeholder="예: 김" oninput="onSungInput()" autocomplete="off">
+      <div class="hint" id="sungHint"></div>
+    </div>
+    <div class="row3">
+      <div><label>태어난 해</label><input type="number" id="bdY" placeholder="2024" min="2020" max="2030" oninput="checkBtn1()"></div>
+      <div><label>월</label><input type="number" id="bdM" placeholder="1" min="1" max="12" oninput="checkBtn1()"></div>
+      <div><label>일</label><input type="number" id="bdD" placeholder="1" min="1" max="31" oninput="checkBtn1()"></div>
+    </div>
+    <div style="margin-bottom:8px">
+      <label>태어난 시간</label>
+      <select id="bdH">
+        <option value="">시간 모름</option>
+        <option value="0">자시 (밤11~새벽1)</option>
+        <option value="2">축시 (새벽1~3)</option>
+        <option value="4">인시 (새벽3~5)</option>
+        <option value="6">묘시 (새벽5~7)</option>
+        <option value="8">진시 (아침7~9)</option>
+        <option value="10">사시 (아침9~11)</option>
+        <option value="12">오시 (낮11~오후1)</option>
+        <option value="14">미시 (오후1~3)</option>
+        <option value="16">신시 (오후3~5)</option>
+        <option value="18">유시 (저녁5~7)</option>
+        <option value="20">술시 (저녁7~9)</option>
+        <option value="22">해시 (밤9~11)</option>
+      </select>
+    </div>
+    <button class="btn" id="btn1" onclick="goMain()" disabled>기운 분석 후 작명 시작 →</button>
+  </div>
+</div>
+
+<!-- PANE 2: 메인 작명 도구 -->
+<div id="pane2" style="display:none">
+
+  <!-- 용신 배지 -->
+  <div class="yong-badge" id="yongBadge"></div>
+
+  <!-- 탭 -->
+  <div class="tabs">
+    <button class="tab on" onclick="switchTab('analyze',this)">✏️ 이름 분석</button>
+    <button class="tab" onclick="switchTab('search',this)">🔍 추천 탐색</button>
+    <button class="tab" onclick="switchTab('hanja',this)">字 한자 검색</button>
+  </div>
+
+  <!-- 탭1: 이름 분석 -->
+  <div class="tab-pane on" id="tab-analyze">
+    <div class="card">
+      <div class="card-title"><span class="step-num">분석</span> 원하는 이름을 입력해 주세요</div>
+      <div style="font-size:12.5px;color:var(--ink2);margin-bottom:12px;line-height:1.7">
+        마음에 두고 계신 이름이 있다면 먼저 분석해 드려요.<br>발음오행·수리·용신 일치 여부를 바로 확인할 수 있어요.
+      </div>
+      <div class="search-row">
+        <input id="analyzeInput" maxlength="3" placeholder="예: 서준" style="font-family:'Gowun Batang',serif;font-size:18px;letter-spacing:.1em;text-align:center"
+          oninput="liveAnalyze()">
+      </div>
+      <div id="analyzeResult"></div>
+      <div style="margin-top:14px;font-size:12px;color:var(--ink2)">
+        이 이름으로 결정하셨다면 한자 탭에서 한자를 골라주세요.
+      </div>
+    </div>
+  </div>
+
+  <!-- 탭2: 추천 탐색 -->
+  <div class="tab-pane" id="tab-search">
+    <div class="card">
+      <div class="card-title"><span class="step-num">탐색</span> 추천 이름</div>
+      <div class="filter-row" id="filterRow"></div>
+      <!-- 글자 고정 -->
+      <div style="margin-bottom:14px;padding:12px 14px;background:var(--soft);border-radius:12px">
+        <div style="font-size:12px;color:var(--ink2);margin-bottom:8px">특정 글자를 넣고 싶다면</div>
+        <div class="fix-row">
+          <input id="fixChar" maxlength="1" placeholder="예: 서" style="font-family:'Gowun Batang',serif;font-size:18px;text-align:center;max-width:80px">
+          <div class="pos-seg" id="posSegs">
+            <button class="on" data-p="0" onclick="setFixPos(this)">첫째 자</button>
+            <button data-p="1" onclick="setFixPos(this)">둘째 자</button>
+          </div>
+          <button class="btn btn-sm btn-ghost" onclick="runGen()">적용</button>
+        </div>
+      </div>
+      <div class="name-grid" id="nameGrid"></div>
+      <button class="btn btn-ghost" onclick="runGen()" style="margin-top:4px">↺ 더 보기</button>
+    </div>
+  </div>
+
+  <!-- 탭3: 한자 검색 -->
+  <div class="tab-pane" id="tab-hanja">
+    <div class="card">
+      <div class="card-title"><span class="step-num">한자</span> 이름 한자 고르기</div>
+      <div style="font-size:12.5px;color:var(--ink2);margin-bottom:12px;line-height:1.7">
+        이름 글자의 음절을 입력하면 쓸 수 있는 한자를 보여드려요.<br>
+        두 글자 이름은 첫째 자, 둘째 자 순서로 골라주세요.
+      </div>
+      <div id="hanjaNamePreview" style="font-family:'Gowun Batang',serif;font-size:15px;color:var(--ink2);margin-bottom:10px;min-height:22px"></div>
+      <div class="search-row">
+        <input id="hanjaSearch" maxlength="1" placeholder="음절 입력 (예: 서)"
+          style="font-family:'Gowun Batang',serif;font-size:18px;text-align:center"
+          oninput="searchHanja()">
+        <button class="btn btn-sm btn-ghost" onclick="clearHanjaSlot()">지우기</button>
+      </div>
+      <div id="hanjaResult"></div>
+      <div id="hanjaSelected" style="margin-top:14px;display:none">
+        <div style="font-size:12px;color:var(--ink2);margin-bottom:8px">선택된 한자</div>
+        <div id="selHanjaDisplay" style="font-family:'Gowun Batang',serif;font-size:20px;letter-spacing:.15em;color:var(--ink);margin-bottom:12px"></div>
+        <button class="btn" onclick="goFinal()" id="finalBtn" disabled>이 이름으로 완성하기 →</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- PANE 3: 완성 카드 -->
+<div id="pane3" style="display:none">
+  <div class="result-card">
+    <div class="rc-ey">이름이 완성되었습니다</div>
+    <div class="rc-name" id="rcName"></div>
+    <div class="rc-hanja" id="rcHanja"></div>
+    <div class="flow-chips" id="rcFlow"></div>
+    <div id="rcSuri" style="margin:12px 0"></div>
+    <div class="rc-divider"></div>
+    <div class="rc-blessing" id="rcBlessing"></div>
+    <div class="share-row">
+      <button class="btn-share" onclick="copyResult()">📋 복사</button>
+      <button class="btn-share btn-redo" onclick="backToMain()">← 다시 고르기</button>
+      <button class="btn-share" onclick="checkVoteResult()" id="checkVoteBtn" style="display:none">📊 투표 결과 보기</button>
+    </div>
+  </div>
+
+  <!-- 후보 저장 & 가족 투표 -->
+  <div class="vote-card" id="voteSection" style="display:none">
+    <div style="font-family:'Gowun Batang',serif;font-size:16px;color:var(--ink);margin-bottom:6px">
+      가족 투표에 올리기
+    </div>
+    <div style="font-size:12.5px;color:var(--ink2);margin-bottom:14px;line-height:1.7">
+      후보를 최대 3개까지 저장하고 링크를 공유하면<br>
+      가족·친구가 투표해요.
+    </div>
+    <div id="candidateList"></div>
+    <button class="btn btn-ghost" onclick="addCandidate()" id="addCandBtn" style="margin-top:8px">
+      + 이 이름을 후보에 추가
+    </button>
+    <div id="voteLink" style="display:none;margin-top:14px">
+      <div style="font-size:12px;color:var(--ink2);margin-bottom:6px">공유 링크</div>
+      <div style="display:flex;gap:8px">
+        <input id="voteLinkInput" readonly style="flex:1;font-size:12px;padding:9px 10px;background:var(--soft)">
+        <button class="btn btn-sm" onclick="copyVoteLink()" style="width:auto;padding:9px 14px">복사</button>
+      </div>
+      <div style="font-size:11px;color:var(--ink2);margin-top:6px;line-height:1.6">
+        링크를 카톡 단톡방에 공유하면 가족·친구가 투표할 수 있어요
+      </div>
+    </div>
+  </div>
+
+  <!-- 투표 보기 (링크로 접속한 경우) -->
+  <div class="vote-card" id="votingView" style="display:none">
+    <div style="font-family:'Gowun Batang',serif;font-size:17px;color:var(--ink);margin-bottom:4px">
+      아기 이름 투표 💝
+    </div>
+    <div style="font-size:12.5px;color:var(--ink2);margin-bottom:16px">
+      마음에 드는 이름에 투표해 주세요
+    </div>
+    <div id="voteItems"></div>
+    <div id="voteResultMsg" style="text-align:center;font-size:12px;color:var(--ink2);margin-top:12px;min-height:18px"></div>
+  </div>
+
+  <div style="margin-top:18px;background:var(--soft);border-radius:16px;padding:18px 16px;text-align:center">
+    <div style="font-family:'Gowun Batang',serif;font-size:15px;color:var(--ink);margin-bottom:6px">결과에 의문이 남으셨나요?</div>
+    <div style="font-size:12.5px;color:var(--ink2);margin-bottom:14px;line-height:1.7">지아세 술사가 직접 검토해 드립니다.<br>이름진단 15,000원 · 작명 신청 시 전액 차감</div>
+    <button class="btn" onclick="openKakao()" style="max-width:280px;margin:0 auto;display:block">카카오 채널 상담 →</button>
+  </div>
+</div>
+
+</div><!-- /wrap -->
+<footer>知我世 지아세 · 본 서비스는 예방적 자기관리 및 의사결정 지원 서비스입니다.</footer>
+<script src="https://cdn.jsdelivr.net/npm/lunar-javascript@1.7.3/lunar.js"></script>
+<script id="eumpData" type="text/plain">가|坷8:土 泇8:水 苛8:木 茄8:木 架9:木 枷9:木 柯9:木 珂9:金 珈9:金 笳11:木 袈11:木 葭12:木 暇13:火 賈13:金 榎14:木 稼15:木 檟17:木 加5:- 可5:- 伽7:- 佳8:- 呵8:- 迦8:- 哥10:-
+각|刻8:金 珏9:金 埆10:土 桷11:木 閣14:木 各6:- 却7:- 角7:- 卻9:- 咯9:- 恪9:- 脚11:- 殼12:- 搉13:- 愨14:- 慤15:- 擱17:- 覺20:-
+간|刊5:金 杆7:木 玕7:金 矸8:土 秆8:木 柬9:木 竿9:木 茛9:木 栞10:木 桿11:木 稈12:木 間12:木 榦14:木 澗15:水 墾16:土 磵17:土 簡18:木 干3:- 奸6:- 忓6:- 艮6:- 迀6:- 肝7:- 侃8:-
+갈|秸11:木 渴12:水 葛12:木 楬13:木 碣14:土 褐14:木 乫6:- 曷9:- 喝12:- 竭14:- 噶15:- 羯15:- 蝎15:- 鞨18:- 蠍19:-
+감|坎7:土 邯7:土 坩8:土 泔8:水 玪8:金 柑9:木 埳11:土 淦11:水 紺11:木 堪12:土 嵁12:土 嵌12:土 減12:水 酣12:金 戡13:金 澉14:水 橄15:木 鑑22:金 鑒22:金 甘5:- 弇9:- 疳10:- 勘11:- 敢11:-
+갑|甲5:土 岬8:土 鉀13:金 閘13:木 匣7:- 胛9:-
+강|江6:水 杠7:木 玒7:金 岡8:土 矼8:土 降8:土 茳9:木 剛10:金 堈11:土 崗11:土 絳12:木 畺13:土 綱14:木 壃16:土 穅16:木 薑16:木 鋼16:金 橿17:木 糠17:木 繈17:木 襁17:木 鎠18:金 疆19:土 鏹20:金
+개|芥7:木 玠8:金 皆9:金 剴12:金 開12:木 塏13:土 槩13:木 蓋13:木 漑14:水 箇14:木 槪15:木 磕15:土 鎧18:金 闓18:木 介4:- 匃5:- 价6:- 改7:- 疥9:- 個10:- 豈10:- 盖11:- 凱12:- 慨12:-
+객|客9:- 喀12:-
+갱|坑7:土 硜12:土 粳13:木 賡15:金 鏗19:金 更7:- 羹19:-
+갹|醵20:金
+거|苣7:木 昛8:火 炬8:火 秬9:木 莒9:木 袪10:木 渠11:水 筥12:木 鉅12:金 裾13:木 蕖14:木 鋸16:金 蘧19:木 籧22:木 巨4:- 去5:- 拒7:- 車7:- 呿8:- 居8:- 祛9:- 胠9:- 倨10:- 据11:-
+건|巾3:木 湕11:水 楗12:木 漧14:水 褰16:木 鍵16:金 件6:- 建8:- 乹9:- 䢖10:- 健10:- 虔10:- 乾11:- 揵11:- 犍12:- 腱12:- 愆13:- 睷13:- 搴14:- 踺15:- 謇17:- 蹇17:- 鞬17:- 騫20:-
+걸|杰8:木 桀10:木 榤14:木 乞3:- 乬6:- 傑12:- 朅14:-
+검|芡7:木 鈐12:金 劍15:金 劒16:金 黔16:水 檢17:木 儉15:- 撿16:- 瞼18:-
+겁|刦7:金 刧7:金 劫7:- 怯8:- 迲8:-
+게|偈11:- 揭12:- 憩16:-
+격|格10:木 隔12:土 激16:水 檄17:木 闃17:木 挌9:- 鬲10:- 毄14:- 膈14:- 覡14:- 骼15:- 鴃15:- 擊17:-
+견|畎9:土 堅11:土 甄13:土 筧13:木 絹13:木 縳17:木 繭18:木 繾19:木 鰹22:水 犬4:- 見7:- 肩8:- 狷10:- 牽11:- 遣13:- 羂18:- 鵑18:- 譴20:- 蠲23:-
+결|決7:水 玦8:金 洯10:水 缺10:土 焆11:火 結12:木 㓗14:水 潔15:水 鍥17:金 闋17:木 䤿18:金 抉7:- 㛃9:- 迼9:- 觖11:- 訣11:-
+겸|岒7:土 嵰13:土 蒹13:木 鉗13:金 槏14:木 箝14:木 縑16:木 黚17:水 鎌18:金 拑8:- 兼10:- 傔12:- 嗛13:- 慊13:- 歉14:- 謙17:- 鼸23:-
+경|巠7:水 坰8:土 炅8:火 剄9:金 畊9:土 𠗊9:水 涇10:水 莖10:木 梗11:木 烱11:火 絅11:木 景12:火 焭12:火 硬12:土 煢13:火 綆13:木 經13:木 境14:土 熲15:火 璄15:金 暻16:火 曔16:火 檠16:木 燛16:火
+계|戒7:金 系7:木 界9:土 桂10:木 烓10:火 械11:木 階11:土 堦12:土 堺12:土 棨12:木 溪13:水 綮14:木 磎15:土 縘16:木 薊16:木 𥡴16:木 繫19:木 繼20:木 季8:- 屆8:- 係9:- 契9:- 癸9:- 計9:-
+고|刳8:金 杲8:木 沽8:水 苦8:木 苽8:木 枯9:木 郜9:土 凅10:水 栲10:木 皋10:金 皐11:金 菰11:木 袴11:木 稁12:木 辜12:金 酤12:金 賈13:金 鈷13:金 暠14:火 槀14:木 槁14:木 箍14:木 稿15:木 篙16:木
+곡|梏11:木 槲15:木 穀15:木 縠16:木 曲6:- 谷7:- 哭10:- 斛11:- 觳17:- 轂17:- 鵠18:- 嚳20:-
+곤|坤8:土 昆8:火 衮10:木 堃11:土 崐11:土 崑11:土 梱11:木 袞11:木 棍12:木 琨12:金 裍12:木 滾14:水 緄14:木 褌14:木 閫15:木 錕16:金 鯤19:水 困7:- 悃10:- 捆10:- 髡13:- 鵾19:- 鶤20:- 齫22:-
+골|汨7:水 滑12:水 榾13:木 骨10:- 搰12:- 鶻20:-
+공|空8:土 栱10:木 珙10:金 貢10:金 崆11:土 釭11:金 槓14:木 箜14:木 贛24:金 工3:- 公4:- 孔4:- 功5:- 共6:- 攻7:- 供8:- 拱9:- 倥10:- 恐10:- 恭10:- 蚣10:- 悾11:- 控11:- 蛩12:-
+곶|串7:-
+과|戈4:金 瓜5:木 果8:木 科9:木 堝11:土 菓11:木 稞13:木 窠13:土 裹14:木 銙14:金 鍋16:金 夸6:- 侉8:- 猓11:- 過11:- 誇13:- 跨13:- 夥14:- 寡14:- 撾14:- 蝌15:- 課15:- 踝15:- 顆17:-
+곽|郭10:土 椁12:木 槨14:木 霍16:水 藿19:木 廓13:- 鞹19:- 癨21:-
+관|梡11:木 涫11:水 菅11:木 貫11:金 棺12:木 琯12:金 筦13:木 管14:木 綰14:木 錧16:金 窾17:土 關19:木 灌20:水 爟21:火 瓘21:金 罐23:土 鑵25:金 丱5:- 串7:- 官8:- 冠9:- 款12:- 祼12:- 寛13:-
+괄|刮8:金 栝10:木 筈12:木 佸8:- 括9:- 适9:- 恝10:- 聒12:- 髺16:- 鴰17:-
+광|炚8:火 炛8:火 洸9:水 茪9:木 桄10:木 框10:木 珖10:金 硄11:土 筐12:木 絖12:木 磺16:土 壙17:土 曠18:火 爌18:火 纊20:木 鑛22:金 広5:- 光6:- 匡6:- 狂7:- 侊8:- 恇9:- 胱10:- 誆13:-
+괘|卦8:- 咼8:- 挂9:- 掛11:- 罣11:- 罫13:- 詿13:-
+괴|塊12:土 槐13:木 瑰13:金 蒯13:木 璝16:金 襘18:木 壞19:土 乖8:- 怪8:- 拐8:- 傀11:- 媿12:- 愧12:- 魁13:- 廥16:-
+괵|馘17:-
+굉|浤10:水 紘10:木 閎12:木 宏7:- 肱8:- 訇9:- 觥13:- 轟21:-
+교|郊8:土 晈10:火 校10:木 皎11:金 窖12:土 絞12:木 鄗12:土 暞14:火 榷14:木 鉸14:金 嶠15:土 蕎15:木 橋16:木 磽17:土 鮫17:水 巧5:- 交6:- 佼8:- 咬9:- 姣9:- 狡9:- 敎11:- 教11:- 喬12:-
+구|求7:水 灸7:火 玖7:金 究7:土 邱7:土 坵8:土 坸8:土 岣8:土 苟8:木 垢9:土 昫9:火 枸9:木 柩9:木 玽9:金 韭9:木 球11:金 釦11:金 榘13:木 溝13:水 絿13:木 蒟13:木 裘13:木 鉤13:金 嶇14:土
+국|菊11:木 𥮗14:木 麯17:木 麴19:木 局7:- 匊8:- 国8:- 國11:- 掬11:- 跼14:- 趜15:- 鞠17:- 鞫18:-
+군|郡9:土 桾11:木 窘12:土 裙12:木 君7:- 軍9:- 捃10:- 群13:- 皸14:-
+굴|堀11:土 崛11:土 淈11:水 窟13:土 屈8:- 倔10:- 掘11:- 詘12:-
+궁|芎6:木 穹8:土 窮15:土 弓3:- 宮10:- 躬10:- 躳13:-
+권|券8:金 淃11:水 棬12:木 綣14:木 権15:木 權21:木 卷8:- 倦10:- 勌10:- 拳10:- 圈11:- 惓11:- 捲11:- 眷11:- 睠13:- 蜷14:- 勸19:-
+궐|蕨15:木 闕18:木 厥12:- 獗15:- 蹶19:-
+궤|氿5:水 机6:木 劂14:金 潰15:水 樻16:木 簋17:木 櫃18:木 繢18:木 闠20:木 几2:- 佹8:- 軌9:- 詭13:- 跪13:- 麂13:- 匱14:- 憒15:- 撅15:- 餽17:- 饋20:-
+귀|晷12:火 貴12:金 䤥14:金 龜17:水 句5:- 鬼9:- 歸18:-
+규|圭6:土 糺7:木 刲8:金 糾8:木 邽8:土 茥9:木 珪10:金 硅11:土 湀12:水 葵12:木 暌13:火 楏13:木 煃13:火 閨14:木 槻15:木 樛15:木 潙15:水 窺16:土 竅18:土 闚19:木 巋21:土 叫5:- 虯8:- 奎9:-
+균|均7:土 畇9:土 菌11:木 鈞12:金 筠13:木 龜17:水 勻4:- 匀4:- 囷8:- 覠14:- 麏18:-
+귤|橘16:木
+극|郄8:土 剋9:金 戟12:金 棘12:木 極12:木 隙12:土 劇15:金 克7:- 亟8:- 尅10:- 屐10:-
+근|斤4:金 芹7:木 根10:木 堇11:土 菫11:木 筋12:木 釿12:金 墐14:土 漌14:水 槿15:木 瑾15:金 劤6:- 近7:- 巹9:- 觔9:- 僅13:- 勤13:- 跟13:- 靳13:- 嫤14:- 廑14:- 懃17:- 覲18:- 謹18:-
+글|㔕6:- 契9:-
+금|芩7:木 昑8:火 金8:金 衿9:木 笒10:木 衾10:木 琴12:金 嶔15:土 黅15:土 檎16:木 錦16:金 襟18:木 今4:- 妗7:- 唫11:- 禽12:- 禁13:- 擒15:- 噤16:-
+급|圾6:土 岌6:土 汲6:水 芨6:木 皀7:金 笈9:木 級9:木 給12:木 礏18:土 及3:- 伋5:- 扱6:- 急9:-
+긍|矜9:金 亘6:- 亙6:- 肯8:- 殑11:- 兢14:-
+기|屺6:土 圻7:土 岐7:土 杞7:木 汽7:水 沂7:水 玘7:金 芪7:木 芰7:木 炁8:火 紀9:木 剞10:金 基11:土 埼11:土 崎11:土 淇11:水 棄12:木 棊12:木 棋12:木 琦12:金 琪12:金 隑12:土 畸13:土 碁13:土
+긴|緊14:木
+길|桔10:木 吉6:- 佶8:- 姞9:- 拮9:- 蛣12:-
+김|金8:金
+끽|喫12:-
+나|那6:土 柰9:木 梛10:木 裸13:木 橠16:木 糯20:木 蘿22:木 奈8:- 娜9:- 拏9:- 挪9:- 䏧10:- 拿10:- 挐10:- 𡖔10:- 喇12:- 𣃽12:- 䛔13:- 懦17:- 螺17:- 懶19:- 羅19:- 儺21:- 癩21:-
+낙|洛9:水 烙10:火 珞10:金 落12:木 酪13:金 樂15:木 諾15:- 駱16:-
+난|赧11:火 暖13:火 煖13:火 蘭20:木 欄21:木 爛21:火 卵7:- 偄11:- 愞12:- 亂13:- 餪17:- 難19:- 鸞30:-
+날|捏10:- 捺11:-
+남|男7:土 枏8:木 嵐12:土 湳12:水 楠13:木 濫17:水 藍17:木 襤19:木 南9:- 喃12:-
+납|衲9:木 納10:木 拉8:- 臘19:- 蠟21:-
+낭|郞9:土 浪10:水 曩21:火 娘10:- 朗10:- 狼10:- 廊11:- 囊22:-
+내|柰9:木 乃2:- 內4:- 奶5:- 來8:- 奈8:- 耐9:- 迺9:- 鼐14:- 嬭17:-
+냉|冷7:水
+녀|女3:-
+녁|惄12:-
+년|秊8:木 碾15:土 年6:- 撚15:-
+념|念8:- 拈8:- 恬9:- 捻11:-
+녑|惗11:-
+녕|濘17:水 佞7:- 寗13:- 寧14:- 儜16:- 嚀17:- 獰17:-
+노|峱10:土 笯11:木 瑙13:金 魯15:水 櫓19:木 蘆19:木 爐20:火 露21:水 奴5:- 老6:- 努7:- 呶8:- 孥8:- 弩8:- 怒9:- 勞12:- 猱12:- 虜13:- 路13:- 䛝14:- 駑15:- 擄16:- 盧16:- 臑18:-
+녹|菉11:木 碌13:土 綠14:木 錄16:金 鹿11:- 祿12:-
+논|論15:-
+농|農13:土 濃16:水 穠18:木 壟19:土 醲20:金 籠22:木 弄7:- 儂15:- 噥16:- 膿17:- 聾22:-
+뇌|賂13:金 雷13:水 磊15:土 牢7:- 惱12:- 腦13:- 餒15:-
+뇨|淖11:水 鐃20:金 尿7:- 嫋13:- 撓15:- 鬧15:- 嬲17:-
+누|陋8:土 淚11:水 累11:木 漏14:水 樓15:木 縷17:木 壘18:土 檽18:木 啂11:- 屢14:- 耨16:-
+눈|嫩14:-
+눌|吶7:- 肭8:- 訥11:-
+뉴|杻8:木 𧘥9:木 紐10:木 鈕12:金 忸7:-
+뉵|衄10:-
+늑|肋6:- 勒11:-
+늠|凜15:水
+능|凌10:水 陵10:土 菱11:木 稜13:木 綾14:木 能10:-
+니|泥8:水 柅9:木 濔17:水 尼5:- 呢8:- 妮8:- 怩8:- 祢9:- 馜14:- 㦐15:- 膩16:- 禰18:-
+닉|溺13:水 匿10:-
+닐|昵9:火 暱14:火
+다|茤9:木 茶9:木 𥥸12:土 鄲14:土 𣘻15:木 多6:- 夛6:- 爹10:- 觰15:- 奲23:-
+단|旦5:火 㫜9:火 袒10:木 湍12:水 椴13:木 煓13:火 漙14:水 鄲14:土 緞15:木 壇16:土 檀17:木 鍛17:金 斷18:金 簞18:木 丹4:- 但7:- 担8:- 彖9:- 段9:- 耑9:- 胆9:- 蛋11:- 單12:- 短12:-
+달|澾15:水 闥20:木 妲8:- 怛8:- 疸10:- 達12:- 靼14:- 撻15:- 獺19:- 韃21:-
+담|坍7:土 炎8:火 郯10:土 埮11:土 淡11:水 湛12:水 緂14:木 墰15:土 潭15:水 蕁15:木 曇16:火 澹16:水 薝16:木 錟16:金 壜19:土 黮21:水 罎22:土 黵25:水 倓10:- 啖11:- 啗11:- 惔11:- 聃11:- 啿12:-
+답|沓8:水 畓9:土 答12:木 遝13:- 踏15:-
+당|堂11:土 棠12:木 塘13:土 溏13:水 當13:土 瑭14:金 幢15:木 糖16:木 檔17:木 璫17:金 礑18:土 襠18:木 鏜19:金 黨20:水 鐺21:金 倘10:- 唐10:- 搪13:- 撞15:- 瞠16:- 螳17:- 餳17:- 餹18:- 蟷19:-
+대|汏6:水 旲7:火 坮8:土 垈8:土 岱8:土 玳9:金 帶11:木 袋11:木 隊11:土 貸12:金 㬃13:火 碓13:土 戴17:金 黛17:水 㬣18:火 鐓20:金 大3:- 代5:- 抬8:- 待9:- 對14:- 臺14:- 儓16:- 擡17:-
+댁|宅6:-
+덕|悳12:- 徳14:- 德15:-
+도|刀2:金 到8:金 洮9:水 島10:土 桃10:木 涂10:水 都10:土 陶10:土 堵11:土 淘11:水 菟11:木 萄11:木 棹12:木 渡12:水 稌12:木 塗13:土 滔13:水 嶋14:土 酴14:金 稻15:木 賭15:金 鋾16:金 闍16:木 壔17:土
+독|禿7:木 篤16:木 瀆18:水 櫝19:木 牘19:木 纛25:木 黷27:水 毒9:- 督13:- 獨16:- 犢19:- 讀22:-
+돈|沌7:水 旽8:火 焞12:火 墩15:土 潡15:水 暾16:火 燉16:火 弴11:- 惇11:- 豚11:- 敦12:- 頓13:- 躉19:-
+돌|突9:土 堗12:土 乭6:- 咄8:-
+동|冬5:水 東8:木 苳8:木 垌9:土 峒9:土 洞9:水 茼9:木 凍10:水 桐10:木 烔10:火 涷11:水 棟12:木 董12:木 銅14:金 潼15:水 蕫15:木 曈16:火 橦16:木 仝5:- 同6:- 彤7:- 侗8:- 哃9:- 疼10:-
+두|阧6:土 杜7:木 枓8:木 陡9:土 荳10:木 竇20:土 斗4:- 抖7:- 肚7:- 豆7:- 蚪10:- 逗10:- 兜11:- 脰11:- 痘12:- 頭16:- 斁17:- 讀22:- 蠹24:-
+둔|屯4:木 芚7:木 窀9:土 鈍12:金 迍7:- 遁12:- 遯14:- 臀17:-
+둘|乧5:-
+득|得11:-
+등|等12:木 鄧14:土 墱15:土 嶝15:土 滕15:水 橙16:木 燈16:火 縢16:木 磴17:土 藤18:木 鐙20:金 籐21:木 登12:- 凳14:- 螣16:- 謄17:- 騰20:-
+라|剆8:金 砢10:土 蓏13:木 裸13:木 蘿22:木 曪23:火 纙25:木 鑼27:金 拏9:- 倮10:- 喇12:- 摞14:- 瘰16:- 螺17:- 懶19:- 羅19:- 覶19:- 儸21:- 癩21:- 臝21:- 騾21:- 囉22:- 邏22:- 驘23:-
+락|洛9:水 烙10:火 珞10:金 絡12:木 落12:木 酪13:金 樂15:木 嗠13:- 犖14:- 諾15:- 駱16:-
+란|闌17:木 幱20:木 瀾20:水 蘭20:木 欄21:木 爛21:火 瓓21:金 襴22:木 欒23:木 灓23:水 欗24:木 鑾27:金 丹4:- 卵7:- 亂13:- 嬾19:- 攔20:- 斕21:- 鸞30:-
+랄|剌9:金 埒10:土 辢14:金 辣14:金
+람|嵐12:土 漤14:水 濫17:水 藍17:木 爁18:火 璼18:金 襤19:木 灆20:水 籃20:木 欖25:木 纜27:木 㛦11:- 婪11:- 惏11:- 𢱯13:- 擥18:- 覽21:- 攬24:-
+랍|鑞23:金 拉8:- 臘19:- 蠟21:-
+랑|郎8:土 郞9:土 浪10:水 莨10:木 㫰11:火 烺11:火 琅11:金 榔12:木 瑯12:金 硠12:土 稂12:木 閬15:木 㢃10:- 朗10:- 狼10:- 廊11:- 蜋13:- 螂14:- 駺17:-
+래|来7:木 崍11:土 淶11:水 萊11:木 來8:- 唻11:- 徠11:- 𧼛15:- 騋18:-
+랭|冷7:水
+략|略11:土 畧11:土 掠11:-
+량|凉10:水 梁11:木 涼11:水 椋12:木 量12:土 粮13:木 粱13:木 樑15:木 糧18:木 良7:- 兩8:- 亮9:- 俍9:- 倆10:- 悢10:- 喨12:- 踉14:- 諒15:- 輛15:- 駺17:- 魎17:-
+려|梠10:木 閭14:木 黎15:木 曞18:火 櫚18:木 濾18:水 藜18:木 礪19:土 糲20:木 鑢23:金 呂7:- 戾8:- 侶9:- 旅10:- 唳11:- 厲14:- 膂14:- 慮15:- 勵16:- 儢17:- 癘17:- 邌18:- 廬19:- 麗19:-
+력|曆16:火 櫟19:木 瀝19:水 櫪20:木 礫20:土 酈21:土 靂24:水 力2:- 歷16:- 攊19:- 癧21:- 轢22:- 轣23:-
+련|湅12:水 楝13:木 漣13:水 煉13:火 蓮13:木 璉14:金 練15:木 鍊17:金 鏈18:金 鰊20:水 鰱21:水 連10:- 憐15:- 輦15:- 聯17:- 奱22:- 孌22:- 戀23:- 攣23:- 臠25:- 𨏶26:-
+렬|列6:金 冽8:水 洌9:水 烈10:火 裂12:木 劣6:- 挒9:- 捩11:- 颲15:-
+렴|磏15:土 濂16:水 簾19:木 瀲20:水 廉13:- 斂17:- 殮17:-
+렵|獵18:- 躐22:- 鬣25:-
+령|岭8:土 岺8:土 泠8:水 苓8:木 昤9:火 玲9:金 秢10:木 笭11:木 鈴13:金 零13:水 澪16:水 嶺17:土 靈24:水 欞28:木 令5:- 另5:- 伶7:- 呤8:- 囹8:- 姈8:- 怜8:- 朎9:- 逞10:- 羚11:-
+례|澧16:水 醴20:金 鱧24:水 礼5:- 例8:- 隷16:- 禮17:- 隸17:-
+로|窂9:土 玈11:水 滷14:水 潦15:水 澇15:水 魯15:水 㯝16:木 潞16:水 蕗16:木 璐17:金 壚19:土 櫓19:木 瀘19:水 蘆19:木 櫨20:木 爐20:火 瓐20:金 鏴21:金 鐪21:金 露21:水 鑪24:金 鱸27:水 老6:- 怒9:-
+록|淥11:水 菉11:木 碌13:土 漉14:水 綠14:木 錄16:金 簏17:木 彔8:- 鹿11:- 祿12:- 轆18:- 騄18:- 鵦19:- 麓19:-
+론|論15:-
+롱|隴18:土 壟19:土 瀧19:水 蘢19:木 曨20:火 瓏20:金 礱21:土 籠22:木 弄7:- 儱18:- 攏19:- 朧20:- 聾22:-
+뢰|賂13:金 雷13:水 酹14:金 磊15:土 賚15:金 蕾16:木 賴16:金 礌18:土 瀨19:水 礧20:土 纇21:木 罍21:土 籟22:木 耒6:- 牢7:- 誄13:- 頼16:- 儡17:- 攂18:-
+료|蓼14:木 潦15:水 暸16:火 燎16:火 繚18:木 醪18:金 鐐20:金 了2:- 料10:- 聊11:- 僚14:- 廖14:- 膋14:- 嘹15:- 嫽15:- 寮15:- 撩15:- 獠15:- 遼15:- 鬧15:- 療17:- 瞭17:- 飂20:- 飉21:-
+룡|竜10:- 龍16:- 龒21:-
+루|陋8:土 淚11:水 累11:木 嶁14:土 漊14:水 漏14:水 漯14:水 蔞14:木 樓15:木 熡15:火 褸16:木 縷17:木 壘18:土 鏤19:金 婁11:- 僂13:- 嘍14:- 屢14:- 慺14:- 瘻16:- 耬17:- 螻17:- 謱18:- 髏20:-
+류|柳9:木 流10:水 留10:土 琉11:金 硫12:土 溜13:水 榴14:木 瑠14:金 劉15:金 橊16:木 縲17:木 瀏18:水 纍21:木 旒13:- 遛13:- 瘤15:- 謬18:- 類19:- 鶹21:-
+륙|陸10:土 戮15:金 六4:- 勠13:-
+륜|崘11:土 崙11:土 淪11:水 綸14:木 錀16:金 侖8:- 倫10:- 圇11:- 掄11:- 輪15:-
+률|栗10:木 率11:水 嵂12:土 溧13:水 瑮14:金 𥠲15:木 律9:- 慄13:-
+륭|隆11:土 窿16:土 㦕15:- 癃16:-
+륵|泐7:水 肋6:- 勒11:-
+름|菻11:木 凛15:水 凜15:水 澟16:水 廩16:-
+릉|凌10:水 陵10:土 菱11:木 楞13:木 稜13:木 綾14:木 蔆14:木 倰10:-
+리|利7:金 李7:木 里7:土 浬10:水 涖10:水 莅10:木 莉10:木 梨11:木 理11:金 異11:土 裡12:木 剺13:金 漓13:水 裏13:木 璃14:金 釐18:土 鯉18:水 灕21:水 黐22:木 籬24:木 吏6:- 俐9:- 俚9:- 厘9:-
+린|焛12:火 粦12:木 粼14:木 鄰14:土 隣14:土 嶙15:土 潾15:水 斴16:金 暽16:火 橉16:木 燐16:火 璘16:金 磷17:土 繗18:木 藺19:木 鏻20:金 鱗23:水 吝7:- 悋10:- 撛15:- 獜15:- 瞵17:- 𪊭17:- 䗲18:-
+림|林8:木 玪8:金 淋11:水 晽12:火 棽12:木 琳12:金 碄13:土 霖16:水 痳13:- 臨17:-
+립|岦8:土 砬10:土 笠11:木 粒11:木 立5:-
+마|麻11:木 瑪14:金 麽14:木 碼15:土 磨16:土 劘21:金 馬10:- 媽13:- 痲13:- 摩15:- 螞16:- 蟇16:- 魔20:-
+막|莫10:木 幕13:木 漠13:水 鏌18:金 寞13:- 膜14:- 瞙15:- 邈17:-
+만|晚11:火 墁14:土 幔14:木 滿14:水 漫14:水 蔓14:木 縵17:木 鏋19:金 鏝19:金 巒22:土 鰻22:水 灣25:水 万3:- 卍4:- 娩10:- 挽10:- 曼11:- 萬12:- 嫚14:- 慢14:- 輓14:- 瞞16:- 謾18:- 蹣18:-
+말|末5:木 帕8:木 沫8:水 茉8:木 秣10:木 襪19:木 抹8:- 唜10:- 靺14:-
+망|邙5:土 汒6:水 芒6:木 茫9:木 莽10:木 漭13:水 網14:木 亡3:- 妄6:- 忙6:- 忘7:- 罔8:- 惘11:- 望11:- 朢14:- 輞15:- 魍17:-
+매|枚8:木 沬8:水 玫8:金 苺8:木 昧9:火 埋10:土 莓10:木 梅11:木 買12:金 楳13:木 煤13:火 酶14:金 賣15:金 霉15:水 呆7:- 每7:- 妹8:- 眛10:- 媒12:- 寐12:- 魅14:- 罵15:- 邁15:-
+맥|陌8:土 麥11:木 脈10:- 貃12:- 貊13:- 貘17:- 驀20:-
+맹|甿8:土 萌11:木 甍14:土 孟8:- 氓8:- 盲8:- 虻9:- 猛11:- 盟13:-
+멱|糸6:木 幎13:木 覓11:- 冪15:-
+면|沔7:水 棉12:木 湎12:水 綿14:木 緜15:木 緬15:木 麪15:木 麵20:木 免7:- 俛9:- 勉9:- 眄9:- 面9:- 眠10:- 冕11:-
+멸|滅13:水 蔑14:木 篾17:木 衊20:-
+명|明8:火 洺9:水 茗9:木 椧12:木 溟13:水 蓂13:木 酩13:金 暝14:火 銘14:金 皿5:- 名6:- 命8:- 眀9:- 冥10:- 慏13:- 鳴14:- 瞑15:- 螟16:- 䳟19:-
+몌|袂9:木
+모|矛5:金 皃7:金 芼7:木 茅8:木 某9:木 帽12:木 瑁13:金 暮14:火 模14:木 橅16:木 毛4:- 母5:- 牟6:- 牡7:- 侔8:- 姆8:- 侮9:- 冒9:- 姥9:- 恈9:- 眊9:- 旄10:- 耄10:- 耗10:-
+목|木4:木 沐7:水 苜8:木 穆16:木 目5:- 牧8:- 睦13:- 鶩20:-
+몰|沒7:水 歿8:-
+몽|溕13:水 蒙13:木 雺13:水 幪16:木 濛16:水 曚17:火 夢13:- 瞢15:- 懞16:- 朦17:- 矇18:- 艨19:- 鸏24:-
+묘|杳8:木 苗8:木 昴9:火 畝10:土 淼12:水 渺12:水 墓13:土 錨16:金 藐17:木 卯5:- 妙7:- 眇9:- 竗9:- 描11:- 猫11:- 廟15:- 貓15:-
+무|戊5:金 茂8:木 畝10:土 堥12:土 無12:火 珷12:金 貿12:金 楙13:木 蕪15:木 橅16:木 繆17:木 霧18:水 无4:- 毋4:- 巫7:- 拇8:- 武8:- 務10:- 舞14:- 誣14:- 嘸15:- 廡15:- 憮15:- 撫15:-
+묵|墨15:水 默16:水 嘿15:-
+문|刎6:金 汶7:水 炆8:火 玧8:金 門8:木 紊10:木 紋10:木 雯12:水 璊15:金 文4:- 吻7:- 抆7:- 們10:- 悗10:- 蚊10:- 問11:- 捫11:- 聞14:- 懣18:-
+물|沕7:水 勿4:- 物8:-
+미|未5:木 米6:木 苿8:木 洣9:水 梶11:木 𥹄11:木 嵄12:土 嵋12:土 渼12:水 湄12:水 楣13:木 煝13:火 瑂13:金 㵟16:水 薇16:木 濔17:水 糜17:木 縻17:木 瀰20:水 蘪20:木 蘼22:木 黴23:水 尾7:- 侎8:-
+민|岷8:土 旻8:火 旼8:火 泯8:水 玟8:金 苠8:木 珉9:金 砇9:土 湣12:水 琘12:金 琝12:金 閔12:木 暋13:火 瑉13:金 鈱13:金 䃉14:土 緍14:木 閩14:木 潣15:水 緡15:木 鍲17:金 鰵22:水 民5:- 忟7:-
+밀|滵14:水 樒15:木 密11:- 蜜14:- 謐17:-
+박|朴6:木 泊8:水 珀9:金 剝10:金 粕11:木 鉑13:金 雹13:水 牔14:木 箔14:木 樸16:木 璞16:金 縛16:木 薄16:木 鎛18:金 欂20:木 拍8:- 迫8:- 亳10:- 舶11:- 博12:- 膊14:- 駁14:- 撲15:- 駮16:-
+반|泮8:水 班10:金 畔10:土 絆11:木 槃14:木 潘15:水 磐15:土 磻17:土 礬20:土 反4:- 半5:- 伴7:- 扳7:- 返7:- 拌8:- 攽8:- 朌8:- 叛9:- 盼9:- 胖9:- 般10:- 斑12:- 飯12:- 媻13:-
+발|炦9:火 浡10:水 渤12:水 鈸13:金 鉢13:金 潑15:水 醱19:金 拔8:- 勃9:- 哱10:- 脖11:- 發12:- 跋12:- 魃14:- 撥15:- 髮15:- 鵓18:-
+방|邦6:土 防6:土 坊7:土 芳7:木 昉8:火 枋8:木 梆10:木 紡10:木 幇12:木 滂13:水 蒡13:木 榜14:木 牓14:木 磅15:土 魴15:水 幫17:木 鎊18:金 方4:- 仿6:- 妨7:- 尨7:- 彷7:- 房8:- 放8:-
+배|坏7:土 貝7:金 杯8:木 配10:金 陪10:土 培11:土 湃12:水 焙12:火 琲12:金 蓓13:木 裴14:木 裵14:木 褙14:木 䔒15:木 賠15:金 北5:- 扒5:- 俖9:- 拜9:- 盃9:- 背9:- 胚9:- 俳10:- 倍10:-
+백|白5:金 百6:金 帛8:木 苩8:木 柏9:木 珀9:金 栢10:木 伯7:- 佰8:- 䞟12:- 魄14:-
+번|袢10:木 番12:土 煩13:火 幡15:木 樊15:木 蕃15:木 燔16:火 磻17:土 繁17:木 繙18:木 藩18:木 蘩20:木 膰16:- 翻18:- 飜21:-
+벌|筏12:木 閥14:木 橃16:木 伐6:- 罰14:- 罸15:-
+범|氾5:水 帆6:木 汎6:水 杋7:木 泛7:水 范9:木 梵11:木 笵11:木 釩11:金 渢12:水 滼14:水 範15:木 凡3:- 犯5:- 訉10:- 颿19:-
+법|法8:水 琺12:金
+벽|辟13:金 碧14:土 劈15:金 壁16:土 檗17:木 甓17:土 璧18:金 襞19:木 疈20:土 蘗20:木 闢21:木 霹21:水 僻15:- 擗16:- 擘17:- 癖18:- 鷿24:- 鼊26:-
+변|賆13:金 辨16:金 辮20:金 辯21:金 籩24:木 卞4:- 弁5:- 忭7:- 抃7:- 釆7:- 便9:- 腁12:- 骿15:- 駢16:- 鴘16:- 邊18:- 變23:-
+별|別7:金 炦9:火 莂10:木 襒16:木 鱉22:水 㔡12:- 𩠻13:- 彆14:- 瞥16:- 䭱17:- 鷩22:- 鼈24:-
+병|秉8:木 昞9:火 昺9:火 柄9:木 炳9:火 棅12:木 甁12:土 絣12:木 缾12:土 鈵13:金 鉼14:金 丙5:- 并6:- 兵7:- 並8:- 幷8:- 抦8:- 迸9:- 倂10:- 病10:- 竝10:- 屛11:- 輧15:- 餠16:-
+보|𤣰7:金 洑9:水 㻄10:金 珤10:金 烳11:火 菩11:木 堡12:土 報12:土 普12:火 湺12:水 葆12:木 補12:木 溥13:水 褓14:木 潽15:水 簠18:木 靌27:水 步7:- 甫7:- 宝8:- 歩8:- 俌9:- 保9:- 䀯12:-
+복|茯9:木 菔11:木 箙14:木 蔔14:木 複14:木 墣15:土 幞15:木 濮17:水 鍑17:金 鰒20:水 卜2:- 扑5:- 伏6:- 宓8:- 服8:- 匐11:- 復12:- 福13:- 腹13:- 僕14:- 蝠15:- 蝮15:- 輹16:- 輻16:-
+본|本5:木
+볼|乶8:-
+봉|芃6:木 峯10:土 峰10:土 浲10:水 烽11:火 菶11:木 棒12:木 琫12:金 漨13:水 綘13:木 蓬13:木 熢14:火 鋒15:金 篷16:木 縫16:木 丰4:- 夆7:- 奉8:- 封9:- 俸10:- 逢10:- 捧11:- 蜂13:- 鳳14:-
+부|缶6:土 芙7:木 芣7:木 附7:土 斧8:金 玞8:金 苻8:木 阜8:土 負9:金 剖10:金 浮10:水 荴10:木 莩10:木 袝10:木 部10:土 釜10:金 副11:金 埠11:土 桴11:木 涪11:水 符11:木 裒12:木 鈇12:金 溥13:水
+북|北5:-
+분|分4:金 坌7:土 帉7:木 汾7:水 芬7:木 昐8:火 枌8:木 砏9:土 畚10:土 粉10:木 紛10:木 棻11:木 笨11:木 棼12:木 湓12:水 焚12:火 賁12:金 雰12:水 墳15:土 濆15:水 蕡15:木 糞17:木 体7:- 吩7:-
+불|岪8:土 茀8:木 紱11:木 不4:- 弗5:- 佛7:- 彿8:- 拂8:- 祓9:- 艴11:- 韍14:- 髴15:- 黻17:-
+붕|堋11:土 崩11:土 棚12:木 硼13:土 漰14:水 繃17:木 朋8:- 鬅18:- 鵬19:-
+비|圮6:土 沘7:水 芘7:木 芾7:木 邳7:土 枇8:木 沸8:水 泌8:水 砒9:土 秕9:木 剕10:金 秘10:木 粃10:木 紕10:木 郫10:土 陴10:土 埤11:土 淝11:水 淠11:水 菲11:木 萆11:木 棐12:木 椑12:木 琵12:金
+빈|邠6:土 玭8:金 浜10:水 貧11:金 賓14:金 濱17:水 檳18:木 璸18:金 瀕19:水 穦19:木 蘋19:木 贇19:金 霦19:水 繽20:木 鑌22:金 份6:- 牝6:- 彬11:- 斌12:- 儐16:- 頻16:- 嬪17:- 擯17:- 豳17:-
+빙|氷5:水 凭8:- 娉10:- 聘13:- 憑16:- 騁17:-
+사|汜6:水 糸6:木 邪6:土 沙7:水 私7:木 泗8:水 柶9:木 査9:木 砂9:土 剚10:金 師10:木 涘10:水 紗10:木 莎10:木 梭11:木 笥11:木 赦11:火 斯12:金 渣12:水 絲12:木 楂13:木 蓑13:木 裟13:木 榭14:木
+삭|削9:金 索10:木 蒴13:木 槊14:木 爍19:火 鑠23:金 朔10:- 搠13:- 數15:-
+산|山3:土 汕6:水 刪7:金 珊9:金 剷13:金 蒜13:木 算14:木 酸14:金 潸15:水 澘15:水 橵16:木 簅17:木 繖18:木 鏟19:金 霰20:水 姍8:- 疝8:- 狻10:- 祘10:- 訕10:- 產11:- 産11:- 傘12:- 散12:-
+살|煞13:火 薩16:木 乷8:- 殺10:- 撒15:-
+삼|杉7:木 芟7:木 衫8:木 釤11:金 森12:木 滲14:水 蔘14:木 糝17:木 三3:- 參11:- 鬖21:-
+삽|鈒11:金 澁15:水 霅15:水 霎16:水 鍤17:金 卅4:- 唼11:- 插12:- 揷12:- 歃13:- 翣14:- 颯14:-
+상|牀8:木 峠9:土 晌10:火 桑10:木 常11:木 湘12:水 塽14:土 潒14:水 裳14:木 樣15:木 橡15:木 箱15:木 緗15:木 賞15:金 霜17:水 鎟18:金 上3:- 床7:- 尙8:- 狀8:- 庠9:- 相9:- 祥10:- 商11:-
+새|塞13:土 賽17:金 璽19:金 鰓20:水 愢12:- 㘔20:-
+색|索10:木 塞13:土 槭15:木 濇16:水 瀒18:水 穡18:木 色6:- 嗇13:-
+생|笙11:木 鉎13:金 生5:- 牲9:- 省9:- 眚10:- 甥12:-
+서|芧7:木 栖10:木 紓10:木 㷂12:火 暑12:火 棲12:木 湑12:水 絮12:木 黍12:木 瑞13:金 筮13:木 鉏13:金 墅14:土 稰14:木 緖15:木 縃15:木 鋤15:金 嶼16:土 澨16:水 薯16:木 藇16:木 㠘17:土 曙17:火 西6:-
+석|石5:土 汐6:水 昔8:火 析8:木 矽8:土 䄷10:木 席10:木 淅11:水 晰12:火 晳12:火 蓆13:木 鉐13:金 碩14:土 潟15:水 褯15:木 錫16:金 磶17:土 夕3:- 惜11:- 腊12:- 舃12:- 蜥14:- 奭15:- 鼫18:-
+선|屳5:土 秈8:木 洒9:水 洗9:水 烍10:火 珗10:金 琁11:金 渲12:水 筅12:木 瑄13:金 煽14:火 綫14:木 銑14:金 墡15:土 暶15:火 熯15:火 璇15:金 線15:木 㻽17:金 鮮17:水 璿18:金 繕18:木 鏇19:金 蘚20:木
+설|泄8:水 枻9:木 洩9:水 紲11:木 雪11:水 渫12:水 楔13:木 碟14:土 稧14:木 蔎14:木 暬15:火 薛16:木 褻17:木 爇18:火 舌6:- 契9:- 卨10:- 屑10:- 偰11:- 禼11:- 設11:- 媟12:- 揲12:- 㨹14:-
+섬|陝9:土 剡10:金 閃10:木 銛14:金 暹15:火 韱17:木 贍20:金 纖23:木 睒13:- 摻14:- 憸16:- 蟾19:- 孅20:- 譫20:- 殲21:-
+섭|涉10:水 葉12:木 𦁗14:木 燮17:火 㰔21:木 灄21:水 鑷26:金 聶18:- 囁21:- 懾21:- 攝21:- 躞24:- 躡25:- 顳27:-
+성|成6:金 城9:土 星9:火 晟10:火 晠10:火 珹10:金 筬12:木 貹12:金 瑆13:金 醒16:金 姓8:- 性8:- 娍9:- 宬9:- 省9:- 胜9:- 盛11:- 惺12:- 猩12:- 聖13:- 腥13:- 誠13:- 𦖤15:- 聲17:-
+세|洒9:水 洗9:水 帨10:木 涗10:水 笹11:木 細11:木 稅12:木 貰12:金 銴15:金 繐18:木 世5:- 忕6:- 𡜧9:- 彗11:- 勢13:- 歲13:- 蛻13:- 說14:-
+소|邵7:土 沼8:水 泝8:水 昭9:火 柖9:木 炤9:火 玿9:金 消10:水 笑10:木 素10:木 釗10:金 埽11:土 巢11:水 梳11:木 焇11:火 紹11:木 酥12:金 塐13:土 塑13:土 溯13:水 筱13:木 樔15:木 璅15:金 箾15:木
+속|束7:木 洬9:水 涑10:水 粟12:木 續21:木 贖22:金 俗9:- 速10:- 遬14:- 謖17:- 屬21:-
+손|蓀13:木 孫10:- 飡11:- 巽12:- 飧12:- 損13:- 遜13:-
+솔|帥9:木 率11:水 窣13:土 乺9:- 䢦15:- 蟀17:- 𧗿17:-
+송|松8:木 淞11:水 宋7:- 送9:- 悚10:- 訟11:- 竦12:- 頌13:- 誦14:- 憽15:- 鬆18:-
+쇄|刷8:金 碎13:土 瑣14:金 鎖18:金 鎻18:金 灑22:水 曬23:火 殺10:- 惢12:-
+쇠|釗10:金 𮕩10:木
+수|水4:水 戍6:金 汓6:水 秀7:木 垂8:土 岫8:土 峀8:土 泅8:水 帥9:木 洙9:水 茱9:木 袖10:木 陲10:土 琇11:金 隋11:土 晬12:火 溲12:水 蒐12:木 蓚12:木 綉13:木 綏13:木 酬13:金 漱14:水 粹14:木
+숙|淑11:水 菽11:木 琡12:金 塾14:土 熟15:火 潚16:水 橚17:木 璹18:金 夙6:- 叔8:- 俶10:- 倏10:- 婌11:- 孰11:- 宿11:- 肅13:- 儵18:- 驌23:- 鷫24:-
+순|旬6:火 畃8:土 峋9:土 洵9:水 紃9:木 荀9:木 栒10:木 珣10:金 純10:木 淳11:水 焞12:火 筍12:木 楯13:木 蓴14:木 蕣15:木 醇15:金 橓16:木 錞16:金 巡6:- 侚8:- 肫8:- 姰9:- 徇9:- 恂9:-
+술|戌6:金 𡊍8:土 絉11:木 鉥13:金 述8:- 術11:-
+숭|崇11:土 崧11:土 菘11:木 嵩13:土
+쉬|淬11:水 焠12:火 倅10:-
+슬|瑟13:金 㻭15:金 璱17:金 𩇣21:木 虱8:- 膝15:- 蝨15:-
+습|槢15:木 熠15:火 褶16:木 隰16:土 濕17:水 襲22:木 拾9:- 習11:- 慴14:-
+승|氶5:水 阩6:土 㞼8:土 昇8:火 陞9:土 陹10:土 㴍11:水 塍13:土 榺14:木 繩19:木 升4:- 丞6:- 承8:- 乘10:- 勝12:- 僧14:- 蠅19:- 鬙22:-
+시|市5:木 旹8:火 柹8:木 沶8:水 是9:火 枲9:木 枾9:木 柿9:木 時10:火 柴10:木 絁11:木 塒13:土 蒔13:木 蓍13:木 漦15:水 澌15:水 緦15:木 鍉17:金 釃26:金 尸3:- 矢5:- 示5:- 兕7:- 豕7:-
+식|栻10:木 埴11:土 植12:木 湜12:水 熄14:火 篒15:木 式6:- 拭9:- 食9:- 息10:- 寔12:- 殖12:- 媳13:- 軾13:- 飾13:- 蝕14:- 識19:-
+신|申5:土 汛6:水 辛7:金 辰7:土 莘10:木 晨11:火 紳11:木 新13:金 薪16:木 藎17:木 燼18:火 璶18:金 贐21:金 囟6:- 臣6:- 迅6:- 伸7:- 身7:- 侁8:- 呻8:- 信9:- 哂9:- 姺9:- 矧9:-
+실|失5:- 実8:- 室9:- 悉11:- 實14:- 蟋17:-
+심|沁7:水 沈7:水 芯7:木 深11:水 葚12:木 潯15:水 燖16:火 瀋18:水 鐔20:金 鱏23:水 心4:- 甚9:- 尋12:- 審15:- 諶16:-
+십|十2:- 什4:- 拾9:-
+쌍|双4:- 雙18:-
+씨|氏4:-
+아|我7:金 芽7:木 阿7:土 枒8:木 砑9:土 峨10:土 峩10:土 笌10:木 莪10:木 椏12:木 皒12:金 硪12:土 錏16:金 丫3:- 牙4:- 亜7:- 児7:- 迓7:- 亞8:- 兒8:- 妸8:- 妿8:- 俄9:- 哦10:-
+악|岳8:土 堊11:土 鄂11:土 幄12:木 渥12:水 萼12:木 樂15:木 嶽17:土 鍔17:金 鰐20:水 咢9:- 偓11:- 喔12:- 惡12:- 愕12:- 握12:- 腭13:- 噩16:- 覨16:- 諤16:- 顎18:- 鶚20:- 齶24:- 齷24:-
+안|岸8:土 矸8:土 晏10:火 案10:木 桉10:木 錌16:金 𤎝16:火 鮟17:水 安6:- 犴6:- 妟7:- 侒8:- 姲9:- 按9:- 婩11:- 眼11:- 雁12:- 鞍15:- 鴈15:- 顔18:- 䭓19:-
+알|穵6:土 閼16:木 軋8:- 訐10:- 揠12:- 遏12:- 嘎14:- 斡14:- 頞15:- 謁16:- 鴶17:-
+암|岩8:土 菴11:木 嵓12:土 晻12:火 葊12:木 暗13:火 蓭14:木 闇17:木 黯21:水 巖22:土 唵11:- 庵11:- 啽12:- 媕12:- 腤13:- 諳16:- 頷16:- 癌17:- 馣17:-
+압|壓17:土 押8:- 狎8:- 鴨16:-
+앙|坱8:土 昂8:火 泱8:水 昻9:火 秧10:木 卬4:- 央5:- 仰6:- 怏8:- 殃9:- 盎10:- 鞅14:- 鴦16:-
+애|艾5:木 埃10:土 㶼11:火 崕11:土 崖11:土 涯11:水 隘12:土 碍13:土 漄14:水 䝽15:金 皚15:金 磑15:土 薆16:木 曖17:火 礙19:土 藹19:木 靄24:水 靉25:水 厓8:- 哀9:- 唉10:- 娭10:- 挨10:- 啀11:-
+액|阨6:土 液11:水 縊16:木 厄4:- 戹5:- 扼7:- 呝8:- 掖11:- 腋12:- 搤13:- 額18:-
+앵|罃16:土 罌20:土 櫻21:木 嫈13:- 嚶20:- 鶯21:- 鸚28:-
+야|冶7:水 若8:木 埜11:土 野11:土 椰12:木 也3:- 夜8:- 耶8:- 捓9:- 倻10:- 揶11:- 惹12:- 爺12:-
+약|若8:木 約9:木 略11:土 葯12:木 蒻13:木 篛16:木 藥18:木 爚21:火 籥23:木 鑰25:金 弱10:- 掠11:- 龠17:- 禴21:- 躍21:- 鶸21:-
+양|昜9:火 洋9:水 凉10:水 烊10:火 梁11:木 陽11:土 椋12:木 量12:土 暘13:火 楊13:木 煬13:火 漾14:水 樣15:木 瀁17:水 襄17:木 糧18:木 壤20:土 瀼20:水 蘘20:木 穰22:木 釀24:金 鑲25:金 羊6:- 良7:-
+어|淤11:水 魚11:水 漁14:水 於8:- 圄10:- 唹11:- 圉11:- 敔11:- 御12:- 飫12:- 馭12:- 瘀13:- 語14:- 䘘16:- 禦17:- 齬22:-
+억|檍17:木 繶19:木 抑7:- 億15:- 憶16:- 臆17:-
+언|焉11:火 堰12:土 鄢13:土 言7:- 匽9:- 彥9:- 彦9:- 偃11:- 傿13:- 嘕14:- 嫣14:- 諺16:- 鶠20:- 鼴22:- 鼹23:- 讞27:-
+얼|蘖20:木 糱22:木 糵22:木 乻9:- 臬10:- 孼19:-
+엄|崦11:土 淹11:水 醃15:金 閹16:木 曮23:火 广3:- 奄8:- 俺10:- 掩11:- 罨13:- 厳16:- 嚴19:- 龑20:- 儼21:-
+업|業13:木 鄴15:土 嶪16:土 嶫16:土
+에|曀16:火 恚10:-
+엔|円4:-
+여|汝6:水 茹9:木 閭14:木 黎15:木 璵17:金 濾18:水 礖18:土 礪19:土 女3:- 予4:- 伃6:- 如6:- 余7:- 呂7:- 妤7:- 侞8:- 舁9:- 旅10:- 悆11:- 與13:- 艅13:- 餘15:- 勵16:- 歟17:-
+역|易8:火 域11:土 淢11:水 晹12:火 嶧16:土 曆16:火 閾16:木 繹19:木 力2:- 亦6:- 役7:- 疫9:- 逆9:- 懌16:- 歷16:- 譯20:- 轢22:- 驛23:-
+연|均7:土 沇7:水 沿8:水 秊8:木 埏9:土 涎9:水 莚9:木 涓10:水 烟10:火 䂩11:土 渊11:水 硏11:土 堧12:土 淵12:水 渷12:水 然12:火 硯12:土 筵12:木 椽13:木 漣13:水 煉13:火 煙13:火 瑌13:金 蓮13:木
+열|列6:金 涅10:水 烈10:火 裂12:木 潱15:水 熱15:火 閱15:木 劣6:- 咽9:- 悅10:- 說14:- 噎15:-
+염|炎8:火 苒8:木 染9:木 焰12:火 琰12:金 閻16:木 檿18:木 簾19:木 黶26:水 灩31:水 冉5:- 念8:- 捻11:- 扊12:- 廉13:- 厭14:- 髥14:- 殮17:- 懕18:- 艶19:- 饜23:- 魘23:- 艷24:- 鹽24:-
+엽|枼9:木 葉12:木 曄14:火 曅14:火 熀14:火 燁14:火 爗18:火 獵18:- 靨23:-
+영|永5:水 旲7:火 泳8:水 英8:木 映9:火 栄9:木 栐9:木 玲9:金 荣9:木 郢9:土 浧10:水 渶11:水 暎12:火 煐12:火 瑛12:金 塋13:土 楹13:木 碤13:土 鈴13:金 零13:水 榮14:木 潁15:水 瑩15:金 營16:火
+예|刈4:金 艾5:木 汭7:水 芮7:木 芸7:木 枘8:木 帠9:木 枻9:木 玴9:金 郳10:土 埶11:土 堄11:土 淣11:水 裔13:木 蓺14:木 㙯15:土 䢃15:金 蕊15:木 銳15:金 橤16:木 濊16:水 薉16:木 霓16:水 繄17:木
+오|圬6:土 汙6:水 汚6:水 旿8:火 浯10:水 烏10:火 茣10:木 晤11:火 梧11:木 珸11:金 塢13:土 筽13:木 熬14:火 隩14:土 墺15:土 澳15:水 燠16:火 窹16:土 襖17:木 鏊18:金 鏖19:金 鰲21:水 五4:- 午4:-
+옥|玉5:金 沃7:水 鈺13:金 屋9:- 獄14:-
+온|昷9:火 溫13:水 瑥13:金 榲14:木 熅14:火 稳14:木 𥠺15:木 縕16:木 薀16:木 醞17:金 穩19:木 蘊19:木 𥁕10:- 媪12:- 媼13:- 慍13:- 氳14:- 瘟14:- 㒚16:- 轀17:- 韞18:- 馧18:- 䭓19:-
+올|杌7:木 兀3:- 嗢12:- 膃14:-
+옹|瓮8:土 邕10:土 滃13:水 蓊13:木 壅16:土 甕17:土 罋19:土 禺9:- 翁10:- 喁12:- 雍13:- 擁16:- 癕18:- 雝18:- 顒18:- 廱21:- 饔22:- 癰23:-
+와|瓦4:土 枙8:木 洼9:水 窊10:土 渦11:水 萵11:木 窩13:土 窪14:土 囮7:- 臥8:- 哇9:- 娃9:- 婐11:- 猧11:- 訛11:- 蛙12:- 蝸14:- 譌19:-
+완|刓6:金 阮6:土 岏7:土 杬8:木 玩8:金 垸10:土 浣10:水 莞10:木 梡11:木 涴11:水 琓11:金 椀12:木 琬12:金 碗13:土 緩15:木 鋺16:金 妧7:- 完7:- 忨7:- 抏7:- 宛8:- 盌10:- 婉11:- 婠11:-
+왈|曰4:-
+왕|王4:金 汪7:水 旺8:火 枉8:木 瀇17:水 往8:- 迬8:-
+왜|娃9:- 歪9:- 倭10:- 媧11:- 矮13:-
+외|畏9:土 隗11:土 崴12:土 嵔12:土 嵬12:土 渨12:水 煨13:火 碨14:土 磈14:土 巍20:土 外5:- 偎11:- 猥12:- 聵18:-
+요|坳8:土 穾9:土 約9:木 窅10:土 窈10:土 堯12:土 暚14:火 瑤14:金 蓼14:木 墝15:土 嶢15:土 樂15:木 澆15:水 窯15:土 蕘15:木 橈16:木 燎16:火 繇17:木 曜18:火 燿18:火 繞18:木 了2:- 幺3:- 夭4:-
+욕|浴10:水 辱10:土 溽13:水 蓐13:木 褥15:木 縟16:木 欲11:- 慾15:-
+용|茸9:木 㦶10:金 埇10:土 涌10:水 湧12:水 硧12:土 嵱13:土 溶13:水 蓉13:木 墉14:土 榕14:木 熔14:火 瑢14:金 槦15:木 鎔18:金 鏞19:金 冗4:- 宂5:- 用5:- 甬7:- 俑9:- 勇9:- 容10:- 庸11:-
+우|邘5:土 圩6:土 芋6:木 㲾7:水 旴7:火 杅7:木 玗7:金 雨8:水 竽9:木 紆9:木 郵10:土 釪11:金 隅11:土 雩11:水 堣12:土 嵎12:土 瑀13:金 䨒14:水 燠16:火 鍝17:金 藕18:木 又2:- 于3:- 友4:-
+욱|旭6:火 郁8:土 昱9:火 栯10:木 煜13:火 稢13:木 稶15:木 燠16:火 彧10:- 勖11:- 頊13:- 𢒰16:-
+운|沄7:水 芸7:木 紜10:木 鄖12:土 隕12:土 雲12:水 暈13:火 熉14:火 䆬15:土 澐15:水 蕓15:木 橒16:木 篔16:木 賱16:金 䉙18:木 霣18:水 云4:- 夽7:- 妘7:- 員10:- 耘10:- 惲12:- 運12:- 韵13:-
+울|菀11:木 蔚14:木 䵥18:水 𠃗4:- 鬱29:-
+웅|熊14:火 雄12:-
+원|阮6:土 沅7:水 芫7:木 杬8:木 苑8:木 垣9:土 洹9:水 貟9:金 院9:土 笎10:木 袁10:木 湲12:水 楥13:木 源13:水 溒13:水 瑗13:金 褑14:木 薗16:木 鋺16:金 元4:- 朊8:- 怨9:- 爰9:- 倇10:-
+월|刖6:金 粤12:木 鉞13:金 月4:- 越12:-
+위|萎11:木 幃12:木 渭12:水 葦12:木 葳12:木 暐13:火 煒13:火 瑋13:金 褘14:木 熨15:火 緯15:木 蔿15:木 闈17:木 危6:- 位7:- 委8:- 威9:- 胃9:- 韋9:- 偉11:- 尉11:- 逶11:- 喟12:- 圍12:-
+유|由5:土 酉7:金 杻8:木 油8:水 泑8:水 柔9:木 柚9:木 柳9:木 洧9:水 流10:水 留10:土 秞10:木 紐10:木 莠10:木 帷11:木 琉11:金 萸11:木 㴗12:水 游12:水 湵12:水 琟12:金 硫12:土 裕12:木 楡13:木
+육|陸10:土 堉11:土 戮15:金 六4:- 肉6:- 育8:- 毓14:- 儥17:-
+윤|阭6:土 沇7:水 昀8:火 玧8:金 荺10:木 崙11:土 淪11:水 鈗12:金 閏12:木 閠13:木 䦞15:木 潤15:水 鋆15:金 錀16:木 贇19:金 允4:- 匀4:- 尹4:- 胤9:- 倫10:- 㣧11:- 奫15:- 輪15:-
+율|汩7:水 栗10:木 率11:水 矞12:金 潏15:水 燏16:火 霱20:水 聿6:- 律9:- 䢖10:- 䫻13:- 慄13:- 鴥16:-
+융|戎6:金 隆11:土 絨12:木 瀜19:水 狨9:- 融16:-
+은|圻7:土 垠9:土 泿9:水 垽10:土 珢10:金 溵13:水 蒑13:木 蒽13:木 鄞13:土 銀14:金 𤨒14:金 檃16:木 隱16:土 嶾17:土 濦17:水 檼18:木 蘟19:木 𨶡19:木 听7:- 圁10:- 恩10:- 殷10:- 狺10:- 訔10:-
+을|圪6:土 乙1:- 鳦12:-
+음|陰10:土 崟11:土 淫11:水 蔭13:木 霪19:水 吟7:- 音9:- 喑12:- 愔12:- 廕13:- 飮13:- 噾17:- 韾20:-
+읍|邑7:土 泣8:水 浥10:水 悒10:- 挹10:- 揖12:-
+응|凝16:水 應17:- 膺17:- 𥌾22:- 鷹24:-
+의|衣6:木 凒12:水 椅12:木 漪14:水 劓16:金 薏16:木 嶷17:土 礒18:土 醫18:金 医7:- 矣7:- 依8:- 宜8:- 㛄9:- 倚10:- 猗11:- 欹12:- 意13:- 義13:- 疑14:- 儀15:- 毅15:- 誼15:- 儗16:-
+이|利7:金 李7:木 杝7:木 苡7:木 里7:土 坨8:土 易8:火 泥8:水 洟9:水 珆9:金 荑9:木 栮10:木 珥10:金 貤10:金 梨11:木 理11:金 異11:土 移11:木 裡12:木 貳12:金 貽12:金 裏13:木 薾17:木 二2:-
+익|溺13:水 熤15:火 瀷20:水 弋3:- 匿10:- 益10:- 翊11:- 翌11:- 翼17:- 謚17:- 鷁21:-
+인|刃3:金 㲽6:水 芢7:木 洇9:水 茵9:木 秵11:木 裀11:木 堙12:土 湮12:水 絪12:木 隣14:土 戭15:金 璌15:金 燐16:火 璘16:金 濥17:水 藺19:木 鱗23:水 人2:- 儿2:- 仁4:- 引4:- 仞5:- 印5:-
+일|日4:火 泆8:水 溢13:水 鎰18:金 一1:- 佚7:- 劮7:- 佾8:- 欥8:- 𨓜10:- 逸11:- 壹12:- 軼12:- 馹14:-
+임|林8:木 荏9:木 衽9:木 淋11:水 絍12:木 稔13:木 賃13:金 銋14:金 壬4:- 任6:- 妊7:- 姙9:- 恁10:- 䚾11:- 飪12:- 䛘13:- 臨17:-
+입|笠11:木 粒11:木 入2:- 卄3:- 廿4:- 立5:-
+잉|芿7:木 剩12:金 仍4:- 孕5:- 媵13:-
+자|刺8:金 炙8:火 秄8:木 柘9:木 泚9:水 茈9:木 茨9:木 茲9:木 玆10:水 瓷10:土 莿11:木 滋12:水 煮12:火 粢12:木 紫12:木 貲13:金 資13:金 磁14:土 蔗14:木 褯15:木 赭15:火 鮓16:水 藉17:木 鎡17:金
+작|汋6:水 芍6:木 灼7:火 岝8:土 斫9:金 昨9:火 柞9:木 炸9:火 酌10:金 斱12:金 焯12:火 碏13:土 綽14:木 勺3:- 犳6:- 作7:- 怍8:- 雀11:- 舃12:- 爵17:- 鵲19:- 嚼20:-
+잔|剗10:金 棧12:木 潺15:水 孱12:- 殘12:- 盞13:- 驏22:-
+잠|岑7:土 涔10:水 暫15:火 潛15:水 潜15:水 箴15:木 簪18:木 蠶24:-
+잡|磼17:土 襍17:木 卡5:- 眨9:- 雜18:- 囃21:-
+장|杖7:木 戕8:金 牂10:木 莊10:木 帳11:木 萇11:木 場12:土 粧12:木 葬12:木 裝13:木 鄣13:土 障13:土 嶂14:土 漳14:水 蔣14:木 暲15:火 樟15:木 漿15:水 璋15:金 墻16:土 糚16:木 薔16:木 檣17:木 牆17:木
+재|在6:土 材7:木 災7:火 灾7:火 㘽9:土 栽10:木 財10:金 梓11:木 崽12:土 渽12:水 裁12:木 溨13:水 滓13:水 榟14:木 縡16:木 賳16:金 纔23:木 才3:- 再6:- 扗6:- 哉9:- 夈9:- 宰10:- 捚10:-
+쟁|琤10:金 崢11:土 箏14:木 錚14:金 鎗18:金 爭8:- 猙11:- 諍13:-
+저|邸7:土 岨8:土 杵8:木 杼8:木 沮8:水 苧8:木 苴8:木 柢9:木 袛10:木 陼10:土 渚11:水 紵11:木 菹11:木 著11:木 楮12:木 貯12:金 褚13:木 潴14:水 箸14:木 樗15:木 瀦18:水 藷18:木 宁5:- 氐5:-
+적|赤7:火 炙8:火 的8:金 荻10:木 笛11:木 菂11:木 賊13:金 滴14:水 樀15:木 磧16:土 積16:木 績17:木 鏑19:金 籍20:木 糴22:木 吊6:- 狄7:- 迪8:- 迹9:- 逖10:- 寂11:- 勣13:- 跡13:- 馰13:-
+전|田5:土 甸7:土 前9:金 畋9:土 畑9:土 荃9:木 栓10:木 栴10:木 剪11:金 湔12:水 牋12:木 琠12:金 筌12:木 塡13:土 煎13:火 鈿13:金 電13:水 塼14:土 戩14:金 槇14:木 瑱14:金 箋14:木 銓14:金 甎15:土
+절|切4:金 岊7:土 浙10:水 晢11:火 絕12:木 絶12:木 節13:木 截14:金 竊22:土 折7:- 癤18:-
+점|岾8:土 苫8:木 点9:火 玷9:金 笘11:木 粘11:木 墊14:土 漸14:水 蔪14:木 霑16:水 鮎16:水 黏17:木 點17:水 簟18:木 占5:- 佔7:- 奌8:- 店8:- 蛅11:- 覘12:- 颭14:-
+접|椄12:木 楪13:木 鰈20:水 接11:- 跕12:- 摺14:- 蜨14:- 蝶15:- 蹀16:-
+정|汀5:水 朾6:木 灯6:火 玎6:金 町7:土 埩9:土 柾9:木 涏9:水 炡9:火 穽9:土 莛9:木 貞9:金 酊9:金 梃10:木 珽10:金 釘10:金 桯11:木 淀11:水 淨11:水 珵11:金 𩇕11:木 幀12:木 晶12:火 棖12:木
+제|制8:金 帝9:木 除9:土 晢11:火 梯11:木 済11:水 第11:木 隄11:土 堤12:土 稊12:木 瑅13:金 際13:土 製14:木 緹15:木 劑16:金 醍16:金 隮16:土 濟17:水 薺17:木 鍗17:金 鮧17:水 韲19:木 鯷20:水 霽22:水
+조|刁2:金 早6:火 皁7:金 阻7:土 昭9:火 炤9:火 凋10:水 晁10:火 條10:木 租10:木 笊10:木 窕11:土 粗11:木 組11:木 釣11:金 棗12:木 琱12:金 絛12:木 絩12:木 鈟12:金 照13:火 稠13:木 嶆14:土 漕14:水
+족|簇17:木 鏃19:金 足7:- 族11:- 瘯16:-
+존|存6:- 拵9:- 尊12:-
+졸|卒8:- 拙8:- 猝11:-
+종|柊9:木 淙11:水 終11:木 棕12:木 琮12:金 椶13:木 種14:木 綜14:木 樅15:木 瑽15:金 縱17:木 鍾17:金 鐘20:金 伀6:- 宗8:- 倧10:- 從11:- 悰11:- 腫13:- 慒14:- 瘇14:- 慫15:- 踪15:- 踵16:-
+좌|坐7:土 剉9:金 莝10:木 左5:- 佐7:- 座10:- 挫10:- 痤12:- 髽17:-
+죄|罪13:-
+주|州6:水 朱6:木 注8:水 邾8:土 柱9:木 洲9:水 炷9:火 紂9:木 株10:木 珘10:金 珠10:金 酎10:金 酒10:金 凑11:水 晝11:火 硃11:土 紬11:木 紸11:木 㫶12:火 䝬12:金 晭12:火 椆12:木 湊12:水 絑12:木
+죽|竹6:木 粥12:木
+준|陖9:土 准10:水 埈10:土 峻10:土 浚10:水 純10:木 埻11:土 晙11:火 焌11:火 凖12:水 畯12:土 葰12:木 準13:水 綧14:木 墫15:土 樽16:木 濬17:水 罇18:土 𨶊18:木 鐏20:金 鱒23:水 俊9:- 迿9:- 逡10:-
+줄|茁8:木 乼9:-
+중|重9:土 中4:- 仲6:- 眾11:- 衆12:-
+즉|即7:- 卽9:- 喞12:-
+즐|櫛17:木 騭19:-
+즙|汁5:水 葺12:木 楫13:木 蕺15:木 檝16:木
+증|烝10:火 蒸13:火 增15:土 嶒15:土 甑16:土 繒18:木 贈19:金 拯9:- 症10:- 曾12:- 憎15:- 矰17:- 罾17:- 證19:-
+지|地6:土 旨6:火 池6:水 芝6:木 阯6:土 址7:土 坁7:土 汦7:水 沚7:水 芷7:木 坻8:土 枝8:木 泜8:水 枳9:木 洔9:水 砥10:土 秪10:木 紙10:木 智12:火 榰14:木 漬14:水 墀15:土 潪15:水 鋕15:金
+직|稙13:木 稷15:木 織18:木 直8:- 禝14:- 職18:-
+진|辰7:土 枃8:木 昣9:火 津9:水 珍9:金 陣9:土 晉10:火 晋10:火 珒10:金 畛10:土 秦10:木 袗10:木 陳10:土 桭11:木 塡13:土 溱13:水 滇13:水 蓁13:木 蔯13:木 鉁13:金 靕13:木 塵14:土 榛14:木 槇14:木
+질|帙8:木 郅8:土 垤9:土 桎10:木 秩10:木 窒11:土 絰12:木 蒺13:木 質15:金 瓆19:金 鑕23:金 叱5:- 侄8:- 迭8:- 姪9:- 疾10:- 蛭12:- 跌12:- 嫉13:- 膣15:-
+짐|朕10:- 斟13:- 鴆15:-
+집|執11:土 戢12:金 楫13:木 潗15:水 緝15:木 𬄕15:木 鏶20:金 什4:- 咠9:- 集12:- 輯16:-
+징|澂15:水 澄15:水 瀓18:水 徵15:- 瞪17:- 懲19:- 癥20:-
+차|岔7:土 茶9:木 嵯12:土 硨12:土 槎13:木 瑳13:金 磋14:土 箚14:木 叉3:- 且5:- 次6:- 此6:- 車7:- 佽8:- 侘8:- 姹9:- 差9:- 借10:- 徣11:- 嗟12:- 遮14:- 蹉16:- 鹺20:- 奲23:-
+착|窄10:土 斲14:金 錯16:金 戳18:金 鑿28:金 捉10:- 着11:- 搾13:- 擉16:- 齪22:-
+찬|粲13:木 賛15:金 澯16:水 篡16:木 燦17:火 璨17:金 簒17:木 竄18:土 贊19:金 纂20:木 劗21:金 巑22:土 欑23:木 瓚23:金 纘25:木 鑽27:金 爨30:火 撰15:- 餐16:- 儧17:- 饌20:- 儹21:- 攛21:- 㜺22:-
+찰|札5:木 刹8:金 紮11:木 扎4:- 察14:- 擦17:-
+참|斬11:金 塹14:土 嶄14:土 槧15:木 鏨19:金 巉20:土 欃21:木 黲23:水 鑱25:金 站10:- 參11:- 僭14:- 慘14:- 慚14:- 慙15:- 憯15:- 毚17:- 儳19:- 譖19:- 懺20:- 攙20:- 驂21:- 讒24:- 讖24:-
+창|刱8:金 昌8:火 昶9:火 淌11:水 淐11:水 窓11:土 菖11:木 凔12:水 創12:金 晿12:火 窗12:土 滄13:水 蒼13:木 戧14:金 暢14:火 槍14:木 漲14:水 瑲14:金 鋹16:金 閶16:木 倀10:- 倉10:- 倡10:- 鬯10:-
+채|茝10:木 埰11:土 砦11:土 菜11:木 責11:金 釵11:金 棌12:木 琗12:金 綵14:木 蔡14:木 采8:- 婇11:- 寀11:- 彩11:- 採11:- 債13:- 睬13:- 寨14:-
+책|柵9:木 笧11:木 責11:金 策12:木 幘14:木 磔15:土 簀17:木 冊5:- 册5:- 蚱11:- 嘖14:-
+처|凄10:水 郪10:土 淒11:水 萋11:木 処5:- 妻8:- 悽11:- 處11:- 覷18:-
+척|斥5:金 刺8:金 坧8:土 陟9:土 剔10:金 戚11:金 塉13:土 滌13:水 墌14:土 尺4:- 拓8:- 倜10:- 捗10:- 脊10:- 隻10:- 惕11:- 跖12:- 慽14:- 摭14:- 蜴14:- 慼15:- 瘠15:- 擲17:- 蹠18:-
+천|川3:水 阡5:土 芊6:木 玔7:金 泉9:水 洊9:水 穿9:土 茜9:木 荐9:木 淺11:水 釧11:金 蒨13:木 蕆15:木 賤15:金 薦16:木 濺18:水 靝18:木 闡20:木 千3:- 天4:- 仟5:- 舛6:- 辿6:- 祆8:-
+철|剟10:金 埑10:土 鉄13:金 綴14:木 銕14:金 澈15:水 錣16:金 鐵21:金 凸5:- 哲10:- 啜11:- 悊11:- 惙11:- 掇11:- 喆12:- 飻13:- 徹15:- 撤15:- 輟15:- 瞮17:- 餮18:- 歠19:- 轍19:-
+첨|沾8:水 添11:水 幨16:木 檐17:木 襜18:木 簷19:木 簽19:木 瀸20:水 櫼21:木 籤23:木 尖6:- 忝8:- 甛11:- 甜11:- 惉12:- 僉13:- 詹13:- 諂15:- 瞻18:-
+첩|帖8:木 堞12:土 貼12:金 牒13:木 褺17:木 疊22:土 呫8:- 妾8:- 怗8:- 倢10:- 捷11:- 喋12:- 睫13:- 輒14:- 諜16:-
+청|靑8:木 青8:木 凊10:水 淸11:水 清11:水 菁11:木 晴12:火 鯖19:水 圊11:- 婧11:- 蜻14:- 請15:- 鶄19:- 聽22:- 廳25:-
+체|切4:金 剃9:金 砌9:土 涕10:水 玼10:金 棣12:木 蒂12:木 滯14:水 蔕14:木 締15:木 靆23:水 逮11:- 彘12:- 替12:- 遞13:- 殢15:- 髰15:- 諟16:- 諦16:- 體22:-
+초|艸6:木 初7:金 岧8:土 杪8:木 炒8:火 苕8:木 秒9:木 草9:木 峭10:土 梢11:木 釥11:金 椒12:木 焦12:火 硝12:土 稍12:木 酢12:金 鈔12:金 剿13:金 楚13:木 綃13:木 嶕15:土 蕉15:木 醋15:金 樵16:木
+촉|薥16:木 燭17:火 曯25:火 爥25:火 促9:- 蜀13:- 觸20:- 躅20:- 髑22:- 囑24:- 矗24:- 矚26:-
+촌|邨6:土 村7:木 寸3:- 吋6:- 忖6:-
+총|葱12:木 塚13:土 総14:木 蓯14:木 蔥14:木 銃14:金 總17:木 鏦19:金 冢10:- 悤11:- 憁14:- 摠14:- 聡14:- 聰17:- 叢18:- 寵19:- 驄21:-
+촬|撮15:-
+최|崔11:土 榱14:木 漼14:水 璀15:金 磪16:土 縗16:木 脧11:- 最12:- 催13:- 摧14:- 嘬15:-
+추|帚8:木 秋9:木 酋9:金 芻10:木 陬10:土 椎12:木 湫12:水 萩12:木 鄒12:土 楸13:木 甃13:土 蒭13:木 墜14:土 箠14:木 樞15:木 縋15:木 簉16:木 縐16:木 醜16:金 錐16:金 錘16:金 鎚17:金 鰌20:水 鰍20:水
+축|竺8:木 畜10:土 筑12:木 蓄13:木 築16:木 縮17:木 丑4:- 妯8:- 豖8:- 祝9:- 逐10:- 舳11:- 軸12:- 蹙18:- 蹜18:- 鼀18:- 蹴19:-
+춘|春9:火 椿13:木 瑃13:金 賰16:金
+출|朮5:木 秫10:木 黜17:水 出5:-
+충|冲6:水 沖7:水 珫10:金 衷10:木 充6:- 虫6:- 忡7:- 忠8:- 衝15:- 蟲18:-
+췌|萃11:木 贅17:金 悴11:- 惴12:- 揣12:- 瘁13:- 膵15:- 顇17:-
+취|炊8:火 醉15:金 橇16:木 吹7:- 取8:- 冣10:- 脆10:- 臭10:- 娶11:- 就12:- 毳12:- 翠14:- 聚14:- 趣15:- 嘴16:- 鷲23:- 驟24:-
+측|昃8:火 測12:水 仄4:- 側11:- 厠11:- 廁12:- 惻12:-
+층|層15:-
+치|阤5:土 治8:水 峙9:土 梔11:木 淄11:水 畤11:土 菑11:木 稚13:木 絺13:木 緇14:木 幟15:木 褫15:木 熾16:火 緻16:木 薙16:木 錙16:金 穉17:木 鯔19:水 卮5:- 豸7:- 侈8:- 哆9:- 値10:- 恥10:-
+칙|則9:金 勅9:- 敕11:- 飭12:-
+친|櫬20:木 襯21:木 親16:-
+칠|柒9:木 漆14:水 七2:-
+침|沈7:水 枕8:木 浸10:水 砧10:土 郴10:土 針10:金 棽12:木 琛12:金 椹13:木 鋟15:金 鍼17:金 忱7:- 侵9:- 寖13:- 寢14:- 駸17:-
+칩|蟄17:-
+칭|秤10:木 稱14:木
+쾌|夬4:- 快7:- 噲16:-
+타|朶6:木 陀7:土 坨8:土 沱8:水 垞9:土 柁9:木 楕13:木 墮14:土 橢15:木 鮀16:水 他5:- 打5:- 佗7:- 妥7:- 拕8:- 拖8:- 咤9:- 唾11:- 舵11:- 惰12:- 詑12:- 跎12:- 詫13:- 躱13:-
+탁|坼8:土 沰8:水 矺8:土 柝9:木 涿11:水 晫12:火 琢12:金 琸12:金 槖14:木 橐16:木 濁16:水 濯17:水 蘀19:木 鐸21:金 籜22:木 托6:- 卓8:- 拆8:- 拓8:- 度9:- 倬10:- 託10:- 啄11:- 逴11:-
+탄|坦8:土 炭9:火 綻14:木 暺16:火 灘22:水 呑7:- 誕13:- 嘆14:- 彈15:- 憚15:- 歎15:- 憻16:- 殫16:- 攤22:- 驒22:- 癱24:-
+탈|侻9:- 脫11:- 奪14:-
+탐|貪11:金 酖11:金 忐7:- 眈9:- 耽10:- 探11:- 嗿14:-
+탑|塔12:土 塌13:土 榻14:木 傝12:- 搨13:-
+탕|帑8:木 湯12:水 碭14:土 蕩15:木 燙16:火 糖16:木 蘯20:木 宕8:- 盪17:-
+태|汰7:水 邰7:土 苔8:木 珆9:金 泰10:水 埭11:土 笞11:木 鈦12:金 鮐16:水 太4:- 台5:- 兌7:- 孡8:- 抬8:- 迨8:- 怠9:- 殆9:- 胎9:- 娧10:- 脫11:- 跆12:- 態14:- 颱14:- 駄14:-
+택|垞9:土 澤16:水 宅6:- 擇16:-
+탱|牚12:- 撐15:- 撑15:-
+터|攄18:-
+토|土3:土 吐6:- 兎7:- 兔8:- 討10:-
+톤|噋15:-
+통|洞9:水 桶11:木 筒12:木 統12:木 筩13:木 樋14:木 恫9:- 通10:- 痛12:- 慟14:-
+퇴|堆11:土 槌13:木 褪14:木 隤14:土 退9:- 腿13:- 頹16:-
+투|渝12:水 妒7:- 投7:- 妬8:- 套10:- 透10:- 偸11:- 骰13:- 鬪20:-
+퉁|佟7:-
+특|忒7:- 特10:- 慝14:-
+틈|闖18:木
+파|芭7:木 坡8:土 岥8:土 杷8:木 波8:水 派9:水 玻9:金 破10:土 笆10:木 菠11:木 琶12:金 葩12:木 鄱14:土 皤17:金 簸19:木 灞24:水 巴4:- 叵5:- 妑7:- 把7:- 怕8:- 爬8:- 爸8:- 耙10:-
+판|阪6:土 判7:金 坂7:土 板8:木 版8:木 販11:金 鈑12:金 辦16:金 瓣19:木
+팔|汃5:水 朳6:木 八2:- 叭5:- 捌10:-
+패|沛7:水 貝7:金 浿10:水 珮10:金 牌12:木 稗13:木 霈15:水 霸21:水 孛7:- 佩8:- 唄10:- 悖10:- 旆10:- 狽10:- 敗11:- 覇19:-
+팽|砰10:土 烹11:火 澎15:水 祊8:- 彭12:- 膨16:- 蟚18:- 蟛18:-
+퍅|愎12:-
+편|片4:木 萹12:木 褊14:木 篇15:木 編15:木 緶15:木 便9:- 扁9:- 偏11:- 匾11:- 徧12:- 惼12:- 遍12:- 翩15:- 艑15:- 蝙15:- 諞16:- 鞭18:- 騙19:-
+폄|砭9:土 窆9:土 貶11:金
+평|坪8:土 泙8:水 苹8:木 枰9:木 萍11:木 蓱12:木 鮃16:水 平5:- 怦8:- 抨8:- 評12:-
+폐|陛9:土 閉11:木 幣14:木 蔽14:木 吠7:- 肺8:- 狴10:- 敝11:- 弊14:- 廢15:- 獘15:- 嬖16:- 斃17:- 癈17:-
+포|布5:木 泡8:水 苞8:木 炮9:火 炰9:火 浦10:水 砲10:土 袍10:木 晡11:火 葡12:木 蒲13:木 鉋13:金 暴15:火 褒15:木 鋪15:金 鮑16:水 曓17:火 鯆18:水 包5:- 佈7:- 抛7:- 咆8:- 庖8:- 怖8:-
+폭|幅12:木 暴15:火 瀑18:水 曝19:火 爆19:火 輻16:-
+표|杓7:木 表8:木 剽13:金 裱13:木 漂14:水 標15:木 熛15:火 瓢16:木 縹17:木 鏢19:金 鰾22:水 鑣23:金 俵10:- 豹10:- 髟10:- 彪11:- 殍11:- 票11:- 僄13:- 勡13:- 嘌14:- 嫖14:- 慓14:- 摽14:-
+품|稟13:木 品9:-
+풍|楓13:木 風9:- 馮12:- 豊13:- 瘋14:- 諷16:- 豐18:-
+피|陂7:土 被10:木 辟13:金 皮5:- 彼8:- 披8:- 疲10:- 詖12:- 鞁14:- 髲15:- 避16:-
+픽|腷13:-
+필|泌8:水 苾8:木 珌9:金 畢10:土 㳼12:水 筆12:木 滭13:水 蓽13:木 鉍13:金 篳16:木 匹4:- 必5:- 疋5:- 佖7:- 咇8:- 弼12:- 馝14:- 㪤15:- 罼15:- 駜15:- 觱16:- 蹕17:- 鞸19:- 韠19:-
+핍|乏4:- 偪11:- 逼12:-
+하|岈7:土 河8:水 昰9:火 荷10:木 賀12:金 煆13:火 瑕13:金 閜13:木 碬14:土 蕸15:木 赮16:火 罅17:土 鍜17:金 霞17:水 鰕20:水 下3:- 何7:- 呀7:- 抲8:- 㰤9:- 夏10:- 厦12:- 遐12:- 廈13:-
+학|郝9:土 确12:土 壑17:土 皬21:金 学8:- 狢9:- 虐9:- 嗃13:- 瘧14:- 學16:- 謔16:- 鶴21:- 鷽24:-
+한|邗5:土 汗6:水 旱7:火 邯7:土 限8:土 閈11:木 閑12:木 閒12:木 漢14:水 暵15:火 澖15:水 䦥16:木 橌16:木 澣16:水 𡽜17:土 瀚19:水 忓6:- 扞6:- 罕7:- 恨9:- 悍10:- 捍10:- 寒12:- 僩14:-
+할|割12:金 瞎15:- 轄17:-
+함|莟10:木 陷10:土 涵11:水 菡11:木 銜14:金 緘15:木 檻18:木 闞19:木 含7:- 函8:- 咸9:- 啣12:- 喊12:- 諴16:- 艦20:- 鹹20:- 轞21:-
+합|郃8:土 柙9:木 陜9:土 溘13:水 榼14:木 閤14:木 闔18:木 合6:- 匌8:- 哈9:- 盍10:- 盒11:- 蛤12:- 嗑13:-
+항|沆7:水 杭8:木 炕8:火 降8:土 缸9:土 桁10:木 港12:水 缿12:土 亢4:- 夯5:- 伉6:- 行6:- 抗7:- 肛7:- 姮9:- 巷9:- 恆9:- 恒9:- 航10:- 項12:- 頏13:- 嫦14:-
+해|陔8:土 垓9:土 晐10:火 海10:水 絯12:木 楷13:木 瑎13:金 嶰16:土 澥16:水 薤16:木 醢17:金 鮭17:水 瀣19:水 亥6:- 咍8:- 祄8:- 咳9:- 姟9:- 孩9:- 奚10:- 害10:- 欬10:- 䀭11:- 偕11:-
+핵|核10:木 劾8:- 翮16:- 覈19:-
+행|杏7:木 荇9:木 涬11:水 行6:- 幸8:- 倖10:- 悻11:-
+향|晑10:火 珦10:金 鄕12:土 薌14:木 向6:- 享8:- 香9:- 餉14:- 嚮17:- 響20:- 饗20:- 麘20:-
+허|墟14:土 許11:- 虛12:- 噓15:- 歔15:-
+헌|昍8:火 幰19:木 櫶20:木 巚23:土 軒10:- 䡣16:- 憲16:- 㦥19:- 攇19:- 獻20:-
+헐|歇13:-
+험|險15:土 嶮16:土 獫16:- 玁22:- 驗23:-
+혁|洫9:水 焃11:火 焱12:火 赫14:火 爀18:火 𧹽21:火 侐8:- 奕9:- 弈9:- 革9:- 嚇17:- 鬩18:-
+현|玄5:水 泫8:水 昡9:火 炫9:火 玹9:金 䧋10:土 峴10:土 晛11:火 現11:金 琄11:金 絃11:木 㭹12:木 䝮12:金 絢12:木 鉉13:金 賢15:金 鋗15:金 鋧15:金 縣16:木 繯19:木 灦26:水 見7:- 呟8:- 妶8:-
+혈|穴5:土 絜12:木 孑3:- 血6:- 頁9:- 趐13:-
+혐|嫌13:-
+협|冾8:水 埉10:土 峽10:土 浹10:水 莢10:木 篋15:木 鋏15:金 叶5:- 夾7:- 協8:- 俠9:- 匧9:- 恊9:- 悏10:- 挾10:- 狹10:- 脅10:- 脇10:- 愜12:- 頰16:-
+형|刑6:金 邢6:土 泂8:水 型9:土 炯9:火 荊9:木 陘9:土 珩10:金 滎14:水 熒14:火 瑩15:金 瀅18:水 鎣18:金 灐21:水 兄5:- 亨7:- 形7:- 侀8:- 迥8:- 逈9:- 娙10:- 詗12:- 夐14:- 螢16:-
+혜|暳15:火 槥15:木 潓15:水 蕙15:木 橞16:木 醯19:金 鏸20:金 匸2:- 兮4:- 盻9:- 恵10:- 䚷11:- 彗11:- 傒12:- 惠12:- 徯13:- 嘒14:- 寭15:- 慧15:- 憓15:- 鞋15:- 謑17:- 蹊17:- 譓19:-
+호|冱6:水 芐6:木 沍7:水 芦7:木 岵8:土 昈8:火 昊8:火 杲8:木 瓳9:土 浩10:水 晧11:火 淏11:水 瓠11:木 湖12:水 琥12:金 皓12:金 葫12:木 鄗12:土 滈13:水 瑚13:金 蒿13:木 滬14:水 滸14:水 蔰14:木
+혹|或8:金 熇14:火 酷14:金 惑12:-
+혼|昏8:火 混11:水 渾12:水 湣12:水 焜12:火 溷13:水 琿13:金 閽16:木 俒9:- 圂10:- 婚11:- 魂13:- 䫟19:-
+홀|笏10:木 囫7:- 忽8:- 惚11:-
+홍|汞7:水 泓8:水 洪9:水 紅9:木 晎10:火 烘10:火 鉷14:金 澒15:水 篊15:木 弘5:- 哄9:- 虹9:- 訌10:- 鬨16:- 鴻17:-
+화|火4:火 禾5:木 花7:木 華10:木 貨11:金 畫12:土 澕13:水 畵13:土 樺14:木 化4:- 和8:- 俰10:- 禍12:- 嘩13:- 嬅13:- 話13:- 靴13:- 譁17:- 驊20:- 龢22:-
+확|確15:土 碻15:土 穫18:木 礭21:土 鑊21:金 矡25:金 廓13:- 擴17:- 矍20:- 攫23:-
+환|洹9:水 紈9:木 桓10:木 晥11:火 渙12:水 皖12:金 絙12:木 煥13:火 瑍13:金 環17:金 鍰17:金 鐶21:金 鰥21:水 瓛24:金 丸3:- 幻4:- 奐9:- 宦9:- 患11:- 喚12:- 換12:- 睆12:- 豢13:- 圜16:-
+활|活9:水 滑12:水 濶17:水 闊17:木 猾12:- 蛞12:- 豁17:-
+황|況8:水 皇9:金 荒9:木 晃10:火 晄10:火 隍11:土 堭12:土 湟12:水 貺12:金 黃12:土 幌13:木 楻13:木 滉13:水 煌13:火 瑝13:金 榥14:木 潢14:水 熀14:火 璜15:金 篁15:木 簧17:木 鎤18:金 肓7:- 怳8:-
+회|灰6:火 洄9:水 茴9:木 晦11:火 淮11:水 絵12:木 賄13:金 澮16:水 檜17:木 繪19:木 鱠24:水 会6:- 回6:- 佪8:- 廻8:- 徊9:- 恢9:- 迴9:- 悔10:- 盔11:- 蛔12:- 匯13:- 會13:- 詼13:-
+획|画8:土 劃14:金 嚄16:- 獲16:-
+횡|鈜12:金 澋15:水 橫16:木 鐄19:金 黌24:土 宖8:-
+효|洨9:水 涍10:水 烋10:火 崤11:土 梟11:木 淆11:水 窙12:土 熇14:火 酵14:金 皛15:金 曉16:火 爻4:- 孝7:- 効8:- 肴8:- 侾9:- 恔9:- 哮10:- 庨10:- 效10:- 虓10:- 婋11:- 傚12:- 殽12:-
+후|朽6:木 芋6:木 垕9:土 珝10:金 酗11:金 堠12:土 帿12:木 煦13:火 篌15:木 后6:- 吼7:- 吽7:- 姁8:- 侯9:- 厚9:- 後9:- 矦9:- 逅9:- 㰭10:- 候10:- 喉12:- 喣12:- 猴12:- 嗅13:-
+훈|焄11:火 葷12:木 塤13:土 暈13:火 煇13:火 𤋱13:火 熏14:火 薫16:木 壎17:土 薰17:木 曛18:火 燻18:火 𬟓18:木 纁20:木 鑂22:金 訓10:- 勛12:- 勲15:- 勳16:- 獯17:-
+훌|欻12:-
+훙|薨16:木
+훤|昍8:火 烜10:火 萱12:木 暄13:火 煊13:火 喧12:- 愃12:- 諠16:- 諼16:-
+훼|芔9:木 燬17:火 卉5:- 虫6:- 𠦄6:- 虺9:- 喙12:- 毀13:- 毁13:-
+휘|暉13:火 煇13:火 煒13:火 麾15:木 揮12:- 彙13:- 撝15:- 翬15:- 輝15:- 諱16:- 徽17:-
+휴|烋10:火 畦11:土 隳17:土 休6:- 咻9:- 庥9:- 携13:- 髹16:- 虧17:- 鵂17:-
+휼|鐍20:金 霱20:水 卹8:- 恤9:- 遹15:- 譎19:- 鷸23:-
+흉|洶9:水 凶4:- 兇6:- 匈6:- 恟9:- 胷10:- 胸10:-
+흑|黑12:水
+흔|昕8:火 炘8:火 焮12:火 釁26:金 忻7:- 欣8:- 很9:- 惞11:- 掀11:- 痕11:- 訢11:-
+흘|屹6:土 汔6:水 紇9:木 仡5:- 吃6:- 迄6:- 疙8:- 訖10:- 齕18:-
+흠|鑫24:金 欠4:- 欽12:- 歆13:- 廞15:-
+흡|洽9:水 潝15:水 吸6:- 恰9:- 翕12:- 翖12:- 噏15:- 歙16:-
+흥|興16:-
+희|希7:木 晞11:火 烯11:火 稀12:木 煕14:火 熈14:火 熙14:火 凞16:水 戱16:金 暿16:火 橲16:木 熹16:火 熺16:火 戲17:金 燹18:火 曦20:火 爔20:火 俙9:- 咥9:- 姫9:- 唏10:- 姬10:- 巸10:- 悕10:-
+히|屎9:-
+힐|黠18:水 襭20:木 纈21:木 犵6:- 詰13:- 頡15:-</script>
+<script>
+/* ════ 만료일 체크 ════ */
+function checkExpiry(){
+  const params=new URLSearchParams(window.location.search);
+  const exp=params.get('expires');
+  if(!exp)return true; // 파라미터 없으면 항상 허용 (테스트용)
+  const today=new Date();
+  const yy=today.getFullYear(),mm=String(today.getMonth()+1).padStart(2,'0'),dd=String(today.getDate()).padStart(2,'0');
+  const todayStr=yy+mm+dd;
+  if(todayStr>exp){
+    document.body.innerHTML=`
+      <div style="min-height:100vh;display:flex;align-items:center;justify-content:center;background:#FAFCFF;padding:20px">
+        <div style="text-align:center;max-width:320px">
+          <div style="font-family:'Gowun Batang',serif;font-size:13px;letter-spacing:.18em;color:#E8A84C;margin-bottom:14px">Jiaseh · Naming Studio</div>
+          <div style="font-family:'Gowun Batang',serif;font-size:20px;color:#1E1E2E;margin-bottom:10px">접속 기한이 지났습니다</div>
+          <div style="font-size:13px;color:#5a5870;line-height:1.7;margin-bottom:20px">
+            사용 기간이 만료됐어요.<br>카카오 채널로 문의해 주세요.
+          </div>
+          <a href="https://pf.kakao.com/_KAKAO_LINK" style="display:inline-block;padding:13px 28px;background:#E8A84C;color:#fff;border-radius:11px;font-family:'Gowun Batang',serif;font-size:15px;text-decoration:none">카카오 채널 →</a>
+        </div>
+      </div>`;
+    return false;
+  }
+  return true;
+}
+
+/* ════ 격국 엔진 ════ */
+// ═══ 격국 엔진 데이터 ═══
+// ===== 조견표 =====
+const GAN_OH={甲:'木',乙:'木',丙:'火',丁:'火',戊:'土',己:'土',庚:'金',辛:'金',壬:'水',癸:'水'};
+const JIJANG={
+  子:[['壬',0],['',0],['癸',1]], 丑:[['癸',1],['辛',1],['己',1]],
+  寅:[['戊',1],['丙',1],['甲',1]], 卯:[['甲',0],['',0],['乙',1]],
+  辰:[['乙',1],['癸',1],['戊',1]], 巳:[['戊',1],['庚',1],['丙',1]],
+  午:[['丙',0],['己',1],['丁',1]], 未:[['丁',1],['乙',1],['己',1]],
+  申:[['戊',1],['壬',1],['庚',1]], 酉:[['庚',0],['',0],['辛',1]],
+  戌:[['辛',1],['丁',1],['戊',1]], 亥:[['戊',0],['甲',1],['壬',1]]
+};
+const OHS=['木','火','土','金','水'];
+const SHENG={木:'火',火:'土',土:'金',金:'水',水:'木'};
+const KE={木:'土',土:'水',水:'火',火:'金',金:'木'};
+const JI_BON={子:'水',丑:'土',寅:'木',卯:'木',辰:'土',巳:'火',午:'火',未:'土',申:'金',酉:'金',戌:'土',亥:'水'};
+const CHONG=[['子','午'],['丑','未'],['寅','申'],['卯','酉'],['辰','戌'],['巳','亥']];
+const LIUHAP=[['子','丑'],['寅','亥'],['卯','戌'],['辰','酉'],['巳','申'],['午','未']]; // 지지 육합 → 소멸
+const SAMHAP=[['申','子','辰','水','子'],['寅','午','戌','火','午'],['巳','酉','丑','金','酉'],['亥','卯','未','木','卯']]; // [생,왕,묘,오행,왕지]
+const POSZ=['시지','일지','월지','년지'], POSG=['시간','일간','월간','년간'];
+const GANHAP=[['甲','己','土'],['乙','庚','金'],['丙','辛','水'],['丁','壬','木'],['戊','癸','火']];
+// 십성 천간표 (일간→대상천간→십성)
+const SIP10=['비견','겁재','식신','상관','편재','정재','편관','정관','편인','인수'];
+const SIP_GAN={
+ 甲:'甲乙丙丁戊己庚辛壬癸',乙:'乙甲丁丙己戊辛庚癸壬',丙:'丙丁戊己庚辛壬癸甲乙',
+ 丁:'丁丙己戊辛庚癸壬乙甲',戊:'戊己庚辛壬癸甲乙丙丁',己:'己戊辛庚癸壬乙甲丁丙',
+ 庚:'庚辛壬癸甲乙丙丁戊己',辛:'辛庚癸壬乙甲丁丙己戊',壬:'壬癸甲乙丙丁戊己庚辛',癸:'癸壬乙甲丁丙己戊辛庚'};
+// 화살표 받는(Receptive) [P2 소스 확정] — 체신=받는 화살표 최다
+const ARROW_RECV={
+ 甲:new Set('壬癸'),乙:new Set('壬癸'),丙:new Set('乙己'),
+ 丁:new Set('甲乙'),戊:new Set('丙丁'),己:new Set('丙丁'),
+ 庚:new Set('戊己'),辛:new Set('戊己'),壬:new Set('庚辛'),癸:new Set('己')};
+// ※ 丙: 겨울·봄에 甲이 丙을 기르면 丙 작용력 '최강' (특이 로직 — 플래그 처리)
+// 용신 조견 [P2 소스 확정] — [최강·강 그룹, 약·특수 그룹]
+const YONG={甲:['甲丙','戊'],乙:['甲乙丙癸','戊'],丙:['乙','己'],
+ 丁:['甲乙','丙'],戊:['丙','庚'],己:['丙','甲乙庚'],
+ 庚:['丁','戊己'],辛:['丁','戊'],壬:['庚','丙'],癸:['丙','戊己']};
+// 정위 [P2 소스 확정] — [상주(우), 하고(좌), 측지(양)]
+const JEONGWI={甲:['丙癸','己壬','甲'],乙:['丙癸','戊己壬','甲'],丙:['','','乙己壬'],丁:['癸','戊己','甲乙'],
+ 戊:['丙','庚壬',''],己:['丙癸','甲乙庚壬','戊'],庚:['丙','',''],辛:['','','戊'],壬:['丙癸','',''],癸:['','','']};
+const HUISHIN={'화격':'비겁·인성','종왕격':'비겁→인성→식상 (식상=희신 / 기신=관살 / 구신=재성)',
+ '종강격':'인성→비겁→(년간)관살','종재격':'재성→관살→식상','종아격':'식상→재성→관살','종살격':'관살→재성',
+ '내격(신강)':'관살·식상·(재성)','내격(신약)':'인성·비겁'};
+// 12운성
+const JI12=['子','丑','寅','卯','辰','巳','午','未','申','酉','戌','亥'];
+const UORDER=['장생','목욕','관대','건록','제왕','쇠','병','사','묘','절','태','양'];
+const JANGSAENG={甲:'亥',丙:'寅',戊:'寅',庚:'巳',壬:'申',乙:'午',丁:'酉',己:'酉',辛:'子',癸:'卯'};
+const YANG=new Set(['甲','丙','戊','庚','壬']);
+function unseong(dayGan,zhi){
+  const si=JI12.indexOf(JANGSAENG[dayGan]); const ti=JI12.indexOf(zhi);
+  let k=YANG.has(dayGan)?(ti-si+12)%12:(si-ti+12)%12;
+  return UORDER[k];
+}
+function sipOf(dayGan,gan){ if(!gan)return''; const i=SIP_GAN[dayGan].indexOf(gan); return i<0?'':SIP10[i]; }
+function sipClass(dayOh,oh){ if(oh===dayOh)return'비겁'; if(SHENG[dayOh]===oh)return'식상';
+  if(KE[dayOh]===oh)return'재성'; if(KE[oh]===dayOh)return'관성'; if(SHENG[oh]===dayOh)return'인성'; }
+
+// ===== 입력 모드 =====
+let CURRENT_MODE='auto';
+const GAN_LIST=['甲','乙','丙','丁','戊','己','庚','辛','壬','癸'];
+const ZHI_LIST=['子','丑','寅','卯','辰','巳','午','未','申','酉','戌','亥'];
+function buildDosaGrid(){
+  const g=document.getElementById('dosa-grid'); if(g.dataset.built)return;
+  const cols=['시주','일주','월주','년주']; // index 0=시 1=일 2=월 3=년 (gans/jis 인덱스와 일치)
+  let h='<div class="rh"></div>'+cols.map(c=>`<div class="ch">${c}</div>`).join('');
+  // 천간
+  h+='<div class="rh">천간</div>'+cols.map((_,i)=>`<select id="dg${i}"><option value="">·</option>${GAN_LIST.map(x=>`<option>${x}</option>`).join('')}</select>`).join('');
+  // 지지
+  h+='<div class="rh">지지</div>'+cols.map((_,i)=>`<select id="dz${i}"><option value="">·</option>${ZHI_LIST.map(x=>`<option>${x}</option>`).join('')}</select>`).join('');
+  // 12운성 (입력값)
+  h+='<div class="rh">12운성</div>'+cols.map((_,i)=>`<input id="du${i}" placeholder="도사폰값" maxlength="2">`).join('');
+  g.innerHTML=h; g.dataset.built='1';
+}
+function setMode(m){
+  CURRENT_MODE=m;
+  document.getElementById('tab-auto').classList.toggle('active',m==='auto');
+  document.getElementById('tab-dosa').classList.toggle('active',m==='dosa');
+  document.getElementById('panel-auto').classList.toggle('hidden',m!=='auto');
+  document.getElementById('panel-dosa').classList.toggle('hidden',m!=='dosa');
+  if(m==='dosa') buildDosaGrid();
+}
+
+// ═══ 보조 함수 ═══
+function parseDaewoon(txt){
+  if(!txt) return [];
+  const out=[]; const re=/([甲乙丙丁戊己庚辛壬癸][子丑寅卯辰巳午未申酉戌亥])(?:\s*[@\/]?\s*(\d+))?/g; let m;
+  while((m=re.exec(txt))){ out.push({gz:m[1],age:m[2]?+m[2]:null,year:null}); }
+  return out;
+}
+
+// ═══ buildChart (파라미터 방식) ═══
+function buildChartAuto(y,mo,d,h,mi,sex,cal,leap,useTST,useDST){
+  // 파라미터 방식 (DOM 불필요)
+    const Solar=window.Solar, Lunar=window.Lunar;
+  cal=cal||'solar'; leap=leap||false; useTST=useTST!==false; useDST=useDST||false;
+  const flags=[];
+
+  // 서머타임 구간 (대한민국)
+  const dstRanges=[['1948-06-01','1948-09-13'],['1949-04-03','1949-09-11'],['1950-04-01','1950-09-10'],
+    ['1951-05-06','1951-09-09'],['1955-05-05','1955-09-09'],['1956-05-20','1956-09-30'],
+    ['1957-05-05','1957-09-22'],['1958-05-04','1958-09-21'],['1959-05-03','1959-09-20'],
+    ['1960-05-01','1960-09-18'],['1987-05-10','1987-10-11'],['1988-05-08','1988-10-09']];
+  const dateStr=`${y}-${String(mo).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+  let dstActive=false;
+  if(useDST){ for(const [a,b] of dstRanges){ if(dateStr>=a && dateStr<=b){dstActive=true;break;} } }
+
+  // 분 단위 보정: 진태양시(-32분, 서울 126.98°E 기준) + 서머타임(-60분)
+  let adjMin=0;
+  if(useTST) adjMin-=32;
+  if(dstActive){ adjMin-=60; flags.push({t:'flag',m:'서머타임 시행 구간 출생 → 표준시 −1시간 적용됨. 시주 경계면 도사폰 교차검증 권장.'}); }
+
+  // 기준 Solar 생성
+  let solar;
+  if(cal==='lunar'){
+    try{ const lun=Lunar.fromYmdHms(y,leap?-mo:mo,d,h,mi,0); solar=lun.getSolar(); }
+    catch(e){ flags.push({t:'flag',m:'음력 날짜 변환 오류: '+e.message+' (윤달 여부·일자 확인)'}); return {error:true,flags}; }
+  } else {
+    solar=Solar.fromYmdHms(y,mo,d,h,mi,0);
+  }
+  // 보정 적용: 분 가감 → 새 Solar
+  if(adjMin!==0){
+    const jd=solar.getJulianDay()+adjMin/1440;
+    solar=Solar.fromJulianDay(jd);
+  }
+  const lunar=solar.getLunar();
+  const ec=lunar.getEightChar();
+  const gans=[ec.getTimeGan(),ec.getDayGan(),ec.getMonthGan(),ec.getYearGan()]; // 시일월년
+  const jis=[ec.getTimeZhi(),ec.getDayZhi(),ec.getMonthZhi(),ec.getYearZhi()];
+
+  // 절기 경계 플래그: 출생일이 직전/직후 절기 ±18시간 이내면
+  const prev=lunar.getPrevJieQi(true); const next=lunar.getNextJieQi(true);
+  const bjd=solar.getJulianDay();
+  const pjd=prev.getSolar().getJulianDay(), njd=next.getSolar().getJulianDay();
+  if((bjd-pjd)*24<18) flags.push({t:'flag',m:`절기 경계 직후(${prev.getName()} 진입 ${((bjd-pjd)*24).toFixed(1)}h 후) → 월주 경계. 도사폰 교차검증 권장.`});
+  if((njd-bjd)*24<18) flags.push({t:'flag',m:`절기 경계 직전(${next.getName()} 진입 ${((njd-bjd)*24).toFixed(1)}h 전) → 월주 경계. 도사폰 교차검증 권장.`});
+
+  // 시주 경계(자시): 23:00~01:00 및 보정으로 날짜 넘어가는 경우
+  const realH=solar.getHour();
+  if(realH===23||realH===0) flags.push({t:'flag',m:'자시(子時) 경계 → 야자시/조자시 처리에 따라 일주가 달라질 수 있음. 도사폰 확인 권장.'});
+
+  // 당령 산출: 월지 + 절입 후 경과일
+  const monthZhi=jis[2];
+  let dangryeong=JI_BON[monthZhi];
+  let dangNote='';
+  const elapsedDays=(bjd-pjd);
+  // 진술축미月 토당령 전환 (절입 후 약 12일)
+  const TOSWITCH={辰:12.2361,未:11.5799,戌:12.1042,丑:11.7778};  // [P2 소스] 辰12일5h40m·未11일13h55m·戌12일2h30m·丑11일18h40m
+  if(TOSWITCH[monthZhi]!==undefined){
+    if(elapsedDays>=TOSWITCH[monthZhi]){ dangryeong='土'; dangNote=`(${monthZhi}月 절입후 ${elapsedDays.toFixed(1)}일 → 土당령 전환)`; }
+    else { dangNote=`(${monthZhi}月 절입후 ${elapsedDays.toFixed(1)}일 → 본기 ${dangryeong}당령, 12일경 土전환)`; flags.push({t:'flag',m:`${monthZhi}月 토당령 전환 경계(절입후 ${elapsedDays.toFixed(1)}일). 당령 오행 도사폰 확인 권장.`}); }
+  }
+  // 대운 (음남양녀 역행 / 양남음녀 순행 — lunar-javascript getYun)
+  let daewoon=[];
+  try{
+    const yun=ec.getYun(sex==='M'?1:0);
+    daewoon=yun.getDaYun().filter(d=>d.getGanZhi()).slice(0,8)
+      .map(d=>({gz:d.getGanZhi(),age:d.getStartAge(),year:d.getStartYear()}));
+  }catch(e){ flags.push({t:'flag',m:'대운 산출 실패: '+e.message}); }
+  return {solar,gans,jis,dangryeong,dangNote,flags,mode:'auto',daewoon,
+    sex:sex, unseongInput:null,
+    solarStr:solar.toYmd()+' '+String(solar.getHour()).padStart(2,'0')+':'+String(solar.getMinute()).padStart(2,'0'),
+    lunarStr:lunar.toString()};
+}
+
+
+// ═══ analyze ═══
+function analyze(c){
+  const {gans,jis,dangryeong}=c;
+  const dayGan=gans[1], dayOh=GAN_OH[dayGan];
+  const reflect=(document.getElementById('hapchung')||{checked:true}).checked;
+  const hapchungNotes=[];
+  // ── 지지 합충 판정 (인접: 시일·일월·월년) — 충/육합 소멸, 합·충 동시 → 해소 ──
+  const meltedZhi=new Set();
+  if(reflect){
+    const adj=[[0,1],[1,2],[2,3]]; const chong=[0,0,0,0], hap=[0,0,0,0];
+    adj.forEach(([i,j])=>{ const a=jis[i],b=jis[j]; if(!a||!b)return;
+      if(CHONG.some(p=>(p[0]===a&&p[1]===b)||(p[0]===b&&p[1]===a))){chong[i]++;chong[j]++;}
+      if(LIUHAP.some(p=>(p[0]===a&&p[1]===b)||(p[0]===b&&p[1]===a))){hap[i]++;hap[j]++;}
+    });
+    [0,1,2,3].forEach(i=>{ if(!jis[i])return;
+      if(chong[i]>0&&hap[i]>0) hapchungNotes.push(POSZ[i]+jis[i]+' 합·충 동시→해소(유지)');
+      else if(chong[i]>0){ meltedZhi.add(i); hapchungNotes.push(POSZ[i]+jis[i]+' 충→소멸(χ제외)'); }
+      else if(hap[i]>0){ meltedZhi.add(i); hapchungNotes.push(POSZ[i]+jis[i]+' 육합→소멸(χ제외)'); }
+    });
+    // P4-2 삼합/반합 변이 탐지 [소스 유추] — 자동 χ재산출 안 함, 경고 플래그만 (술자 확인)
+    const present=[0,1,2,3].filter(i=>jis[i]);
+    SAMHAP.forEach(([s1,s2,s3,oh,wang])=>{ const mem=[s1,s2,s3];
+      const have=mem.filter(z=>jis.includes(z));
+      if(have.length>=3) hapchungNotes.push('⚠ 완전삼합 '+have.join('')+'→'+oh+' : 참여 지지 χ를 '+oh+'으로 변이 재산출 권장(술자 확인, 엔진 자동 미반영)');
+      else { // 인접 반합
+        const adjp=[[0,1],[1,2],[2,3]];
+        adjp.forEach(([i,j])=>{ const a=jis[i],b=jis[j]; if(!a||!b)return;
+          if(mem.includes(a)&&mem.includes(b)&&a!==b){
+            if(a===wang||b===wang) hapchungNotes.push('⚠ 왕지포함 반합 '+a+b+'→'+oh+' : '+oh+' 변이 χ 재산출 권장(술자 확인)');
+            else hapchungNotes.push('반합 '+a+b+'(약통근 '+oh+') : 왕지 '+wang+' 대운·세운 진입 시 삼합 완성→'+oh+' 폭발/변이 경고구간');
+          }
+        });
+      }
+    });
+  }
+  // ── 천간합 (인접): 완전둔갑(합화=당령) / 활동력 저하 ──
+  // P4-1 [소스] 천간합 단계가 격국 단계보다 선행. 격국글자=월지 지장간 투출 천간 → 합 시 ×0.5
+  const wolJijang = jis[2] ? new Set(JIJANG[jis[2]].filter(([g,gn])=>g&&gn).map(([g])=>g)) : new Set();
+  const isGyeok = i => gans[i] && wolJijang.has(gans[i]);   // 격국글자(월령 투출) 후보
+  const ganAct=[1,1,1,1], ganTransform=[null,null,null,null];
+  if(reflect){
+    [[0,1],[1,2],[2,3]].forEach(([i,j])=>{ const a=gans[i],b=gans[j]; if(!a||!b)return;
+      const hp=GANHAP.find(([x,y])=>(x===a&&y===b)||(x===b&&y===a)); if(!hp)return;
+      const hwaOh=hp[2];
+      if(hwaOh===dangryeong){ ganTransform[i]=hwaOh; ganTransform[j]=hwaOh; hapchungNotes.push(POSG[i]+a+'·'+POSG[j]+b+' 합→완전둔갑('+hwaOh+', 당령일치) 재계산'); }
+      else { const key=(i===1||j===1)?'일간':(isGyeok(i)||isGyeok(j))?'격국글자':''; const A=key?0.5:0.2;
+        ganAct[i]=Math.min(ganAct[i],A); ganAct[j]=Math.min(ganAct[j],A);
+        hapchungNotes.push(POSG[i]+a+'·'+POSG[j]+b+' 천간합→활동력 '+(key?'50%('+key+' ×0.5)':'80%저하(그외 ×0.2)')); }
+    });
+  }
+  // χ (소멸 지지 제외)
+  const chi={木:0,火:0,土:0,金:0,水:0};
+  jis.forEach((z,i)=>{ if(!z||meltedZhi.has(i))return; const set=new Set();
+    JIJANG[z].forEach(([g,gn])=>{ if(g&&gn)set.add(GAN_OH[g]); }); set.forEach(o=>chi[o]++); });
+  // n (둔갑 반영) + 오행별 활동력(stuck 천간 최소)
+  const n={木:0,火:0,土:0,金:0,水:0}, actOf={木:1,火:1,土:1,金:1,水:1};
+  gans.forEach((g,i)=>{ if(!g)return; const oh=ganTransform[i]||GAN_OH[g]; n[oh]++;
+    if(!ganTransform[i] && ganAct[i]<actOf[oh]) actOf[oh]=ganAct[i]; });
+  const score={};
+  OHS.forEach(o=>{ const base=chi[o]===0?0:(o===dangryeong?3**n[o]:2**n[o])*chi[o]; score[o]=Math.round(base*actOf[o]*10)/10; });
+  // 강약 등급 — 서로 다른 점수값 개수(경우의 수) 기반 순위법 [P3 소스 확정]
+  const uniq=[...new Set(OHS.map(o=>score[o]))].sort((a,b)=>b-a);
+  const LADDER={5:['최강','강','중','약','최약'],4:['최강','강','약','최약'],3:['최강','중','최약'],2:['최강','최약'],1:['평']};
+  const lad=LADDER[uniq.length]||LADDER[5];
+  const grade={};
+  OHS.forEach(o=>{ grade[o]= (score[o]===0?'없음':(lad[uniq.indexOf(score[o])]??'약')); });
+  // 최강 오행 — 동점 시 상극 이기는 오행 [P3 소스 확정]
+  const maxScore=Math.max(...OHS.map(o=>score[o]));
+  const topOhs=OHS.filter(o=>score[o]===maxScore && maxScore>0);
+  let topOh=topOhs[0]||null;
+  if(topOhs.length>1){ const w=topOhs.find(o=>topOhs.some(o2=>o2!==o && KE[o]===o2)); if(w){topOh=w;
+    hapchungNotes.push('최강 동점('+topOhs.join('·')+') → 상극 이기는 '+w+' 최종 최강'); } }
+  // 십성
+  const sip={비겁:0,식상:0,재성:0,관성:0,인성:0};
+  OHS.forEach(o=>{ sip[sipClass(dayOh,o)]+=score[o]; });
+  // 재생관 [NotebookLM 확정]: 관성 무력의 결정적 기준 = 천간 미투출(n=0). 본기통근 여부보다 투출 여부가 결정적.
+  // 재생관 파격은 관성이 투출(실체화)해야만 성립 — 미투출+재성투출은 재생관 불인정.
+  const gwanOh=Object.keys(KE).find(o=>KE[o]===dayOh);
+  const jaeOh=KE[dayOh];
+  const gwanRatio=sip['비겁']>0?score[gwanOh]/sip['비겁']:0;
+  const gwanShil = n[gwanOh]>0;                          // 관성 천간 투출 = 실체화
+  const gwanYuryeok = gwanShil && score[gwanOh]>0;       // 실체화 + 수치
+  const jaesaenggwan = gwanShil && chi[jaeOh]>0;         // 투출 관성 + 통근 재성의 생조
+  // 격국
+  const maxSip=Math.max(...Object.values(sip));
+  const totalSip=Object.values(sip).reduce((x,y)=>x+y,0);
+  const dom=cls=> totalSip>0 && sip[cls] >= (totalSip - sip[cls]);  // [소스] 종격=해당 십성이 사주 장악(나머지 합 이상)
+  let guk, gukNote='';
+  // 화격 체크 (일간이 월간/시간과 천간합 + 화오행=당령)
+  let hwa=null;
+  for(const adj of [gans[2],gans[0]]){ // 월간, 시간
+    const hp=GANHAP.find(([a,b])=>(a===dayGan&&b===adj)||(b===dayGan&&a===adj));
+    if(hp){ hwa=hp[2]; break; }
+  }
+  if(hwa && hwa===dangryeong){ guk='화격'; gukNote='일간합+화오행=당령. 4조건(사주 가득·쟁합충 없음) 수동확인 필요.'; }
+  else if(sip['비겁']===maxSip && sip['비겁']>0 && dom('비겁')){
+    // 종왕 후보 (비겁이 사주 장악). 종왕 vs 내격 = 재생관 성립 여부 → 관성 천간 투출에 달림.
+    const muGeun=gans.some(g=>g && chi[GAN_OH[g]]===0);     // 투간했으나 χ=0
+    if(!jaesaenggwan){
+      // 관성 미투출(무력) 또는 재성 미통근 → 재생관 불성립 → 종왕격 확정
+      guk='종왕격';
+      // 탁 판정 [소스 확정]: 기신(관살)·구신(재성) 천간 투출 + 지지 뿌리 / 무근천간 존재
+      const giTak = n[gwanOh]>0 && chi[gwanOh]>0;          // 관살(기신) 투출+통근
+      const guTak = n[jaeOh]>0 && chi[jaeOh]>0;            // 재성(구신) 투출+통근
+      if(giTak||guTak||muGeun){
+        const why=[]; if(giTak)why.push('기신 관살('+gwanOh+') 투출·통근'); if(guTak)why.push('구신 재성('+jaeOh+') 투출·통근'); if(muGeun&&!giTak&&!guTak)why.push('무근천간');
+        gukNote='탁한 종왕격 — '+why.join(' / ')+'. 관성 '+(gwanShil?'투출했으나 재성 미통근→재생관 미성립':'미투출(n=0)→무력→재생관 불인정')+'. 해당 기신/구신 오행의 왕지 진입 대운·세운 = 탁기 폭발 경고구간(반합→삼합 완성 주의).';
+        c.flags.push({t:'flag',m:'탁한 종왕격: '+why.join(' / ')+'. 해당 오행 왕지(子午卯酉) 진입 대운·세운에 탁기 폭발 — 별도 점검·사법 처방.'});
+      } else gukNote='청한 종왕격 (기신·구신 천간 미투출).';
+      // 미투출이나 수치 열세 아님(>max/20) 인 드문 경우 참고 플래그
+      if(!gwanShil && score[gwanOh]>maxScore/20) c.flags.push({t:'flag',m:'관성 미투출이나 지지 수치('+score[gwanOh]+')가 최강 대비 1/20 초과 — 종왕 무력 판정 경계. 소스 대조 권장.'});
+    } else {
+      // 관성 투출(실체화) + 재성 통근 → 재생관 성립 → 종왕 불가 → 내격
+      guk=(sip['비겁']+sip['인성'])>(sip['식상']+sip['재성']+sip['관성'])?'내격(신강)':'내격(신약)';
+      gukNote='비겁 장악이나 관성('+gwanOh+') 천간 투출(실체화) + 재성('+jaeOh+') 통근 → 재생관 성립 → 종왕 불가, 내격 적용.';
+    }
+  }
+  else if(jaesaenggwan){ guk=(sip['비겁']+sip['인성'])>(sip['식상']+sip['재성']+sip['관성'])?'내격(신강)':'내격(신약)'; gukNote='재생관 성립(비겁 비장악) → 내격 적용.'; }
+  else {
+    // 기타 종격: 비겁 외 십성이 사주 장악할 때만 종격, 아니면 내격
+    const top=Object.keys(sip).reduce((a,b)=>sip[a]>=sip[b]?a:b);
+    const mapJong={인성:'종강격',재성:'종재격',관성:'종살격',식상:'종아격'};
+    if(top!=='비겁' && sip[top]===maxSip && maxSip>0 && dom(top) && mapJong[top]){
+      guk=mapJong[top]; gukNote=top+'이 사주 장악 → '+mapJong[top]+' 후보. 인성·비겁 무력 여부 등 조건 수동확인.';
+    } else {
+      guk=(sip['비겁']+sip['인성'])>(sip['식상']+sip['재성']+sip['관성'])?'내격(신강)':'내격(신약)';
+      gukNote='장악 오행 없음(억부 대상) → 내격.';
+    }
+  }
+  // 체신 (화살표 최다, 동수 시 일>월>시>년)
+  const posOrder=[{g:gans[1],l:'일간',i:1},{g:gans[2],l:'월간',i:2},{g:gans[0],l:'시간',i:0},{g:gans[3],l:'년간',i:3}];
+  const recvCount=g=>{ if(!g)return -1; let c=0; gans.forEach(x=>{ if(x&&ARROW_RECV[g].has(x))c++; }); return c; };
+  let chesin=null,chePos=null,cheMax=-1;
+  posOrder.forEach(p=>{ const rc=recvCount(p.g); if(rc>cheMax){cheMax=rc;chesin=p.g;chePos=p.l;} });
+  // 용신법
+  const yongBeop=(chePos==='일간'||chePos==='월간')?'영험법(정위)':'군측법(체신 옆)';
+  const jw=JEONGWI[chesin]||['','',''];
+  const yt=YONG[chesin]||['',''];
+  const gyeWarn = chesin==='癸';
+  // 희신
+  const huishin=HUISHIN[guk]||(guk.indexOf('경계')>=0?'경계 — 아래 [종왕]/[내격] 두 갈래 참조':'격국 확정 후');
+  let huiOh='',giku='';
+  if(guk==='종왕격'){huiOh=dayOh+'(비겁)';giku='기신=관살('+gwanOh+') / 구신=재성('+jaeOh+')';}
+  else if(guk.indexOf('경계')>=0){
+    const shinStrong=(sip['비겁']+sip['인성'])>(sip['식상']+sip['재성']+sip['관성']);
+    huiOh='[종왕] '+dayOh+'(비겁)→인성→식상 / [내격] '+(shinStrong?'관성·식상':'인성·비겁');
+    giku='[종왕] 기신=관살('+gwanOh+')·구신=재성('+jaeOh+') / [내격] 격에 따라 상이 — 격 확정 후 적용';
+  }
+  else if(guk==='내격(신약)'){huiOh='인성·비겁';giku='기신=관성·재성 계열(설기·극)';}
+  else if(guk==='내격(신강)'){huiOh='관성·식상';giku='기신=인성·비겁 계열(부조 과다)';}
+  else if(guk==='종강격'){huiOh='인성';giku='기신=재성';}
+  else if(guk==='종재격'){huiOh='재성';giku='기신=비겁';}
+  else if(guk==='종살격'){huiOh='관성';giku='기신=식상';}
+  else if(guk==='종아격'){huiOh='식상';giku='기신=인성';}
+  else if(guk==='화격'){huiOh=hwa+'(화신)';giku='기신=화신을 극/쟁합하는 것';}
+
+  return {dayGan,dayOh,chi,n,score,grade,sip,gwanOh,jaeOh,gwanRatio,gwanYuryeok,jaesaenggwan,
+    guk,gukNote,chesin,chePos,yongBeop,jw,yt,gyeWarn,huishin,huiOh,giku,
+    topOh,actOf,hapchungNotes,reflect,meltedCount:meltedZhi.size};
+}
+
+
+/* ════ 작명 DB ════ */
+const SUNG_DB = {
+  '김':[['金',8]],'이':[['李',7]],'박':[['朴',6]],'최':[['崔',11]],
+  '정':[['鄭',19],['丁',2]],'강':[['姜',9]],'조':[['趙',14],['曺',11]],
+  '윤':[['尹',4]],'장':[['張',11]],'임':[['林',8]],'한':[['韓',17]],
+  '오':[['吳',7]],'서':[['徐',10]],'신':[['申',5]],'권':[['權',22]],
+  '황':[['黃',12]],'안':[['安',6]],'송':[['宋',7]],'류':[['柳',9]],'유':[['柳',9]],
+  '홍':[['洪',10]],'전':[['全',6]],'고':[['高',10]],'문':[['文',4]],
+  '손':[['孫',10]],'양':[['梁',11]],'노':[['盧',16]],'백':[['白',5]],
+  '허':[['許',11]],'남':[['南',9]],'심':[['沈',8]],'류':[['柳',9]],
+  '하':[['河',9]],'차':[['車',7]],'주':[['朱',6]],'민':[['閔',12]],
+  '나':[['羅',19]],'라':[['羅',19]],'엄':[['嚴',20]],'채':[['蔡',14]],
+  '진':[['陳',16]],'원':[['元',4]],'천':[['千',3]],'방':[['方',4]],
+  '공':[['孔',4]],'현':[['玄',5]],'함':[['咸',9]],'변':[['卞',4]],
+  '염':[['廉',13]],'여':[['呂',7]],'추':[['秋',9]],'도':[['都',12]],
+  '소':[['蘇',19]],'우':[['禹',9]],'배':[['裵',14]],'봉':[['奉',8]],
+  '기':[['奇',8]],'길':[['吉',6]],'탁':[['卓',8]],'국':[['鞠',17]],
+  '형':[['邢',7]],'석':[['石',5]],'선':[['宣',9]],'설':[['薛',17]],
+  '성':[['成',6]],'연':[['延',7]],'위':[['魏',18]],'황보':[['皇甫',15]],
+  '남궁':[['南宮',12]],'독고':[['獨孤',17]],'선우':[['鮮于',18]],
+};
+const HANJA_CANDS = {
+  // ── 공통 자주쓰는 이름 첫자 획수 참고표 ──
+  // 道12 夏10 志7 池7 時10 瑞14 智12 建9 道12 承8
+  // 宇6 恩10 裕13 叡16 泰10 潤16 涓11 珍10 俊10
+  // 서(瑞14/序7) 채(彩11) 지(智12/志7) 하(夏10)
+
+  '준서': [
+    { h:'俊瑞', s:[10,14], o:['金','金'], mean:'빼어나고 상서로운 기운' },
+    { h:'峻瑞', s:[10,14], o:['土','金'], mean:'높이 솟아 상서롭다' },
+    { h:'竣瑞', s:[12,14], o:['木','金'], mean:'완성 위에 상서로운 빛' },
+    { h:'駿瑞', s:[17,14], o:['火','金'], mean:'준마처럼 달려 상서롭다' },
+  ],
+  '도윤': [
+    { h:'道允', s:[13,4], o:['木','土'], mean:'바른 도리로 윤택함' },
+    { h:'道潤', s:[13,16], o:['木','水'], mean:'바른 도리가 윤택히 흐르다' },
+  ],
+  '하준': [
+    { h:'夏俊', s:[10,10], o:['木','金'], mean:'여름처럼 크고 빼어남' },
+    { h:'夏峻', s:[10,10], o:['木','土'], mean:'여름처럼 높이 솟음' },
+    { h:'夏竣', s:[10,12], o:['木','木'], mean:'여름처럼 완성해 나가다' },
+  ],
+  '이준': [
+    { h:'怡俊', s:[9,10], o:['土','金'], mean:'기쁨과 함께 빼어나다' },
+    { h:'怡峻', s:[9,10], o:['土','土'], mean:'기쁘게 높이 솟다' },
+  ],
+  '시우': [
+    { h:'時雨', s:[10,8], o:['金','土'], mean:'때를 아는 지혜로운 비' },
+    { h:'時宇', s:[10,6], o:['金','土'], mean:'때를 알고 하늘처럼 넓다' },
+    { h:'時佑', s:[10,7], o:['金','土'], mean:'때에 맞게 도움이 되다' },
+  ],
+  '지호': [
+    { h:'智浩', s:[12,11], o:['金','木'], mean:'지혜롭고 넓다' },
+    { h:'志浩', s:[7,11], o:['金','木'], mean:'큰 뜻이 넓게 퍼지다' },
+    { h:'智皓', s:[12,12], o:['金','金'], mean:'지혜롭게 환히 빛나다' },
+  ],
+  '선우': [
+    { h:'善宇', s:[12,6], o:['金','土'], mean:'착한 마음이 하늘 같음' },
+    { h:'宣宇', s:[9,6], o:['金','土'], mean:'베풀며 하늘처럼 넓다' },
+    { h:'璿宇', s:[18,6], o:['金','土'], mean:'아름다운 옥빛이 하늘 가득' },
+  ],
+  '우진': [
+    { h:'宇珍', s:[6,10], o:['土','金'], mean:'하늘처럼 넓고 보배롭다' },
+    { h:'宇振', s:[6,11], o:['土','木'], mean:'하늘 아래 크게 떨치다' },
+    { h:'友珍', s:[4,10], o:['土','金'], mean:'벗처럼 보배로운 기운' },
+  ],
+  '서준': [
+    { h:'瑞俊', s:[14,10], o:['金','金'], mean:'상서롭고 빼어나다' },
+    { h:'瑞峻', s:[14,10], o:['金','土'], mean:'상서롭게 높이 솟다' },
+    { h:'序俊', s:[7,10], o:['金','金'], mean:'차례로 빼어나게 나아가다' },
+  ],
+  '민준': [
+    { h:'旻俊', s:[8,10], o:['水','金'], mean:'밝은 하늘처럼 빼어나다' },
+    { h:'旻峻', s:[8,10], o:['水','土'], mean:'밝은 하늘처럼 높이 솟다' },
+    { h:'敏俊', s:[11,10], o:['水','金'], mean:'민첩하고 빼어나다' },
+  ],
+  '건우': [
+    { h:'建宇', s:[9,6], o:['木','土'], mean:'굳세게 세운 하늘 같은 기운' },
+    { h:'健宇', s:[11,6], o:['木','土'], mean:'건강하고 하늘처럼 넓다' },
+  ],
+  '재원': [
+    { h:'梓源', s:[11,14], o:['金','土'], mean:'재능의 근원이 깊다' },
+    { h:'梓苑', s:[11,11], o:['金','木'], mean:'재능이 동산처럼 무성하다' },
+    { h:'材源', s:[7,14], o:['金','土'], mean:'재목의 근원이 깊다' },
+  ],
+  '하율': [
+    { h:'夏律', s:[10,9], o:['木','火'], mean:'여름처럼 빛나는 리듬' },
+    { h:'夏潞', s:[10,16], o:['木','水'], mean:'여름처럼 넓게 흐르다' },
+  ],
+  '서아': [
+    { h:'瑞芽', s:[14,8], o:['金','木'], mean:'상서로움이 새싹처럼 피어남' },
+    { h:'瑞雅', s:[14,13], o:['金','木'], mean:'상서롭고 우아한 빛' },
+  ],
+  '지안': [
+    { h:'智安', s:[12,6], o:['金','土'], mean:'지혜로운 평안함' },
+    { h:'志安', s:[7,6], o:['金','土'], mean:'뜻을 품고 평안히 나아가다' },
+    { h:'智晏', s:[12,10], o:['金','火'], mean:'지혜롭게 맑고 밝다' },
+  ],
+  '아린': [
+    { h:'芽璘', s:[8,20], o:['土','火'], mean:'새싹처럼 빛나는 옥' },
+    { h:'芽潾', s:[8,16], o:['土','水'], mean:'새싹처럼 맑게 피어남' },
+  ],
+  '서윤': [
+    { h:'瑞允', s:[14,4], o:['金','土'], mean:'상서로움 속에 윤택한 복' },
+    { h:'瑞潤', s:[14,16], o:['金','水'], mean:'상서롭게 윤택하게 흐르다' },
+  ],
+  '예서': [
+    { h:'叡瑞', s:[16,14], o:['土','金'], mean:'슬기롭고 상서로운 빛' },
+    { h:'叡序', s:[16,7], o:['土','金'], mean:'슬기롭게 차례로 나아가다' },
+  ],
+  '소율': [
+    { h:'素律', s:[10,9], o:['金','火'], mean:'순수한 빛깔의 음률' },
+    { h:'昭律', s:[9,9], o:['火','火'], mean:'밝게 빛나는 리듬' },
+  ],
+  '채원': [
+    { h:'彩源', s:[11,14], o:['金','土'], mean:'빛깔의 근원, 다채로운 삶' },
+    { h:'彩苑', s:[11,11], o:['金','木'], mean:'다채로운 꽃이 피는 동산' },
+  ],
+  '은서': [
+    { h:'恩瑞', s:[10,14], o:['土','金'], mean:'은혜롭고 상서로운 기운' },
+    { h:'恩序', s:[10,7], o:['土','金'], mean:'은혜로운 차례로 나아가다' },
+  ],
+  '라온': [
+    { h:'羅媛', s:[19,13], o:['火','土'], mean:'기쁨으로 가득한 아름다움' },
+    { h:'羅温', s:[19,13], o:['火','水'], mean:'기쁨이 퍼지며 따뜻하다' },
+  ],
+};
+
+/* ──────────────────────────────────────────
+   이름 첫자·둘째자 원획 조회
+   NAMES_DB의 h(한자)에서 각 글자의 원획을 역산하거나
+   HANJA_CANDS에서 가져옴
+   이름별 한자 후보가 없으면 기본 h의 첫자 획수를 추정
+────────────────────────────────────────── */
+
+// 자주 쓰는 한자 원획 테이블 (jakmyeong.html 동일 소스)
+const HANJA_S = {
+  '道':13,'夏':10,'志':7,'池':7,'時':10,'瑞':14,'智':12,'建':9,'承':8,
+  '宇':6,'恩':10,'裕':13,'叡':16,'泰':10,'潤':16,'涓':11,'珍':10,'俊':10,
+  '峻':10,'駿':17,'竣':12,'彩':11,'素':10,'秀':7,'宣':9,'璿':18,'善':12,
+  '旻':8,'敏':11,'夏':10,'允':4,'安':6,'芽':8,'璘':20,'潾':16,'律':9,
+  '源':14,'梓':11,'建':9,'健':11,'宇':6,'友':4,'序':7,'材':7,'苑':11,
+  '浩':11,'皓':12,'佑':7,'雨':8,'怡':9,'妍':9,'瑛':13,'炫':10,'涓':11,
+  '晶':12,'晸':12,'炅':8,'炳':9,'旻':8,'亮':9,'南':9,'光':6,'晟':11,
+  '昞':9,'昊':8,'昱':9,'晗':10,'昀':8,'暻':15,'炫':10,'煜':13,'熙':16,
+  '允':4,'潤':16,'尹':4,'奫':11,'允':4,'胤':9,'閏':12,'昀':8,
+  '珠':11,'琪':13,'琦':13,'琮':13,'琥':13,'琛':13,'瑾':18,'璟':17,'瑜':14,
+  '鈺':13,'錫':16,'鎭':18,'鍾':17,'鋆':14,'鈗':12,
+  '桓':10,'梧':11,'林':8,'棟':12,'相':9,'柔':9,'柏':9,'柳':9,'梨':11,
+  '根':10,'起':10,'佳':8,'彬':11,'梓':11,'楨':13,'楓':13,'楡':13,
+  '寬':15,'祺':13,'卿':12,'喬':12,
+  '莞':12,'葵':15,'茱':11,'芮':10,'苑':11,'莉':12,'萱':15,'蒼':16,
+  '蘭':23,'芳':10,'涓':11,'雅':13,
+  '成':6,'誠':14,'聖':13,'星':9,'晟':11,'碩':14,'成':6,
+  '准':10,'珺':12,'珻':11,'瑞':14,'珝':10,'瑋':14,
+  '武':8,'斌':12,'彬':11,'玟':9,'玲':10,
+  '媛':13,'娜':10,'羅':19,'娟':10,'妍':9,
+  '恩':10,'殷':10,'銀':14,'垠':9,'珢':11,
+  '俊':10,'峻':10,'駿':17,'竣':12,'畯':13,'儁':16,
+  '翰':16,'澔':16,'皓':12,'昊':8,'浩':11,'豪':14,
+  '珩':11,'璘':20,'璃':17,'珹':13,
+  '溫':14,'溫':14,'熙':16,
+  '守':6,'修':10,'秀':7,'授':12,'樹':16,
+  '護':21,'鎬':18,
+  '源':14,'元':4,'原':10,'垣':9,'媛':13,
+  '允':4,'尹':4,'潤':16,'閏':12,
+  '裕':13,'裕':13,
+  '泰':10,'太':4,'胎':9,'怡':9,
+  '恩':10,'殷':10,
+  '承':8,'丞':6,
+  '贊':19,'燦':17,'璨':18,'粲':13,'昶':9,
+  '煥':13,'奐':9,'桓':10,'環':18,
+  '緩':15,'莞':12,'婉':11,
+  '池':7,
+};
+const GIL = new Set([1,3,5,6,7,8,11,13,15,16,17,18,21,23,24,25,29,31,32,33,35,37,38,39,41,45,47,48,52,57,61,63,65,67,68,81]);
+const JUNG = new Set([26,27,30,49,51,58,71,73,75,77,78]);
+const NAMES_DB = [
+  { n:'건우', g:'남', cands:[{h:'建宇',s:[9,6],poem:'굳세게 세우고, 하늘처럼 넓게 나아가다'},{h:'健宇',s:[11,6],poem:'건강하게, 하늘처럼 드넓게 자라다'}] },
+  { n:'건율', g:'남', cands:[{h:'健律',s:[11,9],poem:'굳건한 의지로 삶의 리듬을 스스로 만들어가다'},{h:'建律',s:[9,9],poem:'바르게 세운 뜻이 음률처럼 조화를 이루다'}] },
+  { n:'겸우', g:'남', cands:[{h:'謙宇',s:[17,6],poem:'겸손한 마음이 하늘처럼 넓고 깊다'}] },
+  { n:'규민', g:'남', cands:[{h:'奎旻',s:[9,8],poem:'별처럼 빛나는 밝은 하늘'}] },
+  { n:'규성', g:'남', cands:[{h:'奎星',s:[9,9],poem:'별자리처럼 빛나는 성품'}] },
+  { n:'지완', g:'남', cands:[{h:'池緩',s:[7,15],poem:'깊은 물가처럼, 부드럽고 넉넉하게'},{h:'智緩',s:[12,15],poem:'지혜가 물처럼 부드럽게 흐르며 무르익다'}] },
+  { n:'시완', g:'남', cands:[{h:'時緩',s:[10,15],poem:'때를 알고, 물처럼 부드럽게 나아가다'}] },
+  { n:'서완', g:'남', cands:[{h:'瑞緩',s:[14,15],poem:'상서로운 기운이 부드럽게 무르익다'}] },
+  { n:'도윤', g:'남', cands:[{h:'道允',s:[13,4],poem:'바른 길 위에서 넉넉하게 자라는 아이'},{h:'道潤',s:[13,16],poem:'바른 도리가 봄비처럼 고루 스민다'},{h:'道錀',s:[13,16],poem:'바른 길 위에 단단한 금빛 기운을 더하다'}] },
+  { n:'도현', g:'남', cands:[{h:'道炫',s:[13,10],poem:'바른 길 위에서 환히 빛나다'},{h:'道賢',s:[13,15],poem:'바른 도리 위에 어진 마음을 더하다'}] },
+  { n:'도하', g:'남', cands:[{h:'道河',s:[13,8],poem:'바른 길이 강처럼 길고 깊게 흐르다'},{h:'道夏',s:[13,10],poem:'바른 길 위에서 여름처럼 환하게'}] },
+  { n:'도준', g:'남', cands:[{h:'道俊',s:[13,10],poem:'바른 길 위에서 빼어난 기품을 갖추다'},{h:'道峻',s:[13,10],poem:'바른 길 위에 높이 솟아오르다'}] },
+  { n:'로운', g:'남', cands:[{h:'路雲',s:[13,12],poem:'구름처럼 자유롭게, 자신만의 길을 가다'}] },
+  { n:'로한', g:'남', cands:[{h:'路韓',s:[13,17],poem:'자신만의 길 위에서 크고 당당하게'}] },
+  { n:'리안', g:'남', cands:[{h:'梨安',s:[11,6],poem:'배꽃 같은 순수함과 평안'}] },
+  { n:'우주', g:'남', cands:[{h:'宇宙',s:[6,8],poem:'온 세상을 품는 마음'}] },
+  { n:'이안', g:'남', cands:[{h:'怡安',s:[9,6],poem:'기쁨과 평안을 함께 지니다'}] },
+  { n:'이준', g:'남', cands:[{h:'怡俊',s:[9,10],poem:'늘 기쁘고, 어디서든 빼어나다'},{h:'怡峻',s:[9,10],poem:'기쁨 속에 높이 솟아오르다'},{h:'怡竣',s:[9,12],poem:'기쁘게 한 가지 일을 끝까지 완성해 내다'}] },
+  { n:'이현', g:'남', cands:[{h:'怡賢',s:[9,15],poem:'기쁨 속에 어진 마음을 갖추다'}] },
+  { n:'이한', g:'남', cands:[{h:'怡韓',s:[9,17],poem:'기쁨 가득, 크고 당당하게 나아가다'}] },
+  { n:'은우', g:'남', cands:[{h:'恩宇',s:[10,6],poem:'은혜로운 마음이 하늘처럼 가득하다'},{h:'殷宇',s:[10,6],poem:'넉넉함이 하늘 가득 넘쳐흐르다'}] },
+  { n:'은찬', g:'남', cands:[{h:'恩璨',s:[10,17],poem:'은혜로운 빛이 찬란하게 빛나다'}] },
+  { n:'온유', g:'남', cands:[{h:'溫柔',s:[13,9],poem:'온화하고 부드러운 기운'}] , pureKorean:true },
+  { n:'예준', g:'남', cands:[{h:'叡俊',s:[16,10],poem:'슬기롭고 빼어나, 어디서든 빛난다'},{h:'叡峻',s:[16,10],poem:'밝은 눈으로 높이 솟아오르다'}] },
+  { n:'예성', g:'남', cands:[{h:'叡晟',s:[16,11],poem:'슬기롭고 밝게 빛나는 아이'}] },
+  { n:'태오', g:'남', cands:[{h:'泰悟',s:[10,10],poem:'크고 넉넉하게, 스스로 깨달아가다'},{h:'泰晤',s:[10,11],poem:'크고 밝게, 환히 빛나다'}] },
+  { n:'태윤', g:'남', cands:[{h:'泰潤',s:[10,16],poem:'크고 넉넉하게, 봄비처럼 고루 스미다'}] },
+  { n:'태하', g:'남', cands:[{h:'泰夏',s:[10,10],poem:'크고 넉넉하게, 여름처럼 환하다'},{h:'泰河',s:[10,8],poem:'크고 넉넉하게, 강물처럼 길게 흐르다'}] },
+  { n:'해온', g:'남', cands:[{h:'海溫',s:[10,14],poem:'바다처럼 넓고 따뜻한 마음을 지니다'}] },
+  { n:'윤우', g:'남', cands:[{h:'潤宇',s:[16,6],poem:'넉넉함이 하늘처럼 가득 퍼지다'},{h:'潤佑',s:[16,7],poem:'넉넉한 기운이 늘 곁에서 도와주다'}] },
+  { n:'연우', g:'남', cands:[{h:'然宇',s:[12,6],poem:'그러한 모습 그대로, 하늘처럼 넓게'}] },
+  { n:'준서', g:'남', cands:[{h:'俊瑞',s:[10,14],poem:'빼어난 기품 위에 상서로운 빛이 더해진다'},{h:'駿瑞',s:[17,14],poem:'준마처럼 달리며 상서로운 앞길을 열다'}] },
+  { n:'준우', g:'남', cands:[{h:'俊宇',s:[10,6],poem:'빼어나고 하늘처럼 넓게 나아가다'}] },
+  { n:'지호', g:'남', cands:[{h:'智浩',s:[12,11],poem:'지혜가 넓은 바다처럼 깊고 넓다'},{h:'智皓',s:[12,12],poem:'지혜롭고, 환하게 빛나다'}] },
+  { n:'지한', g:'남', cands:[{h:'智韓',s:[12,17],poem:'지혜롭고 크고 당당하게 나아가다'}] },
+  { n:'지안', g:'남', cands:[{h:'志安',s:[7,6],poem:'큰 뜻을 품고, 평안한 길을 걸어가다'},{h:'智安',s:[12,6],poem:'지혜로운 마음이 곧 평안함이 된다'}] },
+  { n:'지온', g:'남', cands:[{h:'智溫',s:[12,14],poem:'지혜롭고 따뜻한 마음을 지니다'}] },
+  { n:'지환', g:'남', cands:[{h:'智煥',s:[12,13],poem:'지혜가 환하게 빛나는 아이'}] },
+  { n:'지후', g:'남', cands:[{h:'智厚',s:[12,9],poem:'지혜가 두텁고 깊은 아이'}] },
+  { n:'재원', g:'남', cands:[{h:'梓源',s:[11,14],poem:'재능의 뿌리가 깊고, 그 근원이 넓다'},{h:'材源',s:[7,14],poem:'큰 재목의 근원, 세상의 기둥이 되다'}] },
+  { n:'재윤', g:'남', cands:[{h:'梓潤',s:[11,16],poem:'재능의 뿌리가 봄비처럼 넉넉히 자라다'}] },
+  { n:'승우', g:'남', cands:[{h:'承宇',s:[8,6],poem:'이어받은 뜻을 하늘처럼 넓게 펼치다'},{h:'承佑',s:[8,7],poem:'이어받은 뜻이 늘 도움이 되어 돌아오다'}] },
+  { n:'승민', g:'남', cands:[{h:'昇旻',s:[8,8],poem:'떠오르는 해처럼 밝은 하늘을 향하다'}] },
+  { n:'승현', g:'남', cands:[{h:'昇炫',s:[8,10],poem:'떠올라 환하게 빛나는 기운'}] },
+  { n:'시우', g:'남', cands:[{h:'時雨',s:[10,8],poem:'꼭 필요한 때에 내리는 단비 같은 아이'},{h:'時佑',s:[10,7],poem:'때를 알고 든든한 힘이 되어준다'}] },
+  { n:'시윤', g:'남', cands:[{h:'時允',s:[10,4],poem:'때에 맞게 윤택함'}] },
+  { n:'시온', g:'남', cands:[{h:'時溫',s:[10,14],poem:'때를 알고 따뜻함을 품다'}] },
+  { n:'시현', g:'남', cands:[{h:'時炫',s:[10,10],poem:'때를 알고 환하게 빛나다'},{h:'時賢',s:[10,15],poem:'때를 알고 어질게 나아가다'}] },
+  { n:'수호', g:'남', cands:[{h:'守護',s:[6,21],poem:'소중한 것을 끝까지 지키는 사람'},{h:'秀浩',s:[7,11],poem:'빼어나고, 넓은 마음을 가진 아이'}] },
+  { n:'수현', g:'남', cands:[{h:'秀炫',s:[7,10],poem:'빼어나고 빛나는 기운을 지니다'},{h:'秀賢',s:[7,15],poem:'빼어나고 어진 마음을 갖추다'}] },
+  { n:'선우', g:'남', cands:[{h:'善宇',s:[12,6],poem:'착한 마음이 하늘처럼 넓고 깊다'},{h:'宣宇',s:[9,6],poem:'베풀며 하늘처럼 크게 나아가다'}] },
+  { n:'성현', g:'남', cands:[{h:'晟賢',s:[11,15],poem:'밝게 빛나는 어진 마음을 지니다'}] },
+  { n:'성준', g:'남', cands:[{h:'晟俊',s:[11,10],poem:'밝게 빛나며 그 누구보다 빼어나다'}] },
+  { n:'민준', g:'남', cands:[{h:'旻俊',s:[8,10],poem:'밝은 하늘처럼, 그 누구보다 빼어나다'},{h:'旻峻',s:[8,10],poem:'밝은 하늘 아래 높이 솟아오르다'}] },
+  { n:'민재', g:'남', cands:[{h:'旻載',s:[8,13],poem:'밝은 하늘의 뜻을 싣고 멀리 나아가다'}] },
+  { n:'민우', g:'남', cands:[{h:'旻宇',s:[8,6],poem:'밝은 하늘처럼 넓은 마음을 지니다'},{h:'旻佑',s:[8,7],poem:'밝은 하늘 아래 늘 도움을 얻는다'}] },
+  { n:'민규', g:'남', cands:[{h:'旻圭',s:[8,6],poem:'밝은 하늘 아래 옥구슬처럼 맑게 빛나다'},{h:'旻奎',s:[8,9],poem:'밝은 하늘 아래 별처럼 빛나는 학문의 기운'}] },
+  { n:'민석', g:'남', cands:[{h:'旻碩',s:[8,14],poem:'밝은 하늘 아래 크고 단단한 인물로 자라다'},{h:'旻蓆',s:[8,13],poem:'밝은 하늘 아래 평안히 제자리를 잡다'}] },
+  { n:'민성', g:'남', cands:[{h:'旻晟',s:[8,11],poem:'밝은 하늘처럼 환하게 빛나는 아이'},{h:'旻聖',s:[8,13],poem:'밝은 하늘처럼 성스럽고 환하게 빛나다'}] },
+  { n:'빈우', g:'남', cands:[{h:'彬宇',s:[11,6],poem:'빛나는 문채가 하늘 같다'}] },
+  { n:'우진', g:'남', cands:[{h:'宇珍',s:[6,10],poem:'하늘처럼 넓고, 보배처럼 귀한 아이'},{h:'友珍',s:[4,10],poem:'따뜻한 벗이 되고, 보배처럼 빛난다'}] },
+  { n:'우빈', g:'남', cands:[{h:'宇彬',s:[6,11],poem:'하늘처럼 넓고 빛나는 인품을 지니다'}] },
+  { n:'은호', g:'남', cands:[{h:'恩浩',s:[10,11],poem:'은혜로운 마음이 바다처럼 넓다'}] },
+  { n:'유안', g:'남', cands:[{h:'裕安',s:[13,6],poem:'넉넉하고 평안한 마음을 지니다'},{h:'柔安',s:[9,6],poem:'부드러운 마음으로 평안을 지키다'}] },
+  { n:'유한', g:'남', cands:[{h:'裕韓',s:[13,17],poem:'넉넉하고 크고 당당하게 나아가다'}] },
+  { n:'유성', g:'남', cands:[{h:'裕晟',s:[13,11],poem:'넉넉하고 밝게 빛나는 아이'}] },
+  { n:'이든', g:'남', cands:[{h:'怡伀',s:[9,6],poem:'기쁘게 힘쓰며 살아가는 사람'}] , pureKorean:true },
+  { n:'서준', g:'남', cands:[{h:'瑞俊',s:[14,10],poem:'상서로운 기운과 빼어난 기품을 함께'},{h:'序俊',s:[7,10],poem:'차근차근, 그러나 누구보다 빼어나게'}] },
+  { n:'서우', g:'남', cands:[{h:'瑞佑',s:[14,7],poem:'상서로운 기운이 늘 곁에서 돕는다'}] },
+  { n:'서진', g:'남', cands:[{h:'瑞珍',s:[14,10],poem:'상서롭고 보배로운 기운을 함께 담다'},{h:'瑞振',s:[14,11],poem:'상서로운 기운이 크게 떨쳐 나아가다'}] },
+  { n:'시율', g:'남', cands:[{h:'時律',s:[10,9],poem:'때에 맞는 아름다운 리듬을 지니다'},{h:'時率',s:[10,11],poem:'때를 알고 스스로 삶을 이끌어가다'}] },
+  { n:'시원', g:'남', cands:[{h:'時源',s:[10,14],poem:'때를 알고 그 근원이 깊다'}] },
+  { n:'시안', g:'남', cands:[{h:'時安',s:[10,6],poem:'때를 알고 평안하게 나아가다'}] },
+  { n:'선율', g:'남', cands:[{h:'善律',s:[12,9],poem:'착한 마음이 아름다운 리듬이 되다'},{h:'宣律',s:[9,9],poem:'베풀며 삶의 아름다운 박자를 만들다'}] },
+  { n:'선호', g:'남', cands:[{h:'善浩',s:[12,11],poem:'착한 마음이 바다처럼 넓고 깊다'}] },
+  { n:'솔', g:'남', cands:[{h:'率',s:[11],poem:'이끌어 나가는 기운'}] },
+  { n:'겸', g:'남', cands:[{h:'謙',s:[17],poem:'겸손한 마음으로 늘 자신을 낮추고 채워가다'}] },
+  { n:'결', g:'남', cands:[{h:'結',s:[12],poem:'인연과 결실을 단단히 맺어가는 아이'}] },
+  { n:'도경', g:'남', cands:[{h:'道暻',s:[13,16],poem:'바른 길 위에서 환하게 빛나는 풍경을 그리다'},{h:'道炯',s:[13,9],poem:'바른 길 위에서 또렷하게 빛나다'}] },
+  { n:'도율', g:'남', cands:[{h:'道律',s:[13,9],poem:'바른 길과 조화로운 음률을 함께 지니다'},{h:'道率',s:[13,11],poem:'바른 길과 스스로 이끄는 리듬을 함께 지니다'}] },
+  { n:'도우', g:'남', cands:[{h:'道宇',s:[13,6],poem:'바른 길이 하늘처럼 넓게 펼쳐지다'},{h:'道佑',s:[13,7],poem:'바른 길에서 늘 도움을 얻는다'},{h:'道友',s:[13,4],poem:'바른 길 위에서 따뜻한 벗이 되어주다'}] },
+  { n:'다온', g:'남', cands:[{h:'多溫',s:[6,13],poem:'따뜻함이 넘치는 사람'}] , pureKorean:true },
+  { n:'로한', g:'남', cands:[{h:'路韓',s:[13,17],poem:'자신만의 길 위에서 크고 당당하게'}] },
+  { n:'민성', g:'남', cands:[{h:'旻晟',s:[8,11],poem:'밝은 하늘처럼 환하게 빛나는 아이'},{h:'旻聖',s:[8,13],poem:'밝은 하늘처럼 성스럽고 환하게 빛나다'}] },
+  { n:'하율', g:'남', cands:[{h:'夏律',s:[10,9],poem:'여름처럼 빛나는 리듬'}] },
+  { n:'하진', g:'남', cands:[{h:'夏眞',s:[10,10],poem:'여름처럼 환하고, 참되게 자라다'},{h:'夏振',s:[10,11],poem:'여름처럼 환하게, 크게 떨쳐 일어나다'}] },
+  { n:'재이', g:'남', cands:[{h:'梓怡',s:[11,9],poem:'재능의 뿌리에 기쁨이 함께 피어나다'},{h:'梓利',s:[11,7],poem:'재능의 뿌리에서 이로움이 자라나다'}] },
+  { n:'태이', g:'남', cands:[{h:'泰怡',s:[10,9],poem:'크고 넉넉한 마음에 기쁨이 가득하다'},{h:'泰利',s:[10,7],poem:'크고 넉넉한 마음에 이로움이 더해지다'}] },
+  { n:'태양', g:'남', cands:[{h:'泰陽',s:[10,17],poem:'크고 넉넉한, 늘 밝게 빛나는 존재'}] },
+  { n:'태민', g:'남', cands:[{h:'泰旻',s:[10,8],poem:'크고 넉넉하게, 밝은 하늘처럼'}] },
+  { n:'윤호', g:'남', cands:[{h:'潤皓',s:[16,12],poem:'넉넉하고 환하게 빛나는 아이'},{h:'潤浩',s:[16,11],poem:'넉넉함이 바다처럼 크고 깊게 퍼지다'}] },
+  { n:'윤성', g:'남', cands:[{h:'允晟',s:[4,11],poem:'넉넉한 복이 밝게 빛으로 피어나다'}] },
+  { n:'준혁', g:'남', cands:[{h:'俊赫',s:[10,14],poem:'빼어나고 찬란하게 빛나는 아이'}] },
+  { n:'재현', g:'남', cands:[{h:'梓賢',s:[11,15],poem:'재능의 뿌리에 어진 마음을 더하다'}] },
+  { n:'도영', g:'남', cands:[{h:'道映',s:[13,9],poem:'바른 길을 환히 비추며 나아가다'},{h:'道榮',s:[13,14],poem:'바른 길 위에서 영광을 얻다'}] },
+  { n:'율', g:'남', cands:[{h:'律',s:[9],poem:'스스로 삶의 리듬을 만들어가는 아이'}] },
+  { n:'서현', g:'남', cands:[{h:'瑞炫',s:[13,9],poem:'상서롭게 환히 빛나다'}] },
+  { n:'서율', g:'남', cands:[{h:'瑞律',s:[13,9],poem:'상서로운 리듬과 생명력'}] },
+  { n:'서온', g:'남', cands:[{h:'瑞溫',s:[13,13],poem:'상서로운 기운이 따뜻하게 익다'}] },
+  { n:'지율', g:'남', cands:[{h:'志律',s:[7,9],poem:'뜻 있는 삶의 아름다운 리듬'}] },
+  { n:'지연', g:'남', cands:[{h:'志涓',s:[7,10],poem:'뜻이 맑게 흐르다'}] },
+  { n:'이온', g:'남', cands:[{h:'怡溫',s:[9,13],poem:'기쁨이 따뜻하게 익다'}] },
+  { n:'해솔', g:'남', cands:[{h:'海率',s:[10,11],poem:'바다처럼 넓게 이끌어 나가다'}] },
+  { n:'건솔', g:'남', cands:[{h:'建率',s:[8,11],poem:'굳세게 세워 이끌어 나가다'}] },
+  { n:'채온', g:'남', cands:[{h:'彩溫',s:[11,13],poem:'다채로운 기운이 따뜻하게 익다'}] },
+  { n:'하준', g:'남', cands:[{h:'夏俊',s:[10,10],poem:'여름처럼 환하고, 그 누구보다 빼어나다'},{h:'夏峻',s:[10,10],poem:'여름 햇살처럼 높고 환하게'}] },
+  { n:'현준', g:'남', cands:[{h:'賢俊',s:[15,10],poem:'어질고 그 누구보다 빼어나다'}] },
+  { n:'현우', g:'남', cands:[{h:'賢宇',s:[15,6],poem:'어질고 하늘처럼 넓은 마음을 지니다'}] },
+  { n:'유준', g:'남', cands:[{h:'裕俊',s:[13,10],poem:'풍요로운 땅에서 빼어나게 자라다'},{h:'裕峻',s:[13,10],poem:'넉넉하고 높이, 당당하게 자라다'}] },
+  { n:'유찬', g:'남', cands:[{h:'裕璨',s:[13,17],poem:'넉넉하고 옥빛처럼 찬란하게 빛나다'}] },
+  { n:'정우', g:'남', cands:[{h:'正宇',s:[5,6],poem:'바르게, 하늘처럼 넓은 마음으로'}] },
+  { n:'정민', g:'남', cands:[{h:'正旻',s:[5,8],poem:'바르고 밝은 하늘처럼 환하게'}] },
+  { n:'정현', g:'남', cands:[{h:'正賢',s:[5,15],poem:'바르고 어진 마음을 갖추다'},{h:'晶賢',s:[12,15],poem:'맑은 빛처럼 또렷하고 어진 마음을 지니다'}] },
+  { n:'진우', g:'남', cands:[{h:'珍宇',s:[10,6],poem:'보배로운 기운이 하늘처럼 넓게 퍼지다'},{h:'振宇',s:[11,6],poem:'크게 떨쳐 하늘처럼 넓게 나아가다'}] },
+  { n:'주호', g:'남', cands:[{h:'柱浩',s:[9,11],poem:'기둥처럼 든든하고 바다처럼 넓게'},{h:'珠皓',s:[11,12],poem:'구슬처럼 빛나며 환하게 밝아오다'}] },
+  { n:'주원', g:'남', cands:[{h:'柱源',s:[9,14],poem:'기둥처럼 든든하고 근원처럼 깊다'},{h:'珠源',s:[11,14],poem:'구슬처럼 빛나고 근원처럼 깊다'}] },
+  { n:'주안', g:'남', cands:[{h:'柱安',s:[9,6],poem:'기둥처럼 든든하고 평안하게 서다'}] },
+  { n:'가은', g:'여', cands:[{h:'佳恩',s:[8,10],poem:'아름답고 은혜로운 기운을 함께 담다'},{h:'嘉恩',s:[14,10],poem:'아름답고 기쁜 은혜를 담다'}] },
+  { n:'건율', g:'여', cands:[{h:'建律',s:[8,9],poem:'반듯하게 세우는 리듬'}] },
+  { n:'나은', g:'여', cands:[{h:'娜恩',s:[10,10],poem:'우아한 사람이, 은혜로운 기운을 담다'},{h:'那恩',s:[6,10],poem:'있는 그 자리에서 은혜로운 마음을 누리다'}] },
+  { n:'나윤', g:'여', cands:[{h:'娜潤',s:[10,16],poem:'고운 자태에 넉넉함이 봄비처럼 스미다'},{h:'那允',s:[6,4],poem:'그 자리에서 넉넉한 복을 누리다'}] },
+  { n:'다은', g:'여', cands:[{h:'多恩',s:[6,10],poem:'넘치는 은혜를 담은 사람'}] },
+  { n:'다인', g:'여', cands:[{h:'多仁',s:[6,4],poem:'사랑과 어짊이 가득한 마음'},{h:'多印',s:[6,6],poem:'많은 인연 속에 또렷한 자취를 남기다'},{h:'茶仁',s:[9,4],poem:'차향처럼 은은한 사랑과 어짊을 품다'}] },
+  { n:'다윤', g:'여', cands:[{h:'多潤',s:[6,16],poem:'넉넉함이 봄비처럼 고루 스미다'},{h:'多允',s:[6,4],poem:'복이 많고 마음이 넉넉하다'},{h:'茶允',s:[9,4],poem:'차향처럼 은은하게, 넉넉한 복을 누리다'}] },
+  { n:'다율', g:'여', cands:[{h:'多律',s:[6,9],poem:'넘치는 기운이 아름다운 리듬이 되다'}] },
+  { n:'다경', g:'여', cands:[{h:'多慶',s:[6,15],poem:'복이 많고, 경사로운 일이 끊이지 않다'},{h:'茶暻',s:[9,16],poem:'차향처럼 은은하게 빛나는 풍경을 품다'}] },
+  { n:'다연', g:'여', cands:[{h:'多妍',s:[6,9],poem:'고운 빛깔이 가득, 곱게 피어나는 아이'},{h:'茶姢',s:[9,9],poem:'차향처럼 은은하고 곱다'}] },
+  { n:'라온', g:'여', cands:[{h:'羅溫',s:[19,14],poem:'기쁨이 따뜻하게 넓게 퍼지는 사람'}] , pureKorean:true },
+  { n:'로아', g:'여', cands:[{h:'路雅',s:[13,13],poem:'길 위에서 우아함을 펼쳐가다'}] },
+  { n:'리아', g:'여', cands:[{h:'理雅',s:[12,13],poem:'이치를 깨닫고 우아하게 자라다'},{h:'利雅',s:[7,13],poem:'이로움과 우아함을 함께 지니다'}] },
+  { n:'아린', g:'여', cands:[{h:'芽璘',s:[8,20],poem:'새싹이 피어나듯, 옥처럼 빛나다'},{h:'芽潾',s:[8,16],poem:'새싹이 피어나듯, 맑게 빛나다'}] },
+  { n:'아윤', g:'여', cands:[{h:'芽允',s:[8,4],poem:'새싹처럼 넉넉하게 피어나다'},{h:'芽潤',s:[8,16],poem:'새싹이 봄비를 맞아 넉넉히 자라다'},{h:'芽錀',s:[8,16],poem:'새싹의 여림 속에 금의 단단함이 깃들다'}] },
+  { n:'아인', g:'여', cands:[{h:'雅仁',s:[13,4],poem:'우아하고 어진 마음을 지니다'}] },
+  { n:'아정', g:'여', cands:[{h:'雅婷',s:[13,12],poem:'우아하고 곱게 자라는 아이'}] },
+  { n:'아영', g:'여', cands:[{h:'雅瑛',s:[13,14],poem:'우아하고 옥빛처럼 맑게 빛나다'}] },
+  { n:'아라', g:'여', cands:[{h:'雅羅',s:[13,19],poem:'우아한 기운이 넓게 펼쳐지다 — 바다를 뜻하는 옛말'}] },
+  { n:'예서', g:'여', cands:[{h:'叡瑞',s:[16,14],poem:'슬기롭고 상서로운 빛을 담다'},{h:'叡序',s:[16,7],poem:'슬기롭게 차근차근, 아름답게 나아가다'}] },
+  { n:'예린', g:'여', cands:[{h:'叡璘',s:[16,20],poem:'슬기롭고, 옥처럼 빛나다'},{h:'叡潾',s:[16,16],poem:'슬기로운 눈빛이 맑은 물처럼 빛나다'}] },
+  { n:'예은', g:'여', cands:[{h:'叡恩',s:[16,10],poem:'슬기로운 마음이 은혜가 되다'}] },
+  { n:'예나', g:'여', cands:[{h:'叡娜',s:[16,10],poem:'슬기롭고 고운 자태를 지니다'}] },
+  { n:'예원', g:'여', cands:[{h:'叡媛',s:[16,13],poem:'슬기롭고 아름다운 여인으로 자라다'}] },
+  { n:'예진', g:'여', cands:[{h:'叡珍',s:[16,10],poem:'슬기롭고 보배처럼 귀한 아이'}] },
+  { n:'은채', g:'여', cands:[{h:'恩彩',s:[10,11],poem:'은혜로운 마음이 다채롭게 빛나다'}] },
+  { n:'은서', g:'여', cands:[{h:'恩瑞',s:[10,14],poem:'은혜롭고 상서로운 기운을 함께 담다'},{h:'恩序',s:[10,7],poem:'은혜로운 마음이 아름다운 순서로 피어나다'}] },
+  { n:'이서', g:'여', cands:[{h:'怡瑞',s:[9,14],poem:'기쁨과 상서로운 빛을 함께 담다'},{h:'怡序',s:[9,7],poem:'기쁘게, 차근차근 나아가다'}] },
+  { n:'이솔', g:'여', cands:[{h:'怡率',s:[9,11],poem:'기쁜 마음으로 곧고 솔직하게 살아가다'},{h:'怡帥',s:[9,9],poem:'기쁜 마음으로 스스로를 이끌어가는 사람'}] },
+  { n:'서아', g:'여', cands:[{h:'瑞芽',s:[14,8],poem:'상서로운 기운이 새싹처럼 피어나다'},{h:'瑞雅',s:[14,13],poem:'상서롭고 우아한 빛을 담다'}] },
+  { n:'서윤', g:'여', cands:[{h:'瑞允',s:[14,4],poem:'상서로운 기운 위에 넉넉한 복이 더해진다'},{h:'瑞潤',s:[14,16],poem:'상서롭고 넉넉하게, 봄비처럼 흐르다'},{h:'瑞錀',s:[14,16],poem:'상서로운 기운에 굳건한 금의 강인함을 담다'}] },
+  { n:'서연', g:'여', cands:[{h:'瑞涓',s:[14,11],poem:'상서롭고 맑은 기운이 흐른다'},{h:'瑞妍',s:[14,9],poem:'상서롭고 고운 빛이 함께 담겼다'}] },
+  { n:'서현', g:'여', cands:[{h:'瑞炫',s:[14,10],poem:'상서롭게 환히 빛나다'},{h:'瑞賢',s:[14,15],poem:'상서롭고 어진 마음을 담다'}] },
+  { n:'서은', g:'여', cands:[{h:'瑞恩',s:[14,10],poem:'상서로운 기운 속에 은혜가 가득하다'}] },
+  { n:'서율', g:'여', cands:[{h:'瑞律',s:[14,9],poem:'상서로운 기운이 아름다운 리듬으로'}] },
+  { n:'서영', g:'여', cands:[{h:'瑞映',s:[14,9],poem:'상서로운 기운이 환하게 비치다'},{h:'瑞瑛',s:[14,14],poem:'상서롭고 옥빛처럼 맑게 빛나다'}] },
+  { n:'서이', g:'여', cands:[{h:'瑞怡',s:[14,9],poem:'상서롭고 기쁨이 넘치는 아이'}] },
+  { n:'서하', g:'여', cands:[{h:'瑞夏',s:[14,10],poem:'상서로운 기운이 여름처럼 환하게 퍼지다'}] },
+  { n:'서진', g:'여', cands:[{h:'瑞珍',s:[13,9],poem:'상서롭고 보배로운 기운'}] },
+  { n:'소율', g:'여', cands:[{h:'素律',s:[10,9],poem:'순수한 마음이 아름다운 리듬이 되다'},{h:'昭律',s:[9,9],poem:'밝게 빛나며 아름다운 박자로 나아가다'}] },
+  { n:'소윤', g:'여', cands:[{h:'素允',s:[10,4],poem:'순수하게, 넉넉하게 자라다'},{h:'素潤',s:[10,16],poem:'순수한 마음이 봄비처럼 넉넉하다'},{h:'素錀',s:[10,16],poem:'순수한 마음에 금빛 단단함을 머금다'}] },
+  { n:'소민', g:'여', cands:[{h:'昭旻',s:[9,8],poem:'밝은 하늘처럼 또렷하고 환하다'}] },
+  { n:'소아', g:'여', cands:[{h:'昭雅',s:[9,13],poem:'밝고 우아한 빛을 품은 아이'},{h:'昭芽',s:[9,8],poem:'밝은 빛 아래 새싹처럼 곱게 자라다'}] },
+  { n:'수아', g:'여', cands:[{h:'秀芽',s:[7,8],poem:'빼어난 새싹, 환하게 피어나다'},{h:'秀雅',s:[7,13],poem:'빼어나고 우아한 자태를 담다'}] },
+  { n:'수민', g:'여', cands:[{h:'秀旻',s:[7,8],poem:'빼어나고 밝은 하늘처럼 환하다'}] },
+  { n:'수안', g:'여', cands:[{h:'秀安',s:[7,6],poem:'빼어나고 평안한 마음을 지니다'}] },
+  { n:'채원', g:'여', cands:[{h:'彩源',s:[11,14],poem:'다채로운 빛깔의 근원이 깊다'},{h:'彩苑',s:[11,11],poem:'다채로운 꽃이 동산 가득 피어나다'}] },
+  { n:'채은', g:'여', cands:[{h:'彩恩',s:[11,10],poem:'다채로운 빛깔과 은혜로운 마음을 함께'}] },
+  { n:'채윤', g:'여', cands:[{h:'彩潤',s:[11,16],poem:'고운 빛깔이 봄비처럼 넉넉히 스미다'}] },
+  { n:'채율', g:'여', cands:[{h:'彩律',s:[11,9],poem:'고운 빛깔이 아름다운 리듬을 만들다'},{h:'彩栗',s:[11,10],poem:'고운 빛깔에 풍성한 결실을 함께 담다'}] },
+  { n:'채하', g:'여', cands:[{h:'彩夏',s:[11,10],poem:'고운 빛깔이 여름처럼 환하게 퍼지다'}] },
+  { n:'채빈', g:'여', cands:[{h:'彩彬',s:[11,11],poem:'다채로운 빛깔처럼 환하고 빛나는 인품'},{h:'彩浜',s:[11,10],poem:'고운 빛깔이 물가처럼 넓게 펼쳐지다'}] },
+  { n:'채이', g:'여', cands:[{h:'彩怡',s:[11,9],poem:'고운 빛깔 속에 기쁨이 가득하다'},{h:'彩利',s:[11,7],poem:'고운 빛깔 위에 이로움이 더해지다'}] },
+  { n:'채아', g:'여', cands:[{h:'彩雅',s:[11,13],poem:'고운 빛깔로 우아하게 피어나다'}] },
+  { n:'지안', g:'여', cands:[{h:'智安',s:[12,6],poem:'지혜로운 마음이 곧 평안함이 된다'},{h:'志安',s:[7,6],poem:'큰 뜻을 품고, 평안한 길을 걸어가다'}] },
+  { n:'지유', g:'여', cands:[{h:'智柔',s:[12,9],poem:'지혜롭고 부드럽게, 봄바람 같은 아이'},{h:'志柔',s:[7,9],poem:'큰 뜻이 물처럼 부드럽게 흐르다'}] },
+  { n:'지율', g:'여', cands:[{h:'智律',s:[12,9],poem:'지혜로운 삶의 리듬을 갖추다'}] },
+  { n:'지연', g:'여', cands:[{h:'智妍',s:[12,9],poem:'지혜롭고 곱게 피어나는 아이'}] },
+  { n:'지현', g:'여', cands:[{h:'智賢',s:[12,15],poem:'지혜롭고 어진 마음을 함께 지니다'}] },
+  { n:'지효', g:'여', cands:[{h:'智曉',s:[12,16],poem:'지혜가 새벽처럼 밝아오다'},{h:'志曉',s:[7,16],poem:'큰 뜻을 품고 새벽처럼 환하게 밝아오다'}] },
+  { n:'지민', g:'여', cands:[{h:'智旻',s:[12,8],poem:'지혜롭고, 밝은 하늘처럼 맑다'},{h:'志旻',s:[7,8],poem:'큰 뜻을 품고 밝은 하늘처럼 나아가다'}] },
+  { n:'지아', g:'여', cands:[{h:'智芽',s:[12,8],poem:'지혜가 새싹처럼 피어나다'},{h:'志芽',s:[7,8],poem:'큰 뜻이 새싹처럼 피어나다'}] },
+  { n:'지우', g:'여', cands:[{h:'智宇',s:[12,6],poem:'지혜가 하늘처럼 넓게 펼쳐지다'}] },
+  { n:'민서', g:'여', cands:[{h:'旻瑞',s:[8,14],poem:'밝은 하늘 아래 상서로운 빛이 내린다'},{h:'旻序',s:[8,7],poem:'밝게, 차근차근 아름답게 나아가다'}] },
+  { n:'민아', g:'여', cands:[{h:'旻雅',s:[8,13],poem:'밝은 하늘 아래 우아하게 자라다'}] },
+  { n:'하율', g:'여', cands:[{h:'夏律',s:[10,9],poem:'여름처럼 환하게, 아름다운 리듬으로'}] },
+  { n:'하윤', g:'여', cands:[{h:'夏允',s:[10,4],poem:'여름처럼 풍성하게, 넉넉하게 자라다'},{h:'夏潤',s:[10,16],poem:'여름처럼 환하고, 넉넉히 흘러가다'},{h:'夏錀',s:[10,16],poem:'여름 햇살 같은 빛에 금속의 단단함을 더하다'}] },
+  { n:'하은', g:'여', cands:[{h:'夏恩',s:[10,10],poem:'여름처럼 풍성한 은혜를 품다'},{h:'河恩',s:[8,10],poem:'강물처럼 넉넉한 은혜를 머금다'}] },
+  { n:'하린', g:'여', cands:[{h:'夏璘',s:[10,20],poem:'여름처럼 환하게, 옥처럼 빛나다'},{h:'夏潾',s:[10,16],poem:'여름처럼 맑고, 옥처럼 빛나다'}] },
+  { n:'하연', g:'여', cands:[{h:'夏妍',s:[10,9],poem:'여름처럼 환하고 곱게 피어나다'},{h:'河妍',s:[8,9],poem:'강물처럼 흐르며 곱게 피어나는 아이'}] },
+  { n:'하경', g:'여', cands:[{h:'夏暻',s:[10,16],poem:'여름 햇살처럼 빛나는 풍경을 품다'}] },
+  { n:'윤서', g:'여', cands:[{h:'允瑞',s:[4,14],poem:'넉넉함 속에 상서로운 빛이 담겼다'},{h:'潤瑞',s:[16,14],poem:'봄비처럼 넉넉하고, 상서롭게 빛나다'},{h:'錀瑞',s:[16,14],poem:'굳건한 금의 기운 속에 상서로운 빛이 서리다'}] },
+  { n:'윤아', g:'여', cands:[{h:'允雅',s:[4,13],poem:'넉넉하고 우아하게 자라는 아이'}] },
+  { n:'유주', g:'여', cands:[{h:'裕柱',s:[13,9],poem:'넉넉함이 기둥처럼 든든하다'},{h:'柔柱',s:[9,9],poem:'부드러우면서도 기둥처럼 든든하게 서다'}] },
+  { n:'유나', g:'여', cands:[{h:'裕娜',s:[13,10],poem:'넉넉하고 우아한 기운을 담다'}] },
+  { n:'유하', g:'여', cands:[{h:'裕夏',s:[13,10],poem:'넉넉하고 여름처럼 환하게 자라다'}] },
+  { n:'유이', g:'여', cands:[{h:'裕怡',s:[13,9],poem:'넉넉함 속에 기쁨이 가득하다'},{h:'柔怡',s:[9,9],poem:'부드러운 마음에 기쁨이 가득 깃들다'}] },
+  { n:'유라', g:'여', cands:[{h:'裕羅',s:[13,19],poem:'넉넉함이 널리 펼쳐지는 아이'}] },
+  { n:'세아', g:'여', cands:[{h:'世雅',s:[5,13],poem:'세상에 우아한 빛을 더하는 아이'}] },
+  { n:'세은', g:'여', cands:[{h:'世恩',s:[5,10],poem:'세상에 은혜로운 기운을 더하다'}] },
+  { n:'설', g:'여', cands:[{h:'雪',s:[11],poem:'순백의 눈처럼 맑고 깨끗한 아이'}] },
+  { n:'솔', g:'여', cands:[{h:'率',s:[11],poem:'이끌어 나가는 기운'}] },
+  { n:'시아', g:'여', cands:[{h:'時芽',s:[10,8],poem:'때를 알고 새싹처럼 피어나다'},{h:'時雅',s:[10,13],poem:'때에 맞게 우아하게 자라다'}] },
+  { n:'시은', g:'여', cands:[{h:'時恩',s:[10,10],poem:'때에 맞춰 은혜를 베푸는 아이'},{h:'時鄞',s:[10,13],poem:'때에 맞춰 깊고 단단한 땅의 기운을 품다'}] },
+  { n:'시연', g:'여', cands:[{h:'時妍',s:[10,9],poem:'때에 맞춰 곱게 피어나는 아이'},{h:'時涓',s:[10,11],poem:'때를 알고 맑은 물처럼 고요히 흐르다'}] },
+  { n:'정원', g:'여', cands:[{h:'正元',s:[5,4],poem:'바른 마음이 모든 것의 근원이 되다'},{h:'婷元',s:[12,4],poem:'곱고 단아한 마음이 모든 것의 근원이 되다'}] },
+  { n:'혜원', g:'여', cands:[{h:'惠源',s:[12,14],poem:'은혜의 근원이 깊고, 넓게 흐른다'},{h:'惠媛',s:[12,13],poem:'은혜로운 마음과 아름다움을 함께'}] },
+  { n:'주아', g:'여', cands:[{h:'珠雅',s:[11,13],poem:'구슬처럼 빛나고 우아하게 자라다'}] },
+  { n:'연서', g:'여', cands:[{h:'妍瑞',s:[9,14],poem:'고운 기운이 상서롭게 피어나다'}] },
+  { n:'윤지', g:'여', cands:[{h:'潤志',s:[16,7],poem:'넉넉한 마음에 큰 뜻을 품다'}] },
+  { n:'이원', g:'여', cands:[{h:'怡元',s:[9,4],poem:'기쁨이 모든 것의 근원이 되다'}] },
+  { n:'도아', g:'여', cands:[{h:'道雅',s:[13,13],poem:'바른 길 위에서 우아하게 자라다'},{h:'桃雅',s:[10,13],poem:'고운 빛깔처럼 우아하게 피어나다'}] },
+  { n:'시윤', g:'여', cands:[{h:'時允',s:[10,4],poem:'때에 맞게 넉넉하게 피어나다'},{h:'時潤',s:[10,16],poem:'때를 알고, 봄비처럼 넉넉히 흐르다'},{h:'時錀',s:[10,16],poem:'때를 알고, 금처럼 굳건하게 빛나다'}] },
+  { n:'다온', g:'여', cands:[{h:'多溫',s:[6,14],poem:'따뜻함이 가득, 모두 다 좋은 것만 온다'},{h:'茶溫',s:[9,14],poem:'차향처럼 은은하고 따뜻한 기운이 감싸다'}] , pureKorean:true },
+  { n:'단아', g:'여', cands:[{h:'端雅',s:[9,13],poem:'단정하고 우아한 품격을 지니다'},{h:'端芽',s:[9,8],poem:'단정한 마음이 새싹처럼 곱게 피어나다'}] },
+  { n:'로이', g:'여', cands:[{h:'路怡',s:[13,9],poem:'걸어가는 길마다 기쁨을 찾아내다'},{h:'路易',s:[13,8],poem:'걸어가는 길마다 순조롭게 풀려나가다'}] },
+  { n:'로하', g:'여', cands:[{h:'路夏',s:[13,10],poem:'길 위에서 여름처럼 환하게 자라다'}] },
+  { n:'윤슬', g:'여', cands:[{h:'潤瑟',s:[16,13],poem:'물결에 비치는 빛처럼 곱고 아름답다'}] , pureKorean:true },
+  { n:'태희', g:'여', cands:[{h:'泰希',s:[10,7],poem:'크고 넉넉한 바람을 품은 아이'}] },
+  { n:'하람', g:'여', cands:[{h:'夏嵐',s:[10,12],poem:'여름 산기운처럼 맑고 청량하다'},{h:'賀嵐',s:[12,12],poem:'축하할 일처럼, 산기운처럼 청량하게'}] , pureKorean:true },
+];
+
+const MEANINGS_DB = {
+  남: [
+    { n:'준서', h:'俊瑞',
+      mean:'빼어날 준(俊)에 상서로울 서(瑞). 재능이 빼어나고 기운이 상서롭다. 부르는 소리가 金→金 비화로 흘러 막힘 없이 이어진다.',
+      flow:'金→金 비화', g:'남' },
+    { n:'우진', h:'宇珍',
+      mean:'집 우(宇)에 보배 진(珍). 하늘처럼 넓은 품 안에 보배로운 기운을 담았다. 土→金 상생으로 안정 위에 빛이 더해진다.',
+      flow:'土→金 상생', g:'남' },
+    { n:'서진', h:'瑞珍',
+      mean:'상서로울 서(瑞)에 보배 진(珍). 상서로운 기운 위에 보배로운 빛. 중성적 세련미와 강한 金→金 비화의 힘이 합쳐진다.',
+      flow:'金→金 비화', g:'남' },
+    { n:'선율', h:'善律',
+      mean:'착할 선(善)에 법칙 율(律). 착한 마음이 리듬이 되어 세상에 울려 퍼진다. 金→火 상생으로 의지가 빛으로 피어난다.',
+      flow:'金→火 상생', g:'남' },
+    { n:'도현', h:'道炫',
+      mean:'도리 도(道)에 빛날 현(炫). 바른 길 위에서 환히 빛나는 사람. 木→火 상생으로 성장이 빛으로 이어진다.',
+      flow:'木→火 상생', g:'남' },
+    { n:'재원', h:'梓源',
+      mean:'가래나무 재(梓)에 근원 원(源). 재능의 뿌리가 깊고 넓다. 金→土 상생으로 결실이 땅에 단단히 내린다.',
+      flow:'金→土 상생', g:'남' },
+  ],
+  여: [
+    { n:'하율', h:'夏律',
+      mean:'여름 하(夏)에 법칙 율(律). 여름처럼 뜨겁게 자신만의 리듬으로 살아가는 사람. 木→火 상생으로 성장이 빛으로 피어난다.',
+      flow:'木→火 상생', g:'여' },
+    { n:'서진', h:'瑞珍',
+      mean:'상서로울 서(瑞)에 보배 진(珍). 상서로운 기운 위에 보배로운 빛이 더해진다. 金→金 비화로 힘이 모인다.',
+      flow:'金→金 비화', g:'여' },
+    { n:'예서', h:'叡瑞',
+      mean:'슬기로울 예(叡)에 상서로울 서(瑞). 지혜로운 눈으로 상서로운 앞날을 열어간다. 土→金 상생으로 지혜가 결실로 이어진다.',
+      flow:'土→金 상생', g:'여' },
+    { n:'다율', h:'多律',
+      mean:'많을 다(多)에 법칙 율(律). 넘치는 생명력과 리듬으로 세상을 가득 채운다. 火→火 비화로 빛이 배가 된다.',
+      flow:'火→火 비화', g:'여' },
+    { n:'아린', h:'芽璘',
+      mean:'새싹 아(芽)에 빛날 린(璘). 새싹처럼 피어나며 옥처럼 빛난다. 土→火 상생으로 따뜻한 땅에서 빛이 솟는다.',
+      flow:'土→火 상생', g:'여' },
+    { n:'라온', h:'羅媛',
+      mean:'벌일 라(羅)에 아름다울 원(媛). 기쁨이 활짝 펼쳐지는 아름다운 사람. 火→土 상생으로 열정이 안정으로 익는다.',
+      flow:'火→土 상생', g:'여' },
+  ]
+};
+
+/* ════ EUMP 파싱 ════ */
+const EUMP={};
+document.getElementById('eumpData').textContent.trim().split('\n').forEach(line=>{
+  const i=line.indexOf('|');if(i<0)return;
+  EUMP[line.slice(0,i)]=line.slice(i+1).split(' ').map(t=>{
+    const m=t.match(/^(.+?)(\d+):(.)$/);
+    return m?[m[1],+m[2],m[3]==='-'?'':m[3]]:null;
+  }).filter(Boolean);
+});
+
+const WLraw="가 건 결 겸 경 규 나 다 단 도 라 로 리 린 민 빈 서 석 선 설 성 세 소 솔 수 승 시 아 안 양 연 영 예 오 온 우 운 원 유 윤 율 은 이 인 재 정 주 준 지 진 찬 채 태 하 한 해 혁 현 혜 호 환 효 후 희";
+const POPULAR_HANJA=new Set(['志','知','恩','銀','秀','美','惠','蓮','熙','妍','延','淑','善','京','慶','正','政','成','盛','智','治','池','地','枝','芝','致','稚','質','炙','祉','肢','勳','旬','馨','卿','景','敬','炅','詣','肯','民','敏','珉','旻','閔','岷','愍','仙','宣','璿','絢','旋','選','銑','浚','俊','峻','竣','珣','荪','晙','雋','淵','娟','淳','醇','舜','純','滣','銕','彥','彬','彪','彭','顔','晏','翌','翼','燁','曜','耀','瑤','遥','禹','右','有','牛','羲','譆','理','李','梨','里','離','麗','那','羅','奈','納','儺','道','圖','都','度','島','砦','浪','郎','盧','蘆','老','魯','露','路','溫','蘊','醕','律','栗','聿','閾','元','媛','園','圓','遠','院','源','苑','瑞','書','徐','舒','西','誉','垠','隱','晏','應','雅','阿','兒','亞','英','瑛','樱','映','暎','穎','睿','例','叡','禮','藝','曳','銳','眞','珍','紳','進','晉','晋','燦','爨','贊','粲','採','彩','菜','蔡','寨','河','夏','霞','海','華','黑','蛤','解','諧','褋','環','桓','宦','煥','還','訓','暈','薰','喧','軒','玄','炫','賢','現','顯','香','纏','惠','蕙','慧','桂','鄎','浩','灝','皞','昊','號','郉','弘','洪','紘','閎','宏','剛','康','強','鋼','綱','建','乾','健','楗','慶','敬','竟','景','經','圭','奎','葵','逵','基','起','記','騎','機','璣','加','可','嘉','伽','佳','吉','乞','杰','桔','多','茶','達','大','丹','單','團','鄲','燉','敦','惇','頓','東','洞','銅','棟','動','童','麻','馬','麼','摩','武','無','牟','貿','慕','明','鳴','命','銘','冥','模','摩','茂','謨','募','美','彌','未','嘸','米','勿','物','文','汶','紋','門','珉','敏','旻','寶','保','譜','補','步','奉','鳳','峰','蜂','凡','範','梵','汎','本','坉','笨','富','敷','部','阜','附','扶','彬','斌','賓','濱','頻','別','秉','斁','氷','丙','炳','三','森','蔘','商','湘','常','尙','上','山','産','塞','鳥','色','泉','沁','石','碩','昔','釋','醍','聖','盛','誠','聲','瑾','世','細','洗','蘇','素','小','昭','消','邵','松','宋','誦','孫','順','舜','旬','信','申','慎','新','神','辛','實','失','室','深','琛','審'])
+const BLACKLIST=[]
+
+const POP={};WLraw.split(' ').forEach((e,i)=>{if(EUMP[e]&&!(e in POP))POP[e]=i;});
+const POOL_WL=Object.keys(POP);
+const POOL_ALL=Object.keys(EUMP);
+// 두음법칙 대응음 — 검색 시 양쪽 발음의 한자를 함께 찾아줌 (양방향)
+const DUAL_SOUND={
+  이:'리',리:'이', 유:'류',류:'유', 윤:'륜',륜:'윤', 율:'률',률:'율',
+  연:'련',련:'연', 영:'령',령:'영', 예:'례',례:'예', 양:'량',량:'양',
+  인:'린',린:'인', 임:'림',림:'임'
+};
+// 위치별 음절 풀 — 실제 인기이름에서 1번째/2번째 자리에 쓰인 음절만 사용
+// (한쪽 풀에만 있는 경우가 많음: 예) '완'은 2번째 자리에만 쓰이고 1번째 자리엔 없음)
+const POOL_POS0=[...new Set(NAMES_DB.map(d=>d.n[0]))];
+const POOL_POS1=[...new Set(NAMES_DB.map(d=>d.n[1]).filter(Boolean))];
+function popb(e){return e in POP?Math.max(0,40-POP[e])/12:0;}
+
+/* ════ 오행 ════ */
+const O5C={'ㄱ':'木','ㅋ':'木','ㄲ':'木','ㄴ':'火','ㄷ':'火','ㄹ':'火','ㅌ':'火','ㄸ':'火','ㅇ':'土','ㅎ':'土','ㅅ':'金','ㅈ':'金','ㅊ':'金','ㅆ':'金','ㅉ':'金','ㅁ':'水','ㅂ':'水','ㅍ':'水','ㅃ':'水'};
+const CHL=['ㄱ','ㄲ','ㄴ','ㄷ','ㄸ','ㄹ','ㅁ','ㅂ','ㅃ','ㅅ','ㅆ','ㅇ','ㅈ','ㅉ','ㅊ','ㅋ','ㅌ','ㅍ','ㅎ'];
+const JGL=['','ㄱ','ㄲ','ㄳ','ㄴ','ㄵ','ㄶ','ㄷ','ㄹ','ㄺ','ㄻ','ㄼ','ㄽ','ㄾ','ㄿ','ㅀ','ㅁ','ㅂ','ㅄ','ㅅ','ㅆ','ㅇ','ㅈ','ㅊ','ㅋ','ㅌ','ㅍ','ㅎ'];
+const JF_N={'ㄳ':'ㄱ','ㄵ':'ㄴ','ㄶ':'ㄴ','ㄺ':'ㄹ','ㄻ':'ㄹ','ㄼ':'ㄹ','ㄽ':'ㄹ','ㄾ':'ㄹ','ㄿ':'ㄹ','ㅀ':'ㄹ','ㅄ':'ㅂ'};
+const SG_N={'木':'火','火':'土','土':'金','金':'水','水':'木'};
+const O5NM={'木':'목','火':'화','土':'토','金':'금','水':'수'};
+const O5COL={'木':'var(--mok)','火':'var(--hwa)','土':'var(--to)','金':'var(--geum)','水':'var(--su)'};
+
+
+const HANJA_MEANING={'建':'세울','宇':'집/하늘','健':'굳셀','律':'법/가락','謙':'겸손할','奎':'별','旻':'하늘','星':'별','池':'못','緩':'느릴','智':'지혜','時':'때','瑞':'상서로울','道':'길','允':'허락할','潤':'윤택할','錀':'금속','炫':'빛날','賢':'어질','河':'강','夏':'여름','俊':'준수할','峻':'높을','路':'길','雲':'구름','韓':'한국','梨':'배나무','安':'편안할','宙':'집/우주','怡':'기쁠','竣':'마칠','恩':'은혜','殷':'성할','璨':'빛날','溫':'따뜻할','柔':'부드러울','叡':'슬기로울','晟':'밝을','泰':'클','悟':'깨달을','晤':'밝을','海':'바다','佑':'도울','然':'그러할','駿':'준마','浩':'넓을','皓':'밝을','志':'뜻','煥':'빛날','厚':'두터울','梓':'가래나무','源':'근원','材':'재목','承':'이을','昇':'오를','雨':'비','守':'지킬','護':'보호할','秀':'빼어날','善':'착할','宣':'베풀','載':'실을','圭':'홀(옥)','碩':'클','蓆':'자리','聖':'성스러울','彬':'문채날','珍':'보배','友':'친구','裕':'넉넉할','伀':'힘쓸','序':'차례','振':'떨칠','率':'거느릴','結':'맺을','暻':'빛날','多':'많을','眞':'참될','利':'이로울','陽':'볕','赫':'빛날','映':'비칠','榮':'영화','涓':'시내','彩':'채색','正':'바를','晶':'맑을','柱':'기둥','珠':'구슬','佳':'아름다울','嘉':'기쁠','娜':'아름다울','那':'어찌','仁':'어질','印':'도장','茶':'차','慶':'경사','妍':'고울','姢':'아름다울','羅':'벌일','雅':'우아할','理':'다스릴','芽':'새싹','璘':'옥빛','潾':'맑을','婷':'예쁠','瑛':'옥빛','媛':'미인','帥':'거느릴','素':'바탕','昭':'밝을','苑':'동산','栗':'밤나무','浜':'물가','曉':'새벽','世':'세상','雪':'눈','鄞':'땅이름','元':'으뜸','惠':'은혜','桃':'복숭아','端':'단정할','易':'쉬울','瑟':'거문고','希':'바랄','嵐':'산바람','賀':'축하할','炯':'빛날'};
+function renderHanjaWithMeaning(h){
+  if(!h)return'한자 미선택';
+  return [...h].map(c=>{
+    const m=HANJA_MEANING[c]||'';
+    return `<span title="${m}" style="cursor:help">${c}</span>${m?`<small style="font-size:10px;color:var(--ink2);margin-left:2px">(${m})</small>`:''}`;
+  }).join(' ');
+}
+
+/* ════ 상태 ════ */
+let ST={gender:null,sung:null,ss:null,needOh:[],dayOh:null,guk:null,
+         selName:null,selHanjaMap:{},fixChar:null,fixPos:0};
+
+/* ════ STEP1 ════ */
+function setGender(g,el){
+  ST.gender=g;
+  document.querySelectorAll('.g-card').forEach(c=>c.classList.remove('on'));
+  el.classList.add('on');
+  document.body.className=g==='남'?'boy':'girl';
+  checkBtn1();
+}
+function onSungInput(){
+  const v=document.getElementById('sungInput').value.trim();
+  const hint=document.getElementById('sungHint');
+  if(!v){ST.sung=null;ST.ss=null;hint.textContent='';checkBtn1();return;}
+  const f=SUNG_DB[v];
+  if(f){ST.sung=v;ST.ss=f[0][1];hint.textContent=f[0][0]+' '+f[0][1]+'획';}
+  else{ST.sung=v;ST.ss=null;hint.innerHTML='<span style="color:#e06b6b">성씨를 찾지 못했어요 — 카카오 채널로 문의해 주세요</span>';}
+  checkBtn1();
+}
+function checkBtn1(){
+  const y=document.getElementById('bdY').value;
+  const m=document.getElementById('bdM').value;
+  const d=document.getElementById('bdD').value;
+  document.getElementById('btn1').disabled=!(ST.gender&&ST.sung&&ST.ss&&y&&m&&d);
+}
+
+/* ════ 격국 → 용신 ════ */
+function sipToOh(text,dayOh){
+  const KE_M={'木':'土','土':'水','水':'火','火':'金','金':'木'};
+  const SG_M={'木':'火','火':'土','土':'金','金':'水','水':'木'};
+  const map={
+    '비겁':dayOh,'식상':SG_M[dayOh],'재성':KE_M[dayOh],
+    '관성':Object.keys(KE_M).find(o=>KE_M[o]===dayOh),
+    '인성':Object.keys(SG_M).find(o=>SG_M[o]===dayOh)
+  };
+  const res=[];
+  for(const sip of ['비겁','인성','식상','재성','관성']){
+    if(text.includes(sip)&&map[sip]&&!res.includes(map[sip])){
+      res.push(map[sip]);
+      if(res.length>=2)break;
+    }
+  }
+  return res;
+}
+
+function goMain(){
+  const y=+document.getElementById('bdY').value;
+  const m=+document.getElementById('bdM').value;
+  const d=+document.getElementById('bdD').value;
+  const hv=document.getElementById('bdH').value;
+  const h=hv===''?12:+hv;
+  const sex=ST.gender==='남'?'M':'F';
+
+  document.getElementById('btn1').textContent='계산 중…';
+  document.getElementById('btn1').disabled=true;
+
+  setTimeout(()=>{
+    let yong=[],dayOh='土',gukStr='';
+    if(window.Solar){
+      try{
+        const chart=buildChartAuto(y,m,d,h,0,sex,'solar',false,true,false);
+        if(!chart.error){
+          const res=analyze(chart);
+          dayOh=res.dayOh||'土'; gukStr=res.guk||'';
+          const ohs=sipToOh(res.huiOh||'',dayOh);
+          yong=ohs.length>=2?ohs:[ohs[0]||dayOh,SG_N[ohs[0]||dayOh]];
+        }
+      }catch(e){console.warn(e);}
+    }
+    if(!yong.length){
+      const S={1:'水',2:'水',3:'木',4:'木',5:'木',6:'火',7:'火',8:'火',9:'金',10:'金',11:'金',12:'水'};
+      const b=S[m]||'土';
+      yong=[SG_N[b],SG_N[SG_N[b]]]; dayOh=b;
+    }
+    ST.needOh=yong; ST.dayOh=dayOh; ST.guk=gukStr;
+
+    document.getElementById('yongBadge').innerHTML=
+      `일간 <strong style="color:var(--accent)">${dayOh}</strong>`+
+      (gukStr?` · <strong style="color:var(--accent)">${gukStr}</strong>`:'')+
+      `<br>용신 <strong style="color:var(--accent)">${yong[0]}</strong> · 희신 <strong style="color:var(--accent)">${yong[1]||''}</strong>`;
+
+    // 필터 태그
+    document.getElementById('filterRow').innerHTML=
+      '<span class="f-tag on" data-f="all" onclick="filterNames(this)">전체</span>'+
+      yong.map(o=>`<span class="f-tag" data-f="${o}" onclick="filterNames(this)">${o} ${O5NM[o]} ✦</span>`).join('');
+
+    document.getElementById('btn1').textContent='기운 분석 후 작명 시작 →';
+    document.getElementById('btn1').disabled=false;
+
+    document.getElementById('pane1').style.display='none';
+    document.getElementById('pane2').style.display='block';
+    runGen();
+    if(document.getElementById('analyzeInput').value) liveAnalyze();
+    document.getElementById('pane2').scrollIntoView({behavior:'smooth',block:'start'});
+  },300);
+}
+
+/* ════ 탭 전환 ════ */
+function switchTab(id,el){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));
+  el.classList.add('on');
+  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('on'));
+  document.getElementById('tab-'+id).classList.add('on');
+}
+
+/* ════ 유틸 ════ */
+function decomp(ch){
+  const c=ch.charCodeAt(0)-0xAC00;
+  if(c<0||c>11171)return null;
+  return{cho:CHL[Math.floor(c/588)],jong:JGL[c%28]};
+}
+function nameO5(n){const d=decomp(n[0]);return d?(O5C[d.cho]||'土'):'土';}
+function jo5n(j){if(!j)return null;return O5C[JF_N[j]||j]||null;}
+function goodRel(a,b){return a===b||SG_N[a]===b||SG_N[b]===a;}
+
+function seqOf(str){
+  const r=[];
+  for(const ch of str){
+    const d=decomp(ch);if(!d)continue;
+    r.push(O5C[d.cho]);
+    const j=jo5n(d.jong);if(j)r.push(j);
+  }
+  return r;
+}
+function flowOK(seq){
+  for(let i=0;i<seq.length-1;i++)if(!goodRel(seq[i],seq[i+1]))return false;
+  return true;
+}
+// 성씨↔이름 경계는 상극 허용(체크 안 함) — 이름 내부 흐름만 엄격히 체크
+// (성씨 자체의 내부 흐름은 체크하지 않음 — 성씨는 바꿀 수 없어 의미 없는 체크였음)
+// (예: 김+윤서 — 받침ㅁ水→초성ㅇ土 경계는 통과, 윤↔서 이름 내부 흐름만 검사)
+function flowOKRelaxed(sungStr,nameStr){
+  return flowOK(seqOf(nameStr));
+}
+function flowScore(seq){
+  let ok=0,ng=0;
+  for(let i=0;i<seq.length-1;i++)goodRel(seq[i],seq[i+1])?ok++:ng++;
+  return{ok,ng};
+}
+function hStrokes(h){return[...h].map(c=>HANJA_S[c]||10);}
+function suriGradeN(n){
+  let r=n;while(r>81)r-=80;if(r<1)r=1;
+  if(r===29)return'flag';if(GIL.has(r))return'gil';if(JUNG.has(r))return'jung';return'hyung';
+}
+function calcSuri(ss,strokes){
+  if(!ss||!strokes||!strokes.length)return null;
+  const ga=strokes.length>=2?1:1;
+  const sumN=strokes.reduce((a,b)=>a+b,0);
+  return{inG:suriGradeN(ss+strokes[0]),ji:suriGradeN(sumN),chong:suriGradeN(ss+sumN),oe:suriGradeN(ss+sumN-(ss+strokes[0])-ga)};
+}
+function gradeScore(g){return g==='gil'?2:g==='jung'||g==='flag'?1:-1;}
+
+// 다중 한자 후보 중 수리(획수)가 가장 좋은 것을 자동으로 골라줌 (v3와 동일 로직)
+function getBestCand(d,ss){
+  if(!d.cands||!d.cands.length)return null;
+  if(!ss||d.cands.length===1)return{...d.cands[0],res:ss?calcSuri(ss,d.cands[0].s):null};
+  return d.cands.map(c=>{
+    const res=calcSuri(ss,c.s);
+    return{...c,res};
+  }).sort((a,b)=>{
+    const aAllGil=a.res&&[a.res.inG,a.res.ji,a.res.chong,a.res.oe].every(g=>g==='gil'||g==='jung');
+    const bAllGil=b.res&&[b.res.inG,b.res.ji,b.res.chong,b.res.oe].every(g=>g==='gil'||g==='jung');
+    if(aAllGil&&!bAllGil)return -1;
+    if(!aAllGil&&bAllGil)return 1;
+    const aInGil=a.res&&(a.res.inG==='gil'||a.res.inG==='jung');
+    const bInGil=b.res&&(b.res.inG==='gil'||b.res.inG==='jung');
+    if(aInGil&&!bInGil)return -1;
+    if(!aInGil&&bInGil)return 1;
+    return 0;
+  })[0];
+}
+
+function buildFlowHTML(name){
+  const items=[];
+  for(const ch of name){
+    const d=decomp(ch);if(!d)continue;
+    items.push({ch,o:O5C[d.cho],jong:false});
+    const j=jo5n(d.jong);if(j)items.push({ch:'받침',o:j,jong:true});
+  }
+  let html='';
+  items.forEach((it,i)=>{
+    if(!it.jong)html+=`<span class="fchip" style="background:${O5COL[it.o]}">${it.ch}</span>`;
+    if(i<items.length-1){
+      const rel=goodRel(it.o,items[i+1].o);
+      html+=`<span class="farr ${rel?'ok':'ng'}">${rel?'→':'↯'}</span>`;
+    }
+  });
+  return html;
+}
+
+/* ════ 이름 분석 탭 ════ */
+function liveAnalyze(){
+  const n=document.getElementById('analyzeInput').value.trim();
+  const el=document.getElementById('analyzeResult');
+  if(!n){el.innerHTML='';return;}
+  
+  const fullName=ST.sung+n;
+  const seq=seqOf(fullName);
+  const fs=flowScore(seq);
+  const dbItem=NAMES_DB.find(d=>d.n===n&&d.g===ST.gender);
+  const best=dbItem?getBestCand(dbItem,ST.ss):null;
+  const hanja=best?best.h:'';
+  const strokes=best?best.s:[];
+  const res=ST.ss&&strokes.length?calcSuri(ST.ss,strokes):null;
+  
+  // 점수 계산
+  const o5=nameO5(n);
+  const matchOh=ST.needOh.includes(o5)||ST.needOh.some(y=>SG_N[y]===o5);
+  let score=50;
+  score+=fs.ng===0?20:(fs.ok-fs.ng)*8;
+  score+=matchOh?15:-10;
+  if(res){
+    score+=gradeScore(res.inG)*8+gradeScore(res.ji)*4+gradeScore(res.chong)*4;
+  }
+  score=Math.max(5,Math.min(99,Math.round(score)));
+  
+  const gLabel=score>=80?'大吉':score>=65?'吉':score>=45?'平':'주의';
+  const gColor=score>=80?'var(--mok)':score>=65?'var(--to)':score>=45?'var(--gold)':'var(--hwa)';
+  
+  const suriHtml=res?`<div class="suri-row">
+    ${[
+      {label:'인격',val:ST.ss+strokes[0],g:res.inG},
+      {label:'지격',val:strokes.reduce((a,b)=>a+b,0),g:res.ji},
+      {label:'총격',val:ST.ss+strokes.reduce((a,b)=>a+b,0),g:res.chong}
+    ].map(it=>`<div class="si">
+      <div class="si-val">${it.val}</div>
+      <div class="si-label">${it.label}</div>
+      <div class="si-g ${it.g==='gil'?'sg-gil':it.g==='hyung'?'sg-hyung':'sg-jung'}">${it.g==='gil'?'吉':it.g==='jung'||it.g==='flag'?'中吉':'凶'}</div>
+    </div>`).join('')}
+  </div>`:
+  '<div style="font-size:12px;color:var(--ink2);margin:8px 0">한자 탭에서 한자를 고르면 수리가 계산됩니다</div>';
+
+  el.innerHTML=`<div class="analysis-card">
+    <div class="ac-name">${[...(ST.sung+n)].join(' ')}</div>
+    <div class="ac-hanja" style="min-height:22px;font-size:13px;line-height:1.7">${renderHanjaWithMeaning(hanja)}</div>
+    <div class="flow-chips">${buildFlowHTML(fullName)}</div>
+    <div style="text-align:center;margin:6px 0">
+      ${fs.ng===0?'<span class="flow-badge flow-ok">소리흐름 상생 ✓</span>':'<span class="flow-badge flow-bad">소리 상극 '+fs.ng+'곳 ↯</span>'}
+      ${matchOh?'<span class="flow-badge flow-ok" style="margin-left:6px">용신 일치 ✦</span>':'<span class="flow-badge flow-bad" style="margin-left:6px">용신 불일치</span>'}
+    </div>
+    ${suriHtml}
+    <div class="score-bar">
+      <div class="score-label">
+        <span>종합 점수</span>
+        <span style="color:${gColor};font-weight:600">${gLabel} ${score}점</span>
+      </div>
+      <div class="bar-track"><div class="bar-fill" style="width:${score}%"></div></div>
+    </div>
+    <div style="margin-top:12px;text-align:center">
+      <button class="btn btn-sm" onclick="goToHanjaTab('${n}')" style="width:auto;padding:9px 20px">
+        이 이름으로 한자 고르기 →
+      </button>
+    </div>
+  </div>`;
+}
+
+function goToHanjaTab(name){
+  ST.selName=name;
+  ST.selHanjaMap={};
+  document.querySelectorAll('.tab')[2].click();
+  document.getElementById('hanjaSearch').value='';
+  updateHanjaPreview();
+  document.getElementById('hanjaResult').innerHTML='';
+}
+
+/* ════ 추천 탐색 탭 ════ */
+let fixPos=0;
+function setFixPos(el){
+  document.querySelectorAll('#posSegs button').forEach(b=>b.classList.remove('on'));
+  el.classList.add('on');
+  fixPos=+el.dataset.p;
+}
+
+function filterNames(el){
+  document.querySelectorAll('.f-tag').forEach(t=>t.classList.remove('on'));
+  el.classList.add('on');
+  runGen(el.dataset.f);
+}
+
+function runGen(filterOh){
+  filterOh=filterOh||document.querySelector('.f-tag.on')?.dataset.f||'all';
+  const fixChar=document.getElementById('fixChar').value.trim();
+  let cands=[];
+
+  // 실제 검증된 이름(NAMES_DB)에서만 필터링 — 새 조합 생성 안 함 → 이상한 조합 0%
+  const dbPool=NAMES_DB.filter(d=>d.g===ST.gender);
+  for(const dbI of dbPool){
+    const n=dbI.n;
+    if(fixChar && n[fixPos]!==fixChar) continue;
+    const c1=O5C[decomp(n[0])?.cho];
+    if(!c1)continue;
+    const flowGood=flowOKRelaxed(ST.sung,n);
+    const match=ST.needOh.includes(c1)||ST.needOh.some(y=>SG_N[y]===c1);
+    if(filterOh!=='all'&&!([c1].some(o=>o===filterOh||SG_N[filterOh]===o||SG_N[o]===filterOh)))continue;
+    let sc=match?12:3;
+    if(!flowGood)sc-=2; // 제외하지 않고 점수만 약간 낮춤(정렬에서 뒤로)
+    [...n].forEach(e=>sc+=popb(e));
+    // 수리 점수 추가 — 다중 후보 중 가장 좋은 것 자동 선택
+    if(dbI&&ST.ss){
+      const best=getBestCand(dbI,ST.ss);
+      if(best&&best.res)sc+=gradeScore(best.res.inG)*2;
+    }
+    cands.push({n,c1,match,sc,flowGood,dbItem:dbI});
+  }
+  cands.sort((a,b)=>b.sc-a.sc);
+  // 중복 제거
+  const seen=new Set();
+  cands=cands.filter(c=>{if(seen.has(c.n))return false;seen.add(c.n);return true;});
+
+  document.getElementById('nameGrid').innerHTML=cands.slice(0,18).map((c,i)=>{
+    const best=c.dbItem&&ST.ss?getBestCand(c.dbItem,ST.ss):null;
+    const res=best?best.res:null;
+    const dots=res?[res.inG,res.ji,res.chong,res.oe].map(g=>`<span class="sdot ${g}"></span>`).join(''):'';
+    const flowTag=c.flowGood?'<span class="flow-badge flow-ok">흐름 좋음 ✓</span>':'<span class="flow-badge flow-bad">흐름 약함 ⚠</span>';
+    const star=c.match?'<span style="position:absolute;top:-7px;right:3px;font-size:12px;color:var(--accent)">✦</span>':'';
+    const candNote=c.dbItem&&c.dbItem.cands.length>1?`<span class="cand-note">한자 ${c.dbItem.cands.length}종 중 최적 선택</span>`:'';
+    const pkNote=c.dbItem&&c.dbItem.pureKorean?'<span class="cand-note pk-note">순우리말 이름 — 한자 없이도 좋습니다, 아래는 참고용</span>':'';
+    return `<div class="n-card${c.match?' match':''}" style="animation-delay:${i*0.04}s"
+      onclick="selectNameFromGrid('${c.n}')">
+      ${star}
+      <div class="n-kor">${[...c.n].join(' ')}</div>
+      <div class="sdots">${dots}</div>
+      ${flowTag}
+      <div class="n-mean" style="margin-top:3px">${best?best.poem||'':''}</div>
+      ${candNote}
+      ${pkNote}
+    </div>`;
+  }).join('');
+}
+
+function selectNameFromGrid(n){
+  ST.selName=n;
+  ST.selHanjaMap={};
+  // 한자 탭으로 이동
+  document.querySelectorAll('.tab')[2].click();
+  document.getElementById('hanjaSearch').value='';
+  updateHanjaPreview();
+  document.getElementById('hanjaResult').innerHTML='';
+  document.getElementById('pane2').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+/* ════ 한자 검색 탭 ════ */
+function updateHanjaPreview(){
+  const n=ST.selName||'';
+  const map=ST.selHanjaMap;
+  const preview=[...n].map((ch,i)=>map[i]?`<span style="color:var(--accent)">${map[i].h}</span>`:
+    `<span style="color:var(--line)">[${ch}]</span>`).join(' ');
+  
+  document.getElementById('hanjaNamePreview').innerHTML=
+    n?`<span style="font-size:12px;color:var(--ink2)">선택 중인 이름: </span>`+
+    `<span style="font-family:'Gowun Batang',serif;font-size:18px;letter-spacing:.12em;color:var(--ink)">${[...(ST.sung)].join('')} ${preview}</span>`:'';
+  
+  // 완성 여부 체크
+  const done=[...n].every((_,i)=>map[i]);
+  document.getElementById('hanjaSelected').style.display=n?'block':'none';
+  document.getElementById('selHanjaDisplay').textContent=n?
+    ST.sung+[...n].map((_,i)=>map[i]?map[i].h:'□').join(''):'';
+  document.getElementById('finalBtn').disabled=!done||!n;
+  if(done&&n)document.getElementById('finalBtn').textContent='이 이름으로 완성하기 →';
+}
+
+function clearHanjaSlot(){
+  // 마지막 선택 한자 제거
+  const n=ST.selName||'';
+  const keys=Object.keys(ST.selHanjaMap).map(Number).sort((a,b)=>b-a);
+  if(keys.length){delete ST.selHanjaMap[keys[0]];updateHanjaPreview();}
+}
+
+function searchHanja(){
+  const q=document.getElementById('hanjaSearch').value.trim();
+  const el=document.getElementById('hanjaResult');
+  if(!q){el.innerHTML='';return;}
+  
+  // 두음법칙 중복음 합쳐서 검색
+  const alt=DUAL_SOUND[q];
+  const list=[...(EUMP[q]||[]),...(alt&&EUMP[alt]?EUMP[alt].map(c=>[c[0],c[1],c[2],alt]):[])]
+    .filter((c,i,a)=>a.findIndex(x=>x[0]===c[0])===i); // 중복 한자 제거
+  if(!list.length){el.innerHTML='<div style="font-size:12.5px;color:var(--ink2);padding:10px 0">이 음절의 인명용 한자를 찾지 못했어요</div>';return;}
+  
+  // 용신 오행 맞는 것 우선 정렬
+  const sorted=[...list].sort((a,b)=>{
+    const aMatch=ST.needOh.includes(a[2]);
+    const bMatch=ST.needOh.includes(b[2]);
+    return(bMatch?1:0)-(aMatch?1:0);
+  });
+
+  el.innerHTML=`<div style="font-size:11.5px;color:var(--ink2);margin-bottom:8px">${sorted.length}개 한자 · 용신 오행(✦)이 위에 표시됩니다</div>
+  <div class="hanja-list">
+    ${sorted.slice(0,40).map(c=>{
+      const oh=c[2]||'';
+      const match=ST.needOh.includes(oh);
+      const origSound=c.length>3?c[3]:q; const soundNote=origSound!==q?' ('+origSound+')':''; return `<div class="hj-item${match?' on':''}" onclick="selectHanjaChar('${q}','${c[0]}','${oh}',${c[1]})">
+        <div class="hj-char">${c[0]}</div>
+        <div class="hj-info">${oh?oh+' '+O5NM[oh]:''}${match?' ✦':''}${soundNote} ${c[1]}획</div>
+      </div>`;
+    }).join('')}
+  </div>`;
+}
+
+function selectHanjaChar(eum,hanja,oh,strokes){
+  const n=ST.selName||'';
+  // 현재 몇 번째 글자인지 (아직 선택 안 된 첫 번째 자리)
+  let slot=-1;
+  for(let i=0;i<n.length;i++){
+    if(n[i]===eum&&!ST.selHanjaMap[i]){slot=i;break;}
+  }
+  if(slot<0){
+    // 이미 다 찼으면 해당 음절 첫 번째 자리 덮어쓰기
+    for(let i=0;i<n.length;i++){if(n[i]===eum){slot=i;break;}}
+  }
+  if(slot>=0){
+    ST.selHanjaMap[slot]={h:hanja,oh,s:strokes};
+    updateHanjaPreview();
+    // 안내 이동
+    document.getElementById('hanjaSearch').value='';
+    document.getElementById('hanjaResult').innerHTML='';
+  }
+}
+
+/* ════ 완성 ════ */
+function goFinal(){
+  const n=ST.selName;
+  const map=ST.selHanjaMap;
+  const hanjaStr=[...n].map((_,i)=>map[i]?map[i].h:'').join('');
+  const strokes=[...n].map((_,i)=>map[i]?map[i].s:10);
+  
+  document.getElementById('rcName').textContent=[...(ST.sung+n)].join(' ');
+  document.getElementById('rcHanja').textContent=hanjaStr;
+  document.getElementById('rcFlow').innerHTML=buildFlowHTML(ST.sung+n);
+  
+  if(ST.ss&&strokes.length){
+    const res=calcSuri(ST.ss,strokes);
+    if(res){
+      const items=[
+        {label:'인격',val:ST.ss+strokes[0],g:res.inG},
+        {label:'지격',val:strokes.reduce((a,b)=>a+b,0),g:res.ji},
+        {label:'총격',val:ST.ss+strokes.reduce((a,b)=>a+b,0),g:res.chong},
+      ];
+      document.getElementById('rcSuri').innerHTML=
+        `<div class="suri-row">`+
+        items.map(it=>`<div class="si">
+          <div class="si-val">${it.val}</div>
+          <div class="si-label">${it.label}</div>
+          <div class="si-g ${it.g==='gil'?'sg-gil':it.g==='hyung'?'sg-hyung':'sg-jung'}">${it.g==='gil'?'吉':it.g==='jung'||it.g==='flag'?'中吉':'凶'}</div>
+        </div>`).join('')+`</div>`;
+    }
+  }
+  
+  const bl={
+    '남':['이 이름을 부를 때마다 세상이 응원을 보냅니다.','좋은 소리가 좋은 길을 만듭니다.','이 이름과 함께 크고 빛나게 자라기를.'],
+    '여':['이 이름처럼 밝고 아름답게 피어나기를.','세상에 하나뿐인 이름이 세상에 하나뿐인 빛을 만듭니다.','이 이름을 부르는 모든 순간이 따뜻하기를.']
+  };
+  const bls=bl[ST.gender]||bl['남'];
+  document.getElementById('rcBlessing').textContent=bls[Math.floor(Math.random()*bls.length)];
+  
+  document.getElementById('pane2').style.display='none';
+  document.getElementById('pane3').style.display='block';
+  document.getElementById('voteSection').style.display='block';
+  document.getElementById('addCandBtn').textContent='+ 이 이름을 후보에 추가 (0/3)';
+  document.getElementById('pane3').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function backToMain(){
+  document.getElementById('pane3').style.display='none';
+  document.getElementById('pane2').style.display='block';
+}
+function copyResult(){
+  const name=document.getElementById('rcName').textContent.replace(/\s/g,'');
+  const hanja=document.getElementById('rcHanja').textContent;
+  const givenName=name.length>1?name.slice(1):name; // 성 제외한 이름만
+  const url=location.origin+location.pathname+'?n='+encodeURIComponent(givenName);
+  const text=`${name} (${hanja})\n知我世 지아세에서 직접 완성한 이름이에요`;
+  if(navigator.share){
+    navigator.share({title:'知我世 작명',text,url}).catch(()=>{});
+  } else if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text+'\n'+url)
+      .then(()=>alert('복사됐어요! 링크를 눌러보면 이 이름이 바로 분석돼요.'))
+      .catch(()=>fallbackCopy(text+'\n'+url));
+  } else {
+    fallbackCopy(text+'\n'+url);
+  }
+}
+function fallbackCopy(text){
+  const ta=document.createElement('textarea');
+  ta.value=text; ta.style.position='fixed'; ta.style.opacity='0';
+  document.body.appendChild(ta); ta.focus(); ta.select();
+  try{ document.execCommand('copy'); alert('복사됐어요!'); }
+  catch(e){ alert('복사에 실패했어요. 직접 선택해서 복사해주세요:\n\n'+text); }
+  document.body.removeChild(ta);
+}
+function openKakao(){alert('카카오 채널에서 작명 상담을 시작하세요.');}
+
+/* ════════════════════════════════════════
+   가족 투표 시스템
+════════════════════════════════════════ */
+let candidates=[], voteId=null;
+
+function addCandidate(){
+  const name=ST.selName, map=ST.selHanjaMap;
+  if(!name){alert('먼저 이름을 완성해 주세요');return;}
+  if(candidates.length>=3){alert('후보는 최대 3개까지 등록할 수 있어요');return;}
+  if(candidates.find(c=>c.name===name)){alert('이미 등록된 이름이에요');return;}
+  const hanjaStr=[...name].map((_,i)=>map[i]?map[i].h:'').join('');
+  const meaning=[...name].map((_,i)=>map[i]?(HANJA_MEANING[map[i].h]||''):'').filter(Boolean).join(' · ');
+  candidates.push({name,hanja:hanjaStr,meaning});
+  renderCandidates();
+  document.getElementById('voteSection').style.display='block';
+}
+
+function removeCandidate(i){
+  candidates.splice(i,1);
+  renderCandidates();
+  if(candidates.length<2)document.getElementById('voteLink').style.display='none';
+}
+
+function renderCandidates(){
+  document.getElementById('candidateList').innerHTML=candidates.map((c,i)=>`
+    <div class="candidate-row">
+      <div class="cand-chip on">${[...c.name].join(' ')} <span style="font-size:11px;color:var(--ink2)">${c.hanja}</span></div>
+      <button onclick="removeCandidate(${i})" style="border:none;background:none;color:#aaa;cursor:pointer;font-size:18px;padding:4px 6px">×</button>
+    </div>`).join('');
+  const btn=document.getElementById('addCandBtn');
+  btn.style.display=candidates.length>=3?'none':'block';
+  btn.textContent=`+ 이 이름을 후보에 추가 (${candidates.length}/3)`;
+  if(candidates.length>=2){generateVoteLink();document.getElementById('checkVoteBtn').style.display='block';}
+  else document.getElementById('voteLink').style.display='none';
+}
+
+async function generateVoteLink(){
+  if(!voteId)voteId=Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+  const data={candidates,votes:candidates.reduce((a,c)=>({...a,[c.name]:0}),{}),created:Date.now()};
+  try{await window.storage.set('vote:'+voteId,JSON.stringify(data),true);}catch(e){}
+  const url=new URL(window.location.href);
+  url.searchParams.set('vote',voteId);
+  url.searchParams.set('names',candidates.map(c=>c.name).join(','));
+  url.searchParams.set('hanja',candidates.map(c=>c.hanja).join(','));
+  document.getElementById('voteLinkInput').value=url.toString();
+  document.getElementById('voteLink').style.display='block';
+}
+
+function copyVoteLink(){
+  navigator.clipboard.writeText(document.getElementById('voteLinkInput').value)
+    .then(()=>{const b=event.currentTarget;b.textContent='복사됨 ✓';setTimeout(()=>b.textContent='복사',2000);});
+}
+
+function renderVotingView(vid,data){
+  document.getElementById('votingView').style.display='block';
+  document.getElementById('voteSection').style.display='none';
+  const alreadyVoted=localStorage.getItem('voted:'+vid);
+  const total=Object.values(data.votes).reduce((a,b)=>a+b,0);
+  const maxV=Math.max(...Object.values(data.votes),0);
+  document.getElementById('voteItems').innerHTML=data.candidates.map(c=>{
+    const cnt=data.votes[c.name]||0,pct=total?Math.round(cnt/total*100):0;
+    const isWinner=cnt===maxV&&cnt>0,isMyVote=alreadyVoted===c.name;
+    return `<div class="vote-item">
+      <div style="flex:1.2">
+        <div class="vote-name">${[...c.name].join(' ')}${isWinner&&total>0?'<span class="winner-badge">1위</span>':''}</div>
+        <div class="vote-hanja">${c.hanja}${c.meaning?' · '+c.meaning:''}</div>
+      </div>
+      <div class="vote-bar-wrap">
+        <div class="vote-bar-bg"><div class="vote-bar-fill" style="width:${alreadyVoted?pct:0}%"></div></div>
+        <div class="vote-count">${alreadyVoted?cnt+'표 ('+pct+'%)':'투표 후 공개'}</div>
+      </div>
+      ${!alreadyVoted
+        ?`<button class="vote-btn" onclick="castVote('${vid}','${c.name}',this)">투표</button>`
+        :`<button class="vote-btn voted" disabled>${isMyVote?'내 선택 ✓':''}</button>`}
+    </div>`;
+  }).join('');
+  document.getElementById('voteResultMsg').textContent=alreadyVoted?'투표해 주셔서 감사해요 💝':'';
+}
+
+async function castVote(vid,name,btn){
+  btn.disabled=true; btn.textContent='집계 중…';
+  try{
+    const stored=await window.storage.get('vote:'+vid,true);
+    if(stored){
+      const data=JSON.parse(stored.value);
+      data.votes[name]=(data.votes[name]||0)+1;
+      await window.storage.set('vote:'+vid,JSON.stringify(data),true);
+      localStorage.setItem('voted:'+vid,name);
+      renderVotingView(vid,data);
+    }else{
+      localStorage.setItem('voted:'+vid,name);
+      btn.textContent='✓';btn.classList.add('voted');
+      document.getElementById('voteResultMsg').textContent='투표 완료!';
+    }
+  }catch(e){localStorage.setItem('voted:'+vid,name);btn.textContent='✓';btn.classList.add('voted');}
+}
+
+async function checkVoteResult(){
+  if(!voteId){alert('아직 투표 링크를 만들지 않았어요');return;}
+  try{
+    const stored=await window.storage.get('vote:'+voteId,true);
+    if(!stored){alert('아직 투표 결과가 없어요');return;}
+    const data=JSON.parse(stored.value);
+    if(!Object.values(data.votes).reduce((a,b)=>a+b,0)){alert('아직 아무도 투표하지 않았어요');return;}
+    renderVotingView(voteId,data);
+    document.getElementById('votingView').scrollIntoView({behavior:'smooth'});
+  }catch(e){alert('결과를 불러올 수 없어요');}
+}
+
+async function initVoteView(){
+  const params=new URLSearchParams(window.location.search);
+  const vid=params.get('vote'),namesParam=params.get('names');
+  if(!vid||!namesParam)return false;
+  const names=namesParam.split(','),hanjas=(params.get('hanja')||'').split(',');
+  let data={candidates:names.map((n,i)=>({name:n,hanja:hanjas[i]||'',meaning:''})),votes:names.reduce((a,n)=>({...a,[n]:0}),{})};
+  try{const s=await window.storage.get('vote:'+vid,true);if(s)data=JSON.parse(s.value);}catch(e){}
+  const ls=document.getElementById('lockScreen');if(ls)ls.style.display='none';
+  const mc=document.getElementById('mainContent');if(mc)mc.style.display='block';
+  document.getElementById('pane1').style.display='none';
+  document.getElementById('pane2').style.display='none';
+  document.getElementById('pane3').style.display='block';
+  document.querySelector('.hero').style.display='none';
+  renderVotingView(vid,data);
+  return true;
+}
+
+/* ════ 초기화 ════ */
+(async function(){
+  // 만료일 체크
+  if(!checkExpiry()){
+    document.getElementById('expiredScreen').style.display='flex';
+    document.getElementById('mainContent').style.display='none';
+    return;
+  }
+
+  // 투표 링크 접속 여부 확인
+  const isVote=await initVoteView();
+  if(!isVote){
+    document.getElementById('pane1').style.display='block';
+    document.getElementById('pane2').style.display='none';
+    document.getElementById('pane3').style.display='none';
+    // 공유 링크로 들어온 경우 — 기본정보 입력 후 바로 분석되도록 미리 채워둠
+    const sharedName=new URLSearchParams(window.location.search).get('n');
+    if(sharedName){
+      const input=document.getElementById('analyzeInput');
+      if(input){ input.value=sharedName; }
+    }
+  }
+})();
+
+</script>
+</body>
+</html>

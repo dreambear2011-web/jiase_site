@@ -1,0 +1,1729 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>이름을 선물하다 · 지아세 작명</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Nanum+Myeongjo:wght@400;700&display=swap');
+
+:root {
+  --night: #0F0D0B;
+  --deep: #15120E;
+  --mid: #1C1815;
+  --gold: #C8A24A;
+  --gold2: #9a7b3f;
+  --violet: #C05746;
+  --pearl: #EDE3CF;
+  --muted: #9a917e;
+  --dim: #2A2620;
+  --glow: rgba(200,162,74,.18);
+  --vglow: rgba(192,87,70,.12);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--night);
+  color: var(--pearl);
+  font-family: -apple-system, 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ── STARS CANVAS ── */
+#starfield {
+  position: fixed; inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── WRAPPER ── */
+.wrap {
+  position: relative;
+  z-index: 1;
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 0 20px 80px;
+}
+
+/* ── HERO ── */
+.hero {
+  text-align: center;
+  padding: 72px 0 56px;
+}
+
+.hero-seal {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 72px; height: 72px;
+  border: 1.5px solid var(--gold);
+  border-radius: 50%;
+  margin-bottom: 24px;
+  box-shadow: 0 0 32px var(--glow), inset 0 0 20px rgba(232,201,122,.06);
+  animation: sealPulse 3s ease-in-out infinite;
+}
+.hero-seal img{width:48px;height:48px;border-radius:11px;display:block}
+b{color:var(--gold);font-weight:800}
+
+@keyframes sealPulse {
+  0%,100% { box-shadow: 0 0 24px var(--glow), inset 0 0 12px rgba(232,201,122,.06); }
+  50% { box-shadow: 0 0 48px rgba(232,201,122,.3), inset 0 0 28px rgba(232,201,122,.1); }
+}
+
+.hero-badge {
+  font-size: 11px;
+  letter-spacing: .18em;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+
+.hero h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(34px, 8vw, 54px);
+  font-weight: 300;
+  line-height: 1.2;
+  color: var(--pearl);
+  margin-bottom: 8px;
+}
+
+.hero h1 em {
+  font-style: italic;
+  color: var(--gold);
+}
+
+.hero-sub {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.8;
+  margin-top: 16px;
+  max-width: 420px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-divider {
+  width: 48px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  margin: 28px auto 14px;
+}
+.oheng-divider{display:flex;justify-content:center;gap:6px;margin-bottom:14px}
+.oheng-divider span{width:7px;height:7px;border-radius:50%;display:inline-block}
+.oheng-divider span:nth-child(1){background:#4caf60}
+.oheng-divider span:nth-child(2){background:#d9483a}
+.oheng-divider span:nth-child(3){background:#C8A24A}
+.oheng-divider span:nth-child(4){background:#9aa0a6}
+.oheng-divider span:nth-child(5){background:#4a6fb0}
+
+/* ── GENDER SELECT ── */
+.gender-bar {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+.gender-btn {
+  padding: 12px 32px;
+  border: 1px solid var(--dim);
+  border-radius: 100px;
+  background: transparent;
+  color: var(--muted);
+  font-family: inherit;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all .25s;
+  letter-spacing: .06em;
+}
+
+.gender-btn.active, .gender-btn:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+  background: rgba(232,201,122,.07);
+}
+
+/* ── OHAENG FILTER ── */
+.filter-row {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.oh-btn {
+  padding: 7px 18px;
+  border-radius: 100px;
+  border: 1px solid var(--dim);
+  background: transparent;
+  color: var(--muted);
+  font-family: inherit;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all .2s;
+}
+
+.oh-btn[data-o="木"]:hover, .oh-btn[data-o="木"].active { border-color:#5a9e6a;color:#5a9e6a;background:rgba(90,158,106,.1); }
+.oh-btn[data-o="火"]:hover, .oh-btn[data-o="火"].active { border-color:#d96a4a;color:#d96a4a;background:rgba(217,106,74,.1); }
+.oh-btn[data-o="土"]:hover, .oh-btn[data-o="土"].active { border-color:#c9a84c;color:#c9a84c;background:rgba(201,168,76,.1); }
+.oh-btn[data-o="金"]:hover, .oh-btn[data-o="金"].active { border-color:#a0b8d0;color:#a0b8d0;background:rgba(160,184,208,.1); }
+.oh-btn[data-o="水"]:hover, .oh-btn[data-o="水"].active { border-color:#6a9fd4;color:#6a9fd4;background:rgba(106,159,212,.1); }
+.oh-btn.all-btn.active { border-color:var(--gold);color:var(--gold);background:var(--glow); }
+
+.filter-note {
+  text-align: center;
+  font-size: 11.5px;
+  color: var(--muted);
+  margin-bottom: 32px;
+  line-height: 1.6;
+}
+
+/* ── SECTION LABEL ── */
+.sec-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.sec-label::before, .sec-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--dim));
+}
+.sec-label::after {
+  background: linear-gradient(90deg, var(--dim), transparent);
+}
+
+.sec-label span {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 13px;
+  color: var(--muted);
+  white-space: nowrap;
+  letter-spacing: .08em;
+}
+
+/* ── NAMES GRID ── */
+.names-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(148px, 1fr));
+  gap: 14px;
+  margin-bottom: 48px;
+}
+
+/* ── NAME CARD ── */
+.nc {
+  background: var(--deep);
+  border: 1px solid var(--dim);
+  border-radius: 16px;
+  padding: 18px 14px 14px;
+  text-align: center;
+  cursor: default;
+  position: relative;
+  overflow: hidden;
+  transition: transform .25s, border-color .25s, box-shadow .25s;
+  animation: cardRise .5s ease both;
+}
+
+.nc::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 0%, rgba(232,201,122,.07) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity .3s;
+}
+
+.nc:hover { transform: translateY(-3px); }
+.nc:hover::before { opacity: 1; }
+
+.nc.top { border-color: rgba(232,201,122,.4); box-shadow: 0 0 24px rgba(232,201,122,.08); }
+.nc.top::before { opacity: 1; }
+
+@keyframes cardRise {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.nc-hanja {
+  font-family: 'Nanum Myeongjo', serif;
+  font-size: 11px;
+  color: var(--muted);
+  margin-bottom: 4px;
+  letter-spacing: .04em;
+  min-height: 16px;
+}
+
+.nc-name {
+  font-family: 'Nanum Myeongjo', serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--pearl);
+  margin-bottom: 6px;
+  letter-spacing: .04em;
+}
+
+.nc.top .nc-name { color: var(--gold); }
+
+.nc-suri {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+.suri-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--dim);
+}
+
+.suri-dot.gil { background: #5a9e6a; }
+.suri-dot.jung { background: var(--gold); }
+
+.nc-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  justify-content: center;
+}
+
+.nc-tag {
+  font-size: 10px;
+  padding: 2px 8px;
+  border-radius: 100px;
+  letter-spacing: .02em;
+}
+
+.tag-木 { color:#5a9e6a; background:rgba(90,158,106,.12); border:1px solid rgba(90,158,106,.25); }
+.tag-火 { color:#d96a4a; background:rgba(217,106,74,.12); border:1px solid rgba(217,106,74,.25); }
+.tag-土 { color:#c9a84c; background:rgba(201,168,76,.12); border:1px solid rgba(201,168,76,.25); }
+.tag-金 { color:#a0b8d0; background:rgba(160,184,208,.12); border:1px solid rgba(160,184,208,.25); }
+.tag-水 { color:#6a9fd4; background:rgba(106,159,212,.12); border:1px solid rgba(106,159,212,.25); }
+
+.nc-star {
+  position: absolute;
+  top: 10px; right: 12px;
+  font-size: 12px;
+  opacity: .6;
+}
+
+.nc.top .nc-star { opacity: 1; color: var(--gold); }
+
+/* 인격凶 카드 흐리게 */
+.nc-dim {
+  opacity: .38;
+  filter: grayscale(.5);
+}
+.nc-dim:hover { opacity: .6; filter: none; }
+
+/* 실제 수리 뱃지 */
+.nc-suri-real {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  justify-content: center;
+  margin-bottom: 6px;
+  font-size: 10px;
+}
+.suri-badge-real {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 1px 7px;
+  border-radius: 10px;
+  background: currentColor;
+  color: inherit;
+  opacity: .15;
+}
+.nc-suri-real .suri-badge-real {
+  background: transparent;
+  border: 1px solid currentColor;
+  opacity: 1;
+}
+
+/* 성씨 입력 시 범례 업데이트 */
+.suri-legend-real {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+  font-size: 11px;
+  margin-bottom: 12px;
+}
+.nc-badge {
+  position: absolute;
+  top: 9px; left: 10px;
+  font-size: 8.5px;
+  font-weight: 600;
+  letter-spacing: .04em;
+  padding: 1px 6px;
+  border-radius: 8px;
+  line-height: 1.6;
+}
+.badge-hangeul {
+  color: #7ab8d4;
+  background: rgba(122,184,212,.12);
+  border: 1px solid rgba(122,184,212,.3);
+}
+.badge-single {
+  color: var(--violet);
+  background: rgba(196,168,245,.1);
+  border: 1px solid rgba(196,168,245,.3);
+}
+
+/* ── GLOW CARD (특별 추천) ── */
+.nc.featured {
+  border-color: rgba(196,168,245,.45);
+  box-shadow: 0 0 32px rgba(196,168,245,.12);
+}
+.nc.featured::before {
+  background: radial-gradient(ellipse at 50% 0%, rgba(196,168,245,.09) 0%, transparent 70%);
+  opacity: 1;
+}
+.nc.featured .nc-name { color: var(--violet); }
+
+/* ── UNLOCK TEASER ── */
+.unlock-strip {
+  background: linear-gradient(135deg, rgba(232,201,122,.08), rgba(196,168,245,.06));
+  border: 1px solid rgba(232,201,122,.2);
+  border-radius: 20px;
+  padding: 36px 28px;
+  text-align: center;
+  margin-bottom: 48px;
+  position: relative;
+  overflow: hidden;
+}
+
+.unlock-strip::before {
+  content: '✦';
+  position: absolute;
+  top: -20px; right: -10px;
+  font-size: 120px;
+  color: rgba(232,201,122,.04);
+  pointer-events: none;
+}
+
+.unlock-strip h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+
+.unlock-strip p {
+  font-size: 13.5px;
+  color: var(--muted);
+  line-height: 1.85;
+  max-width: 360px;
+  margin: 0 auto 24px;
+}
+
+.unlock-strip p strong {
+  color: var(--pearl);
+  font-weight: 500;
+}
+
+.unlock-cta {
+  display: inline-block;
+  padding: 14px 36px;
+  background: linear-gradient(135deg, rgba(232,201,122,.15), rgba(232,201,122,.08));
+  border: 1px solid var(--gold);
+  border-radius: 100px;
+  color: var(--gold);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: .08em;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all .3s;
+}
+
+.unlock-cta:hover {
+  background: rgba(232,201,122,.22);
+  box-shadow: 0 0 28px rgba(232,201,122,.2);
+  transform: translateY(-1px);
+}
+
+.unlock-price {
+  margin-top: 14px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* ── MEANING CARDS ── */
+.meaning-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 48px;
+}
+
+.mc {
+  background: var(--deep);
+  border: 1px solid var(--dim);
+  border-radius: 14px;
+  padding: 18px 16px;
+}
+
+.mc-name {
+  font-family: 'Nanum Myeongjo', serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--pearl);
+  margin-bottom: 4px;
+}
+
+.mc-hanja {
+  font-size: 11px;
+  color: var(--muted);
+  margin-bottom: 8px;
+  font-family: 'Nanum Myeongjo', serif;
+}
+
+.mc-meaning {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+.mc-flow {
+  margin-top: 10px;
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  font-size: 10px;
+  color: var(--muted);
+}
+
+/* ── HOW STRIP ── */
+.how-strip {
+  background: var(--deep);
+  border-radius: 20px;
+  padding: 36px 28px;
+  margin-bottom: 48px;
+}
+
+.how-strip h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--pearl);
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.how-steps {
+  display: grid;
+  gap: 16px;
+}
+
+.how-step {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.how-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  font-style: italic;
+  color: var(--gold);
+  line-height: 1;
+  min-width: 28px;
+  opacity: .7;
+}
+
+.how-text strong {
+  display: block;
+  font-size: 14px;
+  color: var(--pearl);
+  margin-bottom: 2px;
+}
+
+.how-text span {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+/* ── SURI LEGEND ── */
+.suri-legend {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+  font-size: 11px;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+
+.suri-legend span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* ── FOOTER ── */
+footer {
+  text-align: center;
+  padding: 32px 0;
+  font-size: 11.5px;
+  color: var(--dim);
+  line-height: 1.8;
+  border-top: 1px solid rgba(255,255,255,.05);
+}
+
+/* ── SHOOTING STAR ── */
+@keyframes shoot {
+  0% { transform: translateX(0) translateY(0); opacity: 1; }
+  100% { transform: translateX(180px) translateY(60px); opacity: 0; }
+}
+
+/* ── 성씨 입력 ── */
+.sung-bar {
+  margin: 0 0 28px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+.sung-input-wrap {
+  flex: 1;
+}
+.sung-input-wrap input {
+  width: 100%;
+  padding: 12px 16px;
+  background: var(--deep);
+  border: 1px solid var(--dim);
+  border-radius: 12px;
+  color: var(--pearl);
+  font-family: 'Nanum Myeongjo', serif;
+  font-size: 18px;
+  letter-spacing: .12em;
+  text-align: center;
+  outline: none;
+  transition: border-color .2s;
+}
+.sung-input-wrap input:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 16px rgba(232,201,122,.1);
+}
+.sung-hint {
+  font-size: 11px;
+  color: var(--muted);
+  text-align: center;
+  margin-top: 6px;
+  min-height: 14px;
+  transition: color .2s;
+}
+.sung-hint.ok { color: #5a9e6a; }
+.sung-hint.warn { color: var(--gold); }
+.sung-hint.err { color: #d96a4a; }
+.sung-mode {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding-top: 12px;
+}
+.sung-badge {
+  font-size: 11.5px;
+  padding: 3px 10px;
+  border-radius: 100px;
+  background: rgba(232,201,122,.12);
+  border: 1px solid rgba(232,201,122,.3);
+  color: var(--gold);
+  white-space: nowrap;
+}
+.sung-clear {
+  font-size: 13px;
+  color: var(--muted);
+  cursor: pointer;
+  padding: 4px;
+  line-height: 1;
+}
+.sung-clear:hover { color: var(--pearl); }
+
+/* ── RESPONSIVE ── */
+@media(max-width:480px) {
+  .names-grid { grid-template-columns: 1fr 1fr; }
+  .meaning-grid { grid-template-columns: 1fr 1fr; }
+  .hero h1 { font-size: 32px; }
+}
+</style>
+</head>
+<body>
+
+<canvas id="starfield"></canvas>
+
+<div class="wrap">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-seal"><img src="./jiaseh_symbol_traced_light_FINAL.png" alt="지아세"></div>
+    <div class="hero-badge">知我世 지아세 · 작명 선물</div>
+    <h1>이름은<br>첫 번째 <em>주문</em>입니다</h1>
+    <div class="hero-divider"></div>
+    <div class="oheng-divider"><span></span><span></span><span></span><span></span><span></span></div>
+    <p class="hero-sub">
+      81수리와 자원오행이 맞는 이름들을 모았습니다.<br>
+      누구에게나 좋은 이름들을 무료로 드립니다.
+    </p>
+  </div>
+
+  <!-- GENDER -->
+  <div class="gender-bar">
+    <button class="gender-btn active" onclick="setGender('남',this)">아들 男</button>
+    <button class="gender-btn" onclick="setGender('여',this)">딸 女</button>
+  </div>
+
+  <!-- 성씨 입력 -->
+  <div class="sung-bar">
+    <div class="sung-input-wrap">
+      <input type="text" id="sungInput" maxlength="2" placeholder="성씨 입력 (예: 김)"
+        oninput="onSungInput()" autocomplete="off">
+      <div class="sung-hint" id="sungHint">성씨를 입력하면 수리가 실제로 계산됩니다</div>
+    </div>
+    <div class="sung-mode" id="sungMode" style="display:none">
+      <span class="sung-badge" id="sungBadge"></span>
+      <span class="sung-clear" onclick="clearSung()">✕</span>
+    </div>
+  </div>
+
+  <!-- OHAENG FILTER -->
+  <div class="filter-row">
+    <button class="oh-btn all-btn active" onclick="setOh('전체',this)">전체</button>
+    <button class="oh-btn" data-o="木" onclick="setOh('木',this)">木 이름</button>
+    <button class="oh-btn" data-o="火" onclick="setOh('火',this)">火 이름</button>
+    <button class="oh-btn" data-o="土" onclick="setOh('土',this)">土 이름</button>
+    <button class="oh-btn" data-o="金" onclick="setOh('金',this)">金 이름</button>
+    <button class="oh-btn" data-o="水" onclick="setOh('水',this)">水 이름</button>
+  </div>
+
+  <p class="filter-note">
+    이름 첫 소리의 오행으로 분류한 기준입니다.<br>
+    누구나 보기 좋은 이름들이며, 아이의 진짜 용신과 일치하는지는 아래에서 확인하실 수 있습니다.
+  </p>
+
+  <!-- SURI LEGEND -->
+  <div id="suriLegend">
+    <div class="suri-legend">
+      <span><i class="suri-dot gil"></i>인격 吉수</span>
+      <span><i class="suri-dot jung"></i>인격 中吉수</span>
+      <span>★ 황금 추천</span>
+      <span>✦ 개성 추천</span>
+      <span style="color:#5a9e6a">● 발음·자원 상생</span>
+      <span style="color:#7ab8d4">순우리말</span>
+      <span style="color:var(--violet)">외자</span>
+    </div>
+  </div>
+
+  <div class="sec-label"><span>이름 선물</span></div>
+
+  <!-- NAMES GRID -->
+  <div class="names-grid" id="namesGrid"></div>
+
+  <!-- MEANING SECTION -->
+  <div class="sec-label"><span>선별 이름 풀이</span></div>
+
+  <div class="meaning-grid" id="meaningGrid"></div>
+
+  <!-- UNLOCK STRIP -->
+  <div class="unlock-strip">
+    <h3>이 아이에게 맞는 이름은<br>따로 있습니다</h3>
+    <p>
+      위의 이름들은 <strong>누구에게나 좋은</strong> 이름입니다.<br>
+      하지만 이 아이의 사주가 필요로 하는 오행,<br>
+      용신과 희신이 이름 안에 살아 있어야<br>
+      이름이 진짜 부적이 됩니다.
+    </p>
+    <a class="unlock-cta" href="./jiaseh_naming_v3.html">사주 맞춤 이름 받기 →</a>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <div class="sec-label"><span>작명이 이뤄지는 방법</span></div>
+
+  <div class="how-strip">
+    <h3>소리에서 한자로, 한자에서 운명으로</h3>
+    <div class="how-steps">
+      <div class="how-step">
+        <div class="how-num">1</div>
+        <div class="how-text">
+          <strong>발음오행 — 소리가 기운을 만든다</strong>
+          <span>훈민정음 운해본 기준으로 이름 자음의 오행을 정합니다. 부르는 소리 자체가 에너지입니다.</span>
+        </div>
+      </div>
+      <div class="how-step">
+        <div class="how-num">2</div>
+        <div class="how-text">
+          <strong>81수리 — 획수가 운명의 강약을 결정한다</strong>
+          <span>인격·지격·총격·외격 네 격이 모두 吉수 또는 中吉수여야 합니다.</span>
+        </div>
+      </div>
+      <div class="how-step">
+        <div class="how-num">3</div>
+        <div class="how-text">
+          <strong>자원오행 — 한자의 뜻이 같은 방향을 가리킨다</strong>
+          <span>한자 부수의 오행이 용신·희신과 일치할 때, 소리와 뜻이 함께 아이를 감쌉니다.</span>
+        </div>
+      </div>
+      <div class="how-step">
+        <div class="how-num">4</div>
+        <div class="how-text">
+          <strong>사주 교차 검증 — 이 아이만의 이름</strong>
+          <span>명징투파 자평명리로 용신·희신을 확정하고, 위 세 조건이 모두 충족되는 이름만 납품합니다.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    知我世 지아세 — 운명 경영 컨설팅<br>
+    발음오행 = 훈민정음 운해본 기준 · 81수리 = 지식베이스 등급표<br>
+    본 서비스는 의료행위·심리치료가 아닌 예방적 자기관리 및 의사결정 지원 서비스입니다.
+  </footer>
+
+</div>
+
+<script>
+/* ──────────────────────────────────────────
+   STAR FIELD
+────────────────────────────────────────── */
+(function() {
+  const c = document.getElementById('starfield');
+  const ctx = c.getContext('2d');
+  let W, H, stars = [], shooters = [];
+
+  function resize() {
+    W = c.width = window.innerWidth;
+    H = c.height = window.innerHeight;
+  }
+
+  function makeStars() {
+    stars = [];
+    for (let i = 0; i < 180; i++) {
+      stars.push({
+        x: Math.random() * W,
+        y: Math.random() * H,
+        r: Math.random() * 1.2 + 0.2,
+        a: Math.random(),
+        da: (Math.random() - 0.5) * 0.008,
+      });
+    }
+  }
+
+  function tick() {
+    ctx.clearRect(0, 0, W, H);
+    for (const s of stars) {
+      s.a += s.da;
+      if (s.a > 1 || s.a < 0.1) s.da *= -1;
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(240,236,226,${s.a * 0.6})`;
+      ctx.fill();
+    }
+    // shooting stars
+    if (Math.random() < 0.003 && shooters.length < 2) {
+      shooters.push({ x: Math.random() * W * 0.7, y: Math.random() * H * 0.4, t: 0 });
+    }
+    for (let i = shooters.length - 1; i >= 0; i--) {
+      const sh = shooters[i];
+      sh.t += 2;
+      const op = Math.max(0, 1 - sh.t / 60);
+      ctx.beginPath();
+      ctx.moveTo(sh.x + sh.t * 2.8, sh.y + sh.t);
+      ctx.lineTo(sh.x + sh.t * 2.8 - 30, sh.y + sh.t - 10);
+      ctx.strokeStyle = `rgba(232,201,122,${op * 0.7})`;
+      ctx.lineWidth = 1;
+      ctx.stroke();
+      if (sh.t > 70) shooters.splice(i, 1);
+    }
+    requestAnimationFrame(tick);
+  }
+
+  window.addEventListener('resize', () => { resize(); makeStars(); });
+  resize(); makeStars(); tick();
+})();
+
+/* ──────────────────────────────────────────
+   DATA
+────────────────────────────────────────── */
+const O5_CHO = {
+  'ㄱ':'木','ㅋ':'木','ㄲ':'木',
+  'ㄴ':'火','ㄷ':'火','ㄹ':'火','ㅌ':'火','ㄸ':'火',
+  'ㅇ':'土','ㅎ':'土',
+  'ㅅ':'金','ㅈ':'金','ㅊ':'金','ㅆ':'金','ㅉ':'金',
+  'ㅁ':'水','ㅂ':'水','ㅍ':'水','ㅃ':'水'
+};
+
+const CHO_LIST = ['ㄱ','ㄲ','ㄴ','ㄷ','ㄸ','ㄹ','ㅁ','ㅂ','ㅃ','ㅅ','ㅆ','ㅇ','ㅈ','ㅉ','ㅊ','ㅋ','ㅌ','ㅍ','ㅎ'];
+
+function getCho(ch) {
+  const c = ch.charCodeAt(0) - 0xAC00;
+  if (c < 0 || c > 11171) return null;
+  return CHO_LIST[Math.floor(c / 588)];
+}
+
+function nameOh(name) {
+  // 이름 첫자 초성 오행
+  const cho = getCho(name[0]);
+  return cho ? (O5_CHO[cho] || '土') : '土';
+}
+
+// GIL / JUNGGIL suri sets
+const GIL = new Set([1,3,5,6,7,8,11,13,15,16,17,18,21,23,24,25,29,31,32,33,35,37,38,39,41,45,47,48,52,57,61,63,65,67,68,81]);
+const JUNG = new Set([26,27,30,49,51,58,71,73,75,77,78]);
+
+function suriGrade(n) {
+  let r = n; while (r > 81) r -= 80;
+  if (GIL.has(r)) return 'gil';
+  if (JUNG.has(r)) return 'jung';
+  return 'bad';
+}
+
+/* ──────────────────────────────────────────
+   성씨 원획 DB (강희자전 기준 · jakmyeong.html 동일값)
+   형식: [한자, 원획수]
+────────────────────────────────────────── */
+const SUNG_DB = {
+  '김':[['金',8]],'이':[['李',7]],'박':[['朴',6]],'최':[['崔',11]],
+  '정':[['鄭',19],['丁',2]],'강':[['姜',9]],'조':[['趙',14],['曺',11]],
+  '윤':[['尹',4]],'장':[['張',11]],'임':[['林',8]],'한':[['韓',17]],
+  '오':[['吳',7]],'서':[['徐',10]],'신':[['申',5]],'권':[['權',22]],
+  '황':[['黃',12]],'안':[['安',6]],'송':[['宋',7]],'류':[['柳',9]],'유':[['柳',9]],
+  '홍':[['洪',10]],'전':[['全',6]],'고':[['高',10]],'문':[['文',4]],
+  '손':[['孫',10]],'양':[['梁',11]],'노':[['盧',16]],'백':[['白',5]],
+  '허':[['許',11]],'남':[['南',9]],'심':[['沈',8]],'류':[['柳',9]],
+  '하':[['河',9]],'차':[['車',7]],'주':[['朱',6]],'민':[['閔',12]],
+  '나':[['羅',19]],'라':[['羅',19]],'엄':[['嚴',20]],'채':[['蔡',14]],
+  '진':[['陳',16]],'원':[['元',4]],'천':[['千',3]],'방':[['方',4]],
+  '공':[['孔',4]],'현':[['玄',5]],'함':[['咸',9]],'변':[['卞',4]],
+  '염':[['廉',13]],'여':[['呂',7]],'추':[['秋',9]],'도':[['都',12]],
+  '소':[['蘇',19]],'우':[['禹',9]],'배':[['裵',14]],'봉':[['奉',8]],
+  '기':[['奇',8]],'길':[['吉',6]],'탁':[['卓',8]],'국':[['鞠',17]],
+  '형':[['邢',7]],'석':[['石',5]],'선':[['宣',9]],'설':[['薛',17]],
+  '성':[['成',6]],'연':[['延',7]],'위':[['魏',18]],'황보':[['皇甫',15]],
+  '남궁':[['南宮',12]],'독고':[['獨孤',17]],'선우':[['鮮于',18]],
+};
+
+/* ──────────────────────────────────────────
+   이름별 한자 후보 DB
+   각 이름에 한자 후보를 여러 개 등록 (원획수 포함)
+   형식: { h:한자, s:[첫자원획, 둘째자원획], o:[자원오행], mean:뜻 }
+   s = stroke (원획수 배열, 첫자·둘째자 순)
+   외자이름은 s:[획수]
+────────────────────────────────────────── */
+const HANJA_CANDS = {
+  // ── 공통 자주쓰는 이름 첫자 획수 참고표 ──
+  // 道12 夏10 志7 池7 時10 瑞14 智12 建9 道12 承8
+  // 宇6 恩10 裕13 叡16 泰10 潤16 涓11 珍10 俊10
+  // 서(瑞14/序7) 채(彩11) 지(智12/志7) 하(夏10)
+
+  '준서': [
+    { h:'俊瑞', s:[10,14], o:['金','金'], mean:'빼어나고 상서로운 기운' },
+    { h:'峻瑞', s:[10,14], o:['土','金'], mean:'높이 솟아 상서롭다' },
+    { h:'竣瑞', s:[12,14], o:['木','金'], mean:'완성 위에 상서로운 빛' },
+    { h:'駿瑞', s:[17,14], o:['火','金'], mean:'준마처럼 달려 상서롭다' },
+  ],
+  '도윤': [
+    { h:'道允', s:[13,4], o:['木','土'], mean:'바른 도리로 윤택함' },
+    { h:'道潤', s:[13,16], o:['木','水'], mean:'바른 도리가 윤택히 흐르다' },
+    { h:'道錀', s:[13,16], o:['木','金'], mean:'바른 도리에 단단한 금의 기운을 더하다' },
+  ],
+  '하준': [
+    { h:'夏俊', s:[10,10], o:['木','金'], mean:'여름처럼 크고 빼어남' },
+    { h:'夏峻', s:[10,10], o:['木','土'], mean:'여름처럼 높이 솟음' },
+    { h:'夏竣', s:[10,12], o:['木','木'], mean:'여름처럼 완성해 나가다' },
+  ],
+  '이준': [
+    { h:'怡俊', s:[9,10], o:['土','金'], mean:'기쁨과 함께 빼어나다' },
+    { h:'怡峻', s:[9,10], o:['土','土'], mean:'기쁘게 높이 솟다' },
+  ],
+  '시우': [
+    { h:'時雨', s:[10,8], o:['金','土'], mean:'때를 아는 지혜로운 비' },
+    { h:'時宇', s:[10,6], o:['金','土'], mean:'때를 알고 하늘처럼 넓다' },
+    { h:'時佑', s:[10,7], o:['金','土'], mean:'때에 맞게 도움이 되다' },
+  ],
+  '지호': [
+    { h:'智浩', s:[12,11], o:['金','木'], mean:'지혜롭고 넓다' },
+    { h:'志浩', s:[7,11], o:['金','木'], mean:'큰 뜻이 넓게 퍼지다' },
+    { h:'智皓', s:[12,12], o:['金','金'], mean:'지혜롭게 환히 빛나다' },
+  ],
+  '선우': [
+    { h:'善宇', s:[12,6], o:['金','土'], mean:'착한 마음이 하늘 같음' },
+    { h:'宣宇', s:[9,6], o:['金','土'], mean:'베풀며 하늘처럼 넓다' },
+    { h:'璿宇', s:[18,6], o:['金','土'], mean:'아름다운 옥빛이 하늘 가득' },
+  ],
+  '우진': [
+    { h:'宇珍', s:[6,10], o:['土','金'], mean:'하늘처럼 넓고 보배롭다' },
+    { h:'宇振', s:[6,11], o:['土','木'], mean:'하늘 아래 크게 떨치다' },
+    { h:'友珍', s:[4,10], o:['土','金'], mean:'벗처럼 보배로운 기운' },
+  ],
+  '서준': [
+    { h:'瑞俊', s:[14,10], o:['金','金'], mean:'상서롭고 빼어나다' },
+    { h:'瑞峻', s:[14,10], o:['金','土'], mean:'상서롭게 높이 솟다' },
+    { h:'序俊', s:[7,10], o:['金','金'], mean:'차례로 빼어나게 나아가다' },
+  ],
+  '민준': [
+    { h:'旻俊', s:[8,10], o:['水','金'], mean:'밝은 하늘처럼 빼어나다' },
+    { h:'旻峻', s:[8,10], o:['水','土'], mean:'밝은 하늘처럼 높이 솟다' },
+    { h:'敏俊', s:[11,10], o:['水','金'], mean:'민첩하고 빼어나다' },
+  ],
+  '건우': [
+    { h:'建宇', s:[9,6], o:['木','土'], mean:'굳세게 세운 하늘 같은 기운' },
+    { h:'健宇', s:[11,6], o:['木','土'], mean:'건강하고 하늘처럼 넓다' },
+  ],
+  '재원': [
+    { h:'梓源', s:[11,14], o:['金','土'], mean:'재능의 근원이 깊다' },
+    { h:'梓苑', s:[11,11], o:['金','木'], mean:'재능이 동산처럼 무성하다' },
+    { h:'材源', s:[7,14], o:['金','土'], mean:'재목의 근원이 깊다' },
+  ],
+  '하율': [
+    { h:'夏律', s:[10,9], o:['木','火'], mean:'여름처럼 빛나는 리듬' },
+    { h:'夏潞', s:[10,16], o:['木','水'], mean:'여름처럼 넓게 흐르다' },
+  ],
+  '서아': [
+    { h:'瑞芽', s:[14,8], o:['金','木'], mean:'상서로움이 새싹처럼 피어남' },
+    { h:'瑞雅', s:[14,13], o:['金','木'], mean:'상서롭고 우아한 빛' },
+  ],
+  '지안': [
+    { h:'智安', s:[12,6], o:['金','土'], mean:'지혜로운 평안함' },
+    { h:'志安', s:[7,6], o:['金','土'], mean:'뜻을 품고 평안히 나아가다' },
+    { h:'智晏', s:[12,10], o:['金','火'], mean:'지혜롭게 맑고 밝다' },
+  ],
+  '아린': [
+    { h:'芽璘', s:[8,20], o:['土','火'], mean:'새싹처럼 빛나는 옥' },
+    { h:'芽潾', s:[8,16], o:['土','水'], mean:'새싹처럼 맑게 피어남' },
+  ],
+  '서윤': [
+    { h:'瑞允', s:[14,4], o:['金','土'], mean:'상서로움 속에 윤택한 복' },
+    { h:'瑞潤', s:[14,16], o:['金','水'], mean:'상서롭게 윤택하게 흐르다' },
+    { h:'瑞錀', s:[14,16], o:['金','金'], mean:'상서로운 기운에 굳건한 금을 더하다' },
+  ],
+  '예서': [
+    { h:'叡瑞', s:[16,14], o:['土','金'], mean:'슬기롭고 상서로운 빛' },
+    { h:'叡序', s:[16,7], o:['土','金'], mean:'슬기롭게 차례로 나아가다' },
+  ],
+  '소율': [
+    { h:'素律', s:[10,9], o:['金','火'], mean:'순수한 빛깔의 음률' },
+    { h:'昭律', s:[9,9], o:['火','火'], mean:'밝게 빛나는 리듬' },
+  ],
+  '채원': [
+    { h:'彩源', s:[11,14], o:['金','土'], mean:'빛깔의 근원, 다채로운 삶' },
+    { h:'彩苑', s:[11,11], o:['金','木'], mean:'다채로운 꽃이 피는 동산' },
+  ],
+  '은서': [
+    { h:'恩瑞', s:[10,14], o:['土','金'], mean:'은혜롭고 상서로운 기운' },
+    { h:'恩序', s:[10,7], o:['土','金'], mean:'은혜로운 차례로 나아가다' },
+  ],
+  '라온': [
+    { h:'羅媛', s:[19,13], o:['火','土'], mean:'기쁨으로 가득한 아름다움' },
+    { h:'羅温', s:[19,13], o:['火','水'], mean:'기쁨이 퍼지며 따뜻하다' },
+  ],
+};
+
+/* ──────────────────────────────────────────
+   이름 첫자·둘째자 원획 조회
+   NAMES_DB의 h(한자)에서 각 글자의 원획을 역산하거나
+   HANJA_CANDS에서 가져옴
+   이름별 한자 후보가 없으면 기본 h의 첫자 획수를 추정
+────────────────────────────────────────── */
+
+// 자주 쓰는 한자 원획 테이블 (jakmyeong.html 동일 소스)
+const HANJA_S = {
+  '道':13,'夏':10,'志':7,'池':7,'時':10,'瑞':14,'智':12,'建':9,'承':8,
+  '宇':6,'恩':10,'裕':13,'叡':16,'泰':10,'潤':16,'涓':11,'珍':10,'俊':10,
+  '峻':10,'駿':17,'竣':12,'彩':11,'素':10,'秀':7,'宣':9,'璿':18,'善':12,
+  '旻':8,'敏':11,'夏':10,'允':4,'安':6,'芽':8,'璘':20,'潾':16,'律':9,
+  '源':14,'梓':11,'建':9,'健':11,'宇':6,'友':4,'序':7,'材':7,'苑':11,
+  '浩':11,'皓':12,'佑':7,'雨':8,'怡':9,'妍':9,'瑛':13,'炫':10,'涓':11,
+  '晶':12,'晸':12,'炅':8,'炳':9,'旻':8,'亮':9,'南':9,'光':6,'晟':11,
+  '昞':9,'昊':8,'昱':9,'晗':10,'昀':8,'暻':15,'炫':10,'煜':13,'熙':16,
+  '允':4,'潤':16,'尹':4,'奫':11,'允':4,'胤':9,'閏':12,'昀':8,
+  '珠':11,'琪':13,'琦':13,'琮':13,'琥':13,'琛':13,'瑾':18,'璟':17,'瑜':14,
+  '鈺':13,'錫':16,'鎭':18,'鍾':17,'鋆':14,'鈗':12,
+  '桓':10,'梧':11,'林':8,'棟':12,'相':9,'柔':9,'柏':9,'柳':9,'梨':11,
+  '根':10,'起':10,'佳':8,'彬':11,'梓':11,'楨':13,'楓':13,'楡':13,
+  '寬':15,'祺':13,'卿':12,'喬':12,
+  '莞':12,'葵':15,'茱':11,'芮':10,'苑':11,'莉':12,'萱':15,'蒼':16,
+  '蘭':23,'芳':10,'涓':11,'雅':13,
+  '成':6,'誠':14,'聖':13,'星':9,'晟':11,'碩':14,'成':6,
+  '准':10,'珺':12,'珻':11,'瑞':14,'珝':10,'瑋':14,
+  '武':8,'斌':12,'彬':11,'玟':9,'玲':10,
+  '媛':13,'娜':10,'羅':19,'娟':10,'妍':9,
+  '恩':10,'殷':10,'銀':14,'垠':9,'珢':11,
+  '俊':10,'峻':10,'駿':17,'竣':12,'畯':13,'儁':16,
+  '翰':16,'澔':16,'皓':12,'昊':8,'浩':11,'豪':14,
+  '珩':11,'璘':20,'璃':17,'珹':13,
+  '溫':14,'溫':14,'熙':16,
+  '守':6,'修':10,'秀':7,'授':12,'樹':16,
+  '護':21,'鎬':18,
+  '源':14,'元':4,'原':10,'垣':9,'媛':13,
+  '允':4,'尹':4,'潤':16,'閏':12,
+  '裕':13,'裕':13,
+  '泰':10,'太':4,'胎':9,'怡':9,
+  '恩':10,'殷':10,
+  '承':8,'丞':6,
+  '贊':19,'燦':17,'璨':18,'粲':13,'昶':9,
+  '煥':13,'奐':9,'桓':10,'環':18,
+  '緩':15,'莞':12,'婉':11,
+  '池':7,
+};
+
+function getStroke(hanja_char) {
+  return HANJA_S[hanja_char] || null;
+}
+
+/* ──────────────────────────────────────────
+   성씨 상태
+────────────────────────────────────────── */
+let currentSung = null; // { name:'김', hanja:'金', stroke:8 }
+
+function onSungInput() {
+  const val = document.getElementById('sungInput').value.trim();
+  const hint = document.getElementById('sungHint');
+  const mode = document.getElementById('sungMode');
+  const badge = document.getElementById('sungBadge');
+
+  if (!val) {
+    currentSung = null;
+    hint.textContent = '성씨를 입력하면 수리가 실제로 계산됩니다';
+    hint.className = 'sung-hint';
+    mode.style.display = 'none';
+    render(); return;
+  }
+
+  const found = SUNG_DB[val];
+  if (found) {
+    const [h, s] = found[0];
+    currentSung = { name: val, hanja: h, stroke: s };
+    hint.textContent = `${h}(${s}획) — ${val}씨 기준으로 수리를 계산합니다`;
+    hint.className = 'sung-hint ok';
+    badge.textContent = `${val}씨 ${h}${s}획`;
+    mode.style.display = 'flex';
+    // 복성 또는 두 후보 안내
+    if (found.length > 1) {
+      hint.textContent += ` (${found.map(([a,b])=>a+b+'획').join(' / ')} — 기본 ${h} 적용)`;
+      hint.className = 'sung-hint warn';
+    }
+  } else {
+    currentSung = null;
+    hint.textContent = '목록에 없는 성씨입니다 — 수리 계산 없이 표시합니다';
+    hint.className = 'sung-hint err';
+    mode.style.display = 'none';
+  }
+  render();
+}
+
+function clearSung() {
+  document.getElementById('sungInput').value = '';
+  currentSung = null;
+  document.getElementById('sungHint').textContent = '성씨를 입력하면 수리가 실제로 계산됩니다';
+  document.getElementById('sungHint').className = 'sung-hint';
+  document.getElementById('sungMode').style.display = 'none';
+  render();
+}
+
+/* ──────────────────────────────────────────
+   5격 계산 (성씨 1자, 이름 2자 기준)
+────────────────────────────────────────── */
+const GIL_SET = new Set([1,3,5,6,7,8,11,13,15,16,17,18,21,23,24,25,29,31,32,33,35,37,38,39,41,45,47,48,52,57,61,63,65,67,68,81]);
+const JUNG_SET = new Set([26,27,30,49,51,58,71,73,75,77,78]);
+
+function suriGrade2(n) {
+  let r = n; while (r > 81) r -= 80; if (r < 1) r = 1;
+  if (r === 29) return 'flag';
+  if (GIL_SET.has(r)) return 'gil';
+  if (JUNG_SET.has(r)) return 'jung';
+  return 'bad';
+}
+
+function calcSuri(sungStroke, nameStrokes) {
+  // sungStroke: 성씨 원획 (단일 성씨)
+  // nameStrokes: [첫자원획, 둘째자원획] 또는 [외자원획]
+  // 성1자 이름2자 기준
+  // 가성수(ga)는 표준 케이스(성1자+이름2자)에서 천격에만 가산되며 지격에는 가산하지 않음
+  // (jiaseh_seongmyeong.html 가성수 공식 기준 — jiaseh_naming_v3.html과 동일 공식으로 정정, 2026-06-26)
+  const ga = 1; // 가성수 (성1+이름2 → +1)
+  const cheon = sungStroke + ga;          // 천격
+  const in_   = sungStroke + nameStrokes[0]; // 인격 (가장 중요)
+  const ji    = nameStrokes.length > 1
+                ? nameStrokes[0] + nameStrokes[1]
+                : nameStrokes[0];          // 지격 — 가성수 가산 없음
+  const chong = sungStroke + nameStrokes.reduce((a,b)=>a+b,0); // 총격
+  const oe    = chong - in_ - ga;         // 외격 = 총격 − 인격 − 가성수
+
+  const normalize = n => { let r=n; while(r>81)r-=80; return r<1?1:r; };
+  return {
+    cheon, in_, ji, chong, oe,
+    in_g: suriGrade2(normalize(in_)),
+    ji_g: suriGrade2(normalize(ji)),
+    chong_g: suriGrade2(normalize(chong)),
+    oe_g: suriGrade2(normalize(oe)),
+    // 4격 모두 吉·中吉
+    allGil: ['gil','jung','flag'].includes(suriGrade2(normalize(in_)))
+         && ['gil','jung','flag'].includes(suriGrade2(normalize(ji)))
+         && ['gil','jung','flag'].includes(suriGrade2(normalize(chong)))
+         && ['gil','jung','flag'].includes(suriGrade2(normalize(oe))),
+    // 인격만 吉
+    inGil: ['gil','jung','flag'].includes(suriGrade2(normalize(in_))),
+  };
+}
+/* 자원오행 신뢰 확정 기준:
+   ① 부수가 명확한 木계(木·林·草·竹·禾)·水계(水·氵원획보정)·
+      金계(金·玉王변원획보정)·火계(火·炎·日·光)·土계(土·山·石)
+   ② 원획 환산 확정분만 수록 (氵+1, 王변+1, 艹+2~3, 月육달월+2 적용)
+   ③ 🔶 항목(雅·甫·有·月계·大) 제외
+   suri = 인격수 대표값 (실제 성+이름 첫자 합산과 다를 수 있음)
+   g: 남/여/공통  note: top(★황금) / feat(✦개성) / ''(일반)
+────────────────────────────────────────── */
+const NAMES_DB = [
+
+  /* ════════════════════════
+     남아 — 木 (ㄱ·ㅋ 계열)
+  ════════════════════════ */
+  { n:'건우', h:'建宇', o:['木','土'], suri:16, mean:'굳세게 세운 하늘 같은 기운', g:'남', note:'top' },
+  { n:'건율', h:'建律', o:['木','火'], suri:24, mean:'반듯하게 세우는 리듬과 법칙', g:'남' },
+  { n:'겸우', h:'謙宇', o:['木','土'], suri:23, mean:'겸손함이 하늘처럼 넓다', g:'남' },
+  { n:'규민', h:'奎旻', o:['木','火'], suri:21, mean:'별처럼 빛나는 밝은 하늘', g:'남' },
+  { n:'규성', h:'奎星', o:['木','金'], suri:18, mean:'별자리처럼 빛나는 성품', g:'남', note:'feat' },
+  // 기환 제거
+  // 완(莞·원획12·木 확정) 계열 신규 3종
+  { n:'지완', h:'池緩', o:['水','木'], suri:23, mean:'물가처럼 깊고 부드럽게 나아가다', g:'남', note:'feat' },
+  { n:'시완', h:'時緩', o:['金','木'], suri:21, mean:'때를 알고 부드럽게 나아가다', g:'남', note:'feat' },
+  { n:'서완', h:'瑞緩', o:['金','木'], suri:23, mean:'상서로운 기운이 부드럽게 무르익다', g:'남', note:'feat' },
+
+  /* ════════════════════════
+     남아 — 火 (ㄴ·ㄷ·ㄹ·ㅌ 계열)
+  ════════════════════════ */
+  { n:'도윤', h:'道允', o:['木','土'], suri:21, mean:'바른 도리로 윤택함', g:'남', note:'top' },
+  { n:'도현', h:'道炫', o:['木','火'], suri:16, mean:'바른 길 위에 환히 빛남', g:'남', note:'top' },
+  { n:'도하', h:'道賀', o:['木','木'], suri:21, mean:'바른 길 위의 경사', g:'남' },
+  { n:'도준', h:'道俊', o:['木','金'], suri:21, mean:'바른 도리 위에 빼어남', g:'남' },
+  { n:'로운', h:'路雲', o:['火','土'], suri:17, mean:'구름처럼 자유로운 길', g:'남', note:'feat' },
+  { n:'로한', h:'路翰', o:['火','木'], suri:25, mean:'길 위에 날개 달린 뜻', g:'남' },
+  { n:'리안', h:'梨安', o:['火','土'], suri:16, mean:'배꽃 같은 순수함과 평안', g:'남' },
+
+  /* ════════════════════════
+     남아 — 土 (ㅇ·ㅎ 계열)
+  ════════════════════════ */
+  { n:'우주', h:'宇宙', o:['土','金'], suri:13, mean:'온 세상을 품는 마음', g:'남', note:'top' },
+  { n:'이안', h:'怡安', o:['土','土'], suri:15, mean:'기쁨 속의 평안함', g:'남' },
+  { n:'이준', h:'怡俊', o:['土','金'], suri:16, mean:'기쁨과 함께 빼어나게 자람', g:'남', note:'top' },
+  { n:'이현', h:'怡賢', o:['土','木'], suri:21, mean:'기쁨으로 어진 사람이 되다', g:'남' },
+  { n:'이한', h:'怡翰', o:['土','木'], suri:23, mean:'기쁨과 함께 크게 날다', g:'남' },
+  { n:'은우', h:'恩宇', o:['土','土'], suri:16, mean:'은혜로운 마음이 세상을 덮다', g:'남' },
+  { n:'은찬', h:'恩燦', o:['土','火'], suri:33, mean:'은혜가 환히 빛나다', g:'남', note:'feat' },
+  { n:'온유', h:'溫柔', o:['土','木'], suri:25, mean:'온화하고 부드러운 기운', g:'남', note:'feat' },
+  { n:'예준', h:'叡俊', o:['土','金'], suri:33, mean:'슬기롭고 빼어남', g:'남', note:'feat' },
+  { n:'예성', h:'叡成', o:['土','金'], suri:21, mean:'슬기롭게 이루어 냄', g:'남' },
+  { n:'태오', h:'泰悟', o:['土','土'], suri:18, mean:'크게 깨닫는 기운', g:'남' },
+  { n:'태윤', h:'泰允', o:['土','土'], suri:17, mean:'크고 넉넉하게 윤택함', g:'남' },
+  { n:'태하', h:'泰夏', o:['土','木'], suri:16, mean:'크고 여름처럼 넘치는 기운', g:'남' },
+  { n:'해온', h:'海溫', o:['木','土'], suri:25, mean:'바다처럼 넉넉하고 따뜻함', g:'남' },
+  { n:'윤우', h:'潤宇', o:['土','土'], suri:17, mean:'윤택함이 세상을 채움', g:'남' },
+  { n:'연우', h:'涓宇', o:['土','土'], suri:15, mean:'맑은 물처럼 하늘 아래', g:'남' },
+
+  /* ════════════════════════
+     남아 — 金 (ㅅ·ㅈ·ㅊ 계열)
+  ════════════════════════ */
+  { n:'준서', h:'俊瑞', o:['金','金'], suri:23, mean:'빼어나고 상서로운 기운', g:'남', note:'top' },
+  { n:'준우', h:'俊宇', o:['金','土'], suri:16, mean:'빼어남이 하늘처럼 넓다', g:'남' },
+  { n:'지호', h:'智浩', o:['金','木'], suri:21, mean:'지혜롭고 넓은 기운', g:'남' },
+  { n:'지한', h:'志翰', o:['金','木'], suri:23, mean:'뜻이 높고 날개가 크다', g:'남' },
+  { n:'지안', h:'志安', o:['金','土'], suri:16, mean:'뜻을 품고 평안히 나아가다', g:'남' },
+  { n:'지온', h:'志溫', o:['金','土'], suri:21, mean:'뜻이 따뜻하게 무르익다', g:'남' },
+  { n:'지환', h:'志桓', o:['金','木'], suri:21, mean:'뜻이 굳세고 반듯하다', g:'남', note:'feat' },
+  { n:'지후', h:'志厚', o:['金','土'], suri:16, mean:'두터운 뜻을 품은 사람', g:'남' },
+  { n:'재원', h:'梓源', o:['金','土'], suri:24, mean:'재능의 근원이 깊다', g:'남', note:'top' },
+  { n:'재윤', h:'梓允', o:['金','土'], suri:18, mean:'재능 있게 윤택한 삶', g:'남' },
+  { n:'승우', h:'承宇', o:['金','土'], suri:13, mean:'하늘의 뜻을 이어받다', g:'남' },
+  { n:'승민', h:'承旻', o:['金','火'], suri:16, mean:'하늘을 이어 밝게 빛나다', g:'남' },
+  { n:'승현', h:'承炫', o:['金','火'], suri:21, mean:'이어받아 환히 빛나다', g:'남', note:'feat' },
+  { n:'시우', h:'時雨', o:['金','土'], suri:16, mean:'때를 아는 지혜로운 비', g:'남' },
+  { n:'시윤', h:'時允', o:['金','土'], suri:13, mean:'때에 맞게 윤택함', g:'남' },
+  { n:'시온', h:'時溫', o:['金','土'], suri:21, mean:'때를 알고 따뜻하게 익다', g:'남' },
+  { n:'시현', h:'時炫', o:['金','火'], suri:21, mean:'때를 만나 환히 빛남', g:'남' },
+  { n:'수호', h:'守護', o:['金','木'], suri:31, mean:'끝까지 지키고 보호하는 힘', g:'남' },
+  { n:'수현', h:'秀炫', o:['金','火'], suri:21, mean:'빼어나고 환히 빛나다', g:'남' },
+  { n:'선우', h:'善宇', o:['金','土'], suri:16, mean:'착한 마음이 하늘 같음', g:'남', note:'top' },
+  { n:'성현', h:'成炫', o:['金','火'], suri:21, mean:'이루어 빛나다', g:'남' },
+  { n:'성준', h:'成俊', o:['金','金'], suri:21, mean:'이루어 빼어나다', g:'남' },
+
+  /* ════════════════════════
+     남아 — 水 (ㅁ·ㅂ 계열)
+  ════════════════════════ */
+  { n:'민준', h:'旻俊', o:['水','金'], suri:16, mean:'밝은 하늘처럼 빼어남', g:'남', note:'top' },
+  { n:'민재', h:'旻材', o:['水','木'], suri:16, mean:'밝은 재목, 쓸모 있는 사람', g:'남' },
+  { n:'민우', h:'旻宇', o:['水','土'], suri:13, mean:'밝은 하늘 아래 넓은 기운', g:'남' },
+  { n:'민규', h:'旻奎', o:['水','木'], suri:16, mean:'밝은 별처럼 빛나는 기운', g:'남' },
+  { n:'민석', h:'旻錫', o:['水','金'], suri:23, mean:'하늘이 내린 귀한 금빛 기운', g:'남', note:'feat' },
+  { n:'민성', h:'旻成', o:['水','金'], suri:16, mean:'밝은 하늘 아래 이루어내다', g:'남' },
+  { n:'빈우', h:'彬宇', o:['水','土'], suri:17, mean:'빛나는 문채가 하늘 같다', g:'남' },
+
+  /* ════════════════════════
+     남아 — 하준·하율 등 공통
+  ════════════════════════ */
+  /* ════════════════════════
+     남아 — 누락 인기이름 보완 (대법원 100위 전수)
+  ════════════════════════ */
+  // 土계 (ㅇ·ㅎ)
+  { n:'우진', h:'宇珍', o:['土','金'], suri:16, mean:'하늘처럼 넓고 보배로운 기운', g:'남', note:'top' },
+  { n:'우빈', h:'宇彬', o:['土','木'], suri:17, mean:'하늘 아래 빛나는 문채', g:'남' },
+  { n:'은호', h:'恩浩', o:['土','木'], suri:21, mean:'은혜롭고 넓은 기운', g:'남' },
+  { n:'유안', h:'裕安', o:['土','土'], suri:15, mean:'풍요롭고 평안한 삶', g:'남' },
+  { n:'유한', h:'裕翰', o:['土','木'], suri:25, mean:'풍요롭게 크게 날다', g:'남' },
+  { n:'유성', h:'裕成', o:['土','金'], suri:21, mean:'풍요롭게 이루어내다', g:'남' },
+  { n:'이든', h:'怡棟', o:['土','木'], suri:21, mean:'기쁘게 기둥이 되다', g:'남' },
+  // 金계 (ㅅ·ㅈ·ㅊ)
+  { n:'서준', h:'瑞俊', o:['金','金'], suri:21, mean:'상서롭고 빼어난 기운', g:'남', note:'top' },
+  { n:'서우', h:'瑞宇', o:['金','土'], suri:16, mean:'상서로운 기운이 하늘 같다', g:'남' },
+  { n:'서진', h:'瑞珍', o:['金','金'], suri:21, mean:'상서롭고 보배로운 기운', g:'남', note:'feat' },
+  { n:'시율', h:'時律', o:['金','火'], suri:21, mean:'때를 알고 리듬 있게 나아가다', g:'남' },
+  { n:'시원', h:'時源', o:['金','土'], suri:21, mean:'때에 맞는 깊은 근원', g:'남' },
+  { n:'시안', h:'時安', o:['金','土'], suri:16, mean:'때를 알고 평안히 나아가다', g:'남' },
+  { n:'선율', h:'善律', o:['金','火'], suri:23, mean:'착한 마음의 아름다운 리듬', g:'남', note:'feat' },
+  { n:'선호', h:'善浩', o:['金','木'], suri:21, mean:'착한 마음이 넓게 퍼지다', g:'남' },
+  { n:'솔', h:'率', o:['金',''], suri:11, mean:'이끌어 나가는 기운', g:'남' },
+  // 木계 (ㄱ·ㅋ)
+  { n:'겸', h:'謙', o:['木',''], suri:17, mean:'겸손함을 본성으로 삼다', g:'남', note:'feat' },
+  { n:'결', h:'潔', o:['木',''], suri:15, mean:'깨끗하고 맑은 기운', g:'남' },
+  // 火계 (ㄷ·ㄹ)
+  { n:'도경', h:'道炅', o:['木','火'], suri:21, mean:'바른 길 위에 빛나다', g:'남' },
+  { n:'도율', h:'道律', o:['木','火'], suri:24, mean:'바른 도리의 아름다운 리듬', g:'남' },
+  { n:'도우', h:'道宇', o:['木','土'], suri:16, mean:'바른 길이 하늘처럼 넓다', g:'남' },
+  { n:'다온', h:'多溫', o:['火','土'], suri:21, mean:'따뜻함이 넘치는 사람', g:'남' },
+  // 水계 (ㅁ·ㅂ)
+  // 특수 - 중성적 이름 (남아도 많이 씀)
+  { n:'하율', h:'夏律', o:['木','火'], suri:24, mean:'여름처럼 빛나는 리듬', g:'남' },
+  { n:'하진', h:'夏珍', o:['木','金'], suri:21, mean:'여름처럼 빛나는 보배', g:'남' },
+  { n:'재이', h:'梓怡', o:['金','土'], suri:18, mean:'재능 있게 기쁘게 살다', g:'남' },
+  { n:'태이', h:'泰怡', o:['土','土'], suri:16, mean:'크고 넉넉하게 기쁘게', g:'남' },
+  { n:'태양', h:'泰陽', o:['土','土'], suri:21, mean:'크고 밝은 태양 같은 기운', g:'남', note:'feat' },
+  { n:'태민', h:'泰旻', o:['土','火'], suri:16, mean:'크게 밝은 하늘', g:'남' },
+  { n:'윤호', h:'允浩', o:['土','木'], suri:16, mean:'윤택함이 넓게 퍼지다', g:'남' },
+  { n:'윤성', h:'允成', o:['土','金'], suri:16, mean:'윤택하게 이루어내다', g:'남' },
+  { n:'준혁', h:'俊赫', o:['金','火'], suri:31, mean:'빼어나게 환히 빛나다', g:'남', note:'feat' },
+  { n:'재현', h:'梓炫', o:['金','火'], suri:24, mean:'재능 있게 환히 빛나다', g:'남' },
+  { n:'도영', h:'道榮', o:['木','木'], suri:25, mean:'바른 길 위에 무성히 피다', g:'남' },
+  { n:'율', h:'律', o:['土',''], suri:9, mean:'아름다운 리듬과 법칙', g:'남' },
+
+  /* ════════════════════════
+     남아 — 중성적·세련 추가
+  ════════════════════════ */
+  { n:'서현', h:'瑞炫', o:['金','火'], suri:21, mean:'상서롭게 환히 빛나다', g:'남', note:'feat' },
+  { n:'서율', h:'瑞律', o:['金','火'], suri:24, mean:'상서로운 리듬과 생명력', g:'남' },
+  { n:'서온', h:'瑞溫', o:['金','土'], suri:21, mean:'상서로운 기운이 따뜻하게 익다', g:'남' },
+  { n:'지율', h:'志律', o:['金','火'], suri:21, mean:'뜻 있는 삶의 아름다운 리듬', g:'남' },
+  { n:'지연', h:'志涓', o:['金','水'], suri:21, mean:'뜻이 맑게 흐르다', g:'남' },
+  { n:'이온', h:'怡溫', o:['土','土'], suri:21, mean:'기쁨이 따뜻하게 익다', g:'남' },
+  
+  { n:'해솔', h:'海率', o:['木','金'], suri:21, mean:'바다처럼 넓게 이끌어 나가다', g:'남' },
+  { n:'건솔', h:'建率', o:['木','金'], suri:18, mean:'굳세게 세워 이끌어 나가다', g:'남' },
+  { n:'채온', h:'彩溫', o:['金','土'], suri:21, mean:'다채로운 기운이 따뜻하게 익다', g:'남' },
+
+  { n:'하준', h:'夏俊', o:['木','金'], suri:25, mean:'여름처럼 크고 빼어남', g:'남', note:'top' },
+  { n:'현준', h:'炫俊', o:['木','金'], suri:21, mean:'환히 빛나며 빼어나다', g:'남' },
+  { n:'현우', h:'炫宇', o:['木','土'], suri:16, mean:'빛남이 하늘처럼 넓다', g:'남' },
+  { n:'유준', h:'裕俊', o:['土','金'], suri:25, mean:'풍요 속에 빼어나게 자람', g:'남' },
+  { n:'유찬', h:'裕燦', o:['土','火'], suri:31, mean:'풍요롭게 환히 빛나다', g:'남', note:'feat' },
+  { n:'정우', h:'庭宇', o:['金','土'], suri:13, mean:'반듯한 뜰처럼 넓은 기운', g:'남' },
+  { n:'정민', h:'庭旻', o:['金','火'], suri:16, mean:'밝고 반듯한 기운', g:'남' },
+  { n:'정현', h:'庭炫', o:['金','火'], suri:21, mean:'반듯하게 환히 빛나다', g:'남' },
+  { n:'진우', h:'珍宇', o:['金','土'], suri:16, mean:'보배로운 기운이 하늘 같다', g:'남' },
+  { n:'주호', h:'柱浩', o:['金','木'], suri:21, mean:'기둥처럼 넓게 뻗는 힘', g:'남' },
+  { n:'주원', h:'柱源', o:['金','土'], suri:21, mean:'기둥 같은 깊은 근원', g:'남' },
+  { n:'주안', h:'柱安', o:['金','土'], suri:15, mean:'기둥처럼 든든한 평안', g:'남' },
+
+  /* ════════════════════════
+     여아 — 木 (ㄱ·ㅋ 계열)
+  ════════════════════════ */
+  { n:'가은', h:'佳恩', o:['木','土'], suri:18, mean:'아름다운 은혜를 가진 사람', g:'여', note:'top' },
+  { n:'건율', h:'建律', o:['木','火'], suri:24, mean:'반듯하게 세우는 리듬', g:'여' },
+
+  /* ════════════════════════
+     여아 — 火 (ㄴ·ㄷ·ㄹ·ㅌ 계열)
+  ════════════════════════ */
+  { n:'나은', h:'娜恩', o:['火','土'], suri:17, mean:'우아하고 은혜로운 기운', g:'여', note:'feat' },
+  { n:'나윤', h:'娜允', o:['火','土'], suri:13, mean:'우아하고 윤택한 삶', g:'여' },
+  { n:'다은', h:'多恩', o:['火','土'], suri:21, mean:'넘치는 은혜를 가진 사람', g:'여' },
+  { n:'다인', h:'多仁', o:['火','木'], suri:16, mean:'어진 마음이 넘치다', g:'여', note:'feat' },
+  { n:'다윤', h:'多允', o:['火','土'], suri:16, mean:'풍요롭게 윤택한 삶', g:'여' },
+  { n:'다율', h:'多律', o:['火','火'], suri:24, mean:'넘치는 리듬과 생명력', g:'여', note:'top' },
+  { n:'다경', h:'多炅', o:['火','火'], suri:21, mean:'밝음이 넘치는 기운', g:'여' },
+  { n:'다연', h:'多涓', o:['火','水'], suri:21, mean:'맑음이 넘치는 기운', g:'여' },
+  { n:'라온', h:'羅媛', o:['火','土'], suri:31, mean:'기쁨으로 가득한 아름다움', g:'여', note:'top' },
+  { n:'로아', h:'路芽', o:['火','木'], suri:16, mean:'길 위에 피어나는 새싹', g:'여', note:'feat' },
+  { n:'리아', h:'梨芽', o:['火','木'], suri:16, mean:'배꽃처럼 피어나는 새싹', g:'여' },
+
+  /* ════════════════════════
+     여아 — 土 (ㅇ·ㅎ 계열)
+  ════════════════════════ */
+  { n:'아린', h:'芽璘', o:['土','火'], suri:25, mean:'새싹처럼 빛나는 옥', g:'여', note:'top' },
+  { n:'아윤', h:'芽允', o:['土','土'], suri:13, mean:'새싹처럼 윤택하게 피어남', g:'여' },
+  { n:'아인', h:'芽仁', o:['土','木'], suri:11, mean:'새싹처럼 어질게 자라다', g:'여', note:'feat' },
+  { n:'아정', h:'芽晶', o:['土','火'], suri:23, mean:'새싹 같은 맑고 빛나는 기운', g:'여' },
+  { n:'아영', h:'芽榮', o:['土','木'], suri:21, mean:'새싹이 무성하게 자라다', g:'여' },
+  { n:'아라', h:'芽羅', o:['土','火'], suri:21, mean:'새싹처럼 활짝 퍼지다', g:'여' },
+  { n:'예서', h:'叡瑞', o:['土','金'], suri:23, mean:'슬기롭고 상서로운 빛', g:'여', note:'top' },
+  { n:'예린', h:'叡璘', o:['土','火'], suri:33, mean:'슬기롭게 빛나는 옥', g:'여', note:'feat' },
+  { n:'예은', h:'叡恩', o:['土','土'], suri:21, mean:'슬기로운 은혜', g:'여' },
+  { n:'예나', h:'叡娜', o:['土','火'], suri:21, mean:'슬기롭고 우아한 기운', g:'여' },
+  { n:'예원', h:'叡源', o:['土','土'], suri:25, mean:'지혜의 근원이 깊다', g:'여' },
+  { n:'예진', h:'叡珍', o:['土','金'], suri:21, mean:'슬기롭고 보배로운 기운', g:'여' },
+  { n:'은채', h:'恩彩', o:['土','金'], suri:21, mean:'은혜로운 빛깔', g:'여' },
+  { n:'은서', h:'恩瑞', o:['土','金'], suri:18, mean:'은혜롭고 상서로운 기운', g:'여', note:'top' },
+  { n:'이서', h:'怡瑞', o:['土','金'], suri:13, mean:'기쁨을 가져오는 상서로움', g:'여' },
+  { n:'이솔', h:'怡率', o:['土','金'], suri:21, mean:'기쁘게 이끌어 나가다', g:'여' },
+
+  /* ════════════════════════
+     여아 — 金 (ㅅ·ㅈ·ㅊ 계열)
+  ════════════════════════ */
+  { n:'서아', h:'瑞芽', o:['金','木'], suri:21, mean:'상서로움이 새싹처럼 피어남', g:'여', note:'top' },
+  { n:'서윤', h:'瑞允', o:['金','土'], suri:18, mean:'상서로움 속에 윤택한 복', g:'여' },
+  { n:'서연', h:'瑞涓', o:['金','水'], suri:23, mean:'상서로운 맑음', g:'여' },
+  { n:'서현', h:'瑞炫', o:['金','火'], suri:21, mean:'상서롭게 빛나다', g:'여' },
+  { n:'서은', h:'瑞恩', o:['金','土'], suri:18, mean:'상서로운 은혜', g:'여' },
+  { n:'서율', h:'瑞律', o:['金','火'], suri:24, mean:'상서로운 리듬과 생명력', g:'여', note:'feat' },
+  { n:'서영', h:'瑞榮', o:['金','木'], suri:23, mean:'상서로움이 무성하게 피다', g:'여' },
+  { n:'서이', h:'瑞怡', o:['金','土'], suri:16, mean:'상서로운 기쁨', g:'여' },
+  { n:'서하', h:'瑞夏', o:['金','木'], suri:21, mean:'상서로움이 여름처럼 피어남', g:'여' },
+  { n:'서진', h:'瑞珍', o:['金','金'], suri:21, mean:'상서롭고 보배로운 기운', g:'여', note:'top' },
+  { n:'소율', h:'素律', o:['金','火'], suri:15, mean:'순수한 빛깔의 음률', g:'여', note:'top' },
+  { n:'소윤', h:'素允', o:['金','土'], suri:11, mean:'순수하게 윤택한 삶', g:'여' },
+  { n:'소민', h:'素旻', o:['金','火'], suri:16, mean:'순수한 밝은 하늘', g:'여' },
+  { n:'소아', h:'素芽', o:['金','木'], suri:13, mean:'순수한 새싹처럼 피어남', g:'여' },
+  { n:'수아', h:'秀芽', o:['金','木'], suri:13, mean:'빼어난 새싹', g:'여' },
+  { n:'수민', h:'秀旻', o:['金','火'], suri:16, mean:'빼어나게 밝은 기운', g:'여' },
+  { n:'수안', h:'秀安', o:['金','土'], suri:15, mean:'빼어나고 평안한 기운', g:'여' },
+  { n:'채원', h:'彩源', o:['金','土'], suri:16, mean:'빛깔의 근원, 다채로운 삶', g:'여' },
+  { n:'채은', h:'彩恩', o:['金','土'], suri:18, mean:'다채로운 은혜', g:'여' },
+  { n:'채윤', h:'彩允', o:['金','土'], suri:13, mean:'다채롭게 윤택함', g:'여' },
+  { n:'채율', h:'彩律', o:['金','火'], suri:24, mean:'다채로운 리듬', g:'여', note:'feat' },
+  { n:'채하', h:'彩夏', o:['金','木'], suri:21, mean:'빛깔이 여름처럼 넘치다', g:'여' },
+  { n:'채빈', h:'彩彬', o:['金','木'], suri:23, mean:'다채로운 빛으로 빛나다', g:'여' },
+  { n:'채이', h:'彩怡', o:['金','土'], suri:16, mean:'다채로운 기쁨', g:'여' },
+  { n:'채아', h:'彩芽', o:['金','木'], suri:16, mean:'빛깔이 새싹처럼 피어남', g:'여' },
+  { n:'지안', h:'智安', o:['金','土'], suri:21, mean:'지혜로운 평안함', g:'여' },
+  { n:'지유', h:'智柔', o:['金','木'], suri:16, mean:'지혜롭고 부드러운 결', g:'여', note:'top' },
+  { n:'지율', h:'智律', o:['金','火'], suri:24, mean:'지혜로운 리듬과 생명력', g:'여', note:'feat' },
+  { n:'지연', h:'智涓', o:['金','水'], suri:21, mean:'지혜로운 맑음', g:'여' },
+  { n:'지현', h:'智炫', o:['金','火'], suri:21, mean:'지혜롭게 빛나다', g:'여' },
+  { n:'지효', h:'智孝', o:['金','木'], suri:17, mean:'지혜롭고 효성스러운 기운', g:'여' },
+  { n:'지민', h:'智旻', o:['金','火'], suri:16, mean:'지혜롭게 밝게 빛나다', g:'여' },
+  { n:'지아', h:'智芽', o:['金','木'], suri:13, mean:'지혜가 새싹처럼 피어남', g:'여' },
+  { n:'지우', h:'智雨', o:['金','土'], suri:16, mean:'지혜로운 단비', g:'여' },
+
+  /* ════════════════════════
+     여아 — 水 (ㅁ·ㅂ 계열)
+  ════════════════════════ */
+  { n:'민서', h:'旻瑞', o:['水','金'], suri:21, mean:'밝은 하늘의 상서로운 기운', g:'여', note:'top' },
+  { n:'민아', h:'旻芽', o:['水','木'], suri:13, mean:'밝은 하늘 아래 피어나는 새싹', g:'여' },
+
+  /* ════════════════════════
+     여아 — 공통·인기
+  ════════════════════════ */
+  { n:'하율', h:'夏律', o:['木','火'], suri:24, mean:'여름처럼 빛나는 리듬', g:'여', note:'top' },
+  { n:'하윤', h:'夏允', o:['木','土'], suri:23, mean:'여름처럼 풍성하게 윤택함', g:'여' },
+  { n:'하은', h:'夏恩', o:['木','土'], suri:25, mean:'여름의 따스한 은혜', g:'여' },
+  { n:'하린', h:'夏璘', o:['木','火'], suri:31, mean:'여름처럼 빛나는 옥', g:'여', note:'feat' },
+  { n:'하연', h:'夏涓', o:['木','水'], suri:21, mean:'여름에 피어나는 맑음', g:'여' },
+  { n:'하경', h:'夏炅', o:['木','火'], suri:21, mean:'여름처럼 빛나다', g:'여' },
+  { n:'윤서', h:'允瑞', o:['土','金'], suri:18, mean:'윤택함 속의 상서로운 기운', g:'여' },
+  { n:'윤아', h:'允芽', o:['土','木'], suri:11, mean:'윤택하게 새싹이 피어남', g:'여' },
+  { n:'유주', h:'裕珠', o:['土','金'], suri:21, mean:'풍요로운 구슬처럼 빛남', g:'여', note:'feat' },
+  { n:'유나', h:'裕娜', o:['土','火'], suri:17, mean:'풍요롭고 우아한 기운', g:'여' },
+  { n:'유하', h:'裕夏', o:['土','木'], suri:21, mean:'풍요로움이 여름처럼 넘침', g:'여' },
+  { n:'유이', h:'裕怡', o:['土','土'], suri:18, mean:'풍요롭고 기쁨이 넘침', g:'여' },
+  { n:'유라', h:'裕羅', o:['土','火'], suri:25, mean:'풍요롭게 활짝 퍼지다', g:'여' },
+  { n:'세아', h:'歲芽', o:['金','木'], suri:21, mean:'세월처럼 새싹이 피어남', g:'여' },
+  { n:'세은', h:'歲恩', o:['金','土'], suri:21, mean:'세월 속에 쌓이는 은혜', g:'여' },
+  { n:'설', h:'雪', o:['金',''], suri:11, mean:'순백의 눈처럼 맑고 깨끗함', g:'여', note:'feat' },
+  { n:'솔', h:'率', o:['金',''], suri:11, mean:'이끌어 나가는 기운', g:'여' },
+  { n:'시아', h:'時芽', o:['金','木'], suri:16, mean:'때를 알고 피어나는 새싹', g:'여' },
+  { n:'시은', h:'時恩', o:['金','土'], suri:18, mean:'때를 따라 쌓이는 은혜', g:'여' },
+  { n:'시연', h:'時涓', o:['金','水'], suri:21, mean:'때를 따라 흐르는 맑음', g:'여' },
+  { n:'정원', h:'庭源', o:['金','土'], suri:21, mean:'반듯한 뜰의 깊은 근원', g:'여' },
+  { n:'혜원', h:'惠源', o:['木','土'], suri:21, mean:'은혜의 깊은 근원', g:'여', note:'feat' },
+  { n:'주아', h:'珠芽', o:['金','木'], suri:16, mean:'구슬처럼 빛나는 새싹', g:'여' },
+  { n:'연서', h:'涓瑞', o:['土','金'], suri:21, mean:'맑고 상서로운 기운', g:'여' },
+  { n:'윤지', h:'允智', o:['土','金'], suri:16, mean:'윤택하고 지혜로운 기운', g:'여' },
+  { n:'이원', h:'怡源', o:['土','土'], suri:21, mean:'기쁨의 깊은 근원', g:'여' },
+  { n:'도아', h:'桃芽', o:['木','木'], suri:16, mean:'복숭아꽃처럼 피어나는 새싹', g:'여' },
+];
+
+/* ── 뜻풀이 샘플 — 성별 전환 시 해당 성별 4개씩 ── */
+const MEANINGS_DB = {
+  남: [
+    { n:'준서', h:'俊瑞',
+      mean:'빼어날 준(俊)에 상서로울 서(瑞). 재능이 빼어나고 기운이 상서롭다. 부르는 소리가 金→金 비화로 흘러 막힘 없이 이어진다.',
+      flow:'金→金 비화', g:'남' },
+    { n:'우진', h:'宇珍',
+      mean:'집 우(宇)에 보배 진(珍). 하늘처럼 넓은 품 안에 보배로운 기운을 담았다. 土→金 상생으로 안정 위에 빛이 더해진다.',
+      flow:'土→金 상생', g:'남' },
+    { n:'서진', h:'瑞珍',
+      mean:'상서로울 서(瑞)에 보배 진(珍). 상서로운 기운 위에 보배로운 빛. 중성적 세련미와 강한 金→金 비화의 힘이 합쳐진다.',
+      flow:'金→金 비화', g:'남' },
+    { n:'선율', h:'善律',
+      mean:'착할 선(善)에 법칙 율(律). 착한 마음이 리듬이 되어 세상에 울려 퍼진다. 金→火 상생으로 의지가 빛으로 피어난다.',
+      flow:'金→火 상생', g:'남' },
+    { n:'도현', h:'道炫',
+      mean:'도리 도(道)에 빛날 현(炫). 바른 길 위에서 환히 빛나는 사람. 木→火 상생으로 성장이 빛으로 이어진다.',
+      flow:'木→火 상생', g:'남' },
+    { n:'재원', h:'梓源',
+      mean:'가래나무 재(梓)에 근원 원(源). 재능의 뿌리가 깊고 넓다. 金→土 상생으로 결실이 땅에 단단히 내린다.',
+      flow:'金→土 상생', g:'남' },
+  ],
+  여: [
+    { n:'하율', h:'夏律',
+      mean:'여름 하(夏)에 법칙 율(律). 여름처럼 뜨겁게 자신만의 리듬으로 살아가는 사람. 木→火 상생으로 성장이 빛으로 피어난다.',
+      flow:'木→火 상생', g:'여' },
+    { n:'서진', h:'瑞珍',
+      mean:'상서로울 서(瑞)에 보배 진(珍). 상서로운 기운 위에 보배로운 빛이 더해진다. 金→金 비화로 힘이 모인다.',
+      flow:'金→金 비화', g:'여' },
+    { n:'예서', h:'叡瑞',
+      mean:'슬기로울 예(叡)에 상서로울 서(瑞). 지혜로운 눈으로 상서로운 앞날을 열어간다. 土→金 상생으로 지혜가 결실로 이어진다.',
+      flow:'土→金 상생', g:'여' },
+    { n:'다율', h:'多律',
+      mean:'많을 다(多)에 법칙 율(律). 넘치는 생명력과 리듬으로 세상을 가득 채운다. 火→火 비화로 빛이 배가 된다.',
+      flow:'火→火 비화', g:'여' },
+    { n:'아린', h:'芽璘',
+      mean:'새싹 아(芽)에 빛날 린(璘). 새싹처럼 피어나며 옥처럼 빛난다. 土→火 상생으로 따뜻한 땅에서 빛이 솟는다.',
+      flow:'土→火 상생', g:'여' },
+    { n:'라온', h:'羅媛',
+      mean:'벌일 라(羅)에 아름다울 원(媛). 기쁨이 활짝 펼쳐지는 아름다운 사람. 火→土 상생으로 열정이 안정으로 익는다.',
+      flow:'火→土 상생', g:'여' },
+  ]
+};
+
+/* ──────────────────────────────────────────
+   STATE & RENDER
+────────────────────────────────────────── */
+let currentGender = '남';
+let currentOh = '전체';
+
+function setGender(g, btn) {
+  currentGender = g;
+  document.querySelectorAll('.gender-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  render();
+}
+
+function setOh(o, btn) {
+  currentOh = o;
+  document.querySelectorAll('.oh-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  render();
+}
+
+function render() {
+  updateLegend();
+  renderNames();
+  renderMeanings();
+}
+
+function updateLegend() {
+  const el = document.getElementById('suriLegend');
+  if (currentSung) {
+    el.innerHTML = `<div class="suri-legend">
+      <span style="color:#5a9e6a;font-weight:600">✦ ${currentSung.name}씨 기준 실제 수리 계산 중</span>
+      <span style="color:#5a9e6a">4격吉 — 4격 모두 길</span>
+      <span style="color:var(--gold)">인격吉 — 총운 길</span>
+      <span style="color:#d96a4a;opacity:.7">인격凶 — 흐림 처리</span>
+    </div>`;
+  } else {
+    el.innerHTML = `<div class="suri-legend">
+      <span><i class="suri-dot gil"></i>인격 吉수</span>
+      <span><i class="suri-dot jung"></i>인격 中吉수</span>
+      <span>★ 황금 추천</span><span>✦ 개성 추천</span>
+      <span style="color:#5a9e6a">● 상생</span>
+      <span style="color:#7ab8d4">순우리말</span>
+      <span style="color:var(--violet)">외자</span>
+    </div>`;
+  }
+}
+
+function ohaengFlow(oArr) {
+  // 자원오행 두 글자 흐름 판단
+  if (!oArr || oArr.length < 2 || !oArr[0] || !oArr[1]) return '';
+  const SAENG = {木:'火',火:'土',土:'金',金:'水',水:'木'};
+  const a = oArr[0], b = oArr[1];
+  if (a === b) return '비화';
+  if (SAENG[a] === b || SAENG[b] === a) return '상생';
+  return '상극';
+}
+
+function renderNames() {
+  const grid = document.getElementById('namesGrid');
+  let filtered = NAMES_DB.filter(d => d.g === currentGender || d.g === '공통');
+  if (currentOh !== '전체') {
+    filtered = filtered.filter(d => nameOh(d.n) === currentOh);
+  }
+
+  // 성씨 입력 시: 한자 후보 기반 수리 계산
+  // 미입력 시: 기존 hardcoded suri 그대로
+  const hasSung = currentSung !== null;
+
+  // 각 이름에 계산 결과 붙이기
+  const withSuri = filtered.map(d => {
+    if (!hasSung) return { ...d, calcResult: null };
+
+    // HANJA_CANDS에서 후보 가져오기
+    const cands = HANJA_CANDS[d.n];
+    if (!cands) {
+      // 후보 없으면 기존 h로 획수 추정
+      const chars = [...d.h].filter(c => c > '\u4E00');
+      const s0 = chars[0] ? (getStroke(chars[0]) || null) : null;
+      const s1 = chars[1] ? (getStroke(chars[1]) || null) : null;
+      if (s0) {
+        const strokes = s1 ? [s0, s1] : [s0];
+        const res = calcSuri(currentSung.stroke, strokes);
+        return { ...d, calcResult: { best: { h: d.h, s: strokes, o: d.o }, res, cands: null } };
+      }
+      return { ...d, calcResult: null };
+    }
+
+    // 후보별 수리 계산 → 4격 모두 吉인 것 우선, 그 다음 인격 吉
+    const scored = cands.map(c => ({
+      ...c,
+      res: calcSuri(currentSung.stroke, c.s),
+    }));
+    scored.sort((a,b) => {
+      if (a.res.allGil && !b.res.allGil) return -1;
+      if (!a.res.allGil && b.res.allGil) return 1;
+      if (a.res.inGil && !b.res.inGil) return -1;
+      if (!a.res.inGil && b.res.inGil) return 1;
+      return 0;
+    });
+    const best = scored[0];
+    return { ...d, h: best.h, o: best.o, calcResult: { best, res: best.res, cands: scored } };
+  });
+
+  // 정렬: 성씨 입력 시 4격吉 → 인격吉 → 나머지
+  // 미입력 시: top → feat → 吉수 순
+  if (hasSung) {
+    withSuri.sort((a, b) => {
+      const ra = a.calcResult?.res, rb = b.calcResult?.res;
+      const scoreA = ra ? (ra.allGil ? 0 : ra.inGil ? 1 : 2) : 3;
+      const scoreB = rb ? (rb.allGil ? 0 : rb.inGil ? 1 : 2) : 3;
+      if (scoreA !== scoreB) return scoreA - scoreB;
+      const order = { top:0, feat:1, '':2 };
+      return (order[a.note||'']||2) - (order[b.note||'']||2);
+    });
+  } else {
+    withSuri.sort((a, b) => {
+      const order = { top: 0, feat: 1, '': 2 };
+      const no = (order[a.note||'']||2) - (order[b.note||'']||2);
+      if (no !== 0) return no;
+      const sg = x => suriGrade(x.suri) === 'gil' ? 0 : suriGrade(x.suri) === 'jung' ? 1 : 2;
+      return sg(a) - sg(b);
+    });
+  }
+
+  if (withSuri.length === 0) {
+    grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--muted);font-size:14px">
+      해당 오행 이름을 준비 중입니다.<br><small style="font-size:11px;margin-top:6px;display:block">전체 또는 다른 오행을 선택해 보세요</small>
+    </div>`;
+    return;
+  }
+
+  grid.innerHTML = withSuri.map((d, i) => {
+    const oh = nameOh(d.n);
+    const delay = Math.min(i * 0.03, 1.0).toFixed(2);
+    const star = d.note === 'top' ? '<span class="nc-star">★</span>'
+                : d.note === 'feat' ? '<span class="nc-star" style="color:var(--violet)">✦</span>' : '';
+
+    const isSingle = d.n.length === 1;
+    const isHangeulOnly = !d.h || /^[\uAC00-\uD7A3\s·]+$/.test(d.h);
+    let typeBadge = '';
+    if (isHangeulOnly && !isSingle) typeBadge = '<span class="nc-badge badge-hangeul">순우리말</span>';
+    else if (isSingle) typeBadge = '<span class="nc-badge badge-single">외자</span>';
+
+    // 수리 표시
+    let suriHtml = '';
+    if (hasSung && d.calcResult) {
+      const r = d.calcResult.res;
+      const ig = r.in_g, allG = r.allGil;
+      const normalize = n => { let x=n; while(x>81)x-=80; return x<1?1:x; };
+      const inN = normalize(r.in_);
+      const gradeColor = allG ? '#5a9e6a' : ig ? 'var(--gold)' : '#d96a4a';
+      const gradeLabel = allG ? '4격吉' : ig ? '인격吉' : '인격凶';
+      suriHtml = `<div class="nc-suri-real" style="color:${gradeColor}">
+        <span class="suri-badge-real">${gradeLabel}</span>
+        <span style="font-size:9px;opacity:.8">인격${inN}</span>
+      </div>`;
+    } else {
+      const sg = suriGrade(d.suri);
+      suriHtml = `<div class="nc-suri"><i class="suri-dot ${sg}"></i>인격 ${d.suri}</div>`;
+    }
+
+    // 오행 태그
+    const jaTags = d.o.filter(Boolean).map(o =>
+      `<span class="nc-tag tag-${o}" title="자원오행">${o}</span>`).join('');
+    const flowLabel = ohaengFlow(d.o);
+    const flowColor = flowLabel==='상생'?'#5a9e6a':flowLabel==='비화'?'var(--gold)':'#d96a4a';
+
+    // 카드 클래스 — 성씨 있을 때 인격凶 이름 흐리게
+    let cardClass = d.note === 'top' ? 'nc top' : d.note === 'feat' ? 'nc featured' : 'nc';
+    if (hasSung && d.calcResult && !d.calcResult.res.inGil) cardClass += ' nc-dim';
+
+    return `<div class="${cardClass}" style="animation-delay:${delay}s" title="${d.mean}">
+      ${star}${typeBadge}
+      <div class="nc-hanja">${d.h || '·'}</div>
+      <div class="nc-name">${d.n}</div>
+      ${suriHtml}
+      <div class="nc-tags">
+        <span class="nc-tag tag-${oh}" title="발음오행">${oh}</span>
+        ${jaTags}
+        ${flowLabel ? `<span class="nc-tag" style="color:${flowColor};background:transparent;border-color:${flowColor}30;font-size:9px">${flowLabel}</span>` : ''}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function renderMeanings() {
+  const grid = document.getElementById('meaningGrid');
+  const list = MEANINGS_DB[currentGender] || [];
+  // 현재 오행 필터에 맞는 것 우선, 나머지도 표시 (최대 6개)
+  const sorted = currentOh === '전체' ? list
+    : [...list.filter(d => nameOh(d.n) === currentOh),
+       ...list.filter(d => nameOh(d.n) !== currentOh)];
+  const show = sorted.slice(0, 6);
+
+  grid.innerHTML = show.map(d => {
+    const oh = nameOh(d.n);
+    const flowColor = d.flow.includes('상생') ? '#5a9e6a'
+                    : d.flow.includes('비화') ? '#c9a84c' : '#d96a4a';
+    return `<div class="mc">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
+        <div class="mc-name">${d.n}</div>
+        <span class="nc-tag tag-${oh}" style="font-size:10px">${oh}</span>
+      </div>
+      <div class="mc-hanja">${d.h}</div>
+      <div class="mc-meaning">${d.mean}</div>
+      <div class="mc-flow">
+        <span style="font-size:10px;color:${flowColor}">자원오행 흐름: ${d.flow}</span>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function openKakao() {
+  window.open('http://pf.kakao.com/_xnZAxfX', '_blank');
+}
+
+// init
+render();
+</script>
+</body>
+</html>

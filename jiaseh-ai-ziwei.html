@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 자미 리포트 · 지아세 知我世</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;700;900&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1a1410;
+  --paper:#f5f0ff;          /* 자미 = 보라빛 미색 — 명리와 구분 */
+  --paper-card:#fdfbff;
+  --accent:#7c4fc9;         /* 자미 포인트: 보라 */
+  --accent-lt:#a97de8;
+  --accent-bg:rgba(124,79,201,.08);
+  --accent-line:rgba(124,79,201,.2);
+  --teal:#2a7a6b;
+  --gold:#9a7b3f;
+  --line:#ddd4f0;
+  --mid:#7a6e8a;
+  --shadow:rgba(0,0,0,.06);
+  --maxw:700px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Noto Sans KR',sans-serif;
+  background:var(--paper);
+  color:var(--ink);
+  line-height:1.75;
+  min-height:100vh;
+  background-image:
+    radial-gradient(ellipse at 85% 5%, rgba(124,79,201,.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 15% 95%, rgba(42,122,107,.04) 0%, transparent 50%);
+}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 18px 100px}
+.topbar{display:flex;align-items:center;justify-content:center;gap:7px;padding:13px 0 10px;border-bottom:1px solid var(--line);font-size:11px;letter-spacing:.4em;color:var(--accent);font-weight:700}
+.topbar-logo{width:20px;height:20px;border-radius:5px;flex-shrink:0}
+b{color:var(--gold);font-weight:800}
+
+/* ── 히어로 ── */
+header{text-align:center;padding:44px 0 8px}
+.tier-tag{display:inline-block;background:var(--accent-bg);border:1px solid var(--accent-line);border-radius:100px;font-size:11px;font-weight:700;color:var(--accent);letter-spacing:.18em;padding:4px 14px;margin-bottom:18px}
+.hero-emoji{font-size:38px;display:block;margin-bottom:10px;line-height:1}
+.hero-title{font-family:'Noto Serif KR',serif;font-size:28px;font-weight:900;letter-spacing:.01em;line-height:1.3}
+.hero-title em{color:var(--accent);font-style:normal}
+.hero-sub{font-size:13.5px;color:var(--mid);margin-top:12px;line-height:1.8}
+.price-subtle{text-align:center;margin:12px 0 0;font-size:22px;font-weight:900;color:var(--ink);font-family:'Noto Serif KR',serif}
+.price-subtle span{font-size:13px;font-weight:400;color:var(--mid);margin-left:4px}
+.rule{height:1px;background:linear-gradient(90deg,transparent,var(--line),transparent);margin:24px 0}
+
+/* ── 버튼 ── */
+.btn-main{display:block;width:100%;max-width:320px;margin:0 auto;background:var(--accent);color:#fff;text-align:center;padding:15px 0;border-radius:100px;font-size:15px;font-weight:700;letter-spacing:.04em;text-decoration:none;box-shadow:0 4px 18px rgba(124,79,201,.28);transition:transform .15s}
+.btn-main:active{transform:scale(.97)}
+.btn-ghost{display:block;width:100%;max-width:320px;margin:10px auto 0;border:1.5px solid var(--accent);color:var(--accent);text-align:center;padding:13px 0;border-radius:100px;font-size:14px;font-weight:700;text-decoration:none}
+
+/* ── 섹션 ── */
+section{margin-top:20px}
+.card{background:var(--paper-card);border:1px solid var(--line);border-radius:12px;padding:22px 20px;box-shadow:0 1px 6px var(--shadow)}
+.eyebrow{font-size:10.5px;letter-spacing:.22em;color:var(--accent);font-weight:700;margin-bottom:6px}
+.sec-title{font-family:'Noto Serif KR',serif;font-size:19px;font-weight:900;letter-spacing:.01em;margin-bottom:12px}
+.sec-lead{font-size:13.5px;color:#555;line-height:1.8;margin-bottom:14px}
+
+/* ── 공감 ── */
+.concern-list{display:flex;flex-direction:column;gap:9px}
+.concern-item{display:flex;align-items:flex-start;gap:10px;background:var(--accent-bg);border:1px solid var(--accent-line);border-radius:10px;padding:12px 14px;font-size:13.5px;color:#2a1e3a;line-height:1.6}
+.concern-item .ic{flex:0 0 20px;font-size:16px;padding-top:1px}
+
+/* ── 명리 vs 자미 차이 ── */
+.diff-row{display:flex;gap:10px;margin-top:4px}
+.diff-col{flex:1;border-radius:10px;padding:14px 14px}
+.diff-col.col-a{background:#f0ece0;border:1px solid #ddd4be}
+.diff-col.col-b{background:var(--accent-bg);border:1px solid var(--accent-line)}
+.diff-col .dc-label{font-size:9.5px;letter-spacing:.18em;font-weight:700;margin-bottom:6px}
+.diff-col.col-a .dc-label{color:#9a7b3f}
+.diff-col.col-b .dc-label{color:var(--accent)}
+.diff-col .dc-text{font-size:12.5px;line-height:1.7;color:#3a2e20}
+
+/* ── 12궁 지도 시각화 ── */
+.palace-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:6px;
+  margin:12px 0;
+}
+.palace{
+  border-radius:8px;
+  padding:10px 8px;
+  text-align:center;
+  border:1px solid var(--line);
+  background:var(--paper-card);
+  position:relative;
+}
+.palace.highlight{
+  background:var(--accent-bg);
+  border-color:var(--accent-line);
+}
+.palace.highlight-top{
+  background:rgba(124,79,201,.15);
+  border-color:rgba(124,79,201,.35);
+}
+.palace.blur-palace{
+  filter:blur(3.5px);
+  pointer-events:none;
+  user-select:none;
+}
+.palace .p-name{font-size:9.5px;color:var(--mid);margin-bottom:4px;font-weight:700;letter-spacing:.08em}
+.palace .p-score{font-size:16px;font-weight:900;line-height:1}
+.palace.highlight-top .p-score{color:var(--accent)}
+.palace.highlight .p-score{color:var(--teal)}
+.palace .p-tag{font-size:8.5px;margin-top:3px;color:var(--mid)}
+.palace.highlight-top .p-tag{color:var(--accent);font-weight:700}
+
+/* 블러 래퍼 */
+.palace-blur-wrap{position:relative}
+.palace-blur-veil{
+  position:absolute;inset:0;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;
+  background:rgba(245,240,255,.80);backdrop-filter:blur(1px);
+  border-radius:10px;padding:12px;text-align:center;
+}
+.palace-blur-veil .lock{font-size:20px}
+.palace-blur-veil p{font-size:11.5px;color:var(--mid);line-height:1.6}
+.palace-blur-veil strong{color:var(--ink)}
+
+/* ── TOP3 ── */
+.top3-list{display:flex;flex-direction:column;gap:10px;margin-top:4px}
+.top3-item{display:flex;align-items:flex-start;gap:12px;border-radius:10px;padding:13px 14px;border:1px solid var(--line);background:var(--paper-card)}
+.top3-item.t-high{background:rgba(124,79,201,.07);border-color:var(--accent-line)}
+.top3-item.t-low{background:rgba(184,74,42,.06);border-color:rgba(184,74,42,.2)}
+.top3-rank{flex:0 0 28px;font-family:'Noto Serif KR',serif;font-size:18px;font-weight:900;line-height:1;padding-top:2px}
+.t-high .top3-rank{color:var(--accent)}
+.t-low .top3-rank{color:#b84a2a}
+.top3-body .t-label{font-size:10px;letter-spacing:.15em;color:var(--mid);font-weight:700;margin-bottom:3px}
+.top3-body .t-title{font-size:14px;font-weight:700;margin-bottom:3px}
+.top3-body .t-desc{font-size:12.5px;color:#555;line-height:1.65}
+
+/* ── 목차 카드 ── */
+.part-list{display:flex;flex-direction:column;gap:9px}
+.part-item{display:flex;gap:14px;align-items:flex-start;border-radius:10px;padding:13px 15px;border:1px solid var(--line);background:var(--paper-card)}
+.part-item.star{background:var(--accent-bg);border-color:var(--accent-line)}
+.part-num{flex:0 0 auto;font-size:10px;letter-spacing:.12em;font-weight:700;color:var(--mid);padding-top:3px;min-width:52px}
+.part-item.star .part-num{color:var(--accent)}
+.part-title{font-size:14px;font-weight:700;margin-bottom:3px}
+.part-item.star .part-title{color:var(--accent)}
+.part-desc{font-size:12.5px;color:var(--mid);line-height:1.65}
+
+/* ── 타임라인 ── */
+.timeline{display:flex;flex-direction:column;gap:0;position:relative;padding-left:22px}
+.timeline::before{content:'';position:absolute;left:7px;top:8px;bottom:8px;width:1.5px;background:linear-gradient(180deg,var(--accent),var(--teal))}
+.tl-item{position:relative;padding:0 0 18px 18px}
+.tl-item:last-child{padding-bottom:0}
+.tl-dot{position:absolute;left:-22px;top:4px;width:14px;height:14px;border-radius:50%;background:var(--paper);border:2.5px solid var(--accent)}
+.tl-step{font-size:10.5px;letter-spacing:.18em;color:var(--accent);font-weight:700;margin-bottom:2px}
+.tl-desc{font-size:13.5px;line-height:1.65}
+
+/* ── 비교 표 ── */
+.compare-table{width:100%;border-collapse:collapse;font-size:12.5px}
+.compare-table th{padding:9px 10px;text-align:center;font-size:11px;letter-spacing:.1em;font-weight:700}
+.compare-table th:first-child{text-align:left;color:var(--mid)}
+.compare-table th.col-ziwei{background:var(--accent);color:#fff;border-radius:8px 8px 0 0}
+.compare-table th.col-deep{background:#f0ebe0;color:var(--mid)}
+.compare-table td{padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:middle}
+.compare-table td:first-child{color:#444;font-size:12px}
+.compare-table td:nth-child(2){text-align:center;font-weight:700;color:var(--accent)}
+.compare-table td:nth-child(3){text-align:center;color:var(--mid)}
+.compare-table tr:last-child td{border-bottom:none}
+.compare-note{font-size:11px;color:var(--mid);margin-top:10px;text-align:center;line-height:1.7}
+
+/* ── 업셀 배너 ── */
+.upgrade-banner{background:linear-gradient(135deg,#1a1020 0%,#2a1040 100%);border-radius:12px;padding:20px;color:#f5f0ff;margin-top:10px}
+.ub-tag{font-size:10px;letter-spacing:.22em;color:var(--accent-lt);font-weight:700;margin-bottom:8px}
+.ub-title{font-family:'Noto Serif KR',serif;font-size:17px;font-weight:900;margin-bottom:8px;line-height:1.4}
+.ub-desc{font-size:12.5px;color:rgba(245,240,255,.65);line-height:1.7;margin-bottom:0}
+.ub-desc b{color:var(--accent-lt);font-weight:700}
+.ub-pricing{display:flex;align-items:center;flex-wrap:wrap;gap:6px;margin:12px 0 14px}
+.ub-original{font-size:13px;color:rgba(245,240,255,.35);text-decoration:line-through}
+.ub-arrow{font-size:13px;color:rgba(245,240,255,.35)}
+.ub-discounted{font-family:'Noto Serif KR',serif;font-size:20px;font-weight:900;color:#f5f0ff}
+.ub-note{font-size:10px;color:var(--accent-lt);background:rgba(124,79,201,.3);border-radius:100px;padding:2px 10px;font-weight:700}
+.ub-price{display:inline-block;background:var(--accent);color:#fff;border-radius:100px;padding:9px 20px;font-size:13px;font-weight:700;text-decoration:none;letter-spacing:.04em}
+
+/* ── FAQ ── */
+.faq-list{display:flex;flex-direction:column;gap:10px}
+.faq-item{border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.faq-q{padding:13px 16px;font-size:13.5px;font-weight:700;background:var(--paper-card);cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.faq-q .arrow{color:var(--accent);font-size:14px;transition:transform .2s;flex:0 0 auto}
+.faq-a{padding:0 16px;font-size:13px;color:#555;line-height:1.75;max-height:0;overflow:hidden;transition:max-height .3s,padding .3s}
+.faq-item.open .faq-a{max-height:220px;padding:12px 16px 14px}
+.faq-item.open .arrow{transform:rotate(180deg)}
+
+/* ── 하단 고정 CTA ── */
+.cta-fixed{position:fixed;bottom:0;left:0;right:0;background:rgba(245,240,255,.96);backdrop-filter:blur(8px);border-top:1px solid var(--line);padding:12px 18px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;z-index:100}
+.cf-label{font-size:10px;color:var(--mid);margin-bottom:2px}
+.cf-price{font-family:'Noto Serif KR',serif;font-size:20px;font-weight:900;color:var(--accent)}
+.cf-btn{flex:0 0 auto;background:var(--accent);color:#fff;border:none;border-radius:100px;padding:12px 24px;font-size:14px;font-weight:700;cursor:pointer;white-space:nowrap;box-shadow:0 3px 14px rgba(124,79,201,.3);text-decoration:none}
+
+@media(max-width:400px){.hero-title{font-size:24px}}
+.oheng-divider{display:flex;justify-content:center;gap:6px;margin-top:14px}
+.oheng-divider span{width:7px;height:7px;border-radius:50%;display:inline-block}
+.oheng-divider span:nth-child(1){background:#3a8a4a}
+.oheng-divider span:nth-child(2){background:#c0392b}
+.oheng-divider span:nth-child(3){background:#9a7b3f}
+.oheng-divider span:nth-child(4){background:#7d8388}
+.oheng-divider span:nth-child(5){background:#2c3e6b}
+</style>
+</head>
+<body>
+
+<div class="topbar"><img src="./jiaseh_symbol_traced2_dark.png" class="topbar-logo" alt="지아세">知我世 · 지아세</div>
+
+<div class="wrap">
+
+<!-- ── 히어로 ── -->
+<header>
+  <div class="tier-tag">TIER 0 · AI 리포트</div>
+  <span class="hero-emoji">🌌</span>
+  <h1 class="hero-title">
+    내 삶의 12개 무대,<br><em>어디가 살아있고</em><br><em>어디가 막혔는지</em>
+  </h1>
+  <p class="hero-sub">
+    일·돈·관계·건강·이미지까지<br>
+    12칸으로 한눈에 꺼내드려요
+  </p>
+
+  <div class="oheng-divider"><span></span><span></span><span></span><span></span><span></span></div>
+</header>
+
+<div class="rule"></div>
+
+<!-- ── 명리 vs 자미 차이 ── -->
+<section>
+  <div class="card">
+    <div class="eyebrow">AI 명리(4,900)와 뭐가 달라요?</div>
+    <h2 class="sec-title">보는 각도가 달라요</h2>
+    <div class="diff-row">
+      <div class="diff-col col-a">
+        <div class="dc-label">명리 리포트</div>
+        <div class="dc-text">타고난 에너지 구조<br>큰 흐름·객관적 결과</div>
+      </div>
+      <div class="diff-col col-b">
+        <div class="dc-label">자미 리포트 ★</div>
+        <div class="dc-text">삶의 12개 무대별<br>체감·만족도·실제 경험</div>
+      </div>
+    </div>
+    <p style="font-size:12px;color:var(--mid);margin-top:12px;line-height:1.7">
+      명리가 "당신은 이런 에너지 구조"라면,<br>
+      자미는 "일·돈·사랑·건강 각각 어떻게 경험하고 있는지"예요
+    </p>
+  </div>
+</section>
+
+<!-- ── 공감 ── -->
+<section>
+  <div class="card">
+    <div class="eyebrow">이런 분께 딱입니다</div>
+    <h2 class="sec-title">내 삶의 어떤 영역이<br>왜 이렇게 안 풀리는지 알고 싶을 때</h2>
+    <div class="concern-list">
+      <div class="concern-item"><span class="ic">💼</span><span>일은 열심히 하는데 인정을 못 받아요. 커리어가 왜 이렇게 막히는지</span></div>
+      <div class="concern-item"><span class="ic">💸</span><span>돈이 벌리는데 왜 남지 않는지. 재물 흐름이 궁금해요</span></div>
+      <div class="concern-item"><span class="ic">💗</span><span>연애·관계에서 유독 힘든 이유가 뭔지 알고 싶어요</span></div>
+      <div class="concern-item"><span class="ic">✨</span><span>내 삶 전체를 12칸으로 보고 어디에 집중해야 할지 방향 잡고 싶어요</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 12궁 지도 미리보기 ── -->
+<section>
+  <div class="card">
+    <div class="eyebrow">미리보기</div>
+    <h2 class="sec-title">12개 무대, 이렇게 보여요</h2>
+    <p class="sec-lead">각 칸의 숫자가 높을수록 그 영역이 살아있어요</p>
+
+    <!-- TOP3 먼저 오픈 -->
+    <div class="eyebrow" style="margin-bottom:8px">PART 1 ★ · 튀는 곳 TOP 3</div>
+    <div class="top3-list">
+      <div class="top3-item t-high">
+        <div class="top3-rank">1</div>
+        <div class="top3-body">
+          <div class="t-label">가장 살아있는 곳</div>
+          <div class="t-title">환경·공간 (전택궁) +6</div>
+          <div class="t-desc">어디에 있느냐가 당신에게 결정적으로 작용해요. 공간이 바뀌면 흐름이 바뀌는 구조.</div>
+        </div>
+      </div>
+      <div class="top3-item t-high">
+        <div class="top3-rank">2</div>
+        <div class="top3-body">
+          <div class="t-label">두 번째로 강한 곳</div>
+          <div class="t-title">부모·유산 (부모궁) +4</div>
+          <div class="t-desc">물려받은 것들이 강하게 작용해요. 집안 배경이나 지원이 실질적 자원.</div>
+        </div>
+      </div>
+      <div class="top3-item t-low">
+        <div class="top3-rank">↓</div>
+        <div class="top3-body">
+          <div class="t-label">가장 조심할 곳</div>
+          <div class="t-title">일·커리어 (관록궁) −3</div>
+          <div class="t-desc">노력 대비 체감 만족도가 낮은 구조예요. 이건 능력의 문제가 아니라 이 무대 자체가 그렇게 설계돼 있는 거예요. 알면 훨씬 덜 억울합니다.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 12궁 그리드 — 일부 블러 -->
+    <div class="eyebrow" style="margin-top:20px;margin-bottom:8px">PART 3 · 12궁 전체 지도</div>
+
+    <!-- 오픈 4칸 -->
+    <div class="palace-grid" style="margin-bottom:6px">
+      <div class="palace highlight-top">
+        <div class="p-name">환경</div>
+        <div class="p-score">+6</div>
+        <div class="p-tag">최강 ★</div>
+      </div>
+      <div class="palace highlight">
+        <div class="p-name">부모</div>
+        <div class="p-score">+4</div>
+        <div class="p-tag">강</div>
+      </div>
+      <div class="palace">
+        <div class="p-name">마음</div>
+        <div class="p-score">+2</div>
+        <div class="p-tag">보통</div>
+      </div>
+      <div class="palace">
+        <div class="p-name">나(명궁)</div>
+        <div class="p-score">+2</div>
+        <div class="p-tag">보통</div>
+      </div>
+    </div>
+
+    <!-- 블러 8칸 -->
+    <div class="palace-blur-wrap">
+      <div class="palace-grid">
+        <div class="palace blur-palace"><div class="p-name">인간관계</div><div class="p-score">+1</div></div>
+        <div class="palace blur-palace"><div class="p-name">이미지</div><div class="p-score">0</div></div>
+        <div class="palace blur-palace"><div class="p-name">몸·건강</div><div class="p-score">−1</div></div>
+        <div class="palace blur-palace"><div class="p-name">돈</div><div class="p-score">+3</div></div>
+        <div class="palace blur-palace"><div class="p-name">자녀</div><div class="p-score">+1</div></div>
+        <div class="palace blur-palace"><div class="p-name">사랑</div><div class="p-score">+2</div></div>
+        <div class="palace blur-palace"><div class="p-name">형제</div><div class="p-score">0</div></div>
+        <div class="palace blur-palace"><div class="p-name">일</div><div class="p-score">−3</div></div>
+      </div>
+      <div class="palace-blur-veil">
+        <span class="lock">🔒</span>
+        <p><strong>나머지 8칸은 리포트에서</strong><br>돈·사랑·몸·이미지·인간관계까지</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 목차 ── -->
+<section>
+  <div class="card">
+    <div class="eyebrow">리포트 구성</div>
+    <h2 class="sec-title">이 순서로 꺼내드려요</h2>
+    <div class="part-list">
+      <div class="part-item">
+        <div class="part-num">PART 0</div>
+        <div>
+          <div class="part-title">지금 당신</div>
+          <div class="part-desc">올해 어떤 흐름이 작동하고 있는지 — 요즘 이런 시기예요</div>
+        </div>
+      </div>
+      <div class="part-item star">
+        <div class="part-num">PART 1 ★</div>
+        <div>
+          <div class="part-title">튀는 곳 TOP 3 + 직격</div>
+          <div class="part-desc">12칸 중 가장 살아있는 곳, 가장 조심할 곳 — 직격 한 줄</div>
+        </div>
+      </div>
+      <div class="part-item">
+        <div class="part-num">PART 2</div>
+        <div>
+          <div class="part-title">중심 명궁</div>
+          <div class="part-desc">당신이라는 사람의 중심 — TOP3가 왜 그렇게 나왔는지 뿌리</div>
+        </div>
+      </div>
+      <div class="part-item">
+        <div class="part-num">PART 3</div>
+        <div>
+          <div class="part-title">12궁 전체 지도</div>
+          <div class="part-desc">일·돈·사랑·몸·이미지·인간관계 12칸 전부 한 줄씩</div>
+        </div>
+      </div>
+      <div class="part-item">
+        <div class="part-num">PART 4</div>
+        <div>
+          <div class="part-title">올해 흐름</div>
+          <div class="part-desc">올해 어떤 궁이 활성화되는지 — 좋은 달·조심할 달</div>
+        </div>
+      </div>
+      <div class="part-item star">
+        <div class="part-num">PART 5</div>
+        <div>
+          <div class="part-title">맞물림 — 이게 진짜예요</div>
+          <div class="part-desc">12칸이 서로 어떻게 증폭하고 맞물리는지 — 여기까지 보면 왜 그랬는지 비로소 보여요</div>
+        </div>
+      </div>
+    </div>
+    <div style="font-size:11.5px;color:var(--mid);margin-top:14px;padding-left:2px">A4 5~8쪽 분량 · PDF 당일 발송</div>
+  </div>
+</section>
+
+<!-- ── 진행 과정 ── -->
+<section>
+  <div class="card">
+    <div class="eyebrow">이렇게 진행돼요</div>
+    <h2 class="sec-title">주문부터 수령까지</h2>
+    <div class="timeline">
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-step">STEP 1</div><div class="tl-desc">카카오 채널로 <b>생년월일시 + 성별</b> 보내주세요</div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-step">STEP 2</div><div class="tl-desc">결제 안내 후 <b>바로 분석 시작</b></div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-step">STEP 3</div><div class="tl-desc"><b>당일 내</b> 리포트 PDF 전달</div></div>
+      <div class="tl-item"><div class="tl-dot" style="border-color:var(--teal);background:var(--teal)"></div><div class="tl-step" style="color:var(--teal)">완료 ✓</div><div class="tl-desc">궁금한 점 1회 추가 질문 가능</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 비교 ── -->
+<section>
+  <div class="card">
+    <div class="eyebrow">어떤 상품을 선택할까요</div>
+    <h2 class="sec-title">AI 자미 vs 체감 지도</h2>
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th></th>
+          <th class="col-ziwei">AI 자미<br><small style="font-weight:400;font-size:10px">9,900원</small></th>
+          <th class="col-deep">체감 지도<br><small style="font-weight:400;font-size:10px">70,000원</small></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>볼 수 있는 자리 수</td><td>12칸</td><td style="font-weight:900;color:var(--accent)">73칸</td></tr>
+        <tr><td>각 무대를 보는 깊이</td><td>결론 한 줄</td><td>6개 세부 항목</td></tr>
+        <tr><td>튀는 곳 TOP 3</td><td>✓</td><td>✓</td></tr>
+        <tr><td>무대끼리 어떻게 연결되는지</td><td>–</td><td>✓</td></tr>
+        <tr><td>지금 이 10년 흐름</td><td>–</td><td>✓</td></tr>
+        <tr><td>올해 세운 레이어</td><td>흐름 한 줄</td><td>상세</td></tr>
+        <tr><td>술사 검수</td><td>–</td><td>✓</td></tr>
+        <tr><td>납기</td><td>당일</td><td>3~5일</td></tr>
+      </tbody>
+    </table>
+    <p class="compare-note">12칸 지도 먼저 확인 → 깊이 보고 싶으면 체감 지도로</p>
+  </div>
+</section>
+
+<!-- ── 업셀 ── -->
+<section>
+  <div class="upgrade-banner">
+    <div class="ub-tag">이미 결제하셨다면</div>
+    <div class="ub-title">체감 지도로 업그레이드</div>
+    <div class="ub-desc">
+      AI 리포트로 12칸을 확인하셨다면,<br>
+      체감 지도는 그 12칸이 서로 <b>어떻게 맞물리는지</b> 73개 좌표로 풀어드려요.<br>
+      10년 대한 · 각 무대별 6세부 · 술사 검수까지.
+    </div>
+    <div class="ub-pricing">
+      <span class="ub-original">70,000원</span>
+      <span class="ub-arrow">→</span>
+      <span class="ub-discounted">60,100원</span>
+      <span class="ub-note">AI 자미 9,900원 차감</span>
+    </div>
+    <a href="http://pf.kakao.com/_xnZAxfX" class="ub-price">업그레이드 문의하기 →</a>
+  </div>
+</section>
+
+<!-- ── FAQ ── -->
+<section>
+  <div class="card">
+    <div class="eyebrow">자주 묻는 질문</div>
+    <h2 class="sec-title">궁금한 점</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q">명리 리포트(4,900)랑 같이 봐야 하나요? <span class="arrow">▾</span></div>
+        <div class="faq-a">각각 다른 각도로 봐요. 자미 리포트는 삶의 12개 무대별 체감을, 명리 리포트는 에너지 구조와 큰 흐름을 보여줘요. 둘 다 단독으로 충분히 의미 있고, 나중에 함께 보고 싶어지면 그때 추가하셔도 돼요.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">태어난 시간을 모르면 어떻게 하나요? <span class="arrow">▾</span></div>
+        <div class="faq-a">시간 없이도 분석 가능해요. 명궁이 달라질 수 있어서 정확도가 조금 낮아지지만, 12궁 지도의 큰 흐름은 충분히 확인할 수 있어요.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">어떤 형태로 받나요? <span class="arrow">▾</span></div>
+        <div class="faq-a">카카오 채널로 PDF 파일을 전달해 드립니다. A4 기준 5~8쪽 분량이에요.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">환불이 되나요? <span class="arrow">▾</span></div>
+        <div class="faq-a">분석 시작 전이면 전액 환불 가능합니다. 완료 후에는 디지털 콘텐츠 특성상 어려워요.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 본문 CTA ── -->
+<section style="text-align:center;padding:28px 0 0">
+  <a href="http://pf.kakao.com/_xnZAxfX" class="btn-main">카카오로 신청하기 →</a>
+  <a href="http://pf.kakao.com/_xnZAxfX" class="btn-ghost">문의 먼저 해볼게요</a>
+  <p style="font-size:11px;color:var(--mid);margin-top:14px;line-height:1.7">
+    생년월일시 + 성별 보내주시면 바로 안내해 드려요<br>결제는 안내 후 진행됩니다
+  </p>
+</section>
+
+</div>
+
+<!-- ── 하단 고정 CTA ── -->
+<div class="cta-fixed">
+  <div>
+    <div class="cf-label">AI 자미 리포트</div>
+    <div class="cf-price">9,900원</div>
+  </div>
+  <a href="http://pf.kakao.com/_xnZAxfX" class="cf-btn">지금 신청하기</a>
+</div>
+
+<script>
+document.querySelectorAll('.faq-q').forEach(q=>{
+  q.addEventListener('click',()=>{
+    const item=q.closest('.faq-item');
+    const wasOpen=item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+    if(!wasOpen) item.classList.add('open');
+  });
+});
+</script>
+</body>
+</html>

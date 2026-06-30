@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>지아세란 — 知我世</title>
+<style>
+:root{
+  --ink:#1a1410;--paper:#f4efe6;--gold:#9a7b3f;--gold-lt:#c4a661;
+  --jade:#3a5a44;--line:#d8cfbf;--card:#ede8de;--mid:#7a6e5f;
+  --purple:#6b3fa0;--purple-lt:#8f6bc4;--purple-bg:rgba(107,63,160,.07);--purple-line:rgba(107,63,160,.22);
+  --red:#8b2e22;--red-bg:rgba(139,46,34,.07);
+  --shadow:0 2px 10px rgba(58,42,20,.06);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Noto Serif KR',serif;
+  background:var(--paper);color:var(--ink);min-height:100vh;
+  background-image:
+    radial-gradient(circle at 12% 8%,rgba(154,123,63,.07),transparent 40%),
+    radial-gradient(circle at 88% 92%,rgba(58,90,68,.05),transparent 45%);
+}
+.wrap{max-width:520px;margin:0 auto;padding:0 18px 80px}
+
+/* 헤더 */
+b{color:var(--gold);font-weight:800}
+.tool-main.m-ziwei b{color:var(--purple)}
+.seong-card b{color:var(--jade)}
+.hd{text-align:center;padding:36px 0 28px;border-bottom:1px solid var(--line)}
+.hd-eyebrow{display:flex;align-items:center;justify-content:center;gap:7px;font-size:10px;letter-spacing:.4em;color:var(--gold);margin-bottom:12px}
+.hd-logo{width:22px;height:22px;border-radius:6px;flex-shrink:0}
+.hd-title{font-size:26px;font-weight:900;line-height:1.3;margin-bottom:10px}
+.hd-title em{font-style:normal;color:var(--gold)}
+.hd-sub{font-size:13px;color:var(--mid);line-height:1.8;max-width:380px;margin:0 auto}
+.hd-oheng{display:flex;justify-content:center;gap:7px;margin-top:16px}
+.hd-oheng span{width:9px;height:9px;border-radius:50%;display:inline-block}
+
+/* 섹션 공통 */
+.section{padding:28px 0;border-bottom:1px solid var(--line)}
+.section:last-child{border-bottom:none}
+.eyebrow{font-size:10px;letter-spacing:.22em;color:var(--gold);margin-bottom:12px;font-weight:700}
+.sec-title{font-size:18px;font-weight:900;line-height:1.4;margin-bottom:10px}
+.sec-body{font-size:13.5px;color:#3a2e20;line-height:1.85}
+
+/* 카드 */
+.card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:18px 16px;margin-bottom:12px;box-shadow:var(--shadow)}
+.card:last-child{margin-bottom:0}
+
+/* 포지션 박스 */
+.position-box{
+  border-left:3px solid var(--gold);padding:14px 16px;
+  background:rgba(154,123,63,.06);border-radius:0 6px 6px 0;
+  font-size:13px;color:#3a2e20;line-height:1.8;margin:14px 0;
+}
+
+/* 술학 — 주축 2종 (대형 카드) */
+.tool-main{
+  border-radius:10px;padding:20px 18px;margin-bottom:14px;
+  border:1px solid var(--line);box-shadow:var(--shadow);position:relative;overflow:hidden;
+}
+.tool-main.m-myeongri{background:linear-gradient(150deg,rgba(154,123,63,.12),rgba(154,123,63,.02) 60%);border-color:rgba(154,123,63,.3)}
+.tool-main.m-ziwei{background:linear-gradient(150deg,var(--purple-bg),rgba(107,63,160,.01) 60%);border-color:var(--purple-line)}
+.tool-main-tag{display:inline-block;font-size:10px;letter-spacing:.12em;padding:3px 11px;border-radius:20px;font-weight:900;margin-bottom:10px}
+.m-myeongri .tool-main-tag{background:rgba(154,123,63,.16);color:var(--gold)}
+.m-ziwei .tool-main-tag{background:var(--purple-bg);color:var(--purple)}
+.tool-main-name{font-size:17px;font-weight:900;margin-bottom:3px;color:var(--ink)}
+.tool-main-hanja{font-size:11.5px;color:var(--mid);margin-bottom:10px;font-family:'Noto Serif KR',serif;letter-spacing:.04em}
+.tool-main-desc{font-size:13px;color:#3a2e20;line-height:1.8;margin-bottom:10px}
+.tool-main-role{font-size:12px;line-height:1.7;padding:9px 12px;border-radius:5px}
+.m-myeongri .tool-main-role{background:rgba(154,123,63,.09);color:#5a4e3f;border-left:2px solid var(--gold-lt)}
+.m-ziwei .tool-main-role{background:rgba(107,63,160,.08);color:#4a3f5a;border-left:2px solid var(--purple-lt)}
+
+/* 술학 — 보조 도구 (소형 그리드) */
+.tool-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.tool-mini{background:var(--card);border:1px solid var(--line);border-radius:7px;padding:13px 12px}
+.tool-mini-name{font-size:13px;font-weight:900;color:var(--ink);margin-bottom:4px}
+.tool-mini-role{font-size:11px;color:var(--gold);font-weight:700;margin-bottom:5px;letter-spacing:.02em}
+.tool-mini-desc{font-size:11.5px;color:var(--mid);line-height:1.6}
+
+/* 성명학 카드 */
+.seong-card{
+  background:linear-gradient(150deg,rgba(58,90,68,.08),rgba(58,90,68,.01) 60%);
+  border:1px solid rgba(58,90,68,.25);border-radius:10px;padding:18px 16px;margin-top:14px;box-shadow:var(--shadow);
+}
+.seong-tag{display:inline-block;font-size:10px;letter-spacing:.12em;padding:3px 11px;border-radius:20px;font-weight:900;background:rgba(58,90,68,.14);color:var(--jade);margin-bottom:9px}
+.seong-name{font-size:15px;font-weight:900;color:var(--ink);margin-bottom:8px}
+.seong-desc{font-size:12.5px;color:#3a2e20;line-height:1.8;margin-bottom:8px}
+.seong-flow{display:flex;align-items:center;gap:5px;flex-wrap:wrap;font-size:11px;color:var(--jade);font-weight:700;margin-top:8px}
+.seong-flow .arrow{color:var(--mid);font-weight:400}
+
+/* 오행 띠 */
+.oheng-strip{display:flex;gap:6px;margin-top:12px}
+.oheng-chip{flex:1;text-align:center;padding:10px 4px;border-radius:7px;font-size:11px;font-weight:700;color:#fff}
+
+/* 이론 아이템 */
+.theory-item{margin-bottom:20px;padding-bottom:20px;border-bottom:1px dotted var(--line)}
+.theory-item:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.theory-tag{display:inline-block;font-size:10px;letter-spacing:.1em;padding:2px 10px;border-radius:20px;background:rgba(58,90,68,.1);color:var(--jade);font-weight:700;margin-bottom:8px}
+.theory-name{font-size:15px;font-weight:900;margin-bottom:6px;color:var(--ink)}
+.theory-desc{font-size:12.5px;color:var(--mid);line-height:1.75;margin-bottom:8px}
+
+/* 논문 */
+.paper{font-size:11.5px;color:var(--mid);line-height:1.7;padding:8px 12px;border-left:2px solid var(--line);margin-top:8px}
+.paper + .paper{margin-top:6px}
+
+/* 면책 */
+.disclaimer{font-size:11.5px;color:var(--mid);line-height:1.75;padding:14px 16px;background:rgba(154,123,63,.05);border-radius:6px;border:1px solid var(--line);margin-top:14px}
+
+/* 뒤로가기 */
+.back{display:block;text-align:center;margin-top:28px;font-size:13px;color:var(--gold);text-decoration:none;border-bottom:1px solid var(--gold);padding-bottom:2px;width:fit-content;margin-left:auto;margin-right:auto}
+
+@media(max-width:380px){
+  .tool-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="hd">
+  <div class="hd-eyebrow"><img src="./jiaseh_symbol_traced2_dark.png" class="hd-logo" alt="지아세">知我世 · 지아세</div>
+  <div class="hd-title">나를 알고(知我)<br>세상으로 나아간다(世)</div>
+  <div class="hd-sub">지성으로 시작되는 영성 — 논증이 먼저여야 진정한 변화가 시작됩니다</div>
+  <div class="hd-oheng">
+    <span style="background:#3a8a4a"></span>
+    <span style="background:#c0392b"></span>
+    <span style="background:#9a7b3f"></span>
+    <span style="background:#9aa0a6"></span>
+    <span style="background:#2c3e6b"></span>
+  </div>
+</div>
+
+<!-- 포지션 -->
+<div class="section">
+  <div class="eyebrow">서비스 포지션</div>
+  <div class="sec-title">점술이 아닌<br>예방적 멘탈웰니스</div>
+  <div class="sec-body">지아세는 5,000년 동양인문학 데이터와 현대 심리상담학을 결합한 개인 맞춤형 의사결정 지원 서비스입니다.</div>
+  <div class="position-box">
+    <b>점술 서비스</b>와의 차이<br>
+    점술 — 미래를 맞히는 데 집중<br>
+    지아세 — 지금 겪는 일의 구조적 원인(왜)을 납득시키고, 에너지를 관리하는 경영의 관점을 제시
+  </div>
+  <div class="sec-body">맞히는 것이 목적이 아닙니다. 내담자가 스스로 운명을 경영하고 삶의 돌파구를 찾도록 돕는 것이 목적입니다.</div>
+</div>
+
+<!-- 동양 술학 기반 -->
+<div class="section">
+  <div class="eyebrow">동양 술학 기반</div>
+  <div class="sec-title">5,000년 동양 술학이<br>한 보고서 안에 모입니다</div>
+  <div class="sec-body">지아세는 단일 점법이 아니라, 역할이 다른 여러 동양 술학을 교차 운용합니다. 모든 술학의 공통 언어는 <b>오행(五行)</b>입니다.</div>
+
+  <div class="oheng-strip">
+    <div class="oheng-chip" style="background:#3a8a4a">木 목</div>
+    <div class="oheng-chip" style="background:#c0392b">火 화</div>
+    <div class="oheng-chip" style="background:#9a7b3f">土 토</div>
+    <div class="oheng-chip" style="background:#7d8388">金 금</div>
+    <div class="oheng-chip" style="background:#2c3e6b">水 수</div>
+  </div>
+
+  <div style="font-size:11.5px;color:var(--mid);line-height:1.7;margin-top:10px">
+    명리·자미두수 일부·구성기학·성명학(자음오행)·아로마·약차 처방까지 — 오행이 통변의 공통 분류 체계로 전부를 관통합니다.
+  </div>
+
+  <div style="margin-top:20px">
+
+    <!-- 주축 1: 명리 -->
+    <div class="tool-main m-myeongri">
+      <div class="tool-main-tag">주축 ① · 시간·절대값</div>
+      <div class="tool-main-name">명징투파 자평명리</div>
+      <div class="tool-main-hanja">明澄透派 子平命理</div>
+      <div class="tool-main-desc">원국·격국·용신·대운·세운으로 "얼마나, 언제"를 봅니다. 보고서의 뼈대이며, 모든 처방(아로마·약차·방위)의 희기신 기준이 됩니다.</div>
+      <div class="tool-main-role">합충변화를 글자 단위로 추적하는 문파 — 격국 도출 5단계, 종격·화격·내격 판별 순서가 정식 체계로 확립되어 있습니다.</div>
+    </div>
+
+    <!-- 주축 2: 자미두수 -->
+    <div class="tool-main m-ziwei">
+      <div class="tool-main-tag">주축 ② · 체감·상대값</div>
+      <div class="tool-main-name">유시자미두수 (남파 73궁)</div>
+      <div class="tool-main-hanja">紫微斗數</div>
+      <div class="tool-main-desc">평생·대한·세운 73궁으로 "어떻게 경험하며 사는가"를 봅니다. 명리가 같은 결과를 보여도, 체감 만족도는 자미두수에서 다르게 나타날 수 있습니다.</div>
+      <div class="tool-main-role">명리(객관 결과)와 자미두수(주관 체감)가 교차하는 지점 — 두 회로가 만나는 구조가 골든크로스의 핵심 개념입니다.</div>
+    </div>
+
+  </div>
+
+  <div class="eyebrow" style="margin-top:22px">보조 점단 도구</div>
+  <div class="sec-body" style="font-size:12.5px">단발 사안·공간 처방·상담 오프닝에 역할별로 호출됩니다.</div>
+  <div class="tool-grid">
+    <div class="tool-mini">
+      <div class="tool-mini-name">래정법</div>
+      <div class="tool-mini-role">상담 오프닝</div>
+      <div class="tool-mini-desc">생년월일시 없이 오늘 일지·시지·띠만으로 선행 진단합니다.</div>
+    </div>
+    <div class="tool-mini">
+      <div class="tool-mini-name">육효</div>
+      <div class="tool-mini-role">즉답 판독</div>
+      <div class="tool-mini-desc">질문 하나에 진행·보류를 바로 판단합니다.</div>
+    </div>
+    <div class="tool-mini">
+      <div class="tool-mini-name">육임신과</div>
+      <div class="tool-mini-role">국면·결말</div>
+      <div class="tool-mini-desc">일의 전개 과정과 결말, 주의할 변수까지 봅니다.</div>
+    </div>
+    <div class="tool-mini">
+      <div class="tool-mini-name">구성기학</div>
+      <div class="tool-mini-role">공간·방위</div>
+      <div class="tool-mini-desc">해마다 달라지는 길방·흉방을 읽어 취기·제화에 씁니다.</div>
+    </div>
+  </div>
+
+  <!-- 성명학 -->
+  <div class="seong-card">
+    <div class="seong-tag">독립 영역 · 성명학</div>
+    <div class="seong-name">정음류 언령술 (正音類 言靈術)</div>
+    <div class="seong-desc">명리·자미두수와는 별개의 체계입니다. 이름은 한자가 아니라 <b>소리(말)</b>로 불리고, 불릴 때마다 작용하는 건 발음의 에너지라는 관점에서 출발합니다. 한자는 그 소리를 보완하는 보조 장치입니다.</div>
+    <div class="seong-flow">
+      <span>자음오행</span><span class="arrow">→</span>
+      <span>삼원론</span><span class="arrow">→</span>
+      <span>81수리</span><span class="arrow">→</span>
+      <span>자원오행</span>
+    </div>
+  </div>
+</div>
+
+<!-- 학문적 기반 -->
+<div class="section">
+  <div class="eyebrow">학문적 기반 — 전달 방식</div>
+  <div class="sec-title">4가지 심리학 이론이<br>전달 방식을 설계합니다</div>
+  <div class="sec-body" style="margin-bottom:4px">위 동양 술학이 읽어낸 내용을, 내담자가 받아들일 수 있는 언어로 바꾸는 틀입니다.</div>
+
+  <div style="margin-top:16px">
+
+    <div class="theory-item">
+      <div class="theory-tag">① 인간중심상담</div>
+      <div class="theory-name">칼 로저스 — 무조건적 긍정적 수용</div>
+      <div class="theory-desc">판단 없는 수용, 공감적 이해, 진실성·일치성. 어떤 격국도 열등하지 않으며 다른 전략이 필요할 뿐입니다.</div>
+      <div class="paper">박현진(2020) 칼 로저스의 인간중심상담 이론을 활용한 명리상담 모형에 관한 연구. 국제뇌교육종합대학원대학교.</div>
+      <div class="paper">이은태(2019) 사회복지 상담의 사주명리학적 적용가능성 연구: 인본주의 상담이론을 중심으로. 국제뇌교육종합대학원대학교.</div>
+    </div>
+
+    <div class="theory-item">
+      <div class="theory-tag">② 자기결정이론 (SDT)</div>
+      <div class="theory-name">Deci & Ryan — 자율성·유능감·관계성</div>
+      <div class="theory-desc">자율성이 보장될 때 내적 동기가 강화됩니다. 단일 답이 아닌 선택지 2~3개 제시로 자율성을 보장합니다.</div>
+      <div class="paper">정승환·장영심 자기결정성 이론의 코칭 적용에 관한 탐색적 연구.</div>
+    </div>
+
+    <div class="theory-item">
+      <div class="theory-tag">③ CBT 인지재구조화</div>
+      <div class="theory-name">인지행동치료 — 패턴의 구조적 원인 제시</div>
+      <div class="theory-desc">반복적 행동·사고 패턴의 원인을 구조적으로 설명합니다. "왜 반복되는가"를 납득 가능한 언어로 해소합니다.</div>
+    </div>
+
+    <div class="theory-item">
+      <div class="theory-tag">④ 강점 기반 접근</div>
+      <div class="theory-name">긍정심리학 (Seligman) — 강점 발견 우선</div>
+      <div class="theory-desc">약점 지적보다 강점 발견을 우선합니다. 어떤 격국도 고유한 강점 구조를 가집니다.</div>
+      <div class="paper">전주영(2012) 사주명리학의 8가지 성격유형과 MBTI 기능별 8가지 성격유형의 상관연구. 창원대학교 석사.</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- EMDR -->
+<div class="section">
+  <div class="eyebrow">정화 세션 기반</div>
+  <div class="sec-title">EMDR 2.0<br>작업 기억 이론</div>
+  <div class="sec-body">스트레스 유발 요인을 떠올리면서 손가락을 움직이면, 두 가지 과제를 동시에 수행하게 되어 작업 기억이 과부하됩니다. 스트레스 기억을 같은 강도로 유지할 수 없게 되어 기억이 점점 흐릿해지고 감정적으로 덜 강렬해집니다.</div>
+  <div class="card" style="margin-top:14px">
+    <div style="font-size:12px;color:var(--jade);font-weight:700;margin-bottom:6px">SUD — 고통 주관 지수</div>
+    <div style="font-size:12.5px;color:var(--mid);line-height:1.75">Subjective Units of Distress. 0~10 수치로 정화 전후 고통 강도를 측정합니다. SUD 수치에 따라 적합한 음원 난이도가 결정됩니다.</div>
+  </div>
+  <div class="card">
+    <div style="font-size:12px;color:var(--jade);font-weight:700;margin-bottom:6px">오행 음원 처방 연계</div>
+    <div style="font-size:12.5px;color:var(--mid);line-height:1.75">정화 후 에너지 안착을 위해 SUD 수치 기반으로 오행별 주파수 음원을 처방합니다. (Se-ah Studio — 준비 중)</div>
+  </div>
+</div>
+
+<!-- 면책 -->
+<div class="section">
+  <div class="eyebrow">서비스 범위</div>
+  <div class="sec-title">예방적 자기관리<br>서비스입니다</div>
+  <div class="disclaimer">
+    본 서비스는 의료법 및 정신건강복지법상 의료행위·심리치료 서비스가 아니며, 예방적 자기관리 및 의사결정 지원을 목적으로 합니다.<br><br>
+    위기 상황 — 자살예방상담전화 1393 / 정신건강위기상담전화 1577-0199 (24시간)
+  </div>
+</div>
+
+<a href="./지아세_랜딩_P3.html" class="back">← 지아세 홈으로</a>
+
+</div>
+</body>
+</html>

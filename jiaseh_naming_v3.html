@@ -1,0 +1,1704 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>이름을 선물하다 · 지아세</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Nanum+Myeongjo:wght@400;700&display=swap');
+
+:root {
+  --cream:#f4efe6; --paper:#efe7d8; --white:#ffffff;
+  --ink:#1a1410; --ink2:#5a4f47; --ink3:#9a8f87; --ink4:#c8c0b8;
+  --peach:#e8956d; --peach2:#f5b899; --peach3:#fdf0e9;
+  --gold:#9a7b3f; --gold2:#c4a661; --gold3:#fdf8ee;
+  --green:#6b8f71; --green2:#edf4ee;
+  --line:#d8cfbf;
+  --r:18px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--cream);color:var(--ink);
+  font-family:-apple-system,'Apple SD Gothic Neo','Noto Sans KR',sans-serif;
+  min-height:100vh}
+
+/* ━━ 상단 브랜드 ━━ */
+.top-bar{
+  display:flex;align-items:center;justify-content:center;
+  padding:22px 24px;gap:8px;
+}
+.top-bar .seal{
+  width:32px;height:32px;border-radius:9px;
+  flex-shrink:0;
+}
+b{color:var(--peach);font-weight:800}
+.top-bar .brand-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:14px;letter-spacing:.18em;color:var(--ink3);
+}
+
+/* ━━ 히어로 ━━ */
+.hero{text-align:center;padding:8px 28px 40px}
+.oheng-divider{display:flex;justify-content:center;gap:6px;margin-top:18px}
+.oheng-divider span{width:7px;height:7px;border-radius:50%;display:inline-block}
+.oheng-divider span:nth-child(1){background:#3a8a4a}
+.oheng-divider span:nth-child(2){background:#c0392b}
+.oheng-divider span:nth-child(3){background:#9a7b3f}
+.oheng-divider span:nth-child(4){background:#7d8388}
+.oheng-divider span:nth-child(5){background:#2c3e6b}
+.hero-eyebrow{
+  font-size:11px;letter-spacing:.22em;color:var(--peach);
+  text-transform:uppercase;margin-bottom:18px;
+  font-family:'Cormorant Garamond',serif;
+}
+.hero h1{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(30px,7.5vw,50px);
+  font-weight:300;line-height:1.22;color:var(--ink);
+  margin-bottom:20px;
+}
+.hero h1 em{font-style:italic;color:var(--peach)}
+.hero-body{
+  font-size:14.5px;color:var(--ink2);line-height:1.9;
+  max-width:340px;margin:0 auto 28px;font-weight:300;
+}
+
+/* ━━ 3가지 조건 ━━ */
+.why-strip{
+  background:var(--white);border-radius:var(--r);
+  border:1px solid var(--line);
+  margin:0 0 32px;padding:20px 20px 16px;
+}
+.why-title{
+  font-size:11px;letter-spacing:.16em;color:var(--ink3);
+  text-align:center;margin-bottom:14px;
+}
+.why-items{display:flex;gap:0}
+.why-item{
+  flex:1;text-align:center;padding:0 8px;
+  position:relative;
+}
+.why-item+.why-item::before{
+  content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);
+  height:32px;width:1px;background:var(--line);
+}
+.why-icon{font-size:20px;margin-bottom:4px}
+.why-label{font-size:12px;font-weight:600;color:var(--ink);margin-bottom:2px}
+.why-desc{font-size:10.5px;color:var(--ink3);line-height:1.5}
+
+/* ━━ WRAP ━━ */
+.wrap{max-width:600px;margin:0 auto;padding:0 16px 100px}
+
+/* ━━ 입력 섹션 ━━ */
+.input-section{margin-bottom:24px}
+.input-label{
+  font-size:12px;color:var(--ink3);letter-spacing:.08em;
+  margin-bottom:10px;display:block;
+}
+
+/* 성별 */
+.gender-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
+.gender-card{
+  background:var(--white);border:2px solid var(--line);
+  border-radius:var(--r);padding:20px 16px;
+  text-align:center;cursor:pointer;
+  transition:all .2s;user-select:none;
+}
+.gender-card:hover{border-color:var(--peach2);background:var(--peach3)}
+.gender-card.on{
+  border-color:var(--peach);background:var(--peach3);
+}
+.gender-card .gi{font-size:32px;margin-bottom:8px;display:block;
+  filter:grayscale(1);transition:filter .2s}
+.gender-card.on .gi{filter:none}
+.gender-card .gl{font-size:15px;font-weight:600;color:var(--ink2)}
+.gender-card.on .gl{color:var(--peach)}
+.gender-card .gsub{font-size:11px;color:var(--ink4);margin-top:2px}
+
+/* 성씨 입력 */
+.sung-row{display:flex;gap:10px;align-items:flex-start}
+.sung-field{flex:1}
+.sung-input{
+  width:100%;padding:15px 18px;
+  border:2px solid var(--line);border-radius:var(--r);
+  font-family:'Nanum Myeongjo',serif;font-size:22px;
+  letter-spacing:.12em;text-align:center;
+  color:var(--ink);background:var(--white);outline:none;
+  transition:border-color .2s,box-shadow .2s;
+}
+.sung-input:focus{
+  border-color:var(--gold);
+  box-shadow:0 0 0 3px rgba(196,165,90,.1);
+}
+.sung-hint{
+  margin-top:7px;font-size:11.5px;min-height:15px;
+  padding-left:2px;transition:color .2s;color:var(--ink3);
+}
+.sung-hint.ok{color:var(--green)}
+.sung-hint.warn{color:var(--gold)}
+
+/* ━━ 결과 헤더 ━━ */
+#resultWrap{display:none}
+.result-header{
+  text-align:center;
+  padding:32px 16px 24px;
+}
+.result-welcome{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(22px,5.5vw,32px);
+  font-weight:400;line-height:1.3;
+  color:var(--ink);margin-bottom:10px;
+}
+.result-welcome span{color:var(--peach)}
+.result-sub{
+  font-size:13px;color:var(--ink3);line-height:1.8;
+}
+
+/* ━━ 이름 카드 ━━ */
+.names-list{display:flex;flex-direction:column;gap:12px;margin-bottom:20px}
+
+.nc{
+  background:var(--white);
+  border:1.5px solid var(--line);
+  border-radius:20px;
+  padding:22px 20px;
+  cursor:pointer;
+  transition:all .22s;
+  animation:slideIn .4s ease both;
+  position:relative;overflow:hidden;
+}
+@keyframes slideIn{
+  from{opacity:0;transform:translateY(14px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.nc:hover{
+  border-color:var(--peach2);
+  box-shadow:0 4px 20px rgba(232,149,109,.1);
+  transform:translateY(-1px);
+}
+/* 추천 등급 */
+.nc.pick{
+  border-color:var(--gold);
+  background:linear-gradient(135deg,var(--gold3),var(--white));
+}
+.nc.pick::after{
+  content:'추천';
+  position:absolute;top:0;right:0;
+  background:var(--gold);color:white;
+  font-size:10px;font-weight:600;letter-spacing:.06em;
+  padding:4px 12px;
+  border-radius:0 20px 0 10px;
+}
+
+/* 카드 레이아웃 */
+.nc-main{display:flex;align-items:flex-start;gap:16px}
+.nc-name-block{flex:none;text-align:center;min-width:80px}
+.nc-name{
+  font-family:'Nanum Myeongjo',serif;
+  font-size:36px;font-weight:700;color:var(--ink);
+  line-height:1;margin-bottom:4px;
+  letter-spacing:.04em;
+}
+.nc.pick .nc-name{color:var(--gold)}
+.nc-hanja{
+  font-family:'Nanum Myeongjo',serif;
+  font-size:11px;color:var(--ink3);letter-spacing:.04em;
+}
+.nc-info{flex:1;padding-top:2px}
+.nc-poem{
+  font-size:14px;color:var(--ink2);
+  line-height:1.75;margin-bottom:10px;
+  font-weight:400;
+}
+.nc-poem strong{color:var(--ink);font-weight:600}
+
+/* 수리 시각화 */
+.nc-suri{
+  display:flex;align-items:center;gap:6px;
+  margin-bottom:8px;flex-wrap:wrap;
+}
+.suri-pips{display:flex;gap:3px}
+.pip{
+  width:8px;height:8px;border-radius:50%;
+  background:var(--line);transition:background .3s;
+}
+.pip.gil{background:var(--green)}
+.pip.jung{background:var(--gold)}
+.pip.bad{background:var(--line)}
+.suri-label{
+  font-size:10.5px;color:var(--ink3);
+}
+.suri-label.all-gil{color:var(--green);font-weight:600}
+.suri-label.in-gil{color:var(--gold);font-weight:500}
+
+/* 소리 흐름 */
+.nc-sound{
+  display:flex;align-items:center;gap:4px;
+  font-size:11px;color:var(--ink4);
+}
+.sound-node{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:22px;height:22px;border-radius:50%;
+  font-size:10px;font-weight:700;
+  border:1.5px solid currentColor;
+}
+.sound-arr{font-size:8px;opacity:.5}
+.oh-木{color:#6b8f71}.oh-火{color:#c8684a}.oh-土{color:#b8924a}
+.oh-金{color:#7a9ab8}.oh-水{color:#5a7eb8}
+
+/* 펼치기 */
+.nc-detail{
+  display:none;
+  margin-top:14px;padding-top:14px;
+  border-top:1px solid var(--line);
+}
+.nc.open .nc-detail{display:block}
+.nc-detail-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:8px;
+}
+.detail-cell{
+  background:var(--cream);border-radius:10px;
+  padding:10px 12px;
+}
+.detail-cell .dc-label{
+  font-size:10px;color:var(--ink3);margin-bottom:3px;letter-spacing:.04em;
+}
+.detail-cell .dc-val{
+  font-size:13px;font-weight:600;color:var(--ink);
+}
+.detail-cell .dc-sub{font-size:10px;color:var(--ink3);margin-top:1px}
+
+/* ━━ 구분선 + 설명 ━━ */
+.section-divider{
+  text-align:center;margin:28px 0 20px;position:relative;
+}
+.section-divider::before{
+  content:'';position:absolute;left:0;right:0;top:50%;
+  height:1px;background:var(--line);
+}
+.section-divider span{
+  position:relative;background:var(--cream);
+  padding:0 14px;font-size:11px;color:var(--ink3);
+  letter-spacing:.1em;
+}
+
+/* ━━ 이름의 3조건 안내 ━━ */
+.name-guide{
+  background:var(--white);border-radius:var(--r);
+  border:1px solid var(--line);
+  padding:22px 20px;margin-bottom:24px;
+}
+.guide-title{
+  font-size:14px;font-weight:600;color:var(--ink);
+  margin-bottom:14px;
+}
+.guide-steps{display:flex;flex-direction:column;gap:12px}
+.gs{display:flex;gap:12px;align-items:flex-start}
+.gs-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:22px;font-style:italic;color:var(--gold);
+  line-height:1;min-width:20px;
+}
+.gs-text strong{display:block;font-size:13px;color:var(--ink);margin-bottom:2px}
+.gs-text span{font-size:12px;color:var(--ink3);line-height:1.6}
+
+/* ━━ 생년월일 섹션 ━━ */
+#step2{display:none}
+.step2-card{
+  background:var(--white);border-radius:var(--r);
+  border:1.5px solid var(--line);
+  padding:24px 20px;margin-bottom:16px;
+}
+.step2-head{
+  font-size:16px;font-weight:600;color:var(--ink);
+  margin-bottom:6px;
+}
+.step2-sub{
+  font-size:13px;color:var(--ink3);line-height:1.7;
+  margin-bottom:20px;
+}
+.date-row{display:grid;grid-template-columns:2fr 1fr 1fr;gap:8px;margin-bottom:10px}
+.time-row{display:grid;grid-template-columns:1fr;gap:8px}
+.df label{display:block;font-size:11px;color:var(--ink3);margin-bottom:5px}
+.df input,.df select{
+  width:100%;padding:13px 14px;
+  border:1.5px solid var(--line);border-radius:12px;
+  font-family:inherit;font-size:15px;color:var(--ink);
+  background:var(--white);outline:none;
+  transition:border-color .2s;-webkit-appearance:none;
+}
+.df input:focus,.df select:focus{border-color:var(--gold)}
+.analyze-btn{
+  width:100%;padding:17px;
+  background:var(--ink);color:white;
+  border:none;border-radius:14px;
+  font-family:'Cormorant Garamond',serif;
+  font-size:18px;letter-spacing:.06em;
+  cursor:pointer;margin-top:16px;
+  transition:all .25s;
+}
+.analyze-btn:hover{background:var(--peach);
+  box-shadow:0 6px 20px rgba(232,149,109,.3);transform:translateY(-1px)}
+.analyze-btn:disabled{background:var(--line);color:var(--ink3);
+  cursor:default;transform:none;box-shadow:none}
+
+/* ━━ 분석 결과 ━━ */
+#kigunWrap{display:none}
+.kigun-card{
+  border-radius:var(--r);
+  padding:26px 22px;margin-bottom:16px;
+  background:linear-gradient(135deg,var(--gold3),var(--white));
+  border:1.5px solid var(--gold2);
+}
+.kigun-eyebrow{
+  font-size:11px;letter-spacing:.18em;color:var(--gold);
+  margin-bottom:12px;font-family:'Cormorant Garamond',serif;
+}
+.kigun-main{
+  font-size:15px;color:var(--ink2);line-height:1.9;
+  margin-bottom:16px;
+}
+.kigun-main strong{color:var(--ink);font-weight:600}
+.kigun-tags{display:flex;gap:8px;flex-wrap:wrap}
+.ktag{
+  font-size:12px;padding:5px 14px;border-radius:100px;
+  font-weight:500;
+}
+.ktag.strong{background:var(--green2);color:var(--green);border:1px solid rgba(107,143,113,.3)}
+.ktag.need{background:var(--peach3);color:var(--peach);border:1px solid rgba(232,149,109,.3)}
+
+/* 맞춤 이름 */
+#bestWrap{display:none}
+.best-header{
+  text-align:center;padding:20px 0 16px;
+}
+.best-header h3{
+  font-family:'Cormorant Garamond',serif;
+  font-size:22px;font-weight:400;color:var(--ink);margin-bottom:6px;
+}
+.best-header p{font-size:12.5px;color:var(--ink3);line-height:1.7}
+
+.nc.best{
+  border-color:var(--peach);
+  background:linear-gradient(135deg,var(--peach3),var(--white));
+}
+.nc.best::after{
+  content:'♥ 추천';background:var(--peach);
+}
+.nc.best .nc-name{color:var(--peach)}
+
+/* ━━ CTA ━━ */
+#ctaWrap{display:none}
+.cta-card{
+  background:var(--ink);border-radius:var(--r);
+  padding:32px 24px;text-align:center;
+  margin-top:8px;
+}
+.cta-card h3{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(20px,5vw,26px);
+  font-weight:300;color:white;
+  line-height:1.4;margin-bottom:10px;
+}
+.cta-card h3 em{font-style:italic;color:var(--peach2)}
+.cta-card p{
+  font-size:13px;color:rgba(255,255,255,.55);
+  line-height:1.85;margin-bottom:22px;
+}
+.cta-btn{
+  display:block;width:100%;
+  padding:17px;background:var(--peach);color:white;
+  border:none;border-radius:100px;
+  font-family:inherit;font-size:15px;font-weight:600;
+  cursor:pointer;letter-spacing:.04em;
+  transition:all .25s;
+}
+.cta-btn:hover{background:#e07050;
+  box-shadow:0 8px 24px rgba(232,149,109,.4);
+  transform:translateY(-1px)}
+.cta-note{
+  margin-top:12px;font-size:11.5px;
+  color:rgba(255,255,255,.3);
+}
+
+/* ━━ 로딩 ━━ */
+.dots{display:inline-flex;gap:5px;align-items:center}
+.dots span{
+  width:5px;height:5px;border-radius:50%;background:currentColor;
+  animation:dp 1.2s ease-in-out infinite;
+}
+.dots span:nth-child(2){animation-delay:.2s}
+.dots span:nth-child(3){animation-delay:.4s}
+@keyframes dp{0%,80%,100%{opacity:.25;transform:scale(.8)}40%{opacity:1;transform:scale(1)}}
+
+footer{
+  text-align:center;padding:24px 20px;
+  font-size:11px;color:var(--ink4);line-height:1.8;
+  border-top:1px solid var(--line);
+}
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <img src="./jiaseh_symbol_traced2_dark.png" class="seal" alt="지아세">
+  <div class="brand-name">知我世 · Jiaseh</div>
+</div>
+
+<div class="hero">
+  <div class="hero-eyebrow">이름을 선물하다</div>
+  <span style="font-size:32px;display:block;margin-bottom:8px">🎁</span>
+  <h1>소중한 우리 아이에게<br><em>평생의 첫 선물</em>을</h1>
+  <p class="hero-body">
+    좋은 이름에는 세 가지가 담겨 있어요.<br>
+    불렀을 때의 소리, 획수가 만드는 흐름,<br>
+    그리고 한자에 새겨진 뜻.<br>
+    이 세 가지가 모두 맞아야 진짜 이름입니다.
+  </p>
+  <div class="oheng-divider"><span></span><span></span><span></span><span></span><span></span></div>
+</div>
+
+<div class="wrap">
+
+  <!-- 이름의 3조건 -->
+  <div class="why-strip">
+    <div class="why-title">좋은 이름의 세 가지 조건</div>
+    <div class="why-items">
+      <div class="why-item">
+        <div class="why-icon">🎵</div>
+        <div class="why-label">소리</div>
+        <div class="why-desc">부를 때 기운이<br>흐르는 방향</div>
+      </div>
+      <div class="why-item">
+        <div class="why-icon">⚖️</div>
+        <div class="why-label">획수</div>
+        <div class="why-desc">평생 운세의<br>강약을 결정</div>
+      </div>
+      <div class="why-item">
+        <div class="why-icon">✍️</div>
+        <div class="why-label">뜻</div>
+        <div class="why-desc">한자에 담긴<br>삶의 방향</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 입력 -->
+  <div class="input-section">
+    <div class="gender-row">
+      <div class="gender-card" id="gcBoy" onclick="setGender('남',this)">
+        <span class="gi">👦</span>
+        <div class="gl">소중한 우리 아들</div>
+        <div class="gsub">남자 이름</div>
+      </div>
+      <div class="gender-card" id="gcGirl" onclick="setGender('여',this)">
+        <span class="gi">👧</span>
+        <div class="gl">소중한 우리 딸</div>
+        <div class="gsub">여자 이름</div>
+      </div>
+    </div>
+
+    <div class="sung-row">
+      <div class="sung-field">
+        <input class="sung-input" id="sungInput" type="text"
+          maxlength="2" placeholder="성씨 입력 (예: 김)"
+          oninput="onSungInput()" autocomplete="off">
+        <div class="sung-hint" id="sungHint">성씨를 입력하면 이름을 불러드릴게요</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 결과 -->
+  <div id="resultWrap">
+    <div class="result-header">
+      <div class="result-welcome" id="resultWelcome"></div>
+      <div class="result-sub" id="resultSub"></div>
+    </div>
+
+    <div class="names-list" id="namesList"></div>
+
+    <!-- 이름의 3조건 안내 (결과 후 자연스럽게) -->
+    <div class="name-guide">
+      <div class="guide-title">이 이름들은 어떻게 고른 거예요?</div>
+      <div class="guide-steps">
+        <div class="gs">
+          <div class="gs-num">1</div>
+          <div class="gs-text">
+            <strong>소리의 흐름이 막히지 않아야 합니다</strong>
+            <span>훈민정음의 원리로 이름 자음의 기운이<br>서로 조화롭게 이어지는지 확인했어요.</span>
+          </div>
+        </div>
+        <div class="gs">
+          <div class="gs-num">2</div>
+          <div class="gs-text">
+            <strong>획수로 만든 네 개의 수리가 모두 좋아야 합니다</strong>
+            <span>성씨와 이름이 만나 인격·지격·총격·외격,<br>네 가지 수리가 길(吉)한 이름만 골랐어요.</span>
+          </div>
+        </div>
+        <div class="gs">
+          <div class="gs-num">3</div>
+          <div class="gs-text">
+            <strong>한자의 뜻이 좋은 방향을 가리켜야 합니다</strong>
+            <span>대법원 인명용 한자 중 뜻이 밝고<br>자원오행이 좋은 글자만 사용했어요.</span>
+          </div>
+        </div>
+        <div class="gs">
+          <div class="gs-num">4</div>
+          <div class="gs-text">
+            <strong>마지막은 이 아이만의 사주 교차 검증입니다</strong>
+            <span>명징투파 자평명리로 용신·희신을 확정하고,<br>위 세 조건이 모두 충족되는 이름만 진짜 이 아이의 이름이 됩니다. 바로 아래에서 시작해요.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 2 -->
+    <div id="step2">
+      <div class="section-divider"><span>한 가지 더</span></div>
+      <div class="step2-card">
+        <div class="step2-head">우리 아이에게 <em style="font-style:italic;color:var(--peach)">진짜</em> 어울리는 이름은?</div>
+        <div class="step2-sub">
+          위 이름들은 수리와 소리가 좋은 이름들이에요.<br>
+          태어난 날짜를 입력하면, 이 중에서<br>
+          <strong style="color:var(--ink)">우리 아이의 기운을 채워주는 이름</strong>을 따로 찾아드려요.
+        </div>
+        <div class="date-row">
+          <div class="df"><label>태어난 해</label><input type="number" id="bdY" placeholder="2024" min="2020" max="2030"></div>
+          <div class="df"><label>월</label><input type="number" id="bdM" placeholder="1" min="1" max="12"></div>
+          <div class="df"><label>일</label><input type="number" id="bdD" placeholder="1" min="1" max="31"></div>
+        </div>
+        <div class="time-row">
+          <div class="df">
+            <label>태어난 시간 (모르면 비워두세요)</label>
+            <select id="bdH">
+              <option value="">시간 모름</option>
+              <option value="23">밤 11시~새벽 1시</option>
+              <option value="1">새벽 1~3시</option>
+              <option value="3">새벽 3~5시</option>
+              <option value="5">새벽 5~7시</option>
+              <option value="7">아침 7~9시</option>
+              <option value="9">아침 9~11시</option>
+              <option value="11">낮 11시~오후 1시</option>
+              <option value="13">오후 1~3시</option>
+              <option value="15">오후 3~5시</option>
+              <option value="17">저녁 5~7시</option>
+              <option value="19">저녁 7~9시</option>
+              <option value="21">밤 9~11시</option>
+            </select>
+          </div>
+        </div>
+        <button class="analyze-btn" id="analyzeBtn" onclick="analyzeChild()">
+          아이의 기운에 맞는 이름 찾기
+        </button>
+      </div>
+    </div>
+
+    <!-- 분석 결과 -->
+    <div id="kigunWrap">
+      <div class="kigun-card">
+        <div class="kigun-eyebrow">우리 아이의 타고난 기운</div>
+        <div class="kigun-main" id="kigunMain"></div>
+        <div class="kigun-tags" id="kigunTags"></div>
+      </div>
+    </div>
+
+    <div id="bestWrap">
+      <div class="best-header">
+        <h3 id="bestTitle"></h3>
+        <p id="bestSub"></p>
+      </div>
+      <div class="names-list" id="bestList"></div>
+    </div>
+
+    <!-- CTA -->
+    <div id="ctaWrap">
+      <div class="cta-card">
+        <h3 id="ctaH"></h3>
+        <p id="ctaP"></p>
+        <button class="cta-btn" onclick="openKakao()">작명 상담 시작하기</button>
+        <div class="cta-note">이름진단 15,000원 · 작명 신청 시 차감됩니다</div>
+      </div>
+      <div class="chain" style="margin-top:14px;text-align:center">
+        <a href="./jiaseh-naming-pro.html" style="font-size:12.5px;color:var(--ink2);text-decoration:underline">
+          직접 글자를 고르고 한자까지 완성해보고 싶다면 — 셀프 작명 스튜디오 →
+        </a>
+      </div>
+    </div>
+
+  </div><!-- /resultWrap -->
+
+</div><!-- /wrap -->
+
+<footer>
+  知我世 지아세<br>
+  본 서비스는 의료행위·심리치료가 아닌 예방적 자기관리 및 의사결정 지원 서비스입니다.
+</footer>
+
+<script>
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   데이터 & 로직
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+const SUNG_DB={
+  '김':{h:'金',s:8},'이':{h:'李',s:7},'박':{h:'朴',s:6},'최':{h:'崔',s:11},
+  '정':{h:'鄭',s:19},'강':{h:'姜',s:9},'조':{h:'趙',s:14},'윤':{h:'尹',s:4},
+  '장':{h:'張',s:11},'임':{h:'林',s:8},'한':{h:'韓',s:17},'오':{h:'吳',s:7},
+  '서':{h:'徐',s:10},'신':{h:'申',s:5},'권':{h:'權',s:22},'황':{h:'黃',s:12},
+  '안':{h:'安',s:6},'송':{h:'宋',s:7},'유':{h:'柳',s:9},'류':{h:'柳',s:9},
+  '홍':{h:'洪',s:10},'전':{h:'全',s:6},'고':{h:'高',s:10},'문':{h:'文',s:4},
+  '손':{h:'孫',s:10},'양':{h:'梁',s:11},'노':{h:'盧',s:16},'백':{h:'白',s:5},
+  '허':{h:'許',s:11},'남':{h:'南',s:9},'심':{h:'沈',s:8},'하':{h:'河',s:9},
+  '차':{h:'車',s:7},'주':{h:'朱',s:6},'민':{h:'閔',s:12},'나':{h:'羅',s:19},
+  '라':{h:'羅',s:19},'엄':{h:'嚴',s:20},'채':{h:'蔡',s:14},'원':{h:'元',s:4},
+  '천':{h:'千',s:3},'방':{h:'方',s:4},'공':{h:'孔',s:4},'현':{h:'玄',s:5},
+  '함':{h:'咸',s:9},'변':{h:'卞',s:4},'여':{h:'呂',s:7},'추':{h:'秋',s:9},
+  '도':{h:'都',s:12},'우':{h:'禹',s:9},'배':{h:'裵',s:14},'성':{h:'成',s:6},
+  '연':{h:'延',s:7},'석':{h:'石',s:5},'선':{h:'宣',s:9},'설':{h:'薛',s:17},
+};
+
+/* 한자 원획 */
+const HS={
+  '道':13,'夏':10,'志':7,'池':7,'時':10,'瑞':14,'智':12,'建':9,'承':8,'宇':6,
+  '恩':10,'裕':13,'叡':16,'泰':10,'潤':16,'涓':11,'珍':10,'俊':10,'峻':10,
+  '駿':17,'竣':12,'彩':11,'素':10,'秀':7,'宣':9,'璿':18,'善':12,'旻':8,
+  '允':4,'安':6,'芽':8,'律':9,'源':14,'梓':11,'健':11,'友':4,'序':7,
+  '浩':11,'皓':12,'佑':7,'雨':8,'怡':9,'炫':10,'晶':12,'炅':8,'炳':9,
+  '亮':9,'南':9,'光':6,'晟':11,'昞':9,'昊':8,'昱':9,'昀':8,'暻':15,
+  '珠':11,'琪':13,'琦':13,'琮':13,'鈺':13,'桓':10,'梧':11,'林':8,'棟':12,
+  '相':9,'柔':9,'柏':9,'柳':9,'梨':11,'根':10,'佳':8,'彬':11,'莞':12,
+  '芮':10,'苑':11,'成':6,'誠':14,'聖':13,'星':9,'碩':14,'媛':13,'娜':10,
+  '羅':19,'翰':16,'澔':16,'緩':15,'率':11,'謙':17,'潔':15,'瑛':13,
+  '瑜':14,'珺':12,'璘':20,'煜':13,'熙':16,'守':6,'護':21,'溫':14,
+  '燦':17,'璨':18,'煥':13,'奐':9,'涓':11,'仁':4,'信':9,'義':13,'禮':18,
+  '孝':7,'賢':15,'俐':9,'珝':10,'正':5,'振':11,'延':7,'全':6,
+  '妍':9,'娟':10,'涵':12,'沁':7,'昶':9,'暄':13,'琬':12,'璇':16,
+  '潾':16,'莉':12,'萱':15,'茱':11,'苑':11,'葵':15,'寬':15,
+};
+function getS(h){return HS[h]||0}
+
+/* 81수리 */
+const GIL=new Set([1,3,5,6,7,8,11,13,15,16,17,18,21,23,24,25,29,31,32,33,35,37,38,39,41,45,47,48,52,57,61,63,65,67,68,81]);
+const JUNG=new Set([26,27,30,49,51,58,71,73,75,77,78]);
+function sgrade(n){let r=n;while(r>81)r-=80;if(r<1)r=1;
+  if(GIL.has(r))return'gil';if(JUNG.has(r))return'jung';return'bad'}
+function norm(n){let r=n;while(r>81)r-=80;return r<1?1:r}
+
+function calc5(ss,n1,n2){
+  // 가성수(ga)는 표준 케이스(성1자+이름2자)에서 천격에만 가산되며 지격에는 가산하지 않음
+  // (jiaseh_seongmyeong.html 가성수 공식 기준 — 2026-06-21 수정)
+  const ga=1,i=ss+n1,j=n1+n2,c=ss+n1+n2,o=c-i-ga;
+  return{
+    in_:norm(i),ji:norm(j),chong:norm(c),oe:norm(o),
+    in_g:sgrade(norm(i)),
+    allGil:['gil','jung'].includes(sgrade(norm(i)))&&
+           ['gil','jung'].includes(sgrade(norm(j)))&&
+           ['gil','jung'].includes(sgrade(norm(c)))&&
+           ['gil','jung'].includes(sgrade(norm(o))),
+    inGil:['gil','jung'].includes(sgrade(norm(i))),
+  }
+}
+
+/* 발음오행 */
+const O5C={'ㄱ':'木','ㅋ':'木','ㄲ':'木','ㄴ':'火','ㄷ':'火','ㄹ':'火',
+  'ㅌ':'火','ㄸ':'Fire','ㅇ':'土','ㅎ':'土','ㅅ':'金','ㅈ':'金','ㅊ':'金',
+  'ㅆ':'金','ㅉ':'金','ㅁ':'水','ㅂ':'水','ㅍ':'水','ㅃ':'水'};
+const CHO=['ㄱ','ㄲ','ㄴ','ㄷ','ㄸ','ㄹ','ㅁ','ㅂ','ㅃ','ㅅ','ㅆ','ㅇ','ㅈ','ㅉ','ㅊ','ㅋ','ㅌ','ㅍ','ㅎ'];
+const JONG=['','ㄱ','ㄲ','ㄳ','ㄴ','ㄵ','ㄶ','ㄷ','ㄹ','ㄺ','ㄻ','ㄼ','ㄽ','ㄾ','ㄿ','ㅀ','ㅁ','ㅂ','ㅄ','ㅅ','ㅆ','ㅇ','ㅈ','ㅊ','ㅋ','ㅌ','ㅍ','ㅎ'];
+const JF={'ㄳ':'ㄱ','ㄵ':'ㄴ','ㄶ':'ㄴ','ㄺ':'ㄹ','ㄻ':'ㄹ','ㄼ':'ㄹ','ㄽ':'ㄹ','ㄾ':'ㄹ','ㄿ':'ㄹ','ㅀ':'ㄹ','ㅄ':'ㅂ'};
+const SAENG={'木':'火','火':'土','土':'金','金':'水','水':'木'};
+function decomp(ch){const c=ch.charCodeAt(0)-0xAC00;if(c<0||c>11171)return null;
+  return{cho:CHO[Math.floor(c/588)],jong:JONG[c%28]}}
+function soundOh(ch){const d=decomp(ch);if(!d)return null;return O5C[d.cho]||null}
+function jongOh(j){if(!j)return null;const b=JF[j]||j;return O5C[b]||null}
+function nameFlow(name){
+  // 이름 글자들의 소리오행 흐름
+  const nodes=[];
+  for(const ch of name){
+    const d=decomp(ch);if(!d)continue;
+    const cho=O5C[d.cho];
+    if(cho)nodes.push(cho);
+    const jo=jongOh(d.jong);
+    if(jo)nodes.push(jo);
+  }
+  return nodes;
+}
+function flowRelation(a,b){
+  if(a===b)return'비화';
+  if(SAENG[a]===b||SAENG[b]===a)return'상생';
+  return'상극';
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   이름 DB (한글이름, 한자후보, 뜻, 시)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+const NAMES_DB=[
+  // ─ 남아
+  {n:'도윤',g:'남',pick:true,cands:[
+    {h:'道允',s:[13,4],poem:'바른 길 위에서 넉넉하게 자라는 아이'},
+    {h:'道潤',s:[13,16],poem:'바른 도리가 봄비처럼 고루 스민다'},
+    {h:'道錀',s:[13,16],poem:'바른 길 위에 단단한 금빛 기운을 더하다'},
+  ]},
+  {n:'이준',g:'남',cands:[
+    {h:'怡俊',s:[9,10],poem:'늘 기쁘고, 어디서든 빼어나다'},
+    {h:'怡峻',s:[9,10],poem:'기쁨 속에 높이 솟아오르다'},
+    {h:'怡竣',s:[9,12],poem:'기쁘게 한 가지 일을 끝까지 완성해 내다'},
+  ]},
+  {n:'하준',g:'남',pick:true,cands:[
+    {h:'夏俊',s:[10,10],poem:'여름처럼 환하고, 그 누구보다 빼어나다'},
+    {h:'夏峻',s:[10,10],poem:'여름 햇살처럼 높고 환하게'},
+  ]},
+  {n:'시우',g:'남',cands:[
+    {h:'時雨',s:[10,8],poem:'꼭 필요한 때에 내리는 단비 같은 아이'},
+    {h:'時佑',s:[10,7],poem:'때를 알고 든든한 힘이 되어준다'},
+  ]},
+  {n:'지호',g:'남',cands:[
+    {h:'智浩',s:[12,11],poem:'지혜가 넓은 바다처럼 깊고 넓다'},
+    {h:'智皓',s:[12,12],poem:'지혜롭고, 환하게 빛나다'},
+  ]},
+  {n:'예준',g:'남',pick:true,cands:[
+    {h:'叡俊',s:[16,10],poem:'슬기롭고 빼어나, 어디서든 빛난다'},
+    {h:'叡峻',s:[16,10],poem:'밝은 눈으로 높이 솟아오르다'},
+  ]},
+  {n:'서준',g:'남',pick:true,cands:[
+    {h:'瑞俊',s:[14,10],poem:'상서로운 기운과 빼어난 기품을 함께'},
+    {h:'序俊',s:[7,10],poem:'차근차근, 그러나 누구보다 빼어나게'},
+  ]},
+  {n:'수호',g:'남',cands:[
+    {h:'守護',s:[6,21],poem:'소중한 것을 끝까지 지키는 사람'},
+    {h:'秀浩',s:[7,11],poem:'빼어나고, 넓은 마음을 가진 아이'},
+  ]},
+  {n:'유준',g:'남',cands:[
+    {h:'裕俊',s:[13,10],poem:'풍요로운 땅에서 빼어나게 자라다'},
+    {h:'裕峻',s:[13,10],poem:'넉넉하고 높이, 당당하게 자라다'},
+  ]},
+  {n:'우진',g:'남',pick:true,cands:[
+    {h:'宇珍',s:[6,10],poem:'하늘처럼 넓고, 보배처럼 귀한 아이'},
+    {h:'友珍',s:[4,10],poem:'따뜻한 벗이 되고, 보배처럼 빛난다'},
+  ]},
+  {n:'도현',g:'남',cands:[
+    {h:'道炫',s:[13,10],poem:'바른 길 위에서 환히 빛나다'},
+    {h:'道賢',s:[13,15],poem:'바른 도리 위에 어진 마음을 더하다'},
+  ]},
+  {n:'선우',g:'남',pick:true,cands:[
+    {h:'善宇',s:[12,6],poem:'착한 마음이 하늘처럼 넓고 깊다'},
+    {h:'宣宇',s:[9,6],poem:'베풀며 하늘처럼 크게 나아가다'},
+  ]},
+  {n:'은우',g:'남',cands:[
+    {h:'恩宇',s:[10,6],poem:'은혜로운 마음이 하늘처럼 가득하다'},
+    {h:'殷宇',s:[10,6],poem:'넉넉함이 하늘 가득 넘쳐흐르다'},
+  ]},
+  {n:'건우',g:'남',cands:[
+    {h:'建宇',s:[9,6],poem:'굳세게 세우고, 하늘처럼 넓게 나아가다'},
+    {h:'健宇',s:[11,6],poem:'건강하게, 하늘처럼 드넓게 자라다'},
+  ]},
+  {n:'민준',g:'남',pick:true,cands:[
+    {h:'旻俊',s:[8,10],poem:'밝은 하늘처럼, 그 누구보다 빼어나다'},
+    {h:'旻峻',s:[8,10],poem:'밝은 하늘 아래 높이 솟아오르다'},
+  ]},
+  {n:'준서',g:'남',pick:true,cands:[
+    {h:'俊瑞',s:[10,14],poem:'빼어난 기품 위에 상서로운 빛이 더해진다'},
+    {h:'駿瑞',s:[17,14],poem:'준마처럼 달리며 상서로운 앞길을 열다'},
+  ]},
+  {n:'재원',g:'남',pick:true,cands:[
+    {h:'梓源',s:[11,14],poem:'재능의 뿌리가 깊고, 그 근원이 넓다'},
+    {h:'材源',s:[7,14],poem:'큰 재목의 근원, 세상의 기둥이 되다'},
+  ]},
+  {n:'지안',g:'남',cands:[
+    {h:'志安',s:[7,6],poem:'큰 뜻을 품고, 평안한 길을 걸어가다'},
+    {h:'智安',s:[12,6],poem:'지혜로운 마음이 곧 평안함이 된다'},
+  ]},
+  {n:'태오',g:'남',cands:[
+    {h:'泰悟',s:[10,10],poem:'크고 넉넉하게, 스스로 깨달아가다'},
+    {h:'泰晤',s:[10,11],poem:'크고 밝게, 환히 빛나다'},
+  ]},
+  {n:'로운',g:'남',cands:[
+    {h:'路雲',s:[13,12],poem:'구름처럼 자유롭게, 자신만의 길을 가다'},
+  ]},
+  {n:'서진',g:'남',cands:[
+    {h:'瑞珍',s:[14,10],poem:'상서롭고 보배로운 기운을 함께 담다'},
+    {h:'瑞振',s:[14,11],poem:'상서로운 기운이 크게 떨쳐 나아가다'},
+  ]},
+  {n:'선율',g:'남',cands:[
+    {h:'善律',s:[12,9],poem:'착한 마음이 아름다운 리듬이 되다'},
+    {h:'宣律',s:[9,9],poem:'베풀며 삶의 아름다운 박자를 만들다'},
+  ]},
+  {n:'진우',g:'남',cands:[
+    {h:'珍宇',s:[10,6],poem:'보배로운 기운이 하늘처럼 넓게 퍼지다'},
+    {h:'振宇',s:[11,6],poem:'크게 떨쳐 하늘처럼 넓게 나아가다'},
+  ]},
+  {n:'겸우',g:'남',cands:[
+    {h:'謙宇',s:[17,6],poem:'겸손한 마음이 하늘처럼 넓고 깊다'},
+  ]},
+  {n:'주원',g:'남',cands:[
+    {h:'柱源',s:[9,14],poem:'기둥처럼 든든하고 근원처럼 깊다'},
+    {h:'珠源',s:[11,14],poem:'구슬처럼 빛나고 근원처럼 깊다'},
+  ]},
+  {n:'시완',g:'남',cands:[
+    {h:'時緩',s:[10,15],poem:'때를 알고, 물처럼 부드럽게 나아가다'},
+  ]},
+  {n:'서완',g:'남',cands:[
+    {h:'瑞緩',s:[14,15],poem:'상서로운 기운이 부드럽게 무르익다'},
+  ]},
+  {n:'지완',g:'남',cands:[
+    {h:'池緩',s:[7,15],poem:'깊은 물가처럼, 부드럽고 넉넉하게'},
+    {h:'智緩',s:[12,15],poem:'지혜가 물처럼 부드럽게 흐르며 무르익다'},
+  ]},
+
+  // ─ 여아
+  {n:'서아',g:'여',pick:true,cands:[
+    {h:'瑞芽',s:[14,8],poem:'상서로운 기운이 새싹처럼 피어나다'},
+    {h:'瑞雅',s:[14,13],poem:'상서롭고 우아한 빛을 담다'},
+  ]},
+  {n:'서윤',g:'여',pick:true,cands:[
+    {h:'瑞允',s:[14,4],poem:'상서로운 기운 위에 넉넉한 복이 더해진다'},
+    {h:'瑞潤',s:[14,16],poem:'상서롭고 넉넉하게, 봄비처럼 흐르다'},
+    {h:'瑞錀',s:[14,16],poem:'상서로운 기운에 굳건한 금의 강인함을 담다'},
+  ]},
+  {n:'하린',g:'여',pick:true,cands:[
+    {h:'夏璘',s:[10,20],poem:'여름처럼 환하게, 옥처럼 빛나다'},
+    {h:'夏潾',s:[10,16],poem:'여름처럼 맑고, 옥처럼 빛나다'},
+  ]},
+  {n:'하윤',g:'여',pick:true,cands:[
+    {h:'夏允',s:[10,4],poem:'여름처럼 풍성하게, 넉넉하게 자라다'},
+    {h:'夏潤',s:[10,16],poem:'여름처럼 환하고, 넉넉히 흘러가다'},
+    {h:'夏錀',s:[10,16],poem:'여름 햇살 같은 빛에 금속의 단단함을 더하다'},
+  ]},
+  {n:'아린',g:'여',pick:true,cands:[
+    {h:'芽璘',s:[8,20],poem:'새싹이 피어나듯, 옥처럼 빛나다'},
+    {h:'芽潾',s:[8,16],poem:'새싹이 피어나듯, 맑게 빛나다'},
+  ]},
+  {n:'지유',g:'여',pick:true,cands:[
+    {h:'智柔',s:[12,9],poem:'지혜롭고 부드럽게, 봄바람 같은 아이'},
+    {h:'志柔',s:[7,9],poem:'큰 뜻이 물처럼 부드럽게 흐르다'},
+  ]},
+  {n:'예서',g:'여',pick:true,cands:[
+    {h:'叡瑞',s:[16,14],poem:'슬기롭고 상서로운 빛을 담다'},
+    {h:'叡序',s:[16,7],poem:'슬기롭게 차근차근, 아름답게 나아가다'},
+  ]},
+  {n:'소율',g:'여',pick:true,cands:[
+    {h:'素律',s:[10,9],poem:'순수한 마음이 아름다운 리듬이 되다'},
+    {h:'昭律',s:[9,9],poem:'밝게 빛나며 아름다운 박자로 나아가다'},
+  ]},
+  {n:'하율',g:'여',pick:true,cands:[
+    {h:'夏律',s:[10,9],poem:'여름처럼 환하게, 아름다운 리듬으로'},
+  ]},
+  {n:'은서',g:'여',pick:true,cands:[
+    {h:'恩瑞',s:[10,14],poem:'은혜롭고 상서로운 기운을 함께 담다'},
+    {h:'恩序',s:[10,7],poem:'은혜로운 마음이 아름다운 순서로 피어나다'},
+  ]},
+  {n:'라온',g:'여',pick:true,cands:[
+    {h:'羅媛',s:[19,13],poem:'기쁨이 활짝 퍼지는 아름다운 사람'},
+    {h:'羅溫',s:[19,14],poem:'따뜻함이 넓게, 활짝 퍼지다'},
+  ]},
+  {n:'민서',g:'여',pick:true,cands:[
+    {h:'旻瑞',s:[8,14],poem:'밝은 하늘 아래 상서로운 빛이 내린다'},
+    {h:'旻序',s:[8,7],poem:'밝게, 차근차근 아름답게 나아가다'},
+  ]},
+  {n:'이서',g:'여',cands:[
+    {h:'怡瑞',s:[9,14],poem:'기쁨과 상서로운 빛을 함께 담다'},
+    {h:'怡序',s:[9,7],poem:'기쁘게, 차근차근 나아가다'},
+  ]},
+  {n:'아윤',g:'여',cands:[
+    {h:'芽允',s:[8,4],poem:'새싹처럼 넉넉하게 피어나다'},
+    {h:'芽潤',s:[8,16],poem:'새싹이 봄비를 맞아 넉넉히 자라다'},
+    {h:'芽錀',s:[8,16],poem:'새싹의 여림 속에 금의 단단함이 깃들다'},
+  ]},
+  {n:'시아',g:'여',cands:[
+    {h:'時芽',s:[10,8],poem:'때를 알고 새싹처럼 피어나다'},
+    {h:'時雅',s:[10,13],poem:'때에 맞게 우아하게 자라다'},
+  ]},
+  {n:'윤서',g:'여',cands:[
+    {h:'允瑞',s:[4,14],poem:'넉넉함 속에 상서로운 빛이 담겼다'},
+    {h:'潤瑞',s:[16,14],poem:'봄비처럼 넉넉하고, 상서롭게 빛나다'},
+    {h:'錀瑞',s:[16,14],poem:'굳건한 금의 기운 속에 상서로운 빛이 서리다'},
+  ]},
+  {n:'지아',g:'여',cands:[
+    {h:'智芽',s:[12,8],poem:'지혜가 새싹처럼 피어나다'},
+    {h:'志芽',s:[7,8],poem:'큰 뜻이 새싹처럼 피어나다'},
+  ]},
+  {n:'유나',g:'여',cands:[
+    {h:'裕娜',s:[13,10],poem:'넉넉하고 우아한 기운을 담다'},
+  ]},
+  {n:'수아',g:'여',cands:[
+    {h:'秀芽',s:[7,8],poem:'빼어난 새싹, 환하게 피어나다'},
+    {h:'秀雅',s:[7,13],poem:'빼어나고 우아한 자태를 담다'},
+  ]},
+  {n:'채원',g:'여',cands:[
+    {h:'彩源',s:[11,14],poem:'다채로운 빛깔의 근원이 깊다'},
+    {h:'彩苑',s:[11,11],poem:'다채로운 꽃이 동산 가득 피어나다'},
+  ]},
+  {n:'나은',g:'여',cands:[
+    {h:'娜恩',s:[10,10],poem:'우아한 사람이, 은혜로운 기운을 담다'},
+    {h:'那恩',s:[6,10],poem:'있는 그 자리에서 은혜로운 마음을 누리다'},
+  ]},
+  {n:'서연',g:'여',cands:[
+    {h:'瑞涓',s:[14,11],poem:'상서롭고 맑은 기운이 흐른다'},
+    {h:'瑞妍',s:[14,9],poem:'상서롭고 고운 빛이 함께 담겼다'},
+  ]},
+  {n:'서현',g:'여',cands:[
+    {h:'瑞炫',s:[14,10],poem:'상서롭게 환히 빛나다'},
+    {h:'瑞賢',s:[14,15],poem:'상서롭고 어진 마음을 담다'},
+  ]},
+  {n:'지민',g:'여',cands:[
+    {h:'智旻',s:[12,8],poem:'지혜롭고, 밝은 하늘처럼 맑다'},
+    {h:'志旻',s:[7,8],poem:'큰 뜻을 품고 밝은 하늘처럼 나아가다'},
+  ]},
+  {n:'예은',g:'여',cands:[
+    {h:'叡恩',s:[16,10],poem:'슬기로운 마음이 은혜가 되다'},
+  ]},
+  {n:'예린',g:'여',cands:[
+    {h:'叡璘',s:[16,20],poem:'슬기롭고, 옥처럼 빛나다'},
+    {h:'叡潾',s:[16,16],poem:'슬기로운 눈빛이 맑은 물처럼 빛나다'},
+  ]},
+  {n:'채은',g:'여',cands:[
+    {h:'彩恩',s:[11,10],poem:'다채로운 빛깔과 은혜로운 마음을 함께'},
+  ]},
+  {n:'소윤',g:'여',cands:[
+    {h:'素允',s:[10,4],poem:'순수하게, 넉넉하게 자라다'},
+    {h:'素潤',s:[10,16],poem:'순수한 마음이 봄비처럼 넉넉하다'},
+    {h:'素錀',s:[10,16],poem:'순수한 마음에 금빛 단단함을 머금다'},
+  ]},
+  {n:'시윤',g:'여',cands:[
+    {h:'時允',s:[10,4],poem:'때에 맞게 넉넉하게 피어나다'},
+    {h:'時潤',s:[10,16],poem:'때를 알고, 봄비처럼 넉넉히 흐르다'},
+    {h:'時錀',s:[10,16],poem:'때를 알고, 금처럼 굳건하게 빛나다'},
+  ]},
+  {n:'은채',g:'여',cands:[
+    {h:'恩彩',s:[10,11],poem:'은혜로운 마음이 다채롭게 빛나다'},
+  ]},
+  {n:'지안',g:'여',cands:[
+    {h:'智安',s:[12,6],poem:'지혜로운 마음이 곧 평안함이 된다'},
+    {h:'志安',s:[7,6],poem:'큰 뜻을 품고, 평안한 길을 걸어가다'},
+  ]},
+  {n:'다은',g:'여',cands:[
+    {h:'多恩',s:[6,10],poem:'넘치는 은혜를 담은 사람'},
+  ]},
+  {n:'가은',g:'여',cands:[
+    {h:'佳恩',s:[8,10],poem:'아름답고 은혜로운 기운을 함께 담다'},
+    {h:'嘉恩',s:[14,10],poem:'아름답고 기쁜 은혜를 담다'},
+  ]},
+  {n:'다율',g:'여',cands:[
+    {h:'多律',s:[6,9],poem:'넘치는 기운이 아름다운 리듬이 되다'},
+  ]},
+  {n:'혜원',g:'여',cands:[
+    {h:'惠源',s:[12,14],poem:'은혜의 근원이 깊고, 넓게 흐른다'},
+    {h:'惠媛',s:[12,13],poem:'은혜로운 마음과 아름다움을 함께'},
+  ]},
+  {n:'서율',g:'여',cands:[
+    {h:'瑞律',s:[14,9],poem:'상서로운 기운이 아름다운 리듬으로'},
+  ]},
+  {n:'설',g:'여',single:true,cands:[
+    {h:'雪',s:[11],poem:'순백의 눈처럼 맑고 깨끗한 아이'},
+  ]},
+
+  // ─ 신규 보강 [2026-06-21]: 대법원 인기이름 누락분 — 남아 (67)
+  {n:'건율',g:'남',cands:[
+    {h:'健律',s:[11, 9],poem:'굳건한 의지로 삶의 리듬을 스스로 만들어가다'},
+    {h:'建律',s:[9, 9],poem:'바르게 세운 뜻이 음률처럼 조화를 이루다'},
+  ]},
+  {n:'결',g:'남',single:true,cands:[
+    {h:'結',s:[12],poem:'인연과 결실을 단단히 맺어가는 아이'},
+  ]},
+  {n:'겸',g:'남',single:true,cands:[
+    {h:'謙',s:[17],poem:'겸손한 마음으로 늘 자신을 낮추고 채워가다'},
+  ]},
+  {n:'도경',g:'남',cands:[
+    {h:'道暻',s:[13, 16],poem:'바른 길 위에서 환하게 빛나는 풍경을 그리다'},
+    {h:'道炯',s:[13, 9],poem:'바른 길 위에서 또렷하게 빛나다'},
+  ]},
+  {n:'도영',g:'남',cands:[
+    {h:'道映',s:[13, 9],poem:'바른 길을 환히 비추며 나아가다'},
+    {h:'道榮',s:[13, 14],poem:'바른 길 위에서 영광을 얻다'},
+  ]},
+  {n:'도우',g:'남',cands:[
+    {h:'道宇',s:[13, 6],poem:'바른 길이 하늘처럼 넓게 펼쳐지다'},
+    {h:'道佑',s:[13, 7],poem:'바른 길에서 늘 도움을 얻는다'},
+    {h:'道友',s:[13,4],poem:'바른 길 위에서 따뜻한 벗이 되어주다'},
+  ]},
+  {n:'도율',g:'남',cands:[
+    {h:'道律',s:[13, 9],poem:'바른 길과 조화로운 음률을 함께 지니다'},
+    {h:'道率',s:[13,11],poem:'바른 길과 스스로 이끄는 리듬을 함께 지니다'},
+  ]},
+  {n:'도준',g:'남',cands:[
+    {h:'道俊',s:[13, 10],poem:'바른 길 위에서 빼어난 기품을 갖추다'},
+    {h:'道峻',s:[13, 10],poem:'바른 길 위에 높이 솟아오르다'},
+  ]},
+  {n:'도하',g:'남',cands:[
+    {h:'道河',s:[13, 8],poem:'바른 길이 강처럼 길고 깊게 흐르다'},
+    {h:'道夏',s:[13, 10],poem:'바른 길 위에서 여름처럼 환하게'},
+  ]},
+  {n:'로한',g:'남',cands:[
+    {h:'路韓',s:[13, 17],poem:'자신만의 길 위에서 크고 당당하게'},
+  ]},
+  {n:'민규',g:'남',cands:[
+    {h:'旻圭',s:[8, 6],poem:'밝은 하늘 아래 옥구슬처럼 맑게 빛나다'},
+    {h:'旻奎',s:[8,9],poem:'밝은 하늘 아래 별처럼 빛나는 학문의 기운'},
+  ]},
+  {n:'민석',g:'남',cands:[
+    {h:'旻碩',s:[8, 14],poem:'밝은 하늘 아래 크고 단단한 인물로 자라다'},
+    {h:'旻蓆',s:[8,13],poem:'밝은 하늘 아래 평안히 제자리를 잡다'},
+  ]},
+  {n:'민성',g:'남',cands:[
+    {h:'旻晟',s:[8, 11],poem:'밝은 하늘처럼 환하게 빛나는 아이'},
+    {h:'旻聖',s:[8,13],poem:'밝은 하늘처럼 성스럽고 환하게 빛나다'},
+  ]},
+  {n:'민우',g:'남',cands:[
+    {h:'旻宇',s:[8, 6],poem:'밝은 하늘처럼 넓은 마음을 지니다'},
+    {h:'旻佑',s:[8, 7],poem:'밝은 하늘 아래 늘 도움을 얻는다'},
+  ]},
+  {n:'민재',g:'남',cands:[
+    {h:'旻載',s:[8, 13],poem:'밝은 하늘의 뜻을 싣고 멀리 나아가다'},
+  ]},
+  {n:'서우',g:'남',cands:[
+    {h:'瑞佑',s:[14, 7],poem:'상서로운 기운이 늘 곁에서 돕는다'},
+  ]},
+  {n:'선호',g:'남',cands:[
+    {h:'善浩',s:[12, 11],poem:'착한 마음이 바다처럼 넓고 깊다'},
+  ]},
+  {n:'성준',g:'남',cands:[
+    {h:'晟俊',s:[11, 10],poem:'밝게 빛나며 그 누구보다 빼어나다'},
+  ]},
+  {n:'성현',g:'남',cands:[
+    {h:'晟賢',s:[11, 15],poem:'밝게 빛나는 어진 마음을 지니다'},
+  ]},
+  {n:'수현',g:'남',cands:[
+    {h:'秀炫',s:[7, 10],poem:'빼어나고 빛나는 기운을 지니다'},
+    {h:'秀賢',s:[7, 15],poem:'빼어나고 어진 마음을 갖추다'},
+  ]},
+  {n:'승민',g:'남',cands:[
+    {h:'昇旻',s:[8, 8],poem:'떠오르는 해처럼 밝은 하늘을 향하다'},
+  ]},
+  {n:'승우',g:'남',cands:[
+    {h:'承宇',s:[8, 6],poem:'이어받은 뜻을 하늘처럼 넓게 펼치다'},
+    {h:'承佑',s:[8,7],poem:'이어받은 뜻이 늘 도움이 되어 돌아오다'},
+  ]},
+  {n:'승현',g:'남',cands:[
+    {h:'昇炫',s:[8, 10],poem:'떠올라 환하게 빛나는 기운'},
+  ]},
+  {n:'시안',g:'남',cands:[
+    {h:'時安',s:[10, 6],poem:'때를 알고 평안하게 나아가다'},
+  ]},
+  {n:'시온',g:'남',cands:[
+    {h:'時溫',s:[10, 14],poem:'때를 알고 따뜻함을 품다'},
+  ]},
+  {n:'시원',g:'남',cands:[
+    {h:'時源',s:[10, 14],poem:'때를 알고 그 근원이 깊다'},
+  ]},
+  {n:'시율',g:'남',cands:[
+    {h:'時律',s:[10, 9],poem:'때에 맞는 아름다운 리듬을 지니다'},
+    {h:'時率',s:[10,11],poem:'때를 알고 스스로 삶을 이끌어가다'},
+  ]},
+  {n:'시현',g:'남',cands:[
+    {h:'時炫',s:[10, 10],poem:'때를 알고 환하게 빛나다'},
+    {h:'時賢',s:[10, 15],poem:'때를 알고 어질게 나아가다'},
+  ]},
+  {n:'연우',g:'남',cands:[
+    {h:'然宇',s:[12, 6],poem:'그러한 모습 그대로, 하늘처럼 넓게'},
+  ]},
+  {n:'예성',g:'남',cands:[
+    {h:'叡晟',s:[16, 11],poem:'슬기롭고 밝게 빛나는 아이'},
+  ]},
+  {n:'우빈',g:'남',cands:[
+    {h:'宇彬',s:[6, 11],poem:'하늘처럼 넓고 빛나는 인품을 지니다'},
+  ]},
+  {n:'유성',g:'남',cands:[
+    {h:'裕晟',s:[13, 11],poem:'넉넉하고 밝게 빛나는 아이'},
+  ]},
+  {n:'유안',g:'남',cands:[
+    {h:'裕安',s:[13, 6],poem:'넉넉하고 평안한 마음을 지니다'},
+    {h:'柔安',s:[9,6],poem:'부드러운 마음으로 평안을 지키다'},
+  ]},
+  {n:'유찬',g:'남',cands:[
+    {h:'裕璨',s:[13, 17],poem:'넉넉하고 옥빛처럼 찬란하게 빛나다'},
+  ]},
+  {n:'유한',g:'남',cands:[
+    {h:'裕韓',s:[13, 17],poem:'넉넉하고 크고 당당하게 나아가다'},
+  ]},
+  {n:'윤성',g:'남',cands:[
+    {h:'允晟',s:[4, 11],poem:'넉넉한 복이 밝게 빛으로 피어나다'},
+  ]},
+  {n:'윤우',g:'남',cands:[
+    {h:'潤宇',s:[16, 6],poem:'넉넉함이 하늘처럼 가득 퍼지다'},
+    {h:'潤佑',s:[16,7],poem:'넉넉한 기운이 늘 곁에서 도와주다'},
+  ]},
+  {n:'윤호',g:'남',cands:[
+    {h:'潤皓',s:[16, 12],poem:'넉넉하고 환하게 빛나는 아이'},
+    {h:'潤浩',s:[16,11],poem:'넉넉함이 바다처럼 크고 깊게 퍼지다'},
+  ]},
+  {n:'율',g:'남',single:true,cands:[
+    {h:'律',s:[9],poem:'스스로 삶의 리듬을 만들어가는 아이'},
+  ]},
+  {n:'은찬',g:'남',cands:[
+    {h:'恩璨',s:[10, 17],poem:'은혜로운 빛이 찬란하게 빛나다'},
+  ]},
+  {n:'은호',g:'남',cands:[
+    {h:'恩浩',s:[10, 11],poem:'은혜로운 마음이 바다처럼 넓다'},
+  ]},
+  {n:'이안',g:'남',cands:[
+    {h:'怡安',s:[9, 6],poem:'기쁨과 평안을 함께 지니다'},
+  ]},
+  {n:'이한',g:'남',cands:[
+    {h:'怡韓',s:[9, 17],poem:'기쁨 가득, 크고 당당하게 나아가다'},
+  ]},
+  {n:'이현',g:'남',cands:[
+    {h:'怡賢',s:[9, 15],poem:'기쁨 속에 어진 마음을 갖추다'},
+  ]},
+  {n:'재윤',g:'남',cands:[
+    {h:'梓潤',s:[11, 16],poem:'재능의 뿌리가 봄비처럼 넉넉히 자라다'},
+  ]},
+  {n:'재이',g:'남',cands:[
+    {h:'梓怡',s:[11, 9],poem:'재능의 뿌리에 기쁨이 함께 피어나다'},
+    {h:'梓利',s:[11,7],poem:'재능의 뿌리에서 이로움이 자라나다'},
+  ]},
+  {n:'재현',g:'남',cands:[
+    {h:'梓賢',s:[11, 15],poem:'재능의 뿌리에 어진 마음을 더하다'},
+  ]},
+  {n:'정민',g:'남',cands:[
+    {h:'正旻',s:[5, 8],poem:'바르고 밝은 하늘처럼 환하게'},
+  ]},
+  {n:'정우',g:'남',cands:[
+    {h:'正宇',s:[5, 6],poem:'바르게, 하늘처럼 넓은 마음으로'},
+  ]},
+  {n:'정현',g:'남',cands:[
+    {h:'正賢',s:[5, 15],poem:'바르고 어진 마음을 갖추다'},
+    {h:'晶賢',s:[12,15],poem:'맑은 빛처럼 또렷하고 어진 마음을 지니다'},
+  ]},
+  {n:'주안',g:'남',cands:[
+    {h:'柱安',s:[9, 6],poem:'기둥처럼 든든하고 평안하게 서다'},
+  ]},
+  {n:'주호',g:'남',cands:[
+    {h:'柱浩',s:[9, 11],poem:'기둥처럼 든든하고 바다처럼 넓게'},
+    {h:'珠皓',s:[11,12],poem:'구슬처럼 빛나며 환하게 밝아오다'},
+  ]},
+  {n:'준우',g:'남',cands:[
+    {h:'俊宇',s:[10, 6],poem:'빼어나고 하늘처럼 넓게 나아가다'},
+  ]},
+  {n:'준혁',g:'남',cands:[
+    {h:'俊赫',s:[10, 14],poem:'빼어나고 찬란하게 빛나는 아이'},
+  ]},
+  {n:'지온',g:'남',cands:[
+    {h:'智溫',s:[12, 14],poem:'지혜롭고 따뜻한 마음을 지니다'},
+  ]},
+  {n:'지한',g:'남',cands:[
+    {h:'智韓',s:[12, 17],poem:'지혜롭고 크고 당당하게 나아가다'},
+  ]},
+  {n:'지환',g:'남',cands:[
+    {h:'智煥',s:[12, 13],poem:'지혜가 환하게 빛나는 아이'},
+  ]},
+  {n:'지후',g:'남',cands:[
+    {h:'智厚',s:[12, 9],poem:'지혜가 두텁고 깊은 아이'},
+  ]},
+  {n:'태민',g:'남',cands:[
+    {h:'泰旻',s:[10, 8],poem:'크고 넉넉하게, 밝은 하늘처럼'},
+  ]},
+  {n:'태양',g:'남',cands:[
+    {h:'泰陽',s:[10, 17],poem:'크고 넉넉한, 늘 밝게 빛나는 존재'},
+  ]},
+  {n:'태윤',g:'남',cands:[
+    {h:'泰潤',s:[10, 16],poem:'크고 넉넉하게, 봄비처럼 고루 스미다'},
+  ]},
+  {n:'태이',g:'남',cands:[
+    {h:'泰怡',s:[10, 9],poem:'크고 넉넉한 마음에 기쁨이 가득하다'},
+    {h:'泰利',s:[10,7],poem:'크고 넉넉한 마음에 이로움이 더해지다'},
+  ]},
+  {n:'태하',g:'남',cands:[
+    {h:'泰夏',s:[10, 10],poem:'크고 넉넉하게, 여름처럼 환하다'},
+    {h:'泰河',s:[10,8],poem:'크고 넉넉하게, 강물처럼 길게 흐르다'},
+  ]},
+  {n:'하진',g:'남',cands:[
+    {h:'夏眞',s:[10, 10],poem:'여름처럼 환하고, 참되게 자라다'},
+    {h:'夏振',s:[10,11],poem:'여름처럼 환하게, 크게 떨쳐 일어나다'},
+  ]},
+  {n:'해온',g:'남',cands:[
+    {h:'海溫',s:[10, 14],poem:'바다처럼 넓고 따뜻한 마음을 지니다'},
+  ]},
+  {n:'현우',g:'남',cands:[
+    {h:'賢宇',s:[15, 6],poem:'어질고 하늘처럼 넓은 마음을 지니다'},
+  ]},
+  {n:'현준',g:'남',cands:[
+    {h:'賢俊',s:[15, 10],poem:'어질고 그 누구보다 빼어나다'},
+  ]},
+
+  // ─ 신규 보강 [2026-06-21]: 대법원 인기이름 누락분 — 여아 (60)
+  {n:'나윤',g:'여',cands:[
+    {h:'娜潤',s:[10, 16],poem:'고운 자태에 넉넉함이 봄비처럼 스미다'},
+    {h:'那允',s:[6, 4],poem:'그 자리에서 넉넉한 복을 누리다'},
+  ]},
+  {n:'다경',g:'여',cands:[
+    {h:'多慶',s:[6, 15],poem:'복이 많고, 경사로운 일이 끊이지 않다'},
+    {h:'茶暻',s:[9, 16],poem:'차향처럼 은은하게 빛나는 풍경을 품다'},
+  ]},
+  {n:'다연',g:'여',cands:[
+    {h:'多妍',s:[6, 9],poem:'고운 빛깔이 가득, 곱게 피어나는 아이'},
+    {h:'茶姢',s:[9, 9],poem:'차향처럼 은은하고 곱다'},
+  ]},
+  {n:'다온',g:'여',cands:[
+    {h:'多溫',s:[6, 14],poem:'따뜻함이 가득, 모두 다 좋은 것만 온다'},
+    {h:'茶溫',s:[9,14],poem:'차향처럼 은은하고 따뜻한 기운이 감싸다'},
+  ]},
+  {n:'다윤',g:'여',cands:[
+    {h:'多潤',s:[6, 16],poem:'넉넉함이 봄비처럼 고루 스미다'},
+    {h:'多允',s:[6, 4],poem:'복이 많고 마음이 넉넉하다'},
+    {h:'茶允',s:[9,4],poem:'차향처럼 은은하게, 넉넉한 복을 누리다'},
+  ]},
+  {n:'다인',g:'여',cands:[
+    {h:'多仁',s:[6, 4],poem:'사랑과 어짊이 가득한 마음'},
+    {h:'多印',s:[6, 6],poem:'많은 인연 속에 또렷한 자취를 남기다'},
+    {h:'茶仁',s:[9,4],poem:'차향처럼 은은한 사랑과 어짊을 품다'},
+  ]},
+  {n:'단아',g:'여',cands:[
+    {h:'端雅',s:[9, 13],poem:'단정하고 우아한 품격을 지니다'},
+    {h:'端芽',s:[9,8],poem:'단정한 마음이 새싹처럼 곱게 피어나다'},
+  ]},
+  {n:'도아',g:'여',cands:[
+    {h:'道雅',s:[13, 13],poem:'바른 길 위에서 우아하게 자라다'},
+    {h:'桃雅',s:[10, 13],poem:'고운 빛깔처럼 우아하게 피어나다'},
+  ]},
+  {n:'로아',g:'여',cands:[
+    {h:'路雅',s:[13, 13],poem:'길 위에서 우아함을 펼쳐가다'},
+  ]},
+  {n:'로이',g:'여',cands:[
+    {h:'路怡',s:[13, 9],poem:'걸어가는 길마다 기쁨을 찾아내다'},
+    {h:'路易',s:[13,8],poem:'걸어가는 길마다 순조롭게 풀려나가다'},
+  ]},
+  {n:'로하',g:'여',cands:[
+    {h:'路夏',s:[13, 10],poem:'길 위에서 여름처럼 환하게 자라다'},
+  ]},
+  {n:'리아',g:'여',cands:[
+    {h:'理雅',s:[12, 13],poem:'이치를 깨닫고 우아하게 자라다'},
+    {h:'利雅',s:[7, 13],poem:'이로움과 우아함을 함께 지니다'},
+  ]},
+  {n:'민아',g:'여',cands:[
+    {h:'旻雅',s:[8, 13],poem:'밝은 하늘 아래 우아하게 자라다'},
+  ]},
+  {n:'서영',g:'여',cands:[
+    {h:'瑞映',s:[14, 9],poem:'상서로운 기운이 환하게 비치다'},
+    {h:'瑞瑛',s:[14, 14],poem:'상서롭고 옥빛처럼 맑게 빛나다'},
+  ]},
+  {n:'서은',g:'여',cands:[
+    {h:'瑞恩',s:[14, 10],poem:'상서로운 기운 속에 은혜가 가득하다'},
+  ]},
+  {n:'서이',g:'여',cands:[
+    {h:'瑞怡',s:[14, 9],poem:'상서롭고 기쁨이 넘치는 아이'},
+  ]},
+  {n:'서하',g:'여',cands:[
+    {h:'瑞夏',s:[14, 10],poem:'상서로운 기운이 여름처럼 환하게 퍼지다'},
+  ]},
+  {n:'세아',g:'여',cands:[
+    {h:'世雅',s:[5, 13],poem:'세상에 우아한 빛을 더하는 아이'},
+  ]},
+  {n:'세은',g:'여',cands:[
+    {h:'世恩',s:[5, 10],poem:'세상에 은혜로운 기운을 더하다'},
+  ]},
+  {n:'소민',g:'여',cands:[
+    {h:'昭旻',s:[9, 8],poem:'밝은 하늘처럼 또렷하고 환하다'},
+  ]},
+  {n:'소아',g:'여',cands:[
+    {h:'昭雅',s:[9, 13],poem:'밝고 우아한 빛을 품은 아이'},
+    {h:'昭芽',s:[9,8],poem:'밝은 빛 아래 새싹처럼 곱게 자라다'},
+  ]},
+  {n:'수민',g:'여',cands:[
+    {h:'秀旻',s:[7, 8],poem:'빼어나고 밝은 하늘처럼 환하다'},
+  ]},
+  {n:'수안',g:'여',cands:[
+    {h:'秀安',s:[7, 6],poem:'빼어나고 평안한 마음을 지니다'},
+  ]},
+  {n:'시연',g:'여',cands:[
+    {h:'時妍',s:[10, 9],poem:'때에 맞춰 곱게 피어나는 아이'},
+    {h:'時涓',s:[10,11],poem:'때를 알고 맑은 물처럼 고요히 흐르다'},
+  ]},
+  {n:'시은',g:'여',cands:[
+    {h:'時恩',s:[10, 10],poem:'때에 맞춰 은혜를 베푸는 아이'},
+    {h:'時鄞',s:[10,13],poem:'때에 맞춰 깊고 단단한 땅의 기운을 품다'},
+  ]},
+  {n:'아라',g:'여',cands:[
+    {h:'雅羅',s:[13, 19],poem:'우아한 기운이 넓게 펼쳐지다 — 바다를 뜻하는 옛말'},
+  ]},
+  {n:'아영',g:'여',cands:[
+    {h:'雅瑛',s:[13, 14],poem:'우아하고 옥빛처럼 맑게 빛나다'},
+  ]},
+  {n:'아인',g:'여',cands:[
+    {h:'雅仁',s:[13, 4],poem:'우아하고 어진 마음을 지니다'},
+  ]},
+  {n:'아정',g:'여',cands:[
+    {h:'雅婷',s:[13, 12],poem:'우아하고 곱게 자라는 아이'},
+  ]},
+  {n:'연서',g:'여',cands:[
+    {h:'妍瑞',s:[9, 14],poem:'고운 기운이 상서롭게 피어나다'},
+  ]},
+  {n:'예나',g:'여',cands:[
+    {h:'叡娜',s:[16, 10],poem:'슬기롭고 고운 자태를 지니다'},
+  ]},
+  {n:'예원',g:'여',cands:[
+    {h:'叡媛',s:[16, 13],poem:'슬기롭고 아름다운 여인으로 자라다'},
+  ]},
+  {n:'예진',g:'여',cands:[
+    {h:'叡珍',s:[16, 10],poem:'슬기롭고 보배처럼 귀한 아이'},
+  ]},
+  {n:'유라',g:'여',cands:[
+    {h:'裕羅',s:[13, 19],poem:'넉넉함이 널리 펼쳐지는 아이'},
+  ]},
+  {n:'유이',g:'여',cands:[
+    {h:'裕怡',s:[13, 9],poem:'넉넉함 속에 기쁨이 가득하다'},
+    {h:'柔怡',s:[9,9],poem:'부드러운 마음에 기쁨이 가득 깃들다'},
+  ]},
+  {n:'유주',g:'여',cands:[
+    {h:'裕柱',s:[13, 9],poem:'넉넉함이 기둥처럼 든든하다'},
+    {h:'柔柱',s:[9,9],poem:'부드러우면서도 기둥처럼 든든하게 서다'},
+  ]},
+  {n:'유하',g:'여',cands:[
+    {h:'裕夏',s:[13, 10],poem:'넉넉하고 여름처럼 환하게 자라다'},
+  ]},
+  {n:'윤슬',g:'여',cands:[
+    {h:'潤瑟',s:[16, 13],poem:'물결에 비치는 빛처럼 곱고 아름답다'},
+  ]},
+  {n:'윤아',g:'여',cands:[
+    {h:'允雅',s:[4, 13],poem:'넉넉하고 우아하게 자라는 아이'},
+  ]},
+  {n:'윤지',g:'여',cands:[
+    {h:'潤志',s:[16, 7],poem:'넉넉한 마음에 큰 뜻을 품다'},
+  ]},
+  {n:'이솔',g:'여',cands:[
+    {h:'怡率',s:[9, 11],poem:'기쁜 마음으로 곧고 솔직하게 살아가다'},
+    {h:'怡帥',s:[9,9],poem:'기쁜 마음으로 스스로를 이끌어가는 사람'},
+  ]},
+  {n:'이원',g:'여',cands:[
+    {h:'怡元',s:[9, 4],poem:'기쁨이 모든 것의 근원이 되다'},
+  ]},
+  {n:'정원',g:'여',cands:[
+    {h:'正元',s:[5, 4],poem:'바른 마음이 모든 것의 근원이 되다'},
+    {h:'婷元',s:[12,4],poem:'곱고 단아한 마음이 모든 것의 근원이 되다'},
+  ]},
+  {n:'주아',g:'여',cands:[
+    {h:'珠雅',s:[11, 13],poem:'구슬처럼 빛나고 우아하게 자라다'},
+  ]},
+  {n:'지연',g:'여',cands:[
+    {h:'智妍',s:[12, 9],poem:'지혜롭고 곱게 피어나는 아이'},
+  ]},
+  {n:'지우',g:'여',cands:[
+    {h:'智宇',s:[12, 6],poem:'지혜가 하늘처럼 넓게 펼쳐지다'},
+  ]},
+  {n:'지율',g:'여',cands:[
+    {h:'智律',s:[12, 9],poem:'지혜로운 삶의 리듬을 갖추다'},
+  ]},
+  {n:'지현',g:'여',cands:[
+    {h:'智賢',s:[12, 15],poem:'지혜롭고 어진 마음을 함께 지니다'},
+  ]},
+  {n:'지효',g:'여',cands:[
+    {h:'智曉',s:[12, 16],poem:'지혜가 새벽처럼 밝아오다'},
+    {h:'志曉',s:[7,16],poem:'큰 뜻을 품고 새벽처럼 환하게 밝아오다'},
+  ]},
+  {n:'채빈',g:'여',cands:[
+    {h:'彩彬',s:[11, 11],poem:'다채로운 빛깔처럼 환하고 빛나는 인품'},
+    {h:'彩浜',s:[11,10],poem:'고운 빛깔이 물가처럼 넓게 펼쳐지다'},
+  ]},
+  {n:'채아',g:'여',cands:[
+    {h:'彩雅',s:[11, 13],poem:'고운 빛깔로 우아하게 피어나다'},
+  ]},
+  {n:'채윤',g:'여',cands:[
+    {h:'彩潤',s:[11, 16],poem:'고운 빛깔이 봄비처럼 넉넉히 스미다'},
+  ]},
+  {n:'채율',g:'여',cands:[
+    {h:'彩律',s:[11, 9],poem:'고운 빛깔이 아름다운 리듬을 만들다'},
+    {h:'彩栗',s:[11,10],poem:'고운 빛깔에 풍성한 결실을 함께 담다'},
+  ]},
+  {n:'채이',g:'여',cands:[
+    {h:'彩怡',s:[11, 9],poem:'고운 빛깔 속에 기쁨이 가득하다'},
+    {h:'彩利',s:[11,7],poem:'고운 빛깔 위에 이로움이 더해지다'},
+  ]},
+  {n:'채하',g:'여',cands:[
+    {h:'彩夏',s:[11, 10],poem:'고운 빛깔이 여름처럼 환하게 퍼지다'},
+  ]},
+  {n:'태희',g:'여',cands:[
+    {h:'泰希',s:[10, 7],poem:'크고 넉넉한 바람을 품은 아이'},
+  ]},
+  {n:'하경',g:'여',cands:[
+    {h:'夏暻',s:[10, 16],poem:'여름 햇살처럼 빛나는 풍경을 품다'},
+  ]},
+  {n:'하람',g:'여',cands:[
+    {h:'夏嵐',s:[10, 12],poem:'여름 산기운처럼 맑고 청량하다'},
+    {h:'賀嵐',s:[12,12],poem:'축하할 일처럼, 산기운처럼 청량하게'},
+  ]},
+  {n:'하연',g:'여',cands:[
+    {h:'夏妍',s:[10, 9],poem:'여름처럼 환하고 곱게 피어나다'},
+    {h:'河妍',s:[8,9],poem:'강물처럼 흐르며 곱게 피어나는 아이'},
+  ]},
+  {n:'하은',g:'여',cands:[
+    {h:'夏恩',s:[10, 10],poem:'여름처럼 풍성한 은혜를 품다'},
+    {h:'河恩',s:[8,10],poem:'강물처럼 넉넉한 은혜를 머금다'},
+  ]},
+];
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   상태
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+let ST={gender:null,sung:null};
+
+function setGender(g,el){
+  ST.gender=g;
+  document.querySelectorAll('.gender-card').forEach(c=>c.classList.remove('on'));
+  el.classList.add('on');
+  tryShow();
+}
+
+function onSungInput(){
+  const v=document.getElementById('sungInput').value.trim();
+  const hint=document.getElementById('sungHint');
+  if(!v){ST.sung=null;hint.textContent='성씨를 입력하면 이름을 불러드릴게요';
+    hint.className='sung-hint';hideResult();return}
+  const f=SUNG_DB[v];
+  if(f){ST.sung={name:v,hanja:f.h,stroke:f.s};
+    hint.textContent=`${f.h}(${f.s}획) — ${v}씨 성씨에 맞게 수리를 계산합니다`;
+    hint.className='sung-hint ok';
+  }else{ST.sung={name:v,hanja:v,stroke:null};
+    hint.textContent='성씨 획수를 확인 중입니다 — 이름 먼저 보여드릴게요';
+    hint.className='sung-hint warn';
+  }
+  tryShow();
+}
+
+function hideResult(){
+  document.getElementById('resultWrap').style.display='none';
+}
+
+function tryShow(){
+  if(!ST.gender||!ST.sung)return;
+  showNames();
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   이름 렌더
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+function getBestCand(d){
+  const ss=ST.sung?.stroke;
+  if(!ss||d.single)return{...d.cands[0],res:null};
+  return d.cands.map(c=>{
+    const res=calc5(ss,c.s[0],c.s[1]||c.s[0]);
+    return{...c,res};
+  }).sort((a,b)=>{
+    if(a.res.allGil&&!b.res.allGil)return -1;
+    if(!a.res.allGil&&b.res.allGil)return 1;
+    if(a.res.inGil&&!b.res.inGil)return -1;
+    if(!a.res.inGil&&b.res.inGil)return 1;
+    return 0;
+  })[0];
+}
+
+function suriScore(res){
+  if(!res)return 0;
+  return res.allGil?2:res.inGil?1:0;
+}
+
+function renderCard(d,isBest,delay){
+  const best=getBestCand(d);
+  const res=best.res;
+  const ss=ST.sung?.stroke;
+
+  // 수리 pips (4개: 인격·지격·총격·외격)
+  let pipsHtml='';let suriLabel='';
+  if(ss&&res&&!d.single){
+    const grades=[
+      {g:res.in_g,label:`인격 ${res.in_}`},
+      {g:sgrade(res.ji),label:`지격 ${res.ji}`},
+      {g:sgrade(res.chong),label:`총격 ${res.chong}`},
+      {g:sgrade(res.oe),label:`외격 ${res.oe}`},
+    ];
+    pipsHtml=`<div class="suri-pips">`+
+      grades.map(({g,label})=>`<span class="pip ${g}" title="${label}"></span>`).join('')+
+      `</div>`;
+    suriLabel=res.allGil
+      ?`<span class="suri-label all-gil">네 가지 수리 모두 吉</span>`
+      :res.inGil
+      ?`<span class="suri-label in-gil">인격 수리 吉</span>`
+      :`<span class="suri-label">수리 확인 중</span>`;
+  }
+
+  // 소리 흐름
+  const flow=nameFlow(d.n);
+  const soundHtml=flow.length>=2
+    ?`<div class="nc-sound">`+
+      flow.map((oh,i)=>`
+        ${i>0?`<span class="sound-arr">${flowRelation(flow[i-1],oh)==='상생'?'→':'↗'}</span>`:''}
+        <span class="sound-node oh-${oh}">${oh}</span>`
+      ).join('')+`</div>`:
+      '';
+
+  // 펼치기 상세
+  const detailHtml=ss&&res&&!d.single?`
+    <div class="nc-detail">
+      <div class="nc-detail-grid">
+        <div class="detail-cell">
+          <div class="dc-label">인격 (총운)</div>
+          <div class="dc-val">${res.in_}수</div>
+          <div class="dc-sub">${sgrade(res.in_)==='gil'?'吉 — 평생의 줄기가 튼튼합니다':sgrade(res.in_)==='jung'?'中吉 — 좋은 흐름입니다':'확인 필요'}</div>
+        </div>
+        <div class="detail-cell">
+          <div class="dc-label">지격 (전반)</div>
+          <div class="dc-val">${res.ji}수</div>
+          <div class="dc-sub">${sgrade(res.ji)==='gil'?'吉':sgrade(res.ji)==='jung'?'中吉':''}</div>
+        </div>
+        <div class="detail-cell">
+          <div class="dc-label">총격 (후반)</div>
+          <div class="dc-val">${res.chong}수</div>
+          <div class="dc-sub">${sgrade(res.chong)==='gil'?'吉':sgrade(res.chong)==='jung'?'中吉':''}</div>
+        </div>
+        <div class="detail-cell">
+          <div class="dc-label">외격 (보조)</div>
+          <div class="dc-val">${res.oe}수</div>
+          <div class="dc-sub">${sgrade(res.oe)==='gil'?'吉':sgrade(res.oe)==='jung'?'中吉':''}</div>
+        </div>
+      </div>
+      <div style="margin-top:10px;font-size:11.5px;color:var(--ink3);line-height:1.7">
+        한자 <strong style="font-family:'Nanum Myeongjo',serif;color:var(--ink)">${best.h}</strong>
+        — ${best.poem}
+      </div>
+    </div>`:'';
+
+  const cls=`nc${(d.pick&&!isBest)?' pick':''}${isBest?' best':''}`;
+
+  return `<div class="${cls}" style="animation-delay:${delay}s" onclick="toggleCard(this)">
+    <div class="nc-main">
+      <div class="nc-name-block">
+        <div class="nc-name">${d.n}</div>
+        <div class="nc-hanja">${best.h}</div>
+      </div>
+      <div class="nc-info">
+        <div class="nc-poem">${best.poem}</div>
+        <div class="nc-suri">${pipsHtml}${suriLabel}</div>
+        ${soundHtml}
+      </div>
+    </div>
+    ${detailHtml}
+  </div>`;
+}
+
+function toggleCard(el){
+  el.classList.toggle('open');
+}
+
+function showNames(){
+  const filtered=NAMES_DB.filter(d=>d.g===ST.gender);
+  const ss=ST.sung?.stroke;
+
+  // 수리 점수로 정렬
+  const scored=filtered.map(d=>{
+    const best=getBestCand(d);
+    const sc=suriScore(best.res);
+    const pickBonus=d.pick?1:0;
+    return{...d,best,sc,total:sc*2+pickBonus};
+  }).sort((a,b)=>b.total-a.total);
+
+  // 환영 문구
+  const child=ST.gender==='남'?'아들':'딸';
+  const sname=ST.sung.name;
+  const childPron=ST.gender==='남'?'그 아이':'그 아이';
+
+  document.getElementById('resultWelcome').innerHTML=
+    `<span>${sname}씨</span> 집안에<br>소중한 ${child}이 왔군요`;
+  document.getElementById('resultSub').textContent=
+    ss
+      ?`${sname}씨 성씨에 맞게 수리를 계산했습니다. 이름을 탭하면 자세한 내용을 볼 수 있어요.`
+      :`이름들을 불러봤어요. 이름을 탭하면 뜻을 더 자세히 볼 수 있습니다.`;
+
+  const list=document.getElementById('namesList');
+  list.innerHTML=scored.map((d,i)=>renderCard(d,false,(i*0.05).toFixed(2))).join('');
+
+  document.getElementById('resultWrap').style.display='block';
+  document.getElementById('step2').style.display='block';
+  document.getElementById('ctaWrap').style.display='block';
+
+  // CTA
+  document.getElementById('ctaH').innerHTML=
+    `${sname}씨 ${child}에게<br><em>딱 맞는 이름</em>을 지어드립니다`;
+  document.getElementById('ctaP').innerHTML=
+    `위 이름들은 소리와 획수가 좋은 이름들이에요.<br>
+     아이의 생년월일까지 보면, 이 중에서<br>
+     진짜 이 아이에게 가장 잘 어울리는 이름을<br>
+     더 정확하게 골라드릴 수 있습니다.`;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   생년월일 분석
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+const SEASON={1:'水',2:'水',3:'木',4:'木',5:'木',6:'火',
+  7:'火',8:'火',9:'金',10:'金',11:'金',12:'水'};
+const OH_INFO={
+  '水':{name:'물', strong:'차분하고 지혜로운', need:'따뜻하고 활기찬', needOh:['木','火']},
+  '木':{name:'나무', strong:'성장하고 뻗어나가는', need:'밝고 안정적인', needOh:['火','土']},
+  '火':{name:'불', strong:'밝고 열정적인', need:'안정적이고 맑은', needOh:['土','金']},
+  '土':{name:'흙', strong:'든든하고 중심 있는', need:'빛나고 유연한', needOh:['金','水']},
+  '金':{name:'금', strong:'맑고 단단한', need:'부드럽고 생명력 있는', needOh:['水','木']},
+};
+
+function analyzeChild(){
+  const y=parseInt(document.getElementById('bdY').value);
+  const m=parseInt(document.getElementById('bdM').value);
+  const d=parseInt(document.getElementById('bdD').value);
+  if(!y||!m||!d){alert('태어난 해·월·일을 입력해 주세요');return}
+
+  const btn=document.getElementById('analyzeBtn');
+  btn.disabled=true;
+  btn.innerHTML='<span class="dots"><span></span><span></span><span></span></span> 분석 중';
+
+  setTimeout(()=>{
+    const base=SEASON[m]||'土';
+    const info=OH_INFO[base];
+    const child=ST.gender==='남'?'아들':'딸';
+    const sname=ST.sung?.name||'';
+
+    document.getElementById('kigunMain').innerHTML=
+      `<strong>${sname}씨 ${child}</strong>은 <strong>${info.strong}</strong> 기운을 타고났어요.<br>
+       이름에 <strong>${info.need}</strong> 기운이 담기면,<br>
+       아이가 더 균형 있고 단단하게 자랄 수 있습니다.`;
+
+    document.getElementById('kigunTags').innerHTML=
+      `<span class="ktag strong">타고난 기운</span>
+       <span class="ktag need">이름으로 채울 기운 · ${info.needOh.join('·')}</span>`;
+
+    // 맞춤 이름
+    showBest(info.needOh);
+
+    document.getElementById('kigunWrap').style.display='block';
+    document.getElementById('bestWrap').style.display='block';
+
+    // CTA 업데이트
+    document.getElementById('ctaH').innerHTML=
+      `${sname}씨 ${child}에게<br><em>딱 맞는 이름</em>이 나왔어요`;
+    document.getElementById('ctaP').innerHTML=
+      `아이의 기운을 분석했어요.<br>
+       사주를 정밀하게 보면 이름에 담을 기운을<br>
+       더 정확히 알 수 있어요. 지아세는<br>
+       이 분석 위에서 이름을 짓습니다.`;
+
+    btn.disabled=false;btn.textContent='분석 완료 ✓';
+    document.getElementById('bestWrap').scrollIntoView({behavior:'smooth',block:'start'});
+  },1500);
+}
+
+function showBest(needOhs){
+  const child=ST.gender==='남'?'아들':'딸';
+  const sname=ST.sung?.name||'';
+  const ss=ST.sung?.stroke;
+
+  document.getElementById('bestTitle').textContent=`${sname}씨 ${child}에게 특히 어울리는 이름`;
+  document.getElementById('bestSub').textContent=
+    '아이의 기운을 채워주는 소리를 담은 이름들이에요.';
+
+  const filtered=NAMES_DB.filter(d=>d.g===ST.gender);
+  const scored=filtered.map(d=>{
+    const firstOh=soundOh(d.n[0]);
+    const ohMatch=needOhs.includes(firstOh)?3:1;
+    const best=getBestCand(d);
+    const sc=suriScore(best.res);
+    return{...d,best,total:ohMatch*2+sc};
+  }).sort((a,b)=>b.total-a.total).slice(0,5);
+
+  document.getElementById('bestList').innerHTML=
+    scored.map((d,i)=>renderCard(d,true,(i*0.07).toFixed(2))).join('');
+}
+
+function openKakao(){
+  window.open('http://pf.kakao.com/_xnZAxfX', '_blank');
+}
+</script>
+</body>
+</html>

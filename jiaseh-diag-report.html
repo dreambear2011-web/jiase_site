@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>운명 설계도 · 지아세 知我世</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;700;900&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1a1410;
+  --paper:#fff8f0;
+  --paper-card:#fffcf7;
+  --accent:#c96a1a;
+  --accent-lt:#e8954a;
+  --accent-bg:rgba(201,106,26,.09);
+  --accent-line:rgba(201,106,26,.22);
+  --gold:#9a7b3f;
+  --gold-lt:#c4a661;
+  --teal:#2a7a6b;
+  --line:#ead8c8;
+  --mid:#7a6858;
+  --shadow:rgba(0,0,0,.06);
+  --maxw:700px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Sans KR',sans-serif;background:var(--paper);color:var(--ink);line-height:1.75;min-height:100vh;background-image:radial-gradient(ellipse at 85% 5%,rgba(201,106,26,.06) 0%,transparent 50%),radial-gradient(ellipse at 15% 95%,rgba(42,122,107,.04) 0%,transparent 50%)}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 18px 100px}
+.topbar{display:flex;align-items:center;justify-content:center;gap:7px;padding:13px 0 10px;border-bottom:1px solid var(--line);font-size:11px;letter-spacing:.4em;color:var(--accent);font-weight:700}
+.topbar-logo{width:20px;height:20px;border-radius:5px;flex-shrink:0}
+b{color:var(--gold);font-weight:800}
+
+/* ── 히어로 ── */
+header{text-align:center;padding:44px 0 8px}
+.tier-tag{display:inline-block;background:var(--accent-bg);border:1px solid var(--accent-line);border-radius:100px;font-size:11px;font-weight:700;color:var(--accent);letter-spacing:.18em;padding:4px 14px;margin-bottom:18px}
+.hero-emoji{font-size:38px;display:block;margin-bottom:10px;line-height:1}
+.hero-title{font-family:'Noto Serif KR',serif;font-size:28px;font-weight:900;letter-spacing:.01em;line-height:1.3}
+.hero-title em{color:var(--accent);font-style:normal}
+.hero-sub{font-size:13.5px;color:var(--mid);margin-top:12px;line-height:1.8}
+.rule{height:1px;background:linear-gradient(90deg,transparent,var(--line),transparent);margin:24px 0}
+
+/* ── 버튼 ── */
+.btn-main{display:block;width:100%;max-width:320px;margin:0 auto;background:var(--accent);color:#fff;text-align:center;padding:15px 0;border-radius:100px;font-size:15px;font-weight:700;letter-spacing:.04em;text-decoration:none;box-shadow:0 4px 18px rgba(201,106,26,.28);transition:transform .15s}
+.btn-main:active{transform:scale(.97)}
+.btn-ghost{display:block;width:100%;max-width:320px;margin:10px auto 0;border:1.5px solid var(--accent);color:var(--accent);text-align:center;padding:13px 0;border-radius:100px;font-size:14px;font-weight:700;text-decoration:none}
+
+/* ── 공통 ── */
+section{margin-top:20px}
+.card{background:var(--paper-card);border:1px solid var(--line);border-radius:12px;padding:22px 20px;box-shadow:0 1px 6px var(--shadow)}
+.eyebrow{font-size:10.5px;letter-spacing:.22em;color:var(--accent);font-weight:700;margin-bottom:6px}
+.sec-title{font-family:'Noto Serif KR',serif;font-size:19px;font-weight:900;letter-spacing:.01em;margin-bottom:12px}
+.sec-lead{font-size:13.5px;color:#555;line-height:1.8;margin-bottom:14px}
+.body-text{font-size:13.5px;color:#3a2e20;line-height:1.85}
+
+/* ── AI 리포트 vs 설계도 차이 ── */
+.diff-row{display:flex;gap:10px;margin-top:4px}
+.diff-col{flex:1;border-radius:10px;padding:14px}
+.diff-col.col-a{background:#f5f0e8;border:1px solid var(--line)}
+.diff-col.col-b{background:var(--accent-bg);border:1px solid var(--accent-line)}
+.dc-label{font-size:9.5px;letter-spacing:.18em;font-weight:700;margin-bottom:6px}
+.col-a .dc-label{color:var(--mid)}
+.col-b .dc-label{color:var(--accent)}
+.dc-text{font-size:12.5px;line-height:1.7;color:#3a2e20}
+
+/* ── 공감 ── */
+.concern-list{display:flex;flex-direction:column;gap:9px}
+.concern-item{display:flex;align-items:flex-start;gap:10px;background:var(--accent-bg);border:1px solid var(--accent-line);border-radius:10px;padding:12px 14px;font-size:13.5px;color:#2e1e0a;line-height:1.6}
+.concern-item .ic{flex:0 0 20px;font-size:16px;padding-top:1px}
+
+/* ── 목차 ── */
+.part-list{display:flex;flex-direction:column;gap:9px}
+.part-item{display:flex;gap:14px;align-items:flex-start;border-radius:10px;padding:13px 15px;border:1px solid var(--line);background:var(--paper-card)}
+.part-item.star{background:var(--accent-bg);border-color:var(--accent-line)}
+.part-num{flex:0 0 auto;font-size:10px;letter-spacing:.12em;font-weight:700;color:var(--mid);padding-top:3px;min-width:52px}
+.part-item.star .part-num{color:var(--accent)}
+.part-title{font-size:14px;font-weight:700;margin-bottom:3px}
+.part-item.star .part-title{color:var(--accent)}
+.part-desc{font-size:12.5px;color:var(--mid);line-height:1.65}
+
+/* ── 포함 항목 ── */
+.check-list{display:flex;flex-direction:column;gap:8px}
+.check-item{display:flex;align-items:flex-start;gap:10px;font-size:13.5px;line-height:1.65}
+.ck{flex:0 0 20px;color:var(--teal);font-size:15px;font-weight:700;padding-top:2px}
+
+/* ── 타임라인 ── */
+.timeline{display:flex;flex-direction:column;position:relative;padding-left:22px}
+.timeline::before{content:'';position:absolute;left:7px;top:8px;bottom:8px;width:1.5px;background:linear-gradient(180deg,var(--accent),var(--teal))}
+.tl-item{position:relative;padding:0 0 18px 18px}
+.tl-item:last-child{padding-bottom:0}
+.tl-dot{position:absolute;left:-22px;top:4px;width:14px;height:14px;border-radius:50%;background:var(--paper);border:2.5px solid var(--accent)}
+.tl-step{font-size:10.5px;letter-spacing:.18em;color:var(--accent);font-weight:700;margin-bottom:2px}
+.tl-desc{font-size:13.5px;line-height:1.65}
+
+/* ── 골든크로스 업셀 ── */
+.gc-banner{background:linear-gradient(135deg,#1a1410 0%,#2e1e08 100%);border-radius:12px;padding:22px 20px;color:#f7f2e8;margin-top:10px}
+.gc-tag{font-size:9px;letter-spacing:.28em;color:var(--gold-lt);font-weight:700;margin-bottom:10px}
+.gc-title{font-family:'Noto Serif KR',serif;font-size:17px;font-weight:900;line-height:1.4;margin-bottom:10px}
+.gc-desc{font-size:12.5px;color:rgba(247,242,232,.65);line-height:1.75;margin-bottom:14px}
+.gc-desc b{color:var(--gold-lt);font-weight:700}
+.gc-pricing{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
+.gc-row{display:flex;justify-content:space-between;align-items:center;padding:9px 13px;border-radius:8px;font-size:12.5px}
+.gc-row.base{background:rgba(154,123,63,.12);border:1px solid rgba(154,123,63,.2);color:rgba(247,242,232,.7)}
+.gc-row.highlight{background:rgba(154,123,63,.22);border:1px solid rgba(154,123,63,.35);color:#f7f2e8}
+.gc-row .gc-val{font-family:'Noto Serif KR',serif;font-weight:900;color:var(--gold-lt)}
+.gc-row.highlight .gc-val{font-size:17px}
+.gc-note{font-size:10.5px;color:rgba(154,123,63,.7);background:rgba(154,123,63,.15);border-radius:100px;padding:2px 10px;font-weight:700;display:inline-block;margin-bottom:14px}
+.gc-cta{display:inline-block;background:var(--gold);color:#f7f2e8;border-radius:100px;padding:10px 22px;font-size:13px;font-weight:700;text-decoration:none;letter-spacing:.04em}
+
+/* ── FAQ ── */
+.faq-list{display:flex;flex-direction:column;gap:10px}
+.faq-item{border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.faq-q{padding:13px 16px;font-size:13.5px;font-weight:700;background:var(--paper-card);cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.faq-q .arrow{color:var(--accent);font-size:14px;transition:transform .2s;flex:0 0 auto}
+.faq-a{padding:0 16px;font-size:13px;color:#555;line-height:1.75;max-height:0;overflow:hidden;transition:max-height .3s,padding .3s}
+.faq-item.open .faq-a{max-height:200px;padding:12px 16px 14px}
+.faq-item.open .arrow{transform:rotate(180deg)}
+
+/* ── 하단 고정 CTA ── */
+.cta-fixed{position:fixed;bottom:0;left:0;right:0;background:rgba(255,248,240,.96);backdrop-filter:blur(8px);border-top:1px solid var(--line);padding:12px 18px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;z-index:100}
+.cf-label{font-size:10px;color:var(--mid);margin-bottom:2px}
+.cf-price{font-family:'Noto Serif KR',serif;font-size:20px;font-weight:900;color:var(--accent)}
+.cf-btn{flex:0 0 auto;background:var(--accent);color:#fff;border:none;border-radius:100px;padding:12px 24px;font-size:14px;font-weight:700;cursor:pointer;white-space:nowrap;box-shadow:0 3px 14px rgba(201,106,26,.3);text-decoration:none}
+@media(max-width:400px){.hero-title{font-size:24px}}
+.oheng-divider{display:flex;justify-content:center;gap:6px;margin-top:14px}
+.oheng-divider span{width:7px;height:7px;border-radius:50%;display:inline-block}
+.oheng-divider span:nth-child(1){background:#3a8a4a}
+.oheng-divider span:nth-child(2){background:#c0392b}
+.oheng-divider span:nth-child(3){background:#9a7b3f}
+.oheng-divider span:nth-child(4){background:#7d8388}
+.oheng-divider span:nth-child(5){background:#2c3e6b}
+</style>
+</head>
+<body>
+<div class="topbar"><img src="./jiaseh_symbol_traced2_dark.png" class="topbar-logo" alt="지아세">知我世 · 지아세</div>
+<div class="wrap">
+
+<!-- ── 히어로 ── -->
+<header>
+  <div class="tier-tag">TIER 1 · 정밀 진단</div>
+  <span class="hero-emoji">🏗️</span>
+  <h1 class="hero-title">
+    왜 이런 구조인지,<br>언제 흐름이 바뀌는지<br><em>논증으로 풀어드려요</em>
+  </h1>
+  <p class="hero-sub">
+    결론이 아닌 이유까지 — 명리 원국 전체 분석<br>
+    술사 직접 검수 · A4 15~25쪽
+  </p>
+  <div class="oheng-divider"><span></span><span></span><span></span><span></span><span></span></div>
+</header>
+
+<div class="rule"></div>
+
+<!-- ── AI 리포트 vs 설계도 ── -->
+<section>
+  <div class="card">
+    <div class="eyebrow">AI 리포트(4,900)와 뭐가 달라요?</div>
+    <h2 class="sec-title">결론이냐, 논증이냐</h2>
+    <div class="diff-row">
+      <div class="diff-col col-a">
+        <div class="dc-label">AI 리포트</div>
+        <div class="dc-text">결론만<br>"이런 사람이에요"</div>
+      </div>
+      <div class="diff-col col-b">
+        <div class="dc-label">운명 설계도 ★</div>
+        <div class="dc-text">왜 그런지 논증<br>"이래서 이런 거예요"</div>
+      </div>
+    </div>
+    <p style="font-size:12px;color:var(--mid);margin-top:12px;line-height:1.7">
+      같은 내용을 깊이만 다르게 풀어드려요.<br>AI 리포트를 받으셨다면 그 결론의 근거가 여기서 나옵니다.
+    </p>
+  </div>
+</section>
+
+<!-- ── 공감 ── -->
+<section>
+  <div class="card">
+    <div class="eyebrow">이런 분께 딱입니다</div>
+    <h2 class="sec-title">"왜"가 궁금한 분</h2>
+    <div class="concern-list">
+      <div class="concern-item"><span class="ic">🔍</span><span>사주 결과가 맞긴 한데, 왜 그런지 이해하고 싶어요</span></div>
+      <div class="concern-item"><span class="ic">📈</span><span>황금기가 언제인지, 지금 어떤 시기인지 정확히 알고 싶어요</span></div>
+      <div class="concern-item"><span class="ic">💊</span><span>처방(아로마·약차·방위)까지 제대로 받아보고 싶어요</span></div>
+      <div class="concern-item"><span class="ic">🧭</span><span>인생 전체 지도를 한번 제대로 그려보고 싶어요</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 목차 ── -->
+<section>
+  <div class="card">
+    <div class="eyebrow">보고서 구성 · A4 15~25쪽</div>
+    <h2 class="sec-title">이 순서로 풀어드려요</h2>
+    <div class="part-list">
+      <div class="part-item">
+        <div class="part-num">PART 0</div>
+        <div><div class="part-title">래정 · 도입</div><div class="part-desc">오늘 당신의 에너지 — 첫 페이지에서 "맞다"를 경험하도록</div></div>
+      </div>
+      <div class="part-item star">
+        <div class="part-num">PART 1</div>
+        <div><div class="part-title">命 — 원국 전체 분석</div><div class="part-desc">명식 도표 · 오행 분포 · 합충변화 · 격국 확정 · 용신·희신·기신·구신 · 통변 9론(상모·성정·육친·지위·성패·천직·수요·인연)</div></div>
+      </div>
+      <div class="part-item star">
+        <div class="part-num">PART 2</div>
+        <div><div class="part-title">運 — 대운·세운·월운</div><div class="part-desc">전체 대운표 · 황금기·주의구간 · 과거 복기 · 현재 대운 집중 · 세운 분석 · 월운 12개월</div></div>
+      </div>
+      <div class="part-item">
+        <div class="part-num">PART 3</div>
+        <div><div class="part-title">테마별 심층</div><div class="part-desc">직업·커리어 / 재물·투자 / 관계·결혼 / 건강</div></div>
+      </div>
+      <div class="part-item">
+        <div class="part-num">PART 4</div>
+        <div><div class="part-title">처방 & 종합전략</div><div class="part-desc">아로마 블렌딩(정규 3종) · 약차 · 색채·방위 · 성명학 · 향후 5년 로드맵 · 개운 전략 TOP 5</div></div>
+      </div>
+      <div class="part-item" style="background:rgba(201,106,26,.04);border-left:3px solid var(--accent);padding-left:14px;margin-left:-2px">
+        <div class="part-num" style="color:var(--accent)">PART 5</div>
+        <div><div class="part-title">당신의 질문 — 집중 답변</div><div class="part-desc">신청 시 보내주신 질문 1~2가지. 원국·대운 분석이 끝난 후 그 방향으로 조준해 — 육효·육임을 교차하여 맞춤으로 풀어드립니다.</div></div>
+      </div>
+      <div class="part-item">
+        <div class="part-num">PART 6</div>
+        <div><div class="part-title">종합 소견 · 치유 메시지</div><div class="part-desc">보고서 전체를 관통하는 한 문장 · 개운 전략 · 치유 각인 문단</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 포함 항목 ── -->
+<section>
+  <div class="card">
+    <div class="eyebrow">AI 리포트에는 없는 것들</div>
+    <h2 class="sec-title">설계도에만 있어요</h2>
+    <div class="check-list">
+      <div class="check-item"><span class="ck">✓</span><span><b>격국·용신 논증</b> — 왜 이런 구조인지 수치와 메커니즘으로</span></div>
+      <div class="check-item"><span class="ck">✓</span><span><b>황금기 연도 특정</b> — 언제 움직여야 하는지</span></div>
+      <div class="check-item"><span class="ck">✓</span><span><b>월운 12개월</b> — 이달·다음 달 흐름까지</span></div>
+      <div class="check-item"><span class="ck">✓</span><span><b>아로마·약차 처방 정규 3종 병행</b> — 희신 보법 + 기신·구신 사법</span></div>
+      <div class="check-item"><span class="ck">✓</span><span><b>술사 직접 검수</b> — 모든 분석에 술사가 확인</span></div>
+      <div class="check-item"><span class="ck">✓</span><span><b>A4 15~25쪽</b> — AI 리포트(3~5쪽)의 5배 분량</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 진행 ── -->
+<section>
+  <div class="card">
+    <div class="eyebrow">이렇게 진행돼요</div>
+    <h2 class="sec-title">주문부터 수령까지</h2>
+    <div class="timeline">
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-step">STEP 1</div><div class="tl-desc">카카오로 <b>생년월일시 + 성별 + 가장 궁금한 것 1~2가지</b>를 보내주세요 — 해당 부분을 보고서에서 집중적으로 풀어드립니다</div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-step">STEP 2</div><div class="tl-desc">결제 후 분석 시작 — 술사 직접 작성·검수</div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-step">STEP 3</div><div class="tl-desc"><b>결제 후 3~5일</b> 내 온라인 문서 납품</div></div>
+      <div class="tl-item"><div class="tl-dot" style="border-color:var(--teal);background:var(--teal)"></div><div class="tl-step" style="color:var(--teal)">완료 ✓</div><div class="tl-desc">납품 후 질문 1회 포함</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 골든크로스 업셀 ── -->
+<section>
+  <div class="gc-banner">
+    <div class="gc-tag">설계도를 받으셨다면</div>
+    <div class="gc-title">체감까지 보고 싶다면<br>골든크로스</div>
+    <div class="gc-desc">
+      설계도는 <b>객관 결과</b>를 논증해요.<br>
+      골든크로스는 자미두수 체감 회로를 교차해<br>
+      "결과는 좋은데 왜 만족이 안 되는지"까지 풀어드려요.
+    </div>
+    <div class="gc-pricing">
+      <div class="gc-row base">
+        <span>골든크로스 정가</span>
+        <span class="gc-val">100,000원</span>
+      </div>
+      <div class="gc-row highlight">
+        <span>설계도 보유 시</span>
+        <span class="gc-val">50,000원</span>
+      </div>
+    </div>
+    <div class="gc-note">설계도 50,000원 차감 · 문의 시 이력 확인</div>
+    <a href="http://pf.kakao.com/_xnZAxfX" class="gc-cta">골든크로스 알아보기 →</a>
+  </div>
+</section>
+
+<!-- ── FAQ ── -->
+<section>
+  <div class="card">
+    <div class="eyebrow">자주 묻는 질문</div>
+    <h2 class="sec-title">궁금한 점</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q">AI 리포트를 이미 받았는데 중복되나요? <span class="arrow">▾</span></div>
+        <div class="faq-a">내용은 같지만 깊이가 달라요. AI 리포트가 결론이라면 설계도는 그 결론의 논증이에요. AI 리포트 4,900원은 설계도 결제 시 차감해 드려요.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">태어난 시간을 모르면 어떻게 하나요? <span class="arrow">▾</span></div>
+        <div class="faq-a">시간 없이도 분석 가능해요. 시주 불명 시 후보 시주별로 격국이 달라질 수 있는 구간을 함께 설명해 드려요.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">어떤 형태로 납품되나요? <span class="arrow">▾</span></div>
+        <div class="faq-a">온라인 문서(Notion 또는 PDF) 형태로 납품됩니다. A4 기준 15~25쪽 분량이에요.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">환불이 되나요? <span class="arrow">▾</span></div>
+        <div class="faq-a">작성 시작 전이면 전액 환불 가능합니다. 작성 완료 후에는 디지털 콘텐츠 특성상 어려워요.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 본문 CTA ── -->
+<section style="text-align:center;padding:28px 0 0">
+  <a href="http://pf.kakao.com/_xnZAxfX" class="btn-main">카카오로 신청하기 →</a>
+  <a href="http://pf.kakao.com/_xnZAxfX" class="btn-ghost">문의 먼저 해볼게요</a>
+  <p style="font-size:11px;color:var(--mid);margin-top:14px;line-height:1.7">
+    생년월일시 + 성별 + 주요 고민 보내주세요<br>결제는 안내 후 진행됩니다
+  </p>
+</section>
+
+</div>
+
+<!-- ── 하단 고정 CTA ── -->
+<div class="cta-fixed">
+  <div>
+    <div class="cf-label">운명 설계도 · 술사 검수 · 3~5일</div>
+    <div class="cf-price">50,000원</div>
+  </div>
+  <a href="http://pf.kakao.com/_xnZAxfX" class="cf-btn">지금 신청하기</a>
+</div>
+
+<script>
+document.querySelectorAll('.faq-q').forEach(q=>{
+  q.addEventListener('click',()=>{
+    const item=q.closest('.faq-item');
+    const wasOpen=item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+    if(!wasOpen) item.classList.add('open');
+  });
+});
+</script>
+</body>
+</html>

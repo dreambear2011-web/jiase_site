@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>결정에너지 · 지아세 知我世</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;700;900&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1a1410;
+  --paper:#f4f0fa;
+  --paper-card:#fdfbff;
+  --accent:#6b3fa0;
+  --accent-lt:#9b72d4;
+  --accent-bg:rgba(107,63,160,.08);
+  --accent-line:rgba(107,63,160,.2);
+  --jade:#3a5a44;
+  --red:#8b2e22;
+  --gold:#9a7b3f;
+  --gold-lt:#c4a661;
+  --gold-bg:rgba(196,166,97,.09);
+  --line:#ddd4ee;
+  --mid:#7a6e8a;
+  --shadow:rgba(0,0,0,.06);
+  --blur-veil:rgba(244,240,250,.65);
+  --maxw:720px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Noto Serif KR',serif;
+  background:var(--paper);
+  color:var(--ink);
+  line-height:1.75;
+  min-height:100vh;
+  background-image:
+    radial-gradient(ellipse at 80% 0%,rgba(107,63,160,.07) 0%,transparent 50%),
+    radial-gradient(ellipse at 15% 100%,rgba(58,90,68,.05) 0%,transparent 50%);
+}
+b{color:var(--gold);font-weight:800}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 18px 120px}
+.topbar{display:flex;align-items:center;justify-content:center;gap:7px;padding:13px 0 10px;border-bottom:1px solid var(--line);font-size:11px;letter-spacing:.4em;color:var(--accent);font-weight:700;font-family:'Noto Sans KR',sans-serif}
+.topbar-logo{width:20px;height:20px;border-radius:5px;flex-shrink:0}
+
+/* ── 히어로 ── */
+header{text-align:center;padding:44px 0 8px}
+.tier-tag{display:inline-block;background:var(--accent-bg);border:1px solid var(--accent-line);border-radius:100px;font-size:11px;font-weight:700;color:var(--accent);letter-spacing:.18em;padding:4px 14px;margin-bottom:18px;font-family:'Noto Sans KR',sans-serif}
+.hero-title{font-size:30px;font-weight:900;letter-spacing:.02em;line-height:1.25;color:var(--ink)}
+.hero-hanja{font-size:13px;color:var(--accent);letter-spacing:.15em;margin-top:6px;font-weight:700}
+.rule{height:1px;background:linear-gradient(90deg,transparent,var(--accent-line),transparent);margin:20px 0}
+.hero-sub{font-size:13.5px;color:var(--mid);line-height:1.85}
+
+/* ── 섹션 공통 ── */
+section{margin-top:18px;scroll-margin-top:20px}
+.card{background:var(--paper-card);border:1px solid var(--line);border-radius:6px;padding:24px 22px;box-shadow:0 1px 6px var(--shadow)}
+.eyebrow{font-size:10.5px;letter-spacing:.25em;color:var(--accent);font-weight:700;margin-bottom:6px;font-family:'Noto Sans KR',sans-serif}
+.sec-title{font-size:20px;font-weight:900;letter-spacing:.02em;margin-bottom:14px}
+.sec-lead{font-size:13.5px;color:#6a6055;line-height:1.8;margin-bottom:16px}
+
+/* ── 공감 리스트 ── */
+.pain-list{display:flex;flex-direction:column;gap:10px;margin-top:4px}
+.pain-item{
+  display:flex;align-items:flex-start;gap:11px;
+  background:var(--accent-bg);border:1px solid var(--accent-line);
+  border-radius:4px;padding:12px 14px;
+  font-size:13.5px;color:#3a2e20;line-height:1.65;
+}
+.pain-item .icon{flex:0 0 18px;color:var(--accent);font-size:15px;padding-top:1px}
+
+/* ── 핵심 카피 블록 ── */
+.impact-block{margin:20px 0 4px;padding:20px 0 18px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.impact-pre{font-size:11px;letter-spacing:.25em;color:var(--accent);font-weight:700;margin-bottom:12px;font-family:'Noto Sans KR',sans-serif}
+.impact-headline{font-size:20px;font-weight:900;line-height:1.45;color:var(--ink);margin-bottom:14px}
+.impact-headline em{font-style:normal;color:var(--accent)}
+.impact-list{display:flex;flex-direction:column;gap:7px;margin-bottom:16px}
+.impact-item{display:flex;align-items:baseline;gap:9px;font-size:13.5px;color:#3a2e20;line-height:1.6}
+.impact-item::before{content:"✦";color:var(--accent);font-size:10px;flex:0 0 12px;padding-top:2px}
+.impact-close{font-size:13px;color:#6a6055;line-height:1.75;padding-top:12px;border-top:1px dotted var(--line)}
+
+/* ── 교착 유형 카드 ── */
+.type-grid{display:flex;flex-direction:column;gap:10px;margin-top:6px}
+.type-item{
+  display:grid;grid-template-columns:100px 1fr;gap:0;
+  border-bottom:1px dotted var(--line);padding:13px 0;
+}
+.type-item:first-child{border-top:1px dotted var(--line)}
+.type-label{font-size:12px;font-weight:900;color:var(--accent);letter-spacing:.04em;line-height:1.5;padding-top:1px;font-family:'Noto Sans KR',sans-serif;padding-right:10px}
+.type-desc{font-size:13.5px;color:#3a2e20;line-height:1.65}
+.type-desc b{color:var(--ink);font-weight:700}
+
+/* ── 흐름 카드 ── */
+.flow-wrap{display:flex;flex-direction:column;gap:0;margin-top:6px}
+.flow-item{display:flex;align-items:flex-start;gap:14px;padding:14px 0;border-bottom:1px solid var(--line)}
+.flow-item:last-child{border-bottom:none}
+.flow-num{flex:0 0 28px;height:28px;border-radius:50%;background:var(--accent);color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:2px;font-family:'Noto Sans KR',sans-serif;flex-shrink:0}
+.flow-body{flex:1}
+.flow-title{font-size:14px;font-weight:900;color:var(--ink);margin-bottom:3px}
+.flow-desc{font-size:13px;color:#6a6055;line-height:1.7}
+
+/* ── 샘플 블록 ── */
+.sample-wrap{margin-top:6px}
+.sample-label{font-size:10.5px;letter-spacing:.2em;color:var(--accent);font-weight:700;margin-bottom:10px;font-family:'Noto Sans KR',sans-serif}
+.sample-block{background:var(--paper-card);border:1px solid var(--line);border-radius:4px;overflow:hidden;margin-bottom:14px}
+.sample-header{background:var(--accent);color:#fff;font-size:11px;letter-spacing:.15em;font-weight:700;padding:7px 14px;font-family:'Noto Sans KR',sans-serif}
+.sample-text{padding:14px 16px;font-size:13px;color:#3a2e20;line-height:1.85}
+.sample-text b{color:var(--ink);font-weight:700}
+.sample-text .hl{color:var(--accent);font-weight:700}
+
+/* ── 미리보기 신호 배지 (정성적 진단용 — 지아세 공통) ── */
+.signal-row{display:flex;gap:8px;margin:2px 0 14px;flex-wrap:wrap}
+.signal-badge{display:inline-flex;align-items:center;gap:6px;padding:7px 13px;border-radius:20px;font-size:12px;font-weight:700;font-family:'Noto Sans KR',sans-serif;border:1px solid;white-space:nowrap}
+.signal-badge .dot{width:6px;height:6px;border-radius:50%;background:currentColor;flex:0 0 auto}
+.signal-badge.type-good{background:rgba(58,90,68,.08);color:var(--jade);border-color:rgba(58,90,68,.28)}
+.signal-badge.type-caution{background:rgba(139,46,34,.08);color:var(--red);border-color:rgba(139,46,34,.25)}
+.signal-badge.type-neutral{background:var(--accent-bg);color:var(--accent);border-color:var(--accent-line)}
+
+
+/* ── 블러 게이트 ── */
+.blur-gate{position:relative;overflow:hidden;border-radius:0 0 4px 4px}
+.blur-gate .blurred{filter:blur(5px);user-select:none;pointer-events:none;font-size:13px;color:#3a2e20;line-height:1.8;padding:14px 16px}
+.blur-gate::after{content:"";position:absolute;inset:0;background:linear-gradient(var(--blur-veil),var(--blur-veil))}
+.blur-gate .lock{position:absolute;inset:0;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px}
+.lock-icon{font-size:20px;color:var(--accent)}
+.lock-text{font-size:11.5px;color:var(--accent);letter-spacing:.08em;font-weight:700;text-align:center}
+
+/* ── 종결 인용 블록 ── */
+.closing-quote{
+  background:linear-gradient(135deg,rgba(107,63,160,.06),rgba(107,63,160,.02));
+  border-left:3px solid var(--accent);
+  border-radius:0 4px 4px 0;
+  padding:18px 20px;
+  margin-top:16px;
+}
+.cq-text{font-size:14px;color:#3a2e20;line-height:1.9;font-style:italic}
+.cq-text b{color:var(--ink);font-style:normal;font-weight:900}
+
+/* ── 스펙 그리드 ── */
+.spec-list{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:4px}
+.spec-item{background:var(--accent-bg);border:1px solid var(--accent-line);border-radius:4px;padding:12px 14px}
+.spec-key{font-size:10.5px;color:var(--mid);letter-spacing:.1em;font-weight:700;margin-bottom:4px;font-family:'Noto Sans KR',sans-serif}
+.spec-val{font-size:14px;font-weight:900;color:var(--ink)}
+
+/* ── 타임라인 ── */
+.timeline{display:flex;flex-direction:column;gap:0;margin-top:6px}
+.tl-item{display:flex;align-items:flex-start;gap:14px;padding:14px 0;border-bottom:1px solid var(--line)}
+.tl-item:last-child{border-bottom:none}
+.tl-dot{flex:0 0 10px;height:10px;border-radius:50%;border:2px solid var(--accent);margin-top:4px}
+.tl-step{flex:0 0 52px;font-size:10.5px;font-weight:700;color:var(--accent);letter-spacing:.08em;padding-top:1px;font-family:'Noto Sans KR',sans-serif}
+.tl-desc{font-size:13.5px;color:#3a2e20;line-height:1.65}
+
+/* ── 비교표 ── */
+.compare-table{width:100%;border-collapse:collapse;margin-top:10px;font-size:12.5px}
+.compare-table th,.compare-table td{border:1px solid var(--line);padding:9px 10px;text-align:center;line-height:1.5}
+.compare-table th{font-weight:700;background:var(--accent-bg);color:var(--ink);font-size:11.5px}
+.compare-table td:first-child{text-align:left;color:var(--mid);font-size:12px}
+.col-single{color:var(--mid)}
+.col-energy{color:var(--accent)}
+.compare-note{font-size:11.5px;color:var(--mid);text-align:center;margin-top:8px}
+
+/* ── 업셀 박스 ── */
+.upsell-box{border:1px dashed var(--accent-line);border-radius:4px;padding:14px 16px;margin-top:14px;font-size:13px;color:#6a6055;line-height:1.7}
+.upsell-box b{color:var(--accent)}
+
+/* ── FAQ ── */
+.faq-list{display:flex;flex-direction:column;gap:0;margin-top:4px}
+.faq-item{border-bottom:1px solid var(--line)}
+.faq-item:last-child{border-bottom:none}
+.faq-q{display:flex;justify-content:space-between;align-items:center;padding:14px 0;font-size:13.5px;font-weight:700;cursor:pointer;color:var(--ink);gap:8px}
+.faq-q .arrow{font-size:14px;color:var(--accent);flex:0 0 auto;transition:.2s}
+.faq-a{display:none;font-size:13px;color:#6a6055;line-height:1.8;padding:0 0 14px}
+.faq-item.open .faq-a{display:block}
+.faq-item.open .arrow{transform:rotate(180deg)}
+
+/* ── 구분선 ── */
+.divider{text-align:center;margin:8px 0;font-size:12px;letter-spacing:.4em;color:var(--accent-line)}
+
+/* ── CTA 하단 고정 ── */
+.cta-fixed{position:fixed;bottom:0;left:0;right:0;background:rgba(244,240,250,.97);backdrop-filter:blur(10px);border-top:1px solid var(--line);padding:12px 18px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;z-index:100}
+.cf-left{display:flex;flex-direction:column;gap:2px}
+.cf-label{font-size:10px;color:var(--mid);letter-spacing:.05em;font-family:'Noto Sans KR',sans-serif}
+.cf-price{font-size:20px;font-weight:900;color:var(--accent);font-family:'Noto Serif KR',serif;line-height:1.2}
+.cf-btn{flex:0 0 auto;background:var(--accent);color:#fff;border:none;border-radius:100px;padding:13px 24px;font-size:14px;font-weight:700;cursor:pointer;white-space:nowrap;text-decoration:none;font-family:'Noto Sans KR',sans-serif;box-shadow:0 3px 14px rgba(107,63,160,.3);transition:.15s}
+.cf-btn:active{transform:scale(.97)}
+
+/* ── 푸터 ── */
+.foot{font-size:10.5px;color:#a89878;text-align:center;margin-top:36px;line-height:2}
+
+/* ── 반응형 ── */
+@media(max-width:560px){
+  .hero-title{font-size:26px}
+  .type-item{grid-template-columns:90px 1fr}
+  .spec-list{grid-template-columns:1fr 1fr}
+}
+.oheng-divider{display:flex;justify-content:center;gap:6px;margin-top:14px}
+.oheng-divider span{width:7px;height:7px;border-radius:50%;display:inline-block}
+.oheng-divider span:nth-child(1){background:#3a8a4a}
+.oheng-divider span:nth-child(2){background:#c0392b}
+.oheng-divider span:nth-child(3){background:#9a7b3f}
+.oheng-divider span:nth-child(4){background:#7d8388}
+.oheng-divider span:nth-child(5){background:#2c3e6b}
+</style>
+</head>
+<body>
+
+<div class="topbar"><img src="./jiaseh_symbol_traced2_dark.png" class="topbar-logo" alt="지아세">知我世 · 지아세</div>
+
+<div class="wrap">
+
+<!-- ══ 히어로 ══ -->
+<header>
+  <div class="tier-tag">TIER 0 · 전환점 진입</div>
+  <span style="font-size:32px;display:block;margin-bottom:8px">🔀</span>
+  <h1 class="hero-title">결정에너지</h1>
+  <div class="hero-hanja">決定Energy · 지금 이 결정의 교착</div>
+  <div class="rule"></div>
+  <p class="hero-sub">
+    알면서도 못 정하고, 정했다가 다시 흔들립니다.<br>
+    그건 의지가 약해서가 아닙니다.<br>
+    <b>지금 이 결정 앞에서 내 에너지가 어떤 상태인지</b>를 먼저 봅니다.
+  </p>
+  <div class="oheng-divider"><span></span><span></span><span></span><span></span><span></span></div>
+</header>
+
+<!-- ══ 이런 분께 ══ -->
+<section>
+  <div class="card">
+    <div class="eyebrow">이런 분께</div>
+    <div class="sec-title">결정 자체가 안 되는 것 같을 때</div>
+    <div class="pain-list">
+      <div class="pain-item">
+        <span class="icon">◆</span>
+        <span>머리로는 알겠는데 몸이 안 움직입니다. 생각만 계속 맴돌아요.</span>
+      </div>
+      <div class="pain-item">
+        <span class="icon">◆</span>
+        <span>A냐 B냐, 둘 다 맞는 것 같기도 하고 둘 다 아닌 것 같기도 해요.</span>
+      </div>
+      <div class="pain-item">
+        <span class="icon">◆</span>
+        <span>결정했다가 또 흔들립니다. 같은 사안 앞에서 계속 이러고 있어요.</span>
+      </div>
+      <div class="pain-item">
+        <span class="icon">◆</span>
+        <span>주변에서 다들 어떻게 그렇게 결정하냐고 해요. 저만 유독 이게 힘들어요.</span>
+      </div>
+    </div>
+
+    <div class="impact-block">
+      <div class="impact-pre">결정에너지가 보여주는 것</div>
+      <div class="impact-headline">
+        왜 이 결정 앞에서만<br>
+        <em>유독 멈춰있는지.</em>
+      </div>
+      <div class="impact-list">
+        <div class="impact-item">지금 내 에너지가 어떤 상태에 있는지</div>
+        <div class="impact-item">교착이 생긴 구조적인 이유</div>
+        <div class="impact-item">A와 B 중 어느 방향이 지금 에너지 흐름과 맞는지</div>
+        <div class="impact-item">이 흐름이 어느 시점에 풀릴 가능성이 있는지</div>
+        <div class="impact-item">지금 당장 해볼 수 있는 에너지 처방</div>
+      </div>
+      <div class="impact-close">
+        결정을 대신 내려드리는 게 아닙니다.<br>
+        <b>왜 이 앞에서 멈춰있는지를 알면, 답은 이미 당신 안에 있습니다.</b>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 교착 유형 ══ -->
+<section>
+  <div class="card">
+    <div class="eyebrow">교착의 종류</div>
+    <div class="sec-title">멈춰있는 데는 이유가 있습니다</div>
+    <p class="sec-lead">결정이 안 되는 이유는 사람마다 다릅니다.<br>에너지 구조에 따라 교착의 형태도 달라요.</p>
+    <div class="type-grid">
+      <div class="type-item">
+        <div class="type-label">생각이 많은 형</div>
+        <div class="type-desc">머릿속에서는 계속 돌아가는데 실행으로 연결이 안 됩니다. <b>실행 에너지가 소진된 구조</b>가 원인인 경우가 많아요.</div>
+      </div>
+      <div class="type-item">
+        <div class="type-label">두 선택지 팽팽형</div>
+        <div class="type-desc">A도 맞는 것 같고 B도 맞는 것 같습니다. 둘이 거의 같은 무게로 당기는 상태. <b>우선순위가 충돌 중</b>인 구조입니다.</div>
+      </div>
+      <div class="type-item">
+        <div class="type-label">결정 후 흔들리는 형</div>
+        <div class="type-desc">정했다가 다시 돌아옵니다. 반복됩니다. <b>확신을 지지하는 에너지</b>가 부족한 구간에서 자주 나타납니다.</div>
+      </div>
+      <div class="type-item">
+        <div class="type-label">때가 아닌 형</div>
+        <div class="type-desc">막히는 게 내 문제가 아닐 수 있어요. 지금 이 시점의 <b>에너지 자체가 결정을 보류하게</b> 만드는 구조입니다.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 어떤 도구로 보나요 ══ -->
+<section>
+  <div class="card">
+    <div class="eyebrow">어떤 도구로 보나요</div>
+    <div class="sec-title">4가지 관점을 교차합니다</div>
+    <p class="sec-lead">결정이 교착됐을 때 한 가지 도구로만 보면 놓치는 것이 생깁니다.<br>4가지 관점을 겹쳐서 교착의 원인과 방향을 찾습니다.</p>
+    <div class="flow-wrap">
+      <div class="flow-item">
+        <div class="flow-num" style="background:#f4f0fa;color:var(--accent);border:1.5px solid var(--accent-line);font-size:9px;font-weight:900;flex:0 0 32px;height:32px;line-height:1.3">자평<br>명리</div>
+        <div class="flow-body">
+          <div class="flow-title">교착의 구조적 원인</div>
+          <div class="flow-desc">자평명리 — 지금 이 시기 내 에너지 구조를 봅니다. 실행력이 소진된 구간인지, 두 방향이 균형을 이루는 구간인지, 아직 때가 아닌 구간인지 — 교착의 원인을 진단합니다.</div>
+        </div>
+      </div>
+      <div class="flow-item">
+        <div class="flow-num" style="background:#f4f0fa;color:var(--accent);border:1.5px solid var(--accent-line);font-size:10px;font-weight:900;flex:0 0 32px;height:32px">래정</div>
+        <div class="flow-body">
+          <div class="flow-title">지금 이 시점의 기운</div>
+          <div class="flow-desc">래정법 — 오늘·이 시간의 에너지가 결정에 유리한 방향인지 불리한 방향인지 읽습니다. 타이밍 자체가 교착의 원인일 수 있습니다.</div>
+        </div>
+      </div>
+      <div class="flow-item">
+        <div class="flow-num" style="background:#f4f0fa;color:var(--accent);border:1.5px solid var(--accent-line);font-size:10px;font-weight:900;flex:0 0 32px;height:32px">육효</div>
+        <div class="flow-body">
+          <div class="flow-title">A냐 B냐 — 방향 판독</div>
+          <div class="flow-desc">육효 — 두 선택지 중 어느 방향이 지금 에너지 흐름상 열려있는지 판독합니다. 팽팽한 교착에서 방향을 잡는 데 가장 빠른 도구입니다.</div>
+        </div>
+      </div>
+      <div class="flow-item">
+        <div class="flow-num" style="background:#f4f0fa;color:var(--accent);border:1.5px solid var(--accent-line);font-size:10px;font-weight:900;flex:0 0 32px;height:32px">육임</div>
+        <div class="flow-body">
+          <div class="flow-title">풀리는 시점과 결말</div>
+          <div class="flow-desc">육임신과 — 이 교착이 어떤 과정을 거쳐 어떻게 풀릴지, 어느 시점에 결말이 나올 가능성이 높은지 흐름을 봅니다.</div>
+        </div>
+      </div>
+    </div>
+    <p style="font-size:12px;color:var(--mid);margin-top:14px;line-height:1.7;padding:11px 14px;background:var(--accent-bg);border-radius:4px;">
+      ✦ 네 가지가 같은 방향을 가리킬 때 확신을 드립니다. 엇갈릴 때는 어디서 엇갈리는지, 그 이유가 무엇인지까지 함께 짚습니다.
+    </p>
+  </div>
+</section>
+
+<!-- ══ 어떻게 봐드리나요 ══ -->
+<section>
+  <div class="card">
+    <div class="eyebrow">어떻게 봐드리나요</div>
+    <div class="sec-title">교착 → 진단 → 처방</div>
+    <div class="flow-wrap">
+      <div class="flow-item">
+        <div class="flow-num">1</div>
+        <div class="flow-body">
+          <div class="flow-title">지금 이 결정 앞의 기운</div>
+          <div class="flow-desc">오늘 이 시점의 에너지가 결정에 유리한 방향인지, 보류가 현명한 구간인지 먼저 봅니다.</div>
+        </div>
+      </div>
+      <div class="flow-item">
+        <div class="flow-num">2</div>
+        <div class="flow-body">
+          <div class="flow-title">교착이 생긴 이유</div>
+          <div class="flow-desc">내 에너지 구조에서 이 사안이 왜 막히는지 진단합니다. 실행 에너지 소진인지, 두 방향이 팽팽한 것인지, 아직 때가 아닌 것인지.</div>
+        </div>
+      </div>
+      <div class="flow-item">
+        <div class="flow-num">3</div>
+        <div class="flow-body">
+          <div class="flow-title">A냐 B냐 — 방향 확인</div>
+          <div class="flow-desc">두 선택지가 있다면, 지금 에너지 흐름상 어느 방향이 더 자연스럽게 열려있는지 확인합니다.</div>
+        </div>
+      </div>
+      <div class="flow-item">
+        <div class="flow-num">4</div>
+        <div class="flow-body">
+          <div class="flow-title">풀리는 시점 + 처방</div>
+          <div class="flow-desc">이 교착이 언제쯤 풀릴 가능성이 있는지, 지금 당장 할 수 있는 에너지 처방을 드립니다.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 보고서 미리보기 ══ -->
+<section>
+  <div class="card">
+    <div class="eyebrow">실제 이런 내용입니다</div>
+    <div class="sec-title">보고서 발췌</div>
+    <p class="sec-lead">아래는 실제 결정에너지 발췌입니다.</p>
+
+    <div class="sample-wrap">
+      <div class="sample-label">예시 — "이직을 해야 할지 말아야 할지 3달째 못 정하고 있어요"</div>
+      <div class="sample-block">
+        <div class="sample-header">결정에너지 · 교착 진단</div>
+        <div class="sample-text">
+          <div class="signal-row">
+            <span class="signal-badge type-neutral"><span class="dot"></span>교착 유형 · 생각 과다형</span>
+            <span class="signal-badge type-caution"><span class="dot"></span>실행 에너지 · 일시 소진</span>
+          </div>
+          <span class="hl">지금 이 기운 — 생각이 많아지는 구간</span><br>
+          지금 시점은 <b>머릿속이 바빠지고 분석은 늘어나지만</b>, 그것이 실행으로 연결되기 어려운 구조에 있습니다. 이 구간에서 결정을 억지로 내리면 오히려 뒤에서 흔들립니다. 무언가 잘못된 게 아니에요 — 지금은 원래 판단이 느려지도록 설계된 에너지 흐름입니다.<br><br>
+          <span class="hl">교착이 생긴 이유</span><br>
+          현재 에너지 상태에서 실행을 지지하는 기운이 일시적으로 소진되어 있습니다. 이직이라는 사안 자체의 문제가 아니에요. <b>지금 이 흐름 자체가 결정을 보류하게 만드는 구조</b>입니다. 3달 동안 못 정한 것이 의지력 문제가 아닌 이유입니다.
+        </div>
+        <div class="blur-gate">
+          <div class="blurred">
+            방향 확인 — 이직 vs 잔류: 두 선택지의 에너지를 각각 확인했을 때, 이직 방향이 3개월 후부터 자연스럽게 열리는 구조입니다. 지금 바로 움직이는 것보다 2월 이후 타이밍을 잡는 것이 에너지 낭비 없이 결실로 연결됩니다. 처방: 지금 당장은 ○○ 방향의 에너지를 들이면 결단 흐름이 활성화됩니다. 구체적인 처방은 아래에서 이어집니다.
+          </div>
+          <div class="lock">
+            <div class="lock-icon">✦</div>
+            <div class="lock-text">보고서 전문에서 확인됩니다</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 종결 인용 -->
+      <div class="closing-quote">
+        <div class="cq-text">
+          결정하려 애쓰는 것을 잠시 내려두세요.<br>
+          에너지가 정렬될 때, <b>답은 저절로 떠오릅니다.</b><br>
+          이미 알고 있는 당신 안의 답을 — 지금 이 자리에서 확인하세요.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 신청 절차 ══ -->
+<section>
+  <div class="card">
+    <div class="eyebrow">신청 절차</div>
+    <div class="sec-title">이렇게 진행됩니다</div>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-step">STEP 1</div>
+        <div class="tl-desc">카카오 채널로 <b>지금 막힌 결정 내용 + 선택지 A/B + 생년월일시 + 성별</b>을 보내주세요</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-step">STEP 2</div>
+        <div class="tl-desc">결제 완료 후 <b>당일~익일</b> 안에 교착 진단 + 방향 + 처방을 보내드립니다</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot" style="border-color:var(--jade);background:var(--jade)"></div>
+        <div class="tl-step" style="color:var(--jade)">완료 ✓</div>
+        <div class="tl-desc">답변 내용에 대한 추가 질문 1회 가능</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 상품 안내 ══ -->
+<section>
+  <div class="card">
+    <div class="eyebrow">상품 안내</div>
+    <div class="sec-title">무엇을 어떻게 받게 되나요</div>
+    <div class="spec-list">
+      <div class="spec-item">
+        <div class="spec-key">답변 형태</div>
+        <div class="spec-val">카카오 채널</div>
+      </div>
+      <div class="spec-item">
+        <div class="spec-key">납기</div>
+        <div class="spec-val">당일~익일</div>
+      </div>
+      <div class="spec-item">
+        <div class="spec-key">포함 내용</div>
+        <div class="spec-val">교착 진단 + 방향 + 처방</div>
+      </div>
+      <div class="spec-item">
+        <div class="spec-key">술사 직접 답변</div>
+        <div class="spec-val">전량 직접 검수</div>
+      </div>
+    </div>
+
+    <div class="upsell-box" style="margin-top:18px">
+      <b>같은 종류의 결정이 반복된다면 — 운명 설계도 50,000 / 골든크로스 100,000</b><br>
+      결정에너지가 "지금 이 막힘"을 보는 것이라면, 설계도는 내 에너지 구조 자체를 설계합니다. 비슷한 교착이 반복된다면 패턴의 뿌리가 있습니다. 그 뿌리까지 보고 싶다면 설계도 또는 골든크로스로 이어집니다.
+    </div>
+  </div>
+</section>
+
+<!-- ══ 비교표 ══ -->
+<section>
+  <div class="card">
+    <div class="eyebrow">상품 비교</div>
+    <div class="sec-title">단시점과 어떻게 다른가요</div>
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th></th>
+          <th class="col-single">단시점<br><small style="font-weight:400;font-size:10px">15,000원</small></th>
+          <th class="col-energy">결정에너지<br><small style="font-weight:400;font-size:10px">30,000원</small></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>보는 것</td><td>지금 이 질문</td><td style="font-weight:900;color:var(--accent)">왜 이 결정이 교착됐나</td></tr>
+        <tr><td>교착 원인 진단</td><td>–</td><td>✓</td></tr>
+        <tr><td>A/B 방향 비교</td><td>방향 확인</td><td>에너지 구조 비교</td></tr>
+        <tr><td>처방 포함</td><td>–</td><td>✓</td></tr>
+        <tr><td>풀리는 시점 제시</td><td>조건·시기</td><td>구체적 타이밍</td></tr>
+        <tr><td>술사 직접 답변</td><td>✓</td><td>✓</td></tr>
+        <tr><td>납기</td><td>당일~익일</td><td>당일~익일</td></tr>
+      </tbody>
+    </table>
+    <p class="compare-note">"지금 이 질문 가부" → 단시점 / "왜 이 앞에서 계속 막히지" → 결정에너지</p>
+  </div>
+</section>
+
+<!-- ══ FAQ ══ -->
+<section>
+  <div class="card">
+    <div class="eyebrow">자주 묻는 질문</div>
+    <div class="sec-title">궁금한 점</div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q">선택지가 딱 A/B로 안 나뉘어요. 그래도 되나요? <span class="arrow">▾</span></div>
+        <div class="faq-a">괜찮습니다. "이 사람과 계속 갈지 말지", "이 일을 지금 시작해야 할지 기다려야 할지"처럼 방향이 막혀있는 상황이면 충분해요. 가능한 한 구체적으로 써주시면 더 정밀하게 봐드릴 수 있습니다.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">단시점이랑 어떻게 다른지 아직 모르겠어요. <span class="arrow">▾</span></div>
+        <div class="faq-a">단시점은 "지금 이 일, 될까요?"에 집중합니다. 결정에너지는 "왜 이 결정을 못 내리고 있는가"를 파고드는 것이에요. 단시점이 질문의 답을 보는 것이라면, 결정에너지는 질문 앞에서 막힌 나를 보는 겁니다. 같은 종류의 막힘이 반복된다면 결정에너지가 맞습니다.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">결론을 대신 내려주나요? <span class="arrow">▾</span></div>
+        <div class="faq-a">대신 결정해드리진 않아요. 지금 이 교착이 왜 생겼는지, 어느 방향이 에너지 흐름상 더 자연스러운지, 처방은 무엇인지를 드립니다. 결정은 결국 본인이 내리시는 것이고 — 이걸 알고 나면 훨씬 수월해집니다.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">처방이 어렵거나 복잡하지 않을까요? <span class="arrow">▾</span></div>
+        <div class="faq-a">지금 당장 할 수 있는 것 1~2가지로 드립니다. 방위나 방향 같은 공간 처방, 또는 에너지 보강 방법 — 어렵지 않게 일상에서 적용하실 수 있도록 드려요.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">비슷한 결정 앞에서 자꾸 같은 패턴이 반복돼요. <span class="arrow">▾</span></div>
+        <div class="faq-a">그렇다면 단발로 끝나는 결정에너지보다, 그 패턴의 뿌리를 보는 것이 더 효율적이에요. 운명 설계도(50,000) 또는 골든크로스(100,000)에서 반복 구조까지 함께 다룹니다. 문의 시 말씀해주시면 안내드릴게요.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CTA 카드 ══ -->
+<section>
+  <div class="card">
+    <div class="eyebrow">신청</div>
+    <div class="sec-title">지금 막힌 그 결정, 확인하세요</div>
+    <p class="sec-lead">카카오 채널로 문의주시면 안내드립니다.<br>막힌 결정 내용 + 선택지 + 생년월일시 + 성별을 함께 보내주시면 더 빠릅니다.</p>
+    <a href="http://pf.kakao.com/_xnZAxfX" class="cf-btn" style="display:block;text-align:center;border-radius:6px;padding:15px;margin-top:6px;font-size:15px;font-family:'Noto Serif KR',serif">카카오 채널 문의하기</a>
+    <p style="font-size:11px;color:var(--mid);text-align:center;margin-top:12px;line-height:1.7">
+      결제 완료 후 당일~익일 안에 답변 드립니다.<br>
+      교착 진단 + 방향 확인 + 처방까지 포함됩니다.
+    </p>
+  </div>
+</section>
+
+<div class="foot">
+  知我世 · 지아세 — 명징투파 자평명리 + 유시자미두수 남파 73궁<br>
+  본 답변은 참고용이며, 무엇도 단정하지 않습니다.
+</div>
+
+</div><!-- /wrap -->
+
+<!-- ── 하단 고정 CTA ── -->
+<div class="cta-fixed">
+  <div class="cf-left">
+    <div class="cf-label">결정에너지 · 교착 진단 + 방향 + 처방</div>
+    <div class="cf-price">30,000원</div>
+  </div>
+  <a href="http://pf.kakao.com/_xnZAxfX" class="cf-btn">지금 신청하기</a>
+</div>
+
+<script>
+document.querySelectorAll('.faq-q').forEach(q=>{
+  q.addEventListener('click',()=>{
+    const item=q.closest('.faq-item');
+    const wasOpen=item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+    if(!wasOpen) item.classList.add('open');
+  });
+});
+</script>
+</body>
+</html>

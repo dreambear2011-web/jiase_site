@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>터 · 지아세 知我世</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;700;900&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1a1410;
+  --paper:#f4f0fa;
+  --paper-card:#fdfbff;
+  --accent:#6b3fa0;
+  --accent-bg:rgba(107,63,160,.08);
+  --accent-line:rgba(107,63,160,.2);
+  --jade:#3a5a44;
+  --jade-bg:rgba(58,90,68,.07);
+  --jade-line:rgba(58,90,68,.25);
+  --red:#8b2e22;
+  --red-bg:rgba(139,46,34,.07);
+  --gold:#9a7b3f;
+  --line:#ddd4ee;
+  --mid:#7a6e8a;
+  --shadow:rgba(0,0,0,.06);
+  --blur-veil:rgba(244,240,250,.65);
+  --maxw:720px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Noto Serif KR',serif;
+  background:var(--paper);
+  color:var(--ink);
+  line-height:1.75;
+  min-height:100vh;
+  background-image:
+    radial-gradient(ellipse at 80% 0%,rgba(107,63,160,.07) 0%,transparent 50%),
+    radial-gradient(ellipse at 15% 100%,rgba(58,90,68,.05) 0%,transparent 50%);
+}
+b{color:var(--gold);font-weight:800}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 18px 120px}
+.topbar{display:flex;align-items:center;justify-content:center;gap:7px;padding:13px 0 10px;border-bottom:1px solid var(--line);font-size:11px;letter-spacing:.4em;color:var(--accent);font-weight:700;font-family:'Noto Sans KR',sans-serif}
+.topbar-logo{width:20px;height:20px;border-radius:5px;flex-shrink:0}
+
+/* ── 히어로 ── */
+header{text-align:center;padding:44px 0 8px}
+.tier-tag{display:inline-block;background:var(--accent-bg);border:1px solid var(--accent-line);border-radius:100px;font-size:11px;font-weight:700;color:var(--accent);letter-spacing:.18em;padding:4px 14px;margin-bottom:18px;font-family:'Noto Sans KR',sans-serif}
+.hero-title{font-size:30px;font-weight:900;letter-spacing:.02em;line-height:1.25;color:var(--ink)}
+.hero-hanja{font-size:13px;color:var(--accent);letter-spacing:.15em;margin-top:6px;font-weight:700}
+.rule{height:1px;background:linear-gradient(90deg,transparent,var(--accent-line),transparent);margin:20px 0}
+.hero-sub{font-size:13.5px;color:var(--mid);line-height:1.85}
+
+/* ── 섹션 공통 ── */
+section{margin-top:18px}
+.card{background:var(--paper-card);border:1px solid var(--line);border-radius:6px;padding:24px 22px;box-shadow:0 1px 6px var(--shadow)}
+.eyebrow{font-size:10.5px;letter-spacing:.25em;color:var(--accent);font-weight:700;margin-bottom:6px;font-family:'Noto Sans KR',sans-serif}
+.sec-title{font-size:20px;font-weight:900;letter-spacing:.02em;margin-bottom:14px}
+.sec-lead{font-size:13.5px;color:#6a6055;line-height:1.8;margin-bottom:16px}
+
+/* ── 공감 리스트 ── */
+.pain-list{display:flex;flex-direction:column;gap:10px;margin-top:4px}
+.pain-item{display:flex;align-items:flex-start;gap:11px;background:var(--accent-bg);border:1px solid var(--accent-line);border-radius:4px;padding:12px 14px;font-size:13.5px;color:#3a2e20;line-height:1.65}
+.pain-item .icon{flex:0 0 18px;color:var(--accent);font-size:15px;padding-top:1px}
+
+/* ── 핵심 카피 블록 ── */
+.impact-block{margin:20px 0 4px;padding:20px 0 18px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.impact-pre{font-size:11px;letter-spacing:.25em;color:var(--accent);font-weight:700;margin-bottom:12px;font-family:'Noto Sans KR',sans-serif}
+.impact-headline{font-size:20px;font-weight:900;line-height:1.45;color:var(--ink);margin-bottom:14px}
+.impact-headline em{font-style:normal;color:var(--accent)}
+.impact-list{display:flex;flex-direction:column;gap:7px;margin-bottom:16px}
+.impact-item{display:flex;align-items:baseline;gap:9px;font-size:13.5px;color:#3a2e20;line-height:1.6}
+.impact-item::before{content:"✦";color:var(--accent);font-size:10px;flex:0 0 12px}
+.impact-close{font-size:13px;color:#6a6055;line-height:1.75;padding-top:12px;border-top:1px dotted var(--line)}
+
+/* ── 안주형 vs 이동형 ── */
+.type-compare{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px}
+.tc-card{border-radius:4px;padding:16px 16px}
+.tc-card.stay{background:var(--jade-bg);border:1px solid var(--jade-line)}
+.tc-card.move{background:var(--accent-bg);border:1px solid var(--accent-line)}
+.tc-label{font-size:10.5px;font-weight:700;letter-spacing:.12em;margin-bottom:6px;font-family:'Noto Sans KR',sans-serif}
+.tc-card.stay .tc-label{color:var(--jade)}
+.tc-card.move .tc-label{color:var(--accent)}
+.tc-title{font-size:14px;font-weight:900;color:var(--ink);margin-bottom:6px}
+.tc-list{display:flex;flex-direction:column;gap:4px}
+.tc-item{font-size:12px;color:#3a2e20;line-height:1.6;display:flex;gap:6px}
+.tc-card.stay .tc-item::before{content:"·";color:var(--jade);flex:0 0 8px}
+.tc-card.move .tc-item::before{content:"·";color:var(--accent);flex:0 0 8px}
+
+/* ── 방위 3층 위계 ── */
+.layer-wrap{display:flex;flex-direction:column;gap:8px;margin-top:8px}
+.layer-item{display:flex;align-items:flex-start;gap:12px;padding:12px 14px;border-radius:4px}
+.layer-item.l1{background:linear-gradient(135deg,rgba(107,63,160,.1),rgba(107,63,160,.04));border:1px solid var(--accent-line)}
+.layer-item.l2{background:var(--jade-bg);border:1px solid var(--jade-line)}
+.layer-item.l3{background:rgba(154,123,63,.07);border:1px solid rgba(154,123,63,.25)}
+.li-rank{flex:0 0 36px;font-size:11px;font-weight:900;text-align:center;padding-top:2px;font-family:'Noto Sans KR',sans-serif;line-height:1.4}
+.layer-item.l1 .li-rank{color:var(--accent)}
+.layer-item.l2 .li-rank{color:var(--jade)}
+.layer-item.l3 .li-rank{color:var(--gold)}
+.li-body{flex:1}
+.li-title{font-size:13.5px;font-weight:900;color:var(--ink);margin-bottom:3px}
+.li-desc{font-size:12.5px;color:#6a6055;line-height:1.65}
+
+.flow-wrap{display:flex;flex-direction:column;gap:10px;margin-top:10px}
+.flow-item{display:flex;align-items:flex-start;gap:13px;padding:13px 14px;background:var(--paper-card);border:1px solid var(--line);border-radius:6px}
+.flow-num{
+  display:flex;align-items:center;justify-content:center;
+  flex:0 0 40px;width:40px;height:40px;border-radius:8px;
+  text-align:center;font-family:'Noto Sans KR',sans-serif;
+  font-size:11px;font-weight:900;line-height:1.25;letter-spacing:.01em;
+}
+.flow-body{flex:1;padding-top:1px}
+.flow-title{font-size:13.5px;font-weight:900;color:var(--ink);margin-bottom:3px}
+.flow-desc{font-size:12.5px;color:#6a6055;line-height:1.65}
+
+/* ── 전택궁 6궁 그리드 ── */
+.palace-6{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:10px}
+.p6-item{background:var(--accent-bg);border:1px solid var(--accent-line);border-radius:4px;padding:10px 12px}
+.p6-name{font-size:11px;font-weight:700;color:var(--accent);letter-spacing:.04em;margin-bottom:3px;font-family:'Noto Sans KR',sans-serif}
+.p6-desc{font-size:11.5px;color:#3a2e20;line-height:1.55}
+
+/* ── 경고 박스 ── */
+.warn-box{background:var(--red-bg);border:1px solid rgba(139,46,34,.2);border-radius:4px;padding:14px 16px;margin-top:12px}
+.wb-label{font-size:10px;letter-spacing:.2em;color:var(--red);font-weight:700;margin-bottom:6px;font-family:'Noto Sans KR',sans-serif}
+.wb-text{font-size:13px;color:#3a2e20;line-height:1.75}
+
+/* ── 목차 ── */
+.toc{display:flex;flex-direction:column;gap:0}
+.toc-part{border-bottom:1px solid var(--line)}
+.toc-part:last-child{border-bottom:none}
+.toc-row{display:flex;align-items:flex-start;gap:13px;padding:14px 0}
+.toc-num{flex:0 0 36px;font-size:11px;letter-spacing:.06em;color:var(--accent);font-weight:700;padding-top:3px;font-family:'Noto Sans KR',sans-serif}
+.toc-body{flex:1}
+.toc-name{font-size:15px;font-weight:900;color:var(--ink);margin-bottom:3px;line-height:1.4}
+.toc-desc{font-size:12px;color:var(--mid);line-height:1.6}
+
+/* ── 샘플 블록 ── */
+.sample-wrap{margin-top:6px}
+.sample-label{font-size:10.5px;letter-spacing:.2em;color:var(--accent);font-weight:700;margin-bottom:10px;font-family:'Noto Sans KR',sans-serif}
+.sample-block{background:var(--paper-card);border:1px solid var(--line);border-radius:4px;overflow:hidden;margin-bottom:14px}
+.sample-header{background:var(--accent);color:#fff;font-size:11px;letter-spacing:.15em;font-weight:700;padding:7px 14px;font-family:'Noto Sans KR',sans-serif}
+.sample-text{padding:14px 16px;font-size:13px;color:#3a2e20;line-height:1.85}
+.sample-text b{color:var(--ink);font-weight:700}
+.sample-text .hl{color:var(--accent);font-weight:700}
+.sample-text .hl-jade{color:var(--jade);font-weight:700}
+
+/* ── 미리보기 수치 칩 (지아세 공통 시각 요소) ── */
+.stat-row{display:flex;gap:10px;margin:2px 0 14px;flex-wrap:wrap}
+.stat-chip{flex:1;min-width:128px;background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:10px 12px 11px}
+.stat-chip .sc-label{font-size:10.5px;color:var(--mid);letter-spacing:.03em;margin-bottom:4px;font-family:'Noto Sans KR',sans-serif}
+.stat-chip .sc-val{font-size:19px;font-weight:900;margin-bottom:6px;font-family:'Noto Sans KR',sans-serif}
+.stat-chip.pos .sc-val{color:var(--jade)}
+.stat-chip.neg .sc-val{color:var(--red)}
+.stat-chip .sc-bar{height:5px;border-radius:3px;background:var(--line);overflow:hidden}
+.stat-chip .sc-bar i{display:block;height:100%;border-radius:3px}
+.stat-chip.pos .sc-bar i{background:var(--jade)}
+.stat-chip.neg .sc-bar i{background:var(--red)}
+
+.sample-text .hl-red{color:var(--red);font-weight:700}
+
+/* ── 블러 게이트 ── */
+.blur-gate{position:relative;overflow:hidden}
+.blur-gate .blurred{filter:blur(5px);user-select:none;pointer-events:none;font-size:13px;color:#3a2e20;line-height:1.8;padding:14px 16px}
+.blur-gate::after{content:"";position:absolute;inset:0;background:linear-gradient(var(--blur-veil),var(--blur-veil))}
+.blur-gate .lock{position:absolute;inset:0;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px}
+.lock-icon{font-size:20px;color:var(--accent)}
+.lock-text{font-size:11.5px;color:var(--accent);letter-spacing:.08em;font-weight:700;text-align:center}
+
+/* ── 스펙 그리드 ── */
+.spec-list{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:4px}
+.spec-item{background:var(--accent-bg);border:1px solid var(--accent-line);border-radius:4px;padding:12px 14px}
+.spec-key{font-size:10.5px;color:var(--mid);letter-spacing:.1em;font-weight:700;margin-bottom:4px;font-family:'Noto Sans KR',sans-serif}
+.spec-val{font-size:14px;font-weight:900;color:var(--ink)}
+
+/* ── 타임라인 ── */
+.timeline{display:flex;flex-direction:column;gap:0;margin-top:6px}
+.tl-item{display:flex;align-items:flex-start;gap:14px;padding:14px 0;border-bottom:1px solid var(--line)}
+.tl-item:last-child{border-bottom:none}
+.tl-dot{flex:0 0 10px;height:10px;border-radius:50%;border:2px solid var(--accent);margin-top:4px}
+.tl-step{flex:0 0 52px;font-size:10.5px;font-weight:700;color:var(--accent);letter-spacing:.08em;padding-top:1px;font-family:'Noto Sans KR',sans-serif}
+.tl-desc{font-size:13.5px;color:#3a2e20;line-height:1.65}
+
+/* ── 업셀 박스 ── */
+.upsell-box{border:1px dashed var(--accent-line);border-radius:4px;padding:14px 16px;margin-top:14px;font-size:13px;color:#6a6055;line-height:1.7}
+.upsell-box b{color:var(--accent)}
+
+/* ── 비교표 ── */
+.compare-table{width:100%;border-collapse:collapse;margin-top:10px;font-size:12.5px}
+.compare-table th,.compare-table td{border:1px solid var(--line);padding:9px 10px;text-align:center;line-height:1.5}
+.compare-table th{font-weight:700;background:var(--accent-bg);color:var(--ink);font-size:11.5px}
+.compare-table td:first-child{text-align:left;color:var(--mid);font-size:12px}
+.compare-note{font-size:11.5px;color:var(--mid);text-align:center;margin-top:8px}
+
+/* ── FAQ ── */
+.faq-list{display:flex;flex-direction:column;gap:0;margin-top:4px}
+.faq-item{border-bottom:1px solid var(--line)}
+.faq-item:last-child{border-bottom:none}
+.faq-q{display:flex;justify-content:space-between;align-items:center;padding:14px 0;font-size:13.5px;font-weight:700;cursor:pointer;color:var(--ink);gap:8px}
+.faq-q .arrow{font-size:14px;color:var(--accent);flex:0 0 auto;transition:.2s}
+.faq-a{display:none;font-size:13px;color:#6a6055;line-height:1.8;padding:0 0 14px}
+.faq-item.open .faq-a{display:block}
+.faq-item.open .arrow{transform:rotate(180deg)}
+
+/* ── 구분선 ── */
+.divider{text-align:center;margin:8px 0;font-size:12px;letter-spacing:.4em;color:var(--accent-line)}
+
+/* ── CTA 하단 고정 ── */
+.cta-fixed{position:fixed;bottom:0;left:0;right:0;background:rgba(244,240,250,.97);backdrop-filter:blur(10px);border-top:1px solid var(--line);padding:12px 18px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;z-index:100}
+.cf-left{display:flex;flex-direction:column;gap:2px}
+.cf-label{font-size:10px;color:var(--mid);letter-spacing:.05em;font-family:'Noto Sans KR',sans-serif}
+.cf-price{font-size:20px;font-weight:900;color:var(--accent);font-family:'Noto Serif KR',serif;line-height:1.2}
+.cf-btn{flex:0 0 auto;background:var(--accent);color:#fff;border:none;border-radius:100px;padding:13px 24px;font-size:14px;font-weight:700;cursor:pointer;white-space:nowrap;text-decoration:none;font-family:'Noto Sans KR',sans-serif;box-shadow:0 3px 14px rgba(107,63,160,.3);transition:.15s}
+.cf-btn:active{transform:scale(.97)}
+
+/* ── 푸터 ── */
+.foot{font-size:10.5px;color:#a89878;text-align:center;margin-top:36px;line-height:2}
+
+/* ── 반응형 ── */
+@media(max-width:560px){
+  .hero-title{font-size:26px}
+  .type-compare{grid-template-columns:1fr}
+  .palace-6{grid-template-columns:1fr 1fr}
+  .spec-list{grid-template-columns:1fr 1fr}
+}
+.oheng-divider{display:flex;justify-content:center;gap:6px;margin-top:14px}
+.oheng-divider span{width:7px;height:7px;border-radius:50%;display:inline-block}
+.oheng-divider span:nth-child(1){background:#3a8a4a}
+.oheng-divider span:nth-child(2){background:#c0392b}
+.oheng-divider span:nth-child(3){background:#9a7b3f}
+.oheng-divider span:nth-child(4){background:#7d8388}
+.oheng-divider span:nth-child(5){background:#2c3e6b}
+</style>
+</head>
+<body>
+
+<div class="topbar"><img src="./jiaseh_symbol_traced2_dark.png" class="topbar-logo" alt="지아세">知我世 · 지아세</div>
+
+<div class="wrap">
+
+<!-- ══ 히어로 ══ -->
+<header>
+  <div class="tier-tag">TIER 2 · 테마 진단</div>
+  <span style="font-size:32px;display:block;margin-bottom:8px">🏞️</span>
+  <h1 class="hero-title">터</h1>
+  <div class="hero-hanja">空間energy · 이사 가도 왜 같은 문제가 반복될까</div>
+  <div class="rule"></div>
+  <p class="hero-sub">
+    이사 가도 안 풀립니다. 자리를 바꿔도 비슷한 일이 생깁니다.<br>
+    이사할 때마다 타이밍이 어긋나거나, 새 공간에서 오히려 더 힘들어집니다.<br>
+    <b>내가 공간에서 어떻게 에너지를 받는지</b>를 먼저 봅니다.
+  </p>
+  <div class="oheng-divider"><span></span><span></span><span></span><span></span><span></span></div>
+</header>
+
+<!-- ══ 이런 분께 ══ -->
+<section>
+  <div class="card">
+    <div class="eyebrow">이런 분께</div>
+    <div class="sec-title">자리와 공간이 마음에 걸릴 때</div>
+    <div class="pain-list">
+      <div class="pain-item">
+        <span class="icon">◆</span>
+        <span>이사를 했는데 왜 더 힘들어진 것 같을까요. 이 집이 나랑 안 맞는 건지요.</span>
+      </div>
+      <div class="pain-item">
+        <span class="icon">◆</span>
+        <span>이사 타이밍인지 아닌지 판단이 안 돼요. 지금 움직여야 할까요, 기다려야 할까요.</span>
+      </div>
+      <div class="pain-item">
+        <span class="icon">◆</span>
+        <span>어느 방향으로 이사해야 좋은지, 방위가 맞는지 알고 싶어요.</span>
+      </div>
+      <div class="pain-item">
+        <span class="icon">◆</span>
+        <span>사무실 자리 배치, 책상 방향이 나랑 맞는지 궁금해요.</span>
+      </div>
+    </div>
+
+    <div class="impact-block">
+      <div class="impact-pre">터 테마가 보여주는 것</div>
+      <div class="impact-headline">
+        내가 공간에서 어떻게 에너지를 받고,<br>
+        <em>어떤 방향이 나에게 맞는지.</em>
+      </div>
+      <div class="impact-list">
+        <div class="impact-item">내가 타고난 공간 성향 — 정착형인지 이동형인지</div>
+        <div class="impact-item">지금 이 공간이 나에게 맞는 구조인지</div>
+        <div class="impact-item">이사·이동에 유리한 방향과 피해야 할 방향</div>
+        <div class="impact-item">지금이 이동할 시기인지, 버텨야 할 시기인지</div>
+        <div class="impact-item">이사·매매 최적 타이밍과 방위 처방</div>
+      </div>
+      <div class="impact-close">
+        집이 나쁜 게 아닙니다.<br>
+        <b>내 에너지 구조와 공간·방위의 맞물림</b>이 문제입니다.<br>
+        알고 움직이면 같은 실수를 반복하지 않을 수 있습니다.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 안주형 vs 이동형 ══ -->
+<section>
+  <div class="card">
+    <div class="eyebrow">타고난 공간 성향</div>
+    <div class="sec-title">정착형이냐, 이동형이냐</div>
+    <p class="sec-lead">같은 방위·같은 이사도 사람마다 효과가 다릅니다.<br>내가 어떤 공간 성향으로 설계되어 있는지 먼저 알아야 처방이 맞습니다.</p>
+    <div class="type-compare">
+      <div class="tc-card stay">
+        <div class="tc-label">정착형</div>
+        <div class="tc-title">뿌리를 내려야<br>에너지가 쌓인다</div>
+        <div class="tc-list">
+          <div class="tc-item">한 자리에서 오래 있을수록 힘이 붙음</div>
+          <div class="tc-item">자주 이사하면 오히려 소진됨</div>
+          <div class="tc-item">현 거주지 내 방위 보강이 우선</div>
+          <div class="tc-item">이동보다 정돈·배치가 핵심 처방</div>
+        </div>
+      </div>
+      <div class="tc-card move">
+        <div class="tc-label">이동형</div>
+        <div class="tc-title">움직여야<br>에너지가 살아난다</div>
+        <div class="tc-list">
+          <div class="tc-item">한 자리에 고여있으면 소진됨</div>
+          <div class="tc-item">적절한 이동이 에너지 재충전</div>
+          <div class="tc-item">방위 이동 타이밍이 핵심 처방</div>
+          <div class="tc-item">역마 에너지 활성화 시기 파악 중요</div>
+        </div>
+      </div>
+    </div>
+    <p style="font-size:12.5px;color:var(--mid);margin-top:12px;line-height:1.7;padding:12px 14px;background:var(--accent-bg);border-radius:4px;">
+      ✦ 보고서 PART 1에서 내 명반의 공간 성향을 진단합니다. 정착형인데 자꾸 이사하거나, 이동형인데 고여있으면 — 그것이 패턴이 반복되는 이유입니다.
+    </p>
+  </div>
+</section>
+
+<!-- ══ 어떤 도구로 보나요 ══ -->
+<section>
+  <div class="card">
+    <div class="eyebrow">어떤 도구로 보나요</div>
+    <div class="sec-title">4가지 술학을 교차합니다</div>
+    <p class="sec-lead">터 테마는 지아세 상품 중 가장 많은 술학이 교차합니다.<br>공간과 방위를 보는 전통 술학 4종을 각각의 역할로 운용합니다.</p>
+    <div class="flow-wrap">
+      <div class="flow-item">
+        <div class="flow-num" style="background:var(--accent-bg);color:var(--accent);border:1.5px solid var(--accent-line)">자평<br>명리</div>
+        <div class="flow-body">
+          <div class="flow-title">내 에너지에 맞는 방향 — 핵심 처방</div>
+          <div class="flow-desc">자평명리 안이법(安移法) — 희신 오행 방향을 정식 처방 엔진으로 사용합니다. 내 에너지 구조에서 어느 방향의 기운을 들여야 하는지, 이동 최적 타이밍은 언제인지 산출합니다.</div>
+        </div>
+      </div>
+      <div class="flow-item">
+        <div class="flow-num" style="background:var(--accent-bg);color:var(--accent);border:1.5px solid var(--accent-line)">구성<br>기학</div>
+        <div class="flow-body">
+          <div class="flow-title">올해 나에게 유리한 방위 — 보조</div>
+          <div class="flow-desc">구성기학(九星氣學) — 해마다 달라지는 공간 에너지 흐름에서 올해 특히 좋은 방향과 피해야 할 방향을 읽습니다. 흉방(오황·암검 등) 회피가 포함됩니다.</div>
+        </div>
+      </div>
+      <div class="flow-item">
+        <div class="flow-num" style="background:var(--accent-bg);color:var(--accent);border:1.5px solid var(--accent-line)">기문<br>둔갑</div>
+        <div class="flow-body">
+          <div class="flow-title">이동 시 그 방위의 분위기 — 참고</div>
+          <div class="flow-desc">기문둔갑(奇門遁甲) — 이동 예정이 있을 때만 적용합니다. 그 방향이 어떤 에너지 분위기를 담고 있는지를 읽습니다. 방위의 길흉 판정이 아니라, 그 공간의 성격·분위기를 파악하는 용도입니다.</div>
+        </div>
+      </div>
+      <div class="flow-item">
+        <div class="flow-num" style="background:var(--accent-bg);color:var(--accent);border:1.5px solid var(--accent-line)">자미<br>두수</div>
+        <div class="flow-body">
+          <div class="flow-title">공간이 삶에 미치는 체감 — 심화</div>
+          <div class="flow-desc">유시자미두수 전택궁(田宅宮) — 내가 공간에서 어떻게 에너지를 체감하는지, 이 자리가 정신·물질·건강·사회적으로 어떻게 작용하는지 6개 자리로 읽습니다.</div>
+        </div>
+      </div>
+    </div>
+    <p style="font-size:12px;color:var(--mid);margin-top:14px;line-height:1.7;padding:11px 14px;background:var(--accent-bg);border-radius:4px;">
+      ✦ 4종이 같은 방향을 가리킬 때 가장 확신 있는 처방을 드립니다. 엇갈릴 때는 어디서 엇갈리는지, 어떤 우선순위로 판단하는지까지 함께 드립니다.
+    </p>
+  </div>
+</section>
+
+<!-- ══ 방위 3층 처방 ══ -->
+<section>
+  <div class="card">
+    <div class="eyebrow">방위 처방의 우선순위</div>
+    <div class="sec-title">술학마다 역할이 다릅니다</div>
+    <p class="sec-lead">4종 술학을 쓰되, 역할과 순위가 정해져 있습니다.<br>무엇이 핵심이고 무엇이 보조인지 — 지아세는 이 위계를 명확히 운용합니다.</p>
+    <div class="layer-wrap">
+      <div class="layer-item l1">
+        <div class="li-rank">1순위<br>★핵심</div>
+        <div class="li-body">
+          <div class="li-title">자평명리 안이법 — 내 에너지 방향</div>
+          <div class="li-desc">희신 오행 방향으로 1박 이상 이동하거나, 거주지 내 그 방향의 기운을 들이는 것. 명리 원전에서 소스가 확정된 정식 처방입니다.</div>
+        </div>
+      </div>
+      <div class="layer-item l2">
+        <div class="li-rank">2순위<br>보조</div>
+        <div class="li-body">
+          <div class="li-title">구성기학 — 올해 길방·흉방</div>
+          <div class="li-desc">해마다 달라지는 9개 방위 에너지 흐름 기준. 1순위 방위를 강화하거나, 올해 특히 피해야 할 흉방 회피에 활용합니다.</div>
+        </div>
+      </div>
+      <div class="layer-item l3">
+        <div class="li-rank">3순위<br>참고</div>
+        <div class="li-body">
+          <div class="li-title">기문둔갑 — 이동 시 그 방위 분위기</div>
+          <div class="li-desc">이동 예정이 있을 때만 적용. 그 방위가 어떤 성격의 에너지를 담고 있는지 상의를 읽습니다. 방위 길흉 판정 주체는 아닙니다.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 전택궁 6궁 ══ -->
+<section>
+  <div class="card">
+    <div class="eyebrow">공간의 6개 무대</div>
+    <div class="sec-title">전택궁을 6가지로 쪼개서 읽습니다</div>
+    <p class="sec-lead">"환경"이라는 단어 하나로 묶이던 것을 6개 세부 자리로 나눠서 봅니다.</p>
+    <div class="palace-6">
+      <div class="p6-item">
+        <div class="p6-name">환경 전반</div>
+        <div class="p6-desc">내가 공간에서 받는 에너지 총량</div>
+      </div>
+      <div class="p6-item">
+        <div class="p6-name">부동산 · 집</div>
+        <div class="p6-desc">부동산 취득·거주 에너지</div>
+      </div>
+      <div class="p6-item">
+        <div class="p6-name">정신적 환경</div>
+        <div class="p6-desc">이 공간이 마음을 편하게 하는지</div>
+      </div>
+      <div class="p6-item">
+        <div class="p6-name">물질적 환경</div>
+        <div class="p6-desc">이 자리가 재물에 미치는 영향</div>
+      </div>
+      <div class="p6-item">
+        <div class="p6-name">건강적 환경</div>
+        <div class="p6-desc">이 공간이 몸에 미치는 에너지</div>
+      </div>
+      <div class="p6-item">
+        <div class="p6-name">사회적 환경</div>
+        <div class="p6-desc">이 자리가 관계·사회적 위치에 미치는 영향</div>
+      </div>
+    </div>
+
+    <!-- 흉방 경고 -->
+    <div class="warn-box">
+      <div class="wb-label">⚠ 이 구간 피해야 할 이동</div>
+      <div class="wb-text">
+        올해 에너지 흐름상 특정 방향으로의 이사·매매·증축은<br>
+        <b>손실이 배가 되는 구조</b>가 만들어지는 경우가 있습니다.<br>
+        보고서 PART 2에서 올해 피해야 할 방위와 이동을 구체적으로 드립니다.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 목차 ══ -->
+<section>
+  <div class="card">
+    <div class="eyebrow">보고서 목차</div>
+    <div class="sec-title">A4 5~8페이지 안에 담기는 것들</div>
+    <div class="toc">
+
+      <div class="toc-part">
+        <div class="toc-row">
+          <div class="toc-num">PART 0</div>
+          <div class="toc-body">
+            <div class="toc-name">오프닝 — 오늘 당신의 기운</div>
+            <div class="toc-desc">이동·자리 사안의 현재 기운을 먼저 짚습니다. 움직임을 나타내는 에너지가 감지되면 우선 고지합니다.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="toc-part">
+        <div class="toc-row">
+          <div class="toc-num">PART 1</div>
+          <div class="toc-body">
+            <div class="toc-name">터 그릇 — 타고난 공간 에너지</div>
+            <div class="toc-desc">정착형·이동형 진단. 부동산·집 에너지 구조. 이동 에너지가 언제 활성화되는지. 내 에너지에 맞는 희신 방위 방향(메인 처방 근거).</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="toc-part">
+        <div class="toc-row">
+          <div class="toc-num">PART 2</div>
+          <div class="toc-body">
+            <div class="toc-name">지금 이 구간 — 자리 흐름</div>
+            <div class="toc-desc">현재 대운·올해 세운에서 이동·매매 에너지. 올해 유리한 방위 / 피해야 할 방위. 이사·매매·증축 보류 경고 구간. 왜 자리를 옮겨도 같은 패턴이 반복되는지.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="toc-part">
+        <div class="toc-row">
+          <div class="toc-num">PART 3</div>
+          <div class="toc-body">
+            <div class="toc-name">체감 진단 — 공간 속의 나</div>
+            <div class="toc-desc">전택궁 6개 세부 자리를 읽습니다. 환경·부동산·정신적·물질적·건강적·사회적 환경. 지금 이 대한에서 달라지는 점도 확인합니다.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="toc-part">
+        <div class="toc-row">
+          <div class="toc-num">PART 4</div>
+          <div class="toc-body">
+            <div class="toc-name">처방 — 터 에너지 경영</div>
+            <div class="toc-desc">방위 처방(3층 위계) + 색채·공간 배치 + 아로마 블렌딩(3종 병행). 이사 예정이 있다면 이동 방위 분위기 읽기도 포함됩니다.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="toc-part">
+        <div class="toc-row">
+          <div class="toc-num">PART 5</div>
+          <div class="toc-body">
+            <div class="toc-name">종합 전략</div>
+            <div class="toc-desc">지금 당장 할 것 1가지(방위 취기 또는 공간 정돈), 이 구간 피할 것 1가지(흉방 이동·매매 보류), 이사·이동 최적 타이밍·방위, 관통 한 문장.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ 보고서 미리보기 ══ -->
+<section>
+  <div class="card">
+    <div class="eyebrow">보고서 미리보기</div>
+    <div class="sec-title">실제 이런 내용이 들어갑니다</div>
+    <p class="sec-lead">아래는 실제 터 테마 보고서 발췌입니다.</p>
+
+    <div class="sample-wrap">
+
+      <div class="sample-label">PART 1 · 타고난 공간 성향</div>
+      <div class="sample-block">
+        <div class="sample-header">터 · 타고난 공간 에너지</div>
+        <div class="sample-text">
+          <div class="stat-row">
+            <div class="stat-chip pos"><div class="sc-label">거주 안정 에너지</div><div class="sc-val">+5</div><div class="sc-bar"><i style="width:83%"></i></div></div>
+            <div class="stat-chip neg"><div class="sc-label">이동 시 에너지 손실</div><div class="sc-val">−4</div><div class="sc-bar"><i style="width:67%"></i></div></div>
+          </div>
+          <span class="hl-jade">공간 성향 — 정착형</span><br>
+          이 명반에서는 <b>한 자리에 오래 머물수록 에너지가 쌓이는 구조</b>입니다. 이사를 자주 하면 오히려 에너지가 소진됩니다. 자리를 바꾸고 싶은 충동이 생겨도 — 그것이 해결책이 아닐 수 있습니다.<br><br>
+          <span class="hl">1순위 처방 — 방향</span><br>
+          지금 거주지에서 <b>남서·남 방향의 에너지를 들이는 것</b>이 가장 효과적입니다. 이 방향은 내 희신 에너지와 일치하는 방향으로, 이동보다 현 공간 내 이 방향 보강이 우선입니다.<br><br>
+          <span class="hl-red">피해야 할 것</span><br>
+          북·북동 방향으로의 이동은 이 명반에서 에너지 손실이 발생하는 구조입니다. 특히 올해는 이 방향으로의 이사·여행에 주의가 필요합니다.
+        </div>
+      </div>
+
+      <div class="sample-label" style="margin-top:16px">PART 3 · 전택궁 체감 진단</div>
+      <div class="sample-block">
+        <div class="sample-header">터 · 전택궁 6자리 — 공간 속의 나</div>
+        <div class="sample-text">
+          <div class="stat-row">
+            <div class="stat-chip pos"><div class="sc-label">전택궁 전반</div><div class="sc-val">+6</div><div class="sc-bar"><i style="width:100%"></i></div></div>
+            <div class="stat-chip pos"><div class="sc-label">정신적 환경</div><div class="sc-val">+4</div><div class="sc-bar"><i style="width:67%"></i></div></div>
+          </div>
+          <span class="hl-jade">전택궁 전반 — 플러스</span><br>
+          이 명반에서 공간 에너지가 전반적으로 강하게 작동하는 구조입니다. <b>어디에 있느냐가 이 사람의 삶 전체에 영향을 주는 구조</b>입니다. 터의 기운이 좋을 때 다른 영역들도 함께 올라갑니다.<br><br>
+          <span class="hl">정신적 환경</span><br>
+          이 자리가 <b>마음의 안정과 직결</b>됩니다. 정신적으로 편안한 공간을 유지하는 것이 다른 어떤 처방보다 효과적입니다.
+        </div>
+        <div class="blur-gate">
+          <div class="blurred">
+            물질적·건강적 환경: 현재 대한에서 이 두 자리의 에너지가 달라집니다. 구체적으로 어떤 방향으로 작용하는지, 이사·이동 최적 타이밍이 언제인지는 보고서 전문에서 확인하세요.
+          </div>
+          <div class="lock">
+            <div class="lock-icon">✦</div>
+            <div class="lock-text">보고서 전문에서 확인됩니다</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ 신청 절차 ══ -->
+<section>
+  <div class="card">
+    <div class="eyebrow">신청 절차</div>
+    <div class="sec-title">이렇게 진행됩니다</div>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-step">STEP 1</div>
+        <div class="tl-desc">카카오 채널로 <b>생년월일시 + 성별 + 현재 거주 방향 or 이사 고민 내용</b>을 보내주세요</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-step">STEP 2</div>
+        <div class="tl-desc">결제 완료 후 <b>3~5일 내</b> 온라인 문서로 납품</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot" style="border-color:var(--jade);background:var(--jade)"></div>
+        <div class="tl-step" style="color:var(--jade)">완료 ✓</div>
+        <div class="tl-desc">술사 직접 검수 · 추가 질문 1회 가능</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 상품 안내 ══ -->
+<section>
+  <div class="card">
+    <div class="eyebrow">상품 안내</div>
+    <div class="sec-title">무엇을 어떻게 받게 되나요</div>
+    <div class="spec-list">
+      <div class="spec-item">
+        <div class="spec-key">분량</div>
+        <div class="spec-val">A4 5~8p</div>
+      </div>
+      <div class="spec-item">
+        <div class="spec-key">납기</div>
+        <div class="spec-val">결제 후 3~5일</div>
+      </div>
+      <div class="spec-item">
+        <div class="spec-key">형태</div>
+        <div class="spec-val">온라인 문서</div>
+      </div>
+      <div class="spec-item">
+        <div class="spec-key">술사 검수</div>
+        <div class="spec-val">전량 직접 검수</div>
+      </div>
+    </div>
+
+    <div class="divider" style="margin-top:20px">· · ·</div>
+
+    <div class="upsell-box" style="margin-top:4px">
+      <b>인생 전체 구조까지 보고 싶다면 — 운명 설계도 50,000</b><br>
+      터 테마는 공간·방위에 집중해서 봅니다. 설계도는 공간을 포함한 인생 전체 에너지 구조를 A4 15~25페이지로 완전히 읽습니다. 터 처방의 근거가 되는 희신·기신까지 알고 싶다면 설계도로 이어집니다.<br><br>
+      <b style="color:var(--mid);font-weight:400">지금 이사 타이밍이 맞는지 단발로 확인하고 싶다면 — 단시점 15,000</b><br>
+      이사 날짜나 방향 확정 전 즉답이 필요하다면 단시점으로 먼저 확인할 수 있습니다.
+    </div>
+  </div>
+</section>
+
+<!-- ══ 비교표 ══ -->
+<section>
+  <div class="card">
+    <div class="eyebrow">상품 비교</div>
+    <div class="sec-title">어떤 상품을 선택할까요</div>
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th></th>
+          <th style="color:var(--mid)">단시점<br><small style="font-weight:400;font-size:10px">15,000원</small></th>
+          <th style="color:var(--accent)">터 테마<br><small style="font-weight:400;font-size:10px">50,000원</small></th>
+          <th style="color:var(--jade)">운명 설계도<br><small style="font-weight:400;font-size:10px">50,000원</small></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>보는 것</td><td>지금 이 이동 가부</td><td style="font-weight:900;color:var(--accent)">공간 구조 전체</td><td>인생 전체 + 공간</td></tr>
+        <tr><td>정착형·이동형 진단</td><td>–</td><td>✓</td><td>✓</td></tr>
+        <tr><td>올해 방위 처방</td><td>–</td><td>✓</td><td>–</td></tr>
+        <tr><td>흉방 이동 경고</td><td>–</td><td>✓</td><td>–</td></tr>
+        <tr><td>전택궁 6자리</td><td>–</td><td>✓</td><td>–</td></tr>
+        <tr><td>이사 타이밍 (단발)</td><td>✓</td><td>✓ (구조 기반)</td><td>–</td></tr>
+        <tr><td>희신·기신 처방 근거</td><td>–</td><td>포함</td><td>✓ (완전 해석)</td></tr>
+        <tr><td>납기</td><td>당일~익일</td><td>3~5일</td><td>3~5일</td></tr>
+      </tbody>
+    </table>
+    <p class="compare-note">"이사 타이밍만 급하게" → 단시점 / "공간 에너지 구조 전체" → 터 테마</p>
+  </div>
+</section>
+
+<!-- ══ FAQ ══ -->
+<section>
+  <div class="card">
+    <div class="eyebrow">자주 묻는 질문</div>
+    <div class="sec-title">궁금한 점</div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q">이사 날짜를 특정해서 알려주나요? <span class="arrow">▾</span></div>
+        <div class="faq-a">보고서 PART 5에서 이동 최적 타이밍을 드립니다. 단, 날짜 단 하루를 특정하는 것이 아니라 "이 시기, 이 방향"으로 드립니다. 특정 날짜·계약일을 지금 당장 확인하고 싶다면 단시점(15,000)이 더 빠릅니다.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">이사를 안 할 예정인데도 의미가 있나요? <span class="arrow">▾</span></div>
+        <div class="faq-a">네. 이사를 안 해도 지금 이 공간이 나에게 어떻게 작용하는지, 현 거주지에서 어떤 방향의 에너지를 들이면 좋은지를 드립니다. 책상 방향, 공간 배치, 방위 취기 처방도 포함됩니다.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">사무실·직장 공간도 봐주나요? <span class="arrow">▾</span></div>
+        <div class="faq-a">가능합니다. 주거 공간과 직장 공간 모두 같은 에너지 구조로 봅니다. 사무실 자리 배치, 책상 방향 등 직장 공간 관련 고민도 함께 알려주시면 그에 맞게 드립니다.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">이사 가도 같은 문제가 반복된다면? <span class="arrow">▾</span></div>
+        <div class="faq-a">그것이 바로 이 보고서가 필요한 이유입니다. 이사를 해도 반복되는 이유는 두 가지입니다 — 정착형인데 자꾸 움직이거나, 방향이 맞지 않거나. 보고서 PART 2에서 왜 같은 패턴이 반복됐는지 구조적 원인을 드립니다.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CTA 카드 ══ -->
+<section>
+  <div class="card">
+    <div class="eyebrow">신청</div>
+    <div class="sec-title">내 공간 에너지 구조를 확인하세요</div>
+    <p class="sec-lead">카카오 채널로 문의주시면 안내드립니다.<br>생년월일시·성별·현재 거주 상황·고민을 함께 보내주시면 더 빠릅니다.</p>
+    <a href="http://pf.kakao.com/_xnZAxfX" class="cf-btn" style="display:block;text-align:center;border-radius:6px;padding:15px;margin-top:6px;font-size:15px;font-family:'Noto Serif KR',serif">카카오 채널 문의하기</a>
+    <p style="font-size:11px;color:var(--mid);text-align:center;margin-top:12px;line-height:1.7">
+      결제 완료 후 3~5일 내 온라인 문서로 납품됩니다.<br>
+      술사 직접 검수 포함.
+    </p>
+  </div>
+</section>
+
+<div class="foot">
+  知我世 · 지아세 — 명징투파 자평명리 + 유시자미두수 남파 73궁<br>
+  본 보고서는 참고용이며, 무엇도 단정하지 않습니다.
+</div>
+
+</div><!-- /wrap -->
+
+<!-- ── 하단 고정 CTA ── -->
+<div class="cta-fixed">
+  <div class="cf-left">
+    <div class="cf-label">터 · TIER 2 테마 · 술사 검수</div>
+    <div class="cf-price">50,000원</div>
+  </div>
+  <a href="http://pf.kakao.com/_xnZAxfX" class="cf-btn">지금 신청하기</a>
+</div>
+
+<script>
+document.querySelectorAll('.faq-q').forEach(q=>{
+  q.addEventListener('click',()=>{
+    const item=q.closest('.faq-item');
+    const wasOpen=item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+    if(!wasOpen) item.classList.add('open');
+  });
+});
+</script>
+</body>
+</html>

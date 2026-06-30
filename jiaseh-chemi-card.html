@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>케미카드 · 지아세 知我世</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;700;900&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1a1410;
+  --paper:#f4f0fa;
+  --paper-card:#fdfbff;
+  --accent:#6b3fa0;
+  --accent-lt:#9b72d4;
+  --accent-bg:rgba(107,63,160,.08);
+  --accent-line:rgba(107,63,160,.2);
+  --jade:#3a5a44;
+  --red:#8b2e22;
+  --gold:#9a7b3f;
+  --gold-lt:#c4a661;
+  --gold-bg:rgba(196,166,97,.09);
+  --line:#ddd4ee;
+  --mid:#7a6e8a;
+  --shadow:rgba(0,0,0,.06);
+  --blur-veil:rgba(244,240,250,.65);
+  --maxw:720px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Noto Serif KR',serif;
+  background:var(--paper);
+  color:var(--ink);
+  line-height:1.75;
+  min-height:100vh;
+  background-image:
+    radial-gradient(ellipse at 80% 0%,rgba(107,63,160,.07) 0%,transparent 50%),
+    radial-gradient(ellipse at 15% 100%,rgba(58,90,68,.05) 0%,transparent 50%);
+}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 18px 120px}
+.topbar{display:flex;align-items:center;justify-content:center;gap:7px;padding:13px 0 10px;border-bottom:1px solid var(--line);font-size:11px;letter-spacing:.4em;color:var(--accent);font-weight:700}
+.topbar-logo{width:20px;height:20px;border-radius:5px;flex-shrink:0}
+b{color:var(--gold);font-weight:800}
+
+/* ── 히어로 ── */
+header{text-align:center;padding:44px 0 8px}
+.tier-tag{display:inline-block;background:var(--accent-bg);border:1px solid var(--accent-line);border-radius:100px;font-size:11px;font-weight:700;color:var(--accent);letter-spacing:.18em;padding:4px 14px;margin-bottom:18px;font-family:'Noto Sans KR',sans-serif}
+.hero-title{font-size:30px;font-weight:900;letter-spacing:.02em;line-height:1.25;color:var(--ink)}
+.hero-hanja{font-size:13px;color:var(--accent);letter-spacing:.15em;margin-top:6px;font-weight:700}
+.rule{height:1px;background:linear-gradient(90deg,transparent,var(--accent-line),transparent);margin:20px 0}
+.hero-sub{font-size:13.5px;color:var(--mid);line-height:1.85}
+
+/* ── 섹션 공통 ── */
+section{margin-top:18px;scroll-margin-top:20px}
+.card{background:var(--paper-card);border:1px solid var(--line);border-radius:6px;padding:24px 22px;box-shadow:0 1px 6px var(--shadow)}
+.eyebrow{font-size:10.5px;letter-spacing:.25em;color:var(--accent);font-weight:700;margin-bottom:6px;font-family:'Noto Sans KR',sans-serif}
+.sec-title{font-size:20px;font-weight:900;letter-spacing:.02em;margin-bottom:14px}
+.sec-lead{font-size:13.5px;color:#6a6055;line-height:1.8;margin-bottom:16px}
+
+/* ── 공감 리스트 ── */
+.pain-list{display:flex;flex-direction:column;gap:10px;margin-top:4px}
+.pain-item{
+  display:flex;align-items:flex-start;gap:11px;
+  background:var(--accent-bg);border:1px solid var(--accent-line);
+  border-radius:4px;padding:12px 14px;
+  font-size:13.5px;color:#3a2e20;line-height:1.65;
+}
+.pain-item .icon{flex:0 0 18px;color:var(--accent);font-size:15px;padding-top:1px}
+
+/* ── 핵심 카피 블록 ── */
+.impact-block{margin:20px 0 4px;padding:20px 0 18px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.impact-pre{font-size:11px;letter-spacing:.25em;color:var(--accent);font-weight:700;margin-bottom:12px;font-family:'Noto Sans KR',sans-serif}
+.impact-headline{font-size:20px;font-weight:900;line-height:1.45;color:var(--ink);margin-bottom:14px}
+.impact-headline em{font-style:normal;color:var(--accent)}
+.impact-list{display:flex;flex-direction:column;gap:7px;margin-bottom:16px}
+.impact-item{display:flex;align-items:baseline;gap:9px;font-size:13.5px;color:#3a2e20;line-height:1.6}
+.impact-item::before{content:"✦";color:var(--accent);font-size:10px;flex:0 0 12px;padding-top:2px}
+.impact-close{font-size:13px;color:#6a6055;line-height:1.75;padding-top:12px;border-top:1px dotted var(--line)}
+
+/* ── 관계 유형 태그 ── */
+.rel-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:6px}
+.rel-item{
+  background:var(--accent-bg);border:1px solid var(--accent-line);
+  border-radius:4px;padding:14px 15px;
+}
+.rel-icon{font-size:20px;margin-bottom:6px}
+.rel-name{font-size:13px;font-weight:900;color:var(--ink);margin-bottom:4px}
+.rel-desc{font-size:12px;color:var(--mid);line-height:1.6}
+
+/* ── 가격 카드 ── */
+.price-stack{display:flex;flex-direction:column;gap:10px;margin-top:6px}
+.price-card{
+  border:1px solid var(--line);border-radius:4px;padding:16px 18px;
+  display:flex;align-items:flex-start;gap:14px;
+}
+.price-card.featured{border-color:var(--accent-line);background:linear-gradient(135deg,rgba(107,63,160,.06),transparent)}
+.pc-left{flex:0 0 auto}
+.pc-label{font-size:10px;letter-spacing:.15em;color:var(--mid);font-weight:700;font-family:'Noto Sans KR',sans-serif;margin-bottom:4px}
+.pc-price{font-size:22px;font-weight:900;color:var(--ink);font-family:'Noto Serif KR',serif;line-height:1.1}
+.pc-price span{font-size:13px;font-weight:400;color:var(--mid)}
+.pc-body{flex:1}
+.pc-title{font-size:14px;font-weight:900;color:var(--ink);margin-bottom:4px}
+.pc-desc{font-size:12.5px;color:#6a6055;line-height:1.65}
+.pc-tag{display:inline-block;background:var(--accent);color:#fff;font-size:10px;font-weight:700;letter-spacing:.08em;padding:2px 8px;border-radius:100px;font-family:'Noto Sans KR',sans-serif;margin-bottom:6px}
+
+/* ── 3문항 카드 ── */
+.q3-wrap{display:flex;flex-direction:column;gap:8px;margin-top:6px}
+.q3-item{display:flex;align-items:flex-start;gap:12px;padding:12px 14px;background:var(--accent-bg);border:1px solid var(--accent-line);border-radius:4px}
+.q3-num{flex:0 0 22px;height:22px;border-radius:50%;background:var(--accent);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;font-family:'Noto Sans KR',sans-serif;flex-shrink:0;margin-top:1px}
+.q3-text{font-size:13.5px;color:#3a2e20;line-height:1.65}
+
+/* ── 샘플 블록 ── */
+.sample-wrap{margin-top:6px}
+.sample-label{font-size:10.5px;letter-spacing:.2em;color:var(--accent);font-weight:700;margin-bottom:10px;font-family:'Noto Sans KR',sans-serif}
+.sample-block{background:var(--paper-card);border:1px solid var(--line);border-radius:4px;overflow:hidden;margin-bottom:14px}
+.sample-header{background:var(--accent);color:#fff;font-size:11px;letter-spacing:.15em;font-weight:700;padding:7px 14px;font-family:'Noto Sans KR',sans-serif}
+.sample-text{padding:14px 16px;font-size:13px;color:#3a2e20;line-height:1.85}
+.sample-text b{color:var(--ink);font-weight:700}
+.sample-text .hl{color:var(--accent);font-weight:700}
+
+/* ── 미리보기 신호 배지 (정성적 진단용 — 지아세 공통) ── */
+.signal-row{display:flex;gap:8px;margin:2px 0 14px;flex-wrap:wrap}
+.signal-badge{display:inline-flex;align-items:center;gap:6px;padding:7px 13px;border-radius:20px;font-size:12px;font-weight:700;font-family:'Noto Sans KR',sans-serif;border:1px solid;white-space:nowrap}
+.signal-badge .dot{width:6px;height:6px;border-radius:50%;background:currentColor;flex:0 0 auto}
+.signal-badge.type-good{background:rgba(58,90,68,.08);color:var(--jade);border-color:rgba(58,90,68,.28)}
+.signal-badge.type-caution{background:rgba(139,46,34,.08);color:var(--red);border-color:rgba(139,46,34,.25)}
+.signal-badge.type-neutral{background:var(--accent-bg);color:var(--accent);border-color:var(--accent-line)}
+
+
+/* ── 블러 게이트 ── */
+.blur-gate{position:relative;overflow:hidden}
+.blur-gate .blurred{filter:blur(5px);user-select:none;pointer-events:none;font-size:13px;color:#3a2e20;line-height:1.8;padding:14px 16px}
+.blur-gate::after{content:"";position:absolute;inset:0;background:linear-gradient(var(--blur-veil),var(--blur-veil))}
+.blur-gate .lock{position:absolute;inset:0;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px}
+.lock-icon{font-size:20px;color:var(--accent)}
+.lock-text{font-size:11.5px;color:var(--accent);letter-spacing:.08em;font-weight:700;text-align:center}
+
+/* ── 팀 매트릭스 ── */
+.matrix-wrap{margin-top:10px;overflow-x:auto}
+.matrix-table{border-collapse:collapse;font-size:12px;min-width:100%}
+.matrix-table th,.matrix-table td{border:1px solid var(--line);padding:8px 10px;text-align:center;line-height:1.4}
+.matrix-table th{background:var(--accent-bg);font-weight:700;color:var(--ink);font-size:11px}
+.matrix-table td.good{color:var(--jade);font-weight:700}
+.matrix-table td.caution{color:var(--gold);font-weight:700}
+.matrix-table td.self{background:var(--accent-bg);color:var(--mid)}
+.matrix-note{font-size:11px;color:var(--mid);text-align:center;margin-top:8px;line-height:1.7}
+
+/* ── 위계 화살표 ── */
+.funnel-wrap{display:flex;align-items:center;gap:0;margin-top:10px;overflow-x:auto}
+.funnel-step{flex:1;min-width:80px;text-align:center;padding:12px 6px;background:var(--accent-bg);border:1px solid var(--accent-line);border-radius:4px}
+.fs-label{font-size:10px;color:var(--mid);letter-spacing:.05em;font-family:'Noto Sans KR',sans-serif;margin-bottom:4px}
+.fs-name{font-size:12px;font-weight:900;color:var(--ink)}
+.fs-price{font-size:11px;color:var(--accent);margin-top:2px}
+.funnel-arrow{flex:0 0 20px;text-align:center;font-size:16px;color:var(--accent-line);flex-shrink:0}
+.funnel-note{font-size:11.5px;color:var(--mid);text-align:center;margin-top:10px;line-height:1.7}
+
+/* ── 타임라인 ── */
+.timeline{display:flex;flex-direction:column;gap:0;margin-top:6px}
+.tl-item{display:flex;align-items:flex-start;gap:14px;padding:14px 0;border-bottom:1px solid var(--line)}
+.tl-item:last-child{border-bottom:none}
+.tl-dot{flex:0 0 10px;height:10px;border-radius:50%;border:2px solid var(--accent);margin-top:4px}
+.tl-step{flex:0 0 52px;font-size:10.5px;font-weight:700;color:var(--accent);letter-spacing:.08em;padding-top:1px;font-family:'Noto Sans KR',sans-serif}
+.tl-desc{font-size:13.5px;color:#3a2e20;line-height:1.65}
+
+/* ── 업셀 박스 ── */
+.upsell-box{border:1px dashed var(--accent-line);border-radius:4px;padding:14px 16px;margin-top:14px;font-size:13px;color:#6a6055;line-height:1.7}
+.upsell-box b{color:var(--accent)}
+
+/* ── FAQ ── */
+.faq-list{display:flex;flex-direction:column;gap:0;margin-top:4px}
+.faq-item{border-bottom:1px solid var(--line)}
+.faq-item:last-child{border-bottom:none}
+.faq-q{display:flex;justify-content:space-between;align-items:center;padding:14px 0;font-size:13.5px;font-weight:700;cursor:pointer;color:var(--ink);gap:8px}
+.faq-q .arrow{font-size:14px;color:var(--accent);flex:0 0 auto;transition:.2s}
+.faq-a{display:none;font-size:13px;color:#6a6055;line-height:1.8;padding:0 0 14px}
+.faq-item.open .faq-a{display:block}
+.faq-item.open .arrow{transform:rotate(180deg)}
+
+/* ── 구분선 ── */
+.divider{text-align:center;margin:8px 0;font-size:12px;letter-spacing:.4em;color:var(--accent-line)}
+
+/* ── CTA 하단 고정 ── */
+.cta-fixed{position:fixed;bottom:0;left:0;right:0;background:rgba(244,240,250,.97);backdrop-filter:blur(10px);border-top:1px solid var(--line);padding:12px 18px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;z-index:100}
+.cf-left{display:flex;flex-direction:column;gap:2px}
+.cf-label{font-size:10px;color:var(--mid);letter-spacing:.05em;font-family:'Noto Sans KR',sans-serif}
+.cf-price{font-size:20px;font-weight:900;color:var(--accent);font-family:'Noto Serif KR',serif;line-height:1.2}
+.cf-sub{font-size:10px;color:var(--mid)}
+.cf-btn{flex:0 0 auto;background:var(--accent);color:#fff;border:none;border-radius:100px;padding:13px 24px;font-size:14px;font-weight:700;cursor:pointer;white-space:nowrap;text-decoration:none;font-family:'Noto Sans KR',sans-serif;box-shadow:0 3px 14px rgba(107,63,160,.3);transition:.15s}
+.cf-btn:active{transform:scale(.97)}
+
+/* ── 푸터 ── */
+.foot{font-size:10.5px;color:#a89878;text-align:center;margin-top:36px;line-height:2}
+
+/* ── 반응형 ── */
+@media(max-width:560px){
+  .hero-title{font-size:26px}
+  .rel-grid{grid-template-columns:1fr 1fr}
+  .funnel-wrap{gap:2px}
+  .fs-name{font-size:11px}
+}
+.oheng-divider{display:flex;justify-content:center;gap:6px;margin-top:14px}
+.oheng-divider span{width:7px;height:7px;border-radius:50%;display:inline-block}
+.oheng-divider span:nth-child(1){background:#3a8a4a}
+.oheng-divider span:nth-child(2){background:#c0392b}
+.oheng-divider span:nth-child(3){background:#9a7b3f}
+.oheng-divider span:nth-child(4){background:#7d8388}
+.oheng-divider span:nth-child(5){background:#2c3e6b}
+</style>
+</head>
+<body>
+
+<div class="topbar"><img src="./jiaseh_symbol_traced2_dark.png" class="topbar-logo" alt="지아세">知我世 · 지아세</div>
+
+<div class="wrap">
+
+<!-- ══ 히어로 ══ -->
+<header>
+  <div class="tier-tag">TIER 0 · 관계 입구</div>
+  <span style="font-size:32px;display:block;margin-bottom:8px">💞</span>
+  <h1 class="hero-title">케미카드</h1>
+  <div class="hero-hanja">Chemistry Card · 그 사람을 이해하는 가장 빠른 방법</div>
+  <div class="rule"></div>
+  <p class="hero-sub">
+    그 사람이 왜 그런 사람인지,<br>
+    나랑 잘 맞는지, 어떻게 대해야 하는지.<br>
+    <b>생년월일 하나</b>로 읽어드립니다.
+  </p>
+  <div class="oheng-divider"><span></span><span></span><span></span><span></span><span></span></div>
+</header>
+
+<!-- ══ 이런 분께 ══ -->
+<section>
+  <div class="card">
+    <div class="eyebrow">이런 분께</div>
+    <div class="sec-title">그 사람, 이해하고 싶을 때</div>
+    <div class="pain-list">
+      <div class="pain-item">
+        <span class="icon">◆</span>
+        <span>새로 사귄 사람인데 뭔가 파악이 안 돼요. 어떤 사람인지 알고 싶어요.</span>
+      </div>
+      <div class="pain-item">
+        <span class="icon">◆</span>
+        <span>직장 동료랑 자꾸 부딪혀요. 왜 그런지 이유가 있을 것 같아서요.</span>
+      </div>
+      <div class="pain-item">
+        <span class="icon">◆</span>
+        <span>부모님이랑 대화가 안 돼요. 어떻게 접근해야 할지 모르겠습니다.</span>
+      </div>
+      <div class="pain-item">
+        <span class="icon">◆</span>
+        <span>팀원들이 각자 다 다른데, 어떻게 맞춰야 할지 감이 없어요.</span>
+      </div>
+    </div>
+
+    <div class="impact-block">
+      <div class="impact-pre">케미카드가 알려주는 것</div>
+      <div class="impact-headline">
+        그 사람이 <em>왜 그런 사람인지.</em><br>
+        나와 어떻게 맞물리는지.
+      </div>
+      <div class="impact-list">
+        <div class="impact-item">이 사람이 타고난 성격과 강점</div>
+        <div class="impact-item">나와 에너지가 맞는 부분, 부딪히는 부분</div>
+        <div class="impact-item">이 사람을 어떻게 대하면 관계가 편해지는지</div>
+        <div class="impact-item">팀·가족 전체의 에너지 지형도 (팀 패키지)</div>
+      </div>
+      <div class="impact-close">
+        그 사람 전체 운명을 보는 게 아닙니다.<br>
+        <b>"나와의 관계"라는 렌즈로만</b> — 딱 필요한 것만 봅니다.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 어떤 관계든 ══ -->
+<section>
+  <div class="card">
+    <div class="eyebrow">어떤 관계든</div>
+    <div class="sec-title">가족부터 직장까지, 관계 전반</div>
+    <div class="rel-grid">
+      <div class="rel-item">
+        <div class="rel-icon">💑</div>
+        <div class="rel-name">연인 · 배우자</div>
+        <div class="rel-desc">끌림의 이유, 부딪히는 지점, 함께 잘 되는 방향</div>
+      </div>
+      <div class="rel-item">
+        <div class="rel-icon">👨‍👩‍👧‍👦</div>
+        <div class="rel-name">부모 · 자녀</div>
+        <div class="rel-desc">왜 대화가 어려운지, 어떻게 접근하면 편해지는지</div>
+      </div>
+      <div class="rel-item">
+        <div class="rel-icon">🏢</div>
+        <div class="rel-name">직장 동료 · 상사</div>
+        <div class="rel-desc">갈등의 에너지 구조, 효과적으로 맞추는 방법</div>
+      </div>
+      <div class="rel-item">
+        <div class="rel-icon">🤝</div>
+        <div class="rel-name">친구 · 파트너</div>
+        <div class="rel-desc">이 관계에서 내가 무엇을 주고 받는지</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 3가지 질문 ══ -->
+<section>
+  <div class="card">
+    <div class="eyebrow">무엇을 알게 되나요</div>
+    <div class="sec-title">관계에서 필요한 3가지</div>
+    <div class="q3-wrap">
+      <div class="q3-item">
+        <div class="q3-num">1</div>
+        <div class="q3-text"><b>이 사람, 어떤 사람인가</b> — 타고난 기질·강점·다루기 어려운 지점. 그 행동에 이유가 있다는 걸 알게 됩니다.</div>
+      </div>
+      <div class="q3-item">
+        <div class="q3-num">2</div>
+        <div class="q3-text"><b>나랑 잘 맞는가</b> — 에너지가 서로 보완하는지, 충돌하는지. 맞는 부분과 조심할 부분을 동시에 봅니다.</div>
+      </div>
+      <div class="q3-item">
+        <div class="q3-num">3</div>
+        <div class="q3-text"><b>어떻게 대해야 하는가</b> — 이 사람에게 효과적인 접근 방식. 관계를 편하게 만드는 구체적인 방향을 드립니다.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 가격 구성 ══ -->
+<section>
+  <div class="card">
+    <div class="eyebrow">가격 구성</div>
+    <div class="sec-title">상황에 맞게 선택하세요</div>
+    <div class="price-stack">
+
+      <div class="price-card">
+        <div class="pc-left">
+          <div class="pc-label">단건</div>
+          <div class="pc-price">10,000<span>원</span></div>
+        </div>
+        <div class="pc-body">
+          <div class="pc-title">그 사람 1명</div>
+          <div class="pc-desc">한 사람의 기질·강점·나와의 케미를 간결하게 읽어드립니다. 가장 빠르게 확인하고 싶을 때.</div>
+        </div>
+      </div>
+
+      <div class="price-card featured">
+        <div class="pc-left">
+          <div class="pc-tag">추천</div>
+          <div class="pc-label">짝 세트</div>
+          <div class="pc-price">18,000<span>원</span></div>
+        </div>
+        <div class="pc-body">
+          <div class="pc-title">나 + 상대 함께</div>
+          <div class="pc-desc">나와 상대, 두 사람의 에너지를 함께 놓고 봅니다. 맞는 부분·충돌 지점·대처법까지 포함. 관계를 제대로 이해하고 싶다면 이 구성입니다.</div>
+        </div>
+      </div>
+
+      <div class="price-card">
+        <div class="pc-left">
+          <div class="pc-label">팀·가족</div>
+          <div class="pc-price">45,000<span>~</span></div>
+        </div>
+        <div class="pc-body">
+          <div class="pc-title">3~5명 + 관계 지형도</div>
+          <div class="pc-desc">각자 기질 요약 + 누가 누구와 잘 맞고 어디서 충돌하는지 매트릭스로 드립니다. 5명 초과 시 1인당 +8,000원.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ 보고서 미리보기 ══ -->
+<section>
+  <div class="card">
+    <div class="eyebrow">실제 이런 내용입니다</div>
+    <div class="sec-title">보고서 발췌</div>
+
+    <div class="sample-wrap">
+      <div class="sample-label">단건 예시 — 직장 상사 케미카드</div>
+      <div class="sample-block">
+        <div class="sample-header">케미카드 · 상사 ○○님</div>
+        <div class="sample-text">
+          <div class="signal-row">
+            <span class="signal-badge type-good"><span class="dot"></span>케미 유형 · 속도 보완형</span>
+            <span class="signal-badge type-neutral"><span class="dot"></span>소통 방식 · 결론 우선형</span>
+          </div>
+          <span class="hl">한 줄 인상</span><br>
+          결단이 빠르고 기준이 선명한 사람입니다. 감정보다 논리로 움직이는 에너지예요.<br><br>
+          <span class="hl">타고난 기질</span><br>
+          <b>추진력과 효율</b>을 중심으로 움직입니다. 말이 짧고 직접적인 것이 무례해서가 아니라 그것이 이 사람의 자연스러운 언어입니다. 칭찬보다 성과로 인정받고 싶은 타입이에요.<br><br>
+          <span class="hl">강점 키워드</span><br>
+          실행력 · 책임감 · 목표 중심 · 빠른 판단
+        </div>
+        <div class="blur-gate">
+          <div class="blurred">
+            나와의 케미: 두 사람의 에너지가 속도 면에서 차이가 있습니다. 상사는 빠른 결정과 실행을 원하고, 당신은 충분히 생각한 뒤 움직이는 타입입니다. 충돌이 아니라 보완 구조인데 — 이것을 모르면 "답이 느리다"는 오해가 생깁니다. 대처법: 보고 전에 결론부터, 이유는 뒤에.
+          </div>
+          <div class="lock">
+            <div class="lock-icon">✦</div>
+            <div class="lock-text">보고서 전문에서 확인됩니다</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sample-label" style="margin-top:16px">팀 패키지 예시 — 관계 지형도</div>
+      <div class="sample-block">
+        <div class="sample-header">케미카드 · 팀 관계 지형도 (4인)</div>
+        <div class="matrix-wrap">
+          <table class="matrix-table">
+            <thead>
+              <tr>
+                <th></th>
+                <th>A (나)</th>
+                <th>B 팀장</th>
+                <th>C 동료</th>
+                <th>D 후배</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><b>A (나)</b></td>
+                <td class="self">—</td>
+                <td class="caution">보완·속도 차이</td>
+                <td class="good">잘 맞음</td>
+                <td class="good">편안함</td>
+              </tr>
+              <tr>
+                <td><b>B 팀장</b></td>
+                <td class="caution">보완·속도 차이</td>
+                <td class="self">—</td>
+                <td class="caution">에너지 충돌 주의</td>
+                <td class="good">조화로움</td>
+              </tr>
+              <tr>
+                <td><b>C 동료</b></td>
+                <td class="good">잘 맞음</td>
+                <td class="caution">에너지 충돌 주의</td>
+                <td class="self">—</td>
+                <td class="caution">역할 명확히</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="matrix-note">✦ 이 지형도는 샘플입니다. 실제 카드에는 각 관계별 상세 설명이 포함됩니다.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 관계 위계 ══ -->
+<section>
+  <div class="card">
+    <div class="eyebrow">더 깊이 보고 싶다면</div>
+    <div class="sec-title">관계를 보는 3단계</div>
+    <p class="sec-lead">케미카드는 관계를 이해하는 첫 번째 단계입니다.</p>
+    <div class="funnel-wrap">
+      <div class="funnel-step">
+        <div class="fs-label">그 사람 · 점</div>
+        <div class="fs-name">케미카드</div>
+        <div class="fs-price">10,000~</div>
+      </div>
+      <div class="funnel-arrow">→</div>
+      <div class="funnel-step">
+        <div class="fs-label">나의 패턴 · 선</div>
+        <div class="fs-name">연애패턴</div>
+        <div class="fs-price">50,000</div>
+      </div>
+      <div class="funnel-arrow">→</div>
+      <div class="funnel-step" style="border-color:var(--accent-line);background:linear-gradient(135deg,rgba(107,63,160,.08),transparent)">
+        <div class="fs-label">관계 전체 · 면</div>
+        <div class="fs-name">골든크로스</div>
+        <div class="fs-price">100,000</div>
+      </div>
+    </div>
+    <div class="funnel-note">
+      케미카드 → "그 사람은 어떤 사람인가"<br>
+      연애패턴 → "나는 왜 이런 관계를 반복하는가"<br>
+      골든크로스 → "관계의 구조 전체를 입체로 읽는다"
+    </div>
+
+    <div class="upsell-box" style="margin-top:14px">
+      <b>상대를 봤다면, 이제 나를 — 연애패턴 50,000</b><br>
+      케미카드가 상대를 보는 것이라면, 연애패턴은 왜 당신이 이런 사람을 반복적으로 만나는지를 봅니다. 상대의 문제가 아니라 내 구조를 알면 — 다음 관계가 달라집니다.
+    </div>
+  </div>
+</section>
+
+<!-- ══ 신청 절차 ══ -->
+<section>
+  <div class="card">
+    <div class="eyebrow">신청 절차</div>
+    <div class="sec-title">이렇게 진행됩니다</div>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-step">STEP 1</div>
+        <div class="tl-desc">카카오 채널로 <b>나와 상대의 생년월일(+성별) + 나와의 관계 + 가장 궁금한 점</b>을 보내주세요</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-step">STEP 2</div>
+        <div class="tl-desc">결제 완료 후 <b>당일~익일</b> 안에 보내드립니다</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot" style="border-color:var(--jade);background:var(--jade)"></div>
+        <div class="tl-step" style="color:var(--jade)">완료 ✓</div>
+        <div class="tl-desc">간단한 추가 질문 1회 가능</div>
+      </div>
+    </div>
+    <p style="font-size:12px;color:var(--mid);margin-top:14px;line-height:1.7;padding:12px 14px;background:var(--accent-bg);border-radius:4px;">
+      ✦ 상대방의 태어난 시간은 없어도 괜찮습니다. 생년월일만으로 진행합니다.<br>
+      ✦ 상대방의 정보는 관계 분석 목적으로만 사용하며, 부정적 단정 없이 헤아림의 방향으로 전달드립니다.
+    </p>
+  </div>
+</section>
+
+<!-- ══ FAQ ══ -->
+<section>
+  <div class="card">
+    <div class="eyebrow">자주 묻는 질문</div>
+    <div class="sec-title">궁금한 점</div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q">상대방 시간(태어난 시)을 몰라도 되나요? <span class="arrow">▾</span></div>
+        <div class="faq-a">네, 생년월일만으로 진행합니다. 케미카드는 처음부터 시간 없이도 충분히 볼 수 있게 설계되어 있어요. 상대방 시간을 아는 경우에도 알려주시면 조금 더 정밀하게 볼 수 있습니다.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">단건(10,000)이랑 짝 세트(18,000)의 차이가 뭔가요? <span class="arrow">▾</span></div>
+        <div class="faq-a">단건은 상대 1명의 기질·강점과 나와의 기본 케미만 봅니다. 짝 세트는 나와 상대 두 사람을 함께 놓고 — 보완하는 부분, 충돌하는 부분, 효과적인 대처법까지 더 입체로 봅니다. 관계를 제대로 이해하고 싶다면 짝 세트가 훨씬 유용합니다.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">연인이 아닌 관계도 되나요? <span class="arrow">▾</span></div>
+        <div class="faq-a">물론입니다. 가족·직장 동료·상사·친구·사업 파트너 모두 가능해요. 관계의 종류에 따라 보는 방향이 달라집니다. 어떤 관계인지 함께 보내주시면 그에 맞게 읽어드립니다.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">상대방이 나쁜 사람인지 아닌지 판단해 주나요? <span class="arrow">▾</span></div>
+        <div class="faq-a">그 방향으로는 보지 않습니다. 케미카드는 "이 사람이 어떤 에너지를 가진 사람인지, 나와 어떻게 맞물리는지"를 봅니다. 좋고 나쁨이 아니라 — 이해의 렌즈로 접근합니다.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">팀 패키지는 몇 명까지 가능한가요? <span class="arrow">▾</span></div>
+        <div class="faq-a">3~5명이 기본이고, 5명을 초과하면 1인당 8,000원이 추가됩니다. 문의 시 인원 수를 함께 알려주시면 안내드릴게요.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CTA 카드 ══ -->
+<section>
+  <div class="card">
+    <div class="eyebrow">신청</div>
+    <div class="sec-title">그 사람, 지금 확인하세요</div>
+    <p class="sec-lead">카카오 채널로 문의주시면 안내드립니다.<br>생년월일·나와의 관계·가장 궁금한 점을 함께 보내주시면 더 빠릅니다.</p>
+    <a href="http://pf.kakao.com/_xnZAxfX" class="cf-btn" style="display:block;text-align:center;border-radius:6px;padding:15px;margin-top:6px;font-size:15px;font-family:'Noto Serif KR',serif">카카오 채널 문의하기</a>
+    <p style="font-size:11px;color:var(--mid);text-align:center;margin-top:12px;line-height:1.7">
+      단건 10,000 · 짝 세트 18,000 · 팀·가족 45,000~<br>
+      결제 완료 후 당일~익일 안에 보내드립니다.
+    </p>
+  </div>
+</section>
+
+<div class="foot">
+  知我世 · 지아세 — 명징투파 자평명리 + 유시자미두수 남파 73궁<br>
+  본 내용은 참고용이며, 무엇도 단정하지 않습니다.
+</div>
+
+</div><!-- /wrap -->
+
+<!-- ── 하단 고정 CTA ── -->
+<div class="cta-fixed">
+  <div class="cf-left">
+    <div class="cf-label">케미카드 · 그 사람을 이해하는 가장 빠른 방법</div>
+    <div class="cf-price">10,000원~</div>
+    <div class="cf-sub">짝 세트 18,000 · 팀·가족 45,000~</div>
+  </div>
+  <a href="http://pf.kakao.com/_xnZAxfX" class="cf-btn">지금 신청하기</a>
+</div>
+
+<script>
+document.querySelectorAll('.faq-q').forEach(q=>{
+  q.addEventListener('click',()=>{
+    const item=q.closest('.faq-item');
+    const wasOpen=item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+    if(!wasOpen) item.classList.add('open');
+  });
+});
+</script>
+</body>
+</html>

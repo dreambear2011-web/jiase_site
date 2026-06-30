@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>분기 에너지 점검 · 지아세 知我世</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;700;900&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1a1410;
+  --paper:#f4f0fa;
+  --paper-card:#fdfbff;
+  --accent:#6b3fa0;
+  --accent-lt:#9b72d4;
+  --accent-bg:rgba(107,63,160,.08);
+  --accent-line:rgba(107,63,160,.2);
+  --jade:#3a5a44;
+  --jade-bg:rgba(58,90,68,.07);
+  --jade-line:rgba(58,90,68,.2);
+  --gold:#9a7b3f;
+  --line:#ddd4ee;
+  --mid:#7a6e8a;
+  --shadow:rgba(0,0,0,.06);
+  --maxw:720px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Noto Serif KR',serif;
+  background:var(--paper);
+  color:var(--ink);
+  line-height:1.75;
+  min-height:100vh;
+  background-image:
+    radial-gradient(ellipse at 75% 0%,rgba(58,90,68,.07) 0%,transparent 50%),
+    radial-gradient(ellipse at 20% 90%,rgba(107,63,160,.05) 0%,transparent 50%);
+}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 18px 120px}
+.topbar{display:flex;align-items:center;justify-content:center;gap:7px;padding:13px 0 10px;border-bottom:1px solid var(--line);font-size:11px;letter-spacing:.4em;color:var(--accent);font-weight:700}
+.topbar-logo{width:20px;height:20px;border-radius:5px;flex-shrink:0}
+b{color:var(--gold);font-weight:800}
+
+/* ── 히어로 ── */
+header{text-align:center;padding:40px 0 8px}
+.tier-tag{display:inline-block;background:var(--jade-bg);border:1px solid var(--jade-line);border-radius:100px;font-size:11px;font-weight:700;color:var(--jade);letter-spacing:.18em;padding:4px 14px;margin-bottom:18px;font-family:'Noto Sans KR',sans-serif}
+.hero-title{font-size:30px;font-weight:900;letter-spacing:.02em;line-height:1.25;color:var(--ink)}
+.hero-hanja{font-size:13px;color:var(--accent);letter-spacing:.15em;margin-top:6px;font-weight:700}
+.rule{height:1px;background:linear-gradient(90deg,transparent,var(--jade-line),transparent);margin:20px 0}
+.hero-sub{font-size:13.5px;color:var(--mid);line-height:1.85}
+
+/* ── 섹션 공통 ── */
+section{margin-top:18px;scroll-margin-top:20px}
+.card{background:var(--paper-card);border:1px solid var(--line);border-radius:6px;padding:24px 22px;box-shadow:0 1px 6px var(--shadow)}
+.eyebrow{font-size:10.5px;letter-spacing:.25em;color:var(--jade);font-weight:700;margin-bottom:6px;font-family:'Noto Sans KR',sans-serif}
+.sec-title{font-size:20px;font-weight:900;letter-spacing:.02em;margin-bottom:14px}
+.sec-lead{font-size:13.5px;color:#6a6055;line-height:1.8;margin-bottom:16px}
+
+/* ── 공감 리스트 ── */
+.pain-list{display:flex;flex-direction:column;gap:10px;margin-top:4px}
+.pain-item{display:flex;align-items:flex-start;gap:11px;background:var(--jade-bg);border:1px solid var(--jade-line);border-radius:4px;padding:12px 14px;font-size:13.5px;color:#2a3a2e;line-height:1.65}
+.pain-item .icon{flex:0 0 18px;color:var(--jade);font-size:15px;padding-top:1px}
+
+/* ── 분기 사이클 비주얼 ── */
+.quarter-wrap{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.quarter-card{border:1px solid var(--line);border-radius:6px;padding:16px 16px;background:var(--paper-card)}
+.quarter-card.active{border-color:var(--jade-line);background:var(--jade-bg)}
+.qc-tag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.1em;color:var(--jade);background:var(--jade-bg);border:1px solid var(--jade-line);border-radius:100px;padding:2px 10px;margin-bottom:8px;font-family:'Noto Sans KR',sans-serif}
+.qc-months{font-size:12.5px;font-weight:700;color:var(--ink);margin-bottom:5px}
+.qc-desc{font-size:12px;color:#6a6055;line-height:1.6}
+.qc-highlight{font-size:11px;color:var(--jade);font-weight:700;margin-top:6px;font-family:'Noto Sans KR',sans-serif}
+
+/* ── 핵심 카피 블록 ── */
+.impact-block{margin:20px 0 4px;padding:20px 0 18px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.impact-pre{font-size:11px;letter-spacing:.25em;color:var(--jade);font-weight:700;margin-bottom:12px;font-family:'Noto Sans KR',sans-serif}
+.impact-headline{font-size:20px;font-weight:900;line-height:1.45;color:var(--ink);margin-bottom:14px}
+.impact-headline em{font-style:normal;color:var(--jade)}
+.impact-list{display:flex;flex-direction:column;gap:7px;margin-bottom:16px}
+.impact-item{display:flex;align-items:baseline;gap:9px;font-size:13.5px;color:#3a2e20;line-height:1.6}
+.impact-item::before{content:"✦";color:var(--jade);font-size:10px;flex:0 0 12px}
+.impact-close{font-size:13px;color:#6a6055;line-height:1.75;padding-top:12px;border-top:1px dotted var(--line)}
+
+/* ── 보고서 미니 구조 ── */
+.mini-report{display:flex;flex-direction:column;gap:0;margin-top:12px;border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.mr-part{display:flex;align-items:flex-start;gap:14px;padding:14px 16px;border-bottom:1px solid var(--line);background:var(--paper-card)}
+.mr-part:last-child{border-bottom:none}
+.mr-num{flex:0 0 52px;font-size:10px;font-weight:700;color:var(--jade);letter-spacing:.1em;padding-top:3px;font-family:'Noto Sans KR',sans-serif}
+.mr-body{}
+.mr-title{font-size:13.5px;font-weight:900;margin-bottom:3px}
+.mr-desc{font-size:12.5px;color:#6a6055;line-height:1.6}
+
+/* ── 3개월 미리보기 ── */
+.three-month{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:12px}
+.tm-cell{border:1px solid var(--line);border-radius:4px;padding:12px 10px;text-align:center}
+.tm-cell.focus{border-color:var(--jade-line);background:var(--jade-bg)}
+.tm-month{font-size:11px;color:var(--mid);margin-bottom:4px;font-family:'Noto Sans KR',sans-serif}
+.tm-label{font-size:13px;font-weight:900;color:var(--ink);margin-bottom:4px}
+.tm-cell.focus .tm-label{color:var(--jade)}
+.tm-key{font-size:11px;color:var(--mid);line-height:1.4}
+.tm-opp{font-size:10.5px;color:var(--jade);font-weight:700;margin-top:4px;font-family:'Noto Sans KR',sans-serif}
+.tm-warn{font-size:10.5px;color:#8b2e22;font-weight:700;margin-top:4px;font-family:'Noto Sans KR',sans-serif}
+
+/* ── 미니 처방 ── */
+.remedy-mini{background:var(--jade-bg);border:1px solid var(--jade-line);border-radius:4px;padding:14px 16px;margin-top:12px}
+.rm-title{font-size:11px;font-weight:700;color:var(--jade);letter-spacing:.1em;margin-bottom:10px;font-family:'Noto Sans KR',sans-serif}
+.rm-row{display:flex;align-items:flex-start;gap:12px;padding:7px 0;border-bottom:1px dotted var(--jade-line)}
+.rm-row:last-child{border-bottom:none}
+.rm-label{flex:0 0 52px;font-size:11px;font-weight:700;color:var(--jade);font-family:'Noto Sans KR',sans-serif;padding-top:2px}
+.rm-text{font-size:13px;color:#2a3a2e;line-height:1.6}
+
+/* ── 다음 분기 예고 ── */
+.next-q{background:rgba(107,63,160,.05);border:1px solid var(--accent-line);border-radius:4px;padding:12px 14px;margin-top:12px;font-size:13px;color:#3a2e20;line-height:1.65}
+.nq-label{font-size:10px;font-weight:700;color:var(--accent);letter-spacing:.1em;margin-bottom:5px;font-family:'Noto Sans KR',sans-serif}
+
+/* ── 차감 배너 ── */
+.deduct-banner{background:var(--jade-bg);border:1px solid var(--jade-line);border-radius:6px;padding:16px 18px;margin-top:20px}
+.db-title{font-size:11px;font-weight:700;color:var(--jade);letter-spacing:.15em;margin-bottom:8px;font-family:'Noto Sans KR',sans-serif}
+.db-row{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:7px 0;border-bottom:1px dotted var(--jade-line)}
+.db-row:last-of-type{border-bottom:none}
+.db-from{font-size:12.5px;color:#3a5a44}
+.db-arrow{color:var(--jade);font-size:13px}
+.db-result{font-size:13px;font-weight:900;color:var(--jade)}
+.db-note{font-size:11px;color:var(--jade);margin-top:8px;opacity:.8}
+
+/* ── 신청 절차 ── */
+.timeline{display:flex;flex-direction:column;gap:0;margin-top:10px}
+.tl-item{display:flex;align-items:flex-start;gap:14px;padding:12px 0;border-bottom:1px dotted var(--line)}
+.tl-item:last-child{border-bottom:none}
+.tl-dot{width:10px;height:10px;border-radius:50%;border:2px solid var(--jade);background:transparent;flex:0 0 10px;margin-top:6px}
+.tl-step{flex:0 0 48px;font-size:11px;font-weight:700;color:var(--jade);letter-spacing:.08em;font-family:'Noto Sans KR',sans-serif;padding-top:2px}
+.tl-desc{font-size:13.5px;color:#3a2e20;line-height:1.65}
+
+/* ── 상품 스펙 ── */
+.spec-list{display:flex;flex-direction:column;gap:0;margin-top:10px}
+.spec-item{display:flex;align-items:flex-start;gap:0;padding:9px 0;border-bottom:1px dotted var(--line)}
+.spec-item:last-child{border-bottom:none}
+.spec-key{flex:0 0 80px;font-size:12px;font-weight:700;color:var(--mid);font-family:'Noto Sans KR',sans-serif}
+.spec-val{font-size:13.5px;color:var(--ink)}
+
+/* ── 비교표 ── */
+.compare-table{width:100%;border-collapse:collapse;font-size:12.5px;margin-top:10px}
+.compare-table th,.compare-table td{padding:9px 8px;border-bottom:1px solid var(--line);text-align:center;line-height:1.4}
+.compare-table th{font-weight:700;font-size:12px;font-family:'Noto Sans KR',sans-serif;background:var(--jade-bg)}
+.compare-table td:first-child{text-align:left;color:var(--mid);font-size:12px}
+.compare-note{font-size:11.5px;color:var(--mid);margin-top:10px;line-height:1.65;text-align:center}
+
+/* ── 업셀 박스 ── */
+.upsell-box{background:linear-gradient(135deg,rgba(154,123,63,.08),rgba(58,90,68,.05));border:1px solid rgba(154,123,63,.2);border-radius:4px;padding:14px 16px;font-size:13px;color:#3a2e20;line-height:1.7;margin-top:16px}
+
+/* ── FAQ ── */
+.faq-list{display:flex;flex-direction:column;gap:6px;margin-top:10px}
+.faq-item{border:1px solid var(--line);border-radius:4px;overflow:hidden}
+.faq-q{padding:13px 16px;font-size:13.5px;font-weight:700;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:10px;user-select:none}
+.faq-q .arrow{flex:0 0 14px;font-size:11px;color:var(--mid);transition:transform .2s}
+.faq-item.open .faq-q .arrow{transform:rotate(180deg)}
+.faq-a{display:none;padding:0 16px 14px;font-size:13px;color:#6a6055;line-height:1.75}
+.faq-item.open .faq-a{display:block}
+
+/* ── CTA ── */
+.cf-btn{background:linear-gradient(135deg,var(--jade),#4a7a5a);color:#fff;border:none;border-radius:6px;padding:14px 22px;font-size:14.5px;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block;letter-spacing:.03em;font-family:'Noto Serif KR',serif;transition:opacity .15s}
+.cf-btn:hover{opacity:.88}
+
+/* ── 하단 고정 CTA ── */
+.cta-fixed{position:fixed;bottom:0;left:0;right:0;background:rgba(253,251,255,.96);backdrop-filter:blur(10px);border-top:1px solid var(--line);padding:12px 20px;display:flex;align-items:center;justify-content:space-between;gap:14px;z-index:100}
+.cf-left{}
+.cf-label{font-size:11px;color:var(--mid);font-family:'Noto Sans KR',sans-serif;margin-bottom:1px}
+.cf-price{font-size:18px;font-weight:900;color:var(--ink)}
+.cf-price .won{font-size:13px;font-weight:400;margin-left:1px}
+
+/* ── 푸터 ── */
+.foot{text-align:center;font-size:11px;color:var(--mid);line-height:1.8;margin-top:28px;padding-bottom:8px}
+.divider{text-align:center;color:var(--line);font-size:14px;margin:18px 0}
+.oheng-divider{display:flex;justify-content:center;gap:6px;margin-top:14px}
+.oheng-divider span{width:7px;height:7px;border-radius:50%;display:inline-block}
+.oheng-divider span:nth-child(1){background:#3a8a4a}
+.oheng-divider span:nth-child(2){background:#c0392b}
+.oheng-divider span:nth-child(3){background:#9a7b3f}
+.oheng-divider span:nth-child(4){background:#7d8388}
+.oheng-divider span:nth-child(5){background:#2c3e6b}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="topbar"><img src="./jiaseh_symbol_traced2_dark.png" class="topbar-logo" alt="지아세">知我世 · 지아세</div>
+
+  <!-- ══ 히어로 ══ -->
+  <header>
+    <div class="tier-tag">TIER 3 · 정기 경영 · 분기 1회</div>
+    <span style="font-size:32px;display:block;margin-bottom:8px">🗓️</span>
+  <h1 class="hero-title">분기 에너지 점검<br><span style="font-size:21px;font-weight:400">季度 에너지 點檢</span></h1>
+    <div class="hero-hanja">知我世 · 지아세</div>
+    <div class="rule"></div>
+    <p class="hero-sub">
+      세운 리딩이 올해의 지도라면 —<br>
+      분기 점검은 지금 이 3개월의 내비게이션입니다.
+    </p>
+    <div class="oheng-divider"><span></span><span></span><span></span><span></span><span></span></div>
+</header>
+
+  <!-- ══ 분기 사이클 ══ -->
+  <section>
+    <div class="card">
+      <div class="eyebrow">분기 구조</div>
+      <div class="sec-title">3개월마다 방향을 업데이트합니다</div>
+      <div class="quarter-wrap">
+        <div class="quarter-card">
+          <div class="qc-tag">1분기</div>
+          <div class="qc-months">1월 · 2월 · 3월</div>
+          <div class="qc-desc">새해 에너지 진입. 올해 방향 초기 점검.</div>
+        </div>
+        <div class="quarter-card">
+          <div class="qc-tag">2분기</div>
+          <div class="qc-months">4월 · 5월 · 6월</div>
+          <div class="qc-desc">상반기 마무리. 집중 구간 확인.</div>
+        </div>
+        <div class="quarter-card active">
+          <div class="qc-tag">3분기 ← 지금</div>
+          <div class="qc-months">7월 · 8월 · 9월</div>
+          <div class="qc-desc">하반기 진입. 전략 재정비 타이밍.</div>
+          <div class="qc-highlight">✦ 지금 신청하면 이 분기를 봅니다</div>
+        </div>
+        <div class="quarter-card">
+          <div class="qc-tag">4분기</div>
+          <div class="qc-months">10월 · 11월 · 12월</div>
+          <div class="qc-desc">연말 수확·결산. 다음 해 준비.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 공감 ══ -->
+  <section>
+    <div class="card">
+      <div class="eyebrow">이런 분께</div>
+      <div class="sec-title">분기마다 방향 점검이 필요합니다</div>
+      <div class="pain-list">
+        <div class="pain-item"><div class="icon">◈</div><div>세운 리딩을 받았는데 — 3개월이 지나니 다시 흐릿해졌다. 지금 이 달 기운을 다시 확인하고 싶다</div></div>
+        <div class="pain-item"><div class="icon">◈</div><div>매달 바뀌는 에너지를 짧게 챙기는 루틴이 필요하다</div></div>
+        <div class="pain-item"><div class="icon">◈</div><div>이번 분기 기회가 언제인지, 조심할 것이 뭔지 — 딱 그것만 빠르게 확인하고 싶다</div></div>
+        <div class="pain-item"><div class="icon">◈</div><div>처방도 분기마다 바뀌는 게 맞는 것 같다는 느낌이 든다</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 핵심 카피 ══ -->
+  <section>
+    <div class="card">
+      <div class="impact-block">
+        <div class="impact-pre">이 보고서가 하는 것</div>
+        <div class="impact-headline">A4 2~3장.<br><em>짧고 바로 쓸 수 있게</em> 봅니다.</div>
+        <div class="impact-list">
+          <div class="impact-item">이번 분기 3개월 월별 흐름 — 강·중·약 + 키워드 한 줄씩</div>
+          <div class="impact-item">이번 분기 기회 1가지 / 주의 1가지 — 딱 두 가지만</div>
+          <div class="impact-item">분기 핵심 오행에 맞는 미니 처방 1종</div>
+          <div class="impact-item">다음 분기 예고 — 다음 3개월을 미리 한 줄로</div>
+        </div>
+        <div class="impact-close">긴 보고서가 필요한 게 아닙니다. 지금 이 3개월, 어떻게 쓸지 — 그것만 빠르게.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 보고서 구조 미리보기 ══ -->
+  <section>
+    <div class="card">
+      <div class="eyebrow">보고서 구조</div>
+      <div class="sec-title">이런 내용이 들어갑니다</div>
+      <p class="sec-lead">A4 2~3장. 읽는 데 10분이면 충분합니다.</p>
+
+      <!-- 3개월 샘플 -->
+      <div style="font-size:12.5px;color:var(--mid);margin-bottom:10px;font-family:'Noto Sans KR',sans-serif">이번 분기 3개월 흐름 (샘플)</div>
+      <div class="three-month">
+        <div class="tm-cell">
+          <div class="tm-month">7월</div>
+          <div class="tm-label" style="color:var(--mid)">중</div>
+          <div class="tm-key">정비·재정렬</div>
+          <div class="tm-warn">기신 접촉 주의</div>
+        </div>
+        <div class="tm-cell focus">
+          <div class="tm-month">8월</div>
+          <div class="tm-label">강</div>
+          <div class="tm-key">희신 활성</div>
+          <div class="tm-opp">✦ 기회 구간</div>
+        </div>
+        <div class="tm-cell">
+          <div class="tm-month">9월</div>
+          <div class="tm-label" style="color:var(--mid)">중</div>
+          <div class="tm-key">결실 정리</div>
+          <div class="tm-key" style="margin-top:4px">하반기 전환</div>
+        </div>
+      </div>
+
+      <div class="divider" style="margin:18px 0 14px">· · ·</div>
+
+      <!-- 미니 보고서 구조 -->
+      <div class="mini-report">
+        <div class="mr-part">
+          <div class="mr-num">PART 0</div>
+          <div class="mr-body">
+            <div class="mr-title">이번 분기 한 줄</div>
+            <div class="mr-desc">래정으로 지금 들어오는 기운을 먼저 짚습니다. 이번 분기를 한 문장으로.</div>
+          </div>
+        </div>
+        <div class="mr-part">
+          <div class="mr-num">PART 1</div>
+          <div class="mr-body">
+            <div class="mr-title">3개월 흐름</div>
+            <div class="mr-desc">해당 분기 3개월 각각 흐름 한 줄. 기회 1 / 주의 1.</div>
+          </div>
+        </div>
+        <div class="mr-part">
+          <div class="mr-num">PART 2</div>
+          <div class="mr-body">
+            <div class="mr-title">미니 처방 1종</div>
+            <div class="mr-desc">분기 핵심 오행 → 아로마 또는 약차 1종 + 방위 한 줄.</div>
+          </div>
+        </div>
+        <div class="mr-part">
+          <div class="mr-num">PART 3</div>
+          <div class="mr-body">
+            <div class="mr-title">마무리 + 다음 분기 예고</div>
+            <div class="mr-desc">이번 분기 행동 1가지. 다음 분기 흐름을 미리 한 줄로.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="divider" style="margin:18px 0 14px">· · ·</div>
+
+      <!-- 미니 처방 샘플 -->
+      <div style="font-size:12.5px;color:var(--mid);margin-bottom:10px;font-family:'Noto Sans KR',sans-serif">미니 처방 샘플</div>
+      <div class="remedy-mini">
+        <div class="rm-title">이번 분기 처방 — 土 보강</div>
+        <div class="rm-row">
+          <div class="rm-label">아로마</div>
+          <div class="rm-text">로즈마리 + 그레이프프루트 블렌딩. 활력을 올리면서 중심을 잡는 방향으로.</div>
+        </div>
+        <div class="rm-row">
+          <div class="rm-label">방위</div>
+          <div class="rm-text">남서 방향의 에너지를 들이면 이번 분기 안정감이 올라갑니다.</div>
+        </div>
+      </div>
+
+      <!-- 다음 분기 예고 샘플 -->
+      <div class="next-q">
+        <div class="nq-label">다음 분기 예고</div>
+        4분기(10~12월)는 金 에너지가 강해지는 구간입니다. 결산하고 정리하는 방향으로 에너지를 쓰면 자연스럽게 흐릅니다. 다음 분기 점검에서 자세히 다룹니다.
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 신청 절차 ══ -->
+  <section>
+    <div class="card">
+      <div class="eyebrow">신청 절차</div>
+      <div class="sec-title">이렇게 진행됩니다</div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-step">STEP 1</div>
+          <div class="tl-desc">카카오 채널로 <b>생년월일시 + 성별 + 이번 분기 주요 고민</b>을 보내주세요</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-step">STEP 2</div>
+          <div class="tl-desc">결제 완료 후 <b>1일 내</b> 온라인 문서로 납품</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot" style="border-color:var(--jade);background:var(--jade)"></div>
+          <div class="tl-step" style="color:var(--jade)">완료 ✓</div>
+          <div class="tl-desc">술사 직접 검수 · 분기마다 정기 등록 안내</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 상품 안내 ══ -->
+  <section>
+    <div class="card">
+      <div class="eyebrow">상품 안내</div>
+      <div class="sec-title">무엇을 어떻게 받게 되나요</div>
+      <div class="spec-list">
+        <div class="spec-item"><div class="spec-key">분량</div><div class="spec-val">A4 2~3p</div></div>
+        <div class="spec-item"><div class="spec-key">납기</div><div class="spec-val">결제 후 1일 내</div></div>
+        <div class="spec-item"><div class="spec-key">주기</div><div class="spec-val">분기 1회 (3개월마다)</div></div>
+        <div class="spec-item"><div class="spec-key">형태</div><div class="spec-val">온라인 문서</div></div>
+        <div class="spec-item"><div class="spec-key">전제</div><div class="spec-val">세운 리딩 이력자 대상 권장 (처음도 가능, 카카오 채널 문의)</div></div>
+        <div class="spec-item"><div class="spec-key">술사 검수</div><div class="spec-val">전량 직접 검수</div></div>
+      </div>
+
+      <div class="divider">· · ·</div>
+
+      <div class="upsell-box">
+        <b>올해 전체를 먼저 보고 싶다면 — 세운 정기 리딩 20,000</b><br>
+        분기 점검이 3개월 내비게이션이라면, 세운 리딩은 올해 전체 지도입니다. 처음이라면 세운 리딩부터 받고 이후 분기마다 업데이트하는 방식이 가장 효율적입니다.
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 비교표 ══ -->
+  <section>
+    <div class="card">
+      <div class="eyebrow">상품 비교</div>
+      <div class="sec-title">어떤 상품을 선택할까요</div>
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th></th>
+            <th style="color:var(--accent)">세운 정기 리딩<br><small style="font-weight:400;font-size:10px">20,000원</small></th>
+            <th style="color:var(--jade)">분기 에너지 점검<br><small style="font-weight:400;font-size:10px">15,000원</small></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>보는 범위</td><td>올해 12개월 전체</td><td style="font-weight:900;color:var(--jade)">이번 분기 3개월</td></tr>
+          <tr><td>대운×세운 교차</td><td>✓</td><td>–</td></tr>
+          <tr><td>월운 분량</td><td>12개월 전체</td><td>3개월 집중</td></tr>
+          <tr><td>4테마 간략</td><td>✓</td><td>–</td></tr>
+          <tr><td>처방</td><td>정규 3종</td><td>핵심 1종</td></tr>
+          <tr><td>다음 분기 예고</td><td>–</td><td>✓</td></tr>
+          <tr><td>분량</td><td>A4 5~8p</td><td>A4 2~3p</td></tr>
+          <tr><td>납기</td><td>1~2일</td><td>1일 내</td></tr>
+        </tbody>
+      </table>
+      <p class="compare-note">세운 리딩(연 1회) + 분기 점검(분기 1회) 세트로 활용하면 가장 효과적입니다</p>
+    </div>
+  </section>
+
+  <!-- ══ FAQ ══ -->
+  <section>
+    <div class="card">
+      <div class="eyebrow">자주 묻는 질문</div>
+      <div class="sec-title">궁금한 점</div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <div class="faq-q">세운 리딩 없이 처음부터 분기 점검만 받을 수 있나요? <span class="arrow">▾</span></div>
+          <div class="faq-a">가능합니다. 다만 세운 리딩을 먼저 받으면 올해 전체 맥락이 있어 분기 점검이 훨씬 깊이 있게 읽힙니다. 처음이신 분은 카카오 채널로 문의해 주시면 적합한 방법을 안내드립니다.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">분기를 나누는 기준이 어떻게 되나요? <span class="arrow">▾</span></div>
+          <div class="faq-a">1분기(1~3월)·2분기(4~6월)·3분기(7~9월)·4분기(10~12월)로 운용합니다. 분기 중간에 신청하셔도 남은 달 + 다음 분기 예고로 구성됩니다.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">처방이 1종만이면 부족하지 않나요? <span class="arrow">▾</span></div>
+          <div class="faq-a">분기 핵심 오행에 가장 잘 맞는 처방 1종을 집중해서 드립니다. 여러 가지를 한꺼번에 쓰는 것보다 하나를 제대로 3개월 쓰는 것이 실제 효과에 더 유리합니다. 정규 3종 병행 처방이 필요하신 분은 세운 리딩을 권장드립니다.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">정기 등록으로 4분기 모두 신청할 수 있나요? <span class="arrow">▾</span></div>
+          <div class="faq-a">네, 분기마다 정기 신청하시는 분께는 별도로 안내드립니다. 카카오 채널로 문의해 주세요.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ CTA 카드 ══ -->
+  <section>
+    <div class="card">
+      <div class="eyebrow">신청</div>
+      <div class="sec-title">이번 분기 방향을 확인하세요</div>
+      <p class="sec-lead">카카오 채널로 문의주시면 안내드립니다.<br>생년월일시·성별·이번 분기 주요 고민을 함께 보내주시면 더 빠릅니다.</p>
+      <a href="http://pf.kakao.com/_xnZAxfX" class="cf-btn" style="display:block;text-align:center;border-radius:6px;padding:15px;margin-top:6px;font-size:15px">카카오 채널 문의하기</a>
+      <p style="font-size:11px;color:var(--mid);text-align:center;margin-top:12px;line-height:1.7">
+        결제 완료 후 1일 내 온라인 문서로 납품됩니다.<br>
+        술사 직접 검수 포함.
+      </p>
+    </div>
+  </section>
+
+  <div class="foot">
+    知我世 · 지아세 — 명징투파 자평명리 + 유시자미두수 남파 73궁<br>
+    본 보고서는 참고용이며, 무엇도 단정하지 않습니다.
+  </div>
+
+</div><!-- /wrap -->
+
+<!-- ── 하단 고정 CTA ── -->
+<div class="cta-fixed">
+  <div class="cf-left">
+    <div class="cf-label">분기 에너지 점검 · TIER 3 · 술사 검수</div>
+    <div class="cf-price">15,000<span class="won">원</span></div>
+  </div>
+  <a href="http://pf.kakao.com/_xnZAxfX" class="cf-btn">지금 신청하기</a>
+</div>
+
+<script>
+document.querySelectorAll('.faq-q').forEach(q=>{
+  q.addEventListener('click',()=>{
+    const item=q.closest('.faq-item');
+    const wasOpen=item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+    if(!wasOpen) item.classList.add('open');
+  });
+});
+</script>
+</body>
+</html>

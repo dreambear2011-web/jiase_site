@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>지아세 · 정화 세션</title>
+<style>
+:root{
+  --ink:#1a1410;--paper:#f4efe6;--gold:#9a7b3f;--gold-lt:#c4a661;
+  --jade:#3a5a44;--red:#8b2e22;--line:#d8cfbf;--card:#ede8de;
+  --al:#5bbfb5;--ar:#c4a661;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Serif KR',serif;background:var(--paper);color:var(--ink);min-height:100vh;
+  background-image:radial-gradient(circle at 15% 10%,rgba(154,123,63,.07),transparent 40%),radial-gradient(circle at 85% 90%,rgba(58,90,68,.05),transparent 45%);}
+b{color:var(--gold);font-weight:800}
+.wrap{max-width:480px;margin:0 auto;padding:20px 16px 80px}
+.hd{text-align:center;padding:24px 0 16px}
+.hd-eyebrow{display:flex;align-items:center;justify-content:center;gap:7px;font-size:10px;letter-spacing:.35em;color:var(--gold);margin-bottom:8px}
+.hd-logo{width:22px;height:22px;border-radius:6px;flex-shrink:0}
+.oheng-divider{display:flex;justify-content:center;gap:6px;margin-top:14px}
+.oheng-divider span{width:7px;height:7px;border-radius:50%;display:inline-block}
+.oheng-divider span:nth-child(1){background:#3a8a4a}
+.oheng-divider span:nth-child(2){background:#c0392b}
+.oheng-divider span:nth-child(3){background:#9a7b3f}
+.oheng-divider span:nth-child(4){background:#7d8388}
+.oheng-divider span:nth-child(5){background:#2c3e6b}
+.hd-title{font-size:21px;font-weight:900;line-height:1.35;margin-bottom:6px}
+.hd-sub{font-size:12px;color:#7a6e5f;line-height:1.7}
+.card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:20px 16px;margin-bottom:14px}
+.eyebrow{font-size:10px;letter-spacing:.22em;color:var(--gold);margin-bottom:10px}
+.principle{border-left:3px solid var(--gold);padding:12px 14px;background:rgba(154,123,63,.07);border-radius:0 6px 6px 0;font-size:12.5px;color:#4a3e2f;line-height:1.75;margin-bottom:16px}
+.steps{display:flex;gap:0;margin-bottom:16px;border-radius:6px;overflow:hidden;border:1px solid var(--line)}
+.step{flex:1;text-align:center;padding:8px 4px;font-size:10px;color:#a89878;background:var(--paper);border-right:1px solid var(--line);transition:.2s}
+.step:last-child{border-right:none}
+.step.active{background:var(--ink);color:var(--paper);font-weight:700}
+.step.done{background:var(--gold);color:#fff}
+textarea{width:100%;border:1px solid var(--line);border-radius:5px;padding:11px 13px;font-family:inherit;font-size:13px;background:var(--paper);color:var(--ink);resize:none;line-height:1.7;outline:none;transition:.2s;}
+textarea:focus{border-color:var(--gold)}
+.sud-wrap{margin:12px 0}
+.sud-labels{display:flex;justify-content:space-between;font-size:10px;color:#a89878;margin-bottom:5px}
+input[type=range]{width:100%;-webkit-appearance:none;height:6px;border-radius:3px;outline:none;cursor:pointer;background:linear-gradient(to right,var(--jade) 0%,var(--gold) 50%,var(--red) 100%);}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:var(--ink);border:3px solid var(--paper);box-shadow:0 2px 8px rgba(0,0,0,.25);cursor:pointer;}
+.sud-value{text-align:center;font-size:36px;font-weight:900;color:var(--ink);margin:8px 0 3px;line-height:1}
+.sud-desc{text-align:center;font-size:12px;color:#7a6e5f;min-height:18px}
+.setting-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
+.setting-item label{display:block;font-size:10.5px;color:#7a6e5f;margin-bottom:5px}
+select{width:100%;padding:9px 10px;border:1px solid var(--line);border-radius:5px;background:var(--paper);color:var(--ink);font-family:inherit;font-size:13px;outline:none;}
+.pattern-btns{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px}
+.pbtn{padding:10px;border:1px solid var(--line);border-radius:5px;background:var(--paper);cursor:pointer;text-align:center;font-family:inherit;font-size:12.5px;color:var(--ink);transition:.2s;}
+.pbtn.sel{border-color:var(--gold);background:rgba(154,123,63,.1);border-width:2px;font-weight:700}
+.btn{width:100%;padding:13px;background:var(--ink);color:var(--paper);border:none;border-radius:6px;font-family:inherit;font-size:14px;font-weight:700;letter-spacing:.04em;cursor:pointer;transition:.2s;margin-top:8px;}
+.btn:hover{background:#2e251e}
+.btn.start{background:var(--jade);color:#fff}
+.btn.start:hover{background:#2d4836}
+.btn.stop{background:var(--red);color:#fff}
+.btn-ghost{width:100%;padding:11px;background:transparent;color:var(--gold);border:1px solid var(--gold);border-radius:6px;font-family:inherit;font-size:13px;cursor:pointer;transition:.2s;margin-top:8px;}
+.level-desc{font-size:12.5px;color:#5a4e3f;line-height:1.7;padding:10px 12px;background:rgba(154,123,63,.06);border-radius:5px;margin-bottom:12px}
+.stat-row{display:flex;gap:12px;margin-bottom:16px}
+.stat-box{flex:1;text-align:center;padding:12px;background:var(--paper);border:1px solid var(--line);border-radius:6px}
+.stat-num{font-size:28px;font-weight:900;color:var(--jade);line-height:1}
+.stat-lbl{font-size:10px;color:#a89878;margin-top:3px}
+.current-cmd{text-align:center;padding:18px 12px;background:var(--ink);border-radius:8px;margin-bottom:16px;min-height:80px;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.cmd-hand{font-size:13px;letter-spacing:.15em;color:rgba(244,239,230,.5);margin-bottom:6px}
+.cmd-fingers{font-size:22px;font-weight:900;color:var(--gold-lt);line-height:1.3}
+.cmd-sub{font-size:11px;color:rgba(244,239,230,.4);margin-top:6px}
+.hands-wrap{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px}
+.hand-box{background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:14px 10px;text-align:center}
+.hand-lbl{font-size:11px;color:#7a6e5f;margin-bottom:10px;letter-spacing:.08em}
+.fingers-row{display:flex;justify-content:center;gap:5px;margin-bottom:8px}
+.finger{width:34px;height:34px;border-radius:50%;border:2px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:9px;color:#a89878;transition:.25s;background:var(--card);}
+.finger.al{background:var(--al);border-color:var(--al);color:#fff;font-weight:700;box-shadow:0 0 12px rgba(91,191,181,.5);transform:scale(1.15);}
+.finger.ar{background:var(--ar);border-color:var(--ar);color:#fff;font-weight:700;box-shadow:0 0 12px rgba(196,166,97,.5);transform:scale(1.15);}
+.fist-btn{width:100%;padding:7px;border:2px solid var(--line);border-radius:5px;background:var(--card);font-size:11px;color:#a89878;transition:.25s;}
+.fist-btn.al{background:var(--al);border-color:var(--al);color:#fff;font-weight:700}
+.fist-btn.ar{background:var(--ar);border-color:var(--ar);color:#fff;font-weight:700}
+@media(max-width:430px){
+  .hands-wrap{gap:8px}
+  .hand-box{padding:10px 5px}
+  .fingers-row{gap:3px}
+  .finger{width:25px;height:25px;font-size:7px}
+  .hand-lbl{font-size:10px;margin-bottom:8px}
+  .fist-btn{font-size:10px;padding:6px}
+}
+@media(max-width:360px){
+  .finger{width:21px;height:21px;font-size:6px}
+  .fingers-row{gap:2px}
+}
+.intention-box{padding:10px 12px;border-left:3px solid var(--gold);background:rgba(154,123,63,.06);border-radius:0 5px 5px 0;font-size:12px;color:#5a4e3f;line-height:1.65;margin-bottom:12px;font-style:italic;}
+.sud-compare{display:grid;grid-template-columns:1fr auto 1fr;gap:8px;align-items:center;margin:12px 0}
+.sud-box{text-align:center;padding:12px;border-radius:6px;border:1px solid var(--line)}
+.sud-box.before{background:rgba(139,46,34,.06)}
+.sud-box.after{background:rgba(58,90,68,.08)}
+.sud-box .num{font-size:34px;font-weight:900;line-height:1}
+.sud-box .lbl{font-size:10px;color:#a89878;margin-top:3px}
+.sud-arrow{font-size:18px;color:var(--gold);text-align:center}
+.drop-badge{display:inline-block;padding:4px 14px;border-radius:20px;background:var(--jade);color:#fff;font-size:11px;font-weight:700;margin:6px 0 12px;}
+.result-msg{font-size:13px;color:#3a2e20;line-height:1.75;margin-bottom:14px}
+.music-row{display:flex;align-items:center;gap:10px;padding:11px 0;border-bottom:1px dotted var(--line)}
+.music-row:last-child{border-bottom:none}
+.music-icon{font-size:18px;flex:0 0 26px;text-align:center}
+.music-info{flex:1}
+.music-name{font-size:12.5px;font-weight:700;color:var(--ink)}
+.music-desc{font-size:10.5px;color:#7a6e5f;margin-top:1px}
+.music-badge{font-size:10px;color:#a89878;border:1px solid var(--line);border-radius:10px;padding:1px 7px;white-space:nowrap}
+.hidden{display:none!important}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="hd">
+  <div class="hd-eyebrow"><img src="./jiaseh_symbol_traced2_dark.png" class="hd-logo" alt="지아세">知我世 · 정화 세션</div>
+  <span style="font-size:32px;display:block;margin-bottom:6px">👆</span>
+  <div class="hd-title">기억의 강도를<br>직접 낮춥니다</div>
+  <div class="hd-sub">EMDR 2.0 작업 기억 이론 기반<br>핑거 태핑으로 스트레스 기억을 약화시킵니다</div>
+  <div class="oheng-divider"><span></span><span></span><span></span><span></span><span></span></div>
+</div>
+
+<div class="steps">
+  <div class="step active" id="st1">① 사안</div>
+  <div class="step" id="st2">② 측정</div>
+  <div class="step" id="st3">③ 태핑</div>
+  <div class="step" id="st4">④ 확인</div>
+</div>
+
+<!-- STEP 1 -->
+<div id="sec-input">
+  <div class="card">
+    <div class="eyebrow">작동 원리</div>
+    <div class="principle">정화할 사안을 떠올리면서 손가락을 움직이세요.<br>두 가지 과제를 동시에 수행하면 <b>작업 기억이 과부하</b>되어, 스트레스 기억을 같은 강도로 유지할 수 없게 됩니다. 기억이 점점 흐릿해지고 감정적으로 덜 강렬해집니다.</div>
+    <div class="eyebrow">정화할 사안</div>
+    <textarea id="intention" rows="3" maxlength="150" placeholder="예: 반복되는 금전 걱정&#10;예: 그 사람과의 갈등&#10;예: 새 출발에 대한 두려움"></textarea>
+    <button class="btn" onclick="goStep2()" style="margin-top:12px">다음 — 고통 수준 측정</button>
+  </div>
+</div>
+
+<!-- STEP 2 -->
+<div id="sec-sud" class="hidden">
+  <div class="card">
+    <div class="eyebrow">STEP 2 · 지금 이 순간</div>
+    <p style="font-size:13px;color:#5a4e3f;line-height:1.7;margin-bottom:4px">방금 입력한 사안을 떠올렸을 때<br>몸과 마음에 느껴지는 불편함은?</p>
+    <div class="sud-wrap">
+      <div class="sud-labels"><span>0 없음</span><span>10 극심</span></div>
+      <input type="range" id="sud-slider" min="0" max="10" value="5" oninput="updateSud(this.value)">
+      <div class="sud-value" id="sud-num">5</div>
+      <div class="sud-desc" id="sud-desc">중간 — 신경이 쓰이는 상태</div>
+    </div>
+    <button class="btn" onclick="goStep3()">태핑 설정으로</button>
+    <button class="btn-ghost" onclick="goStep1()">← 다시 입력</button>
+  </div>
+</div>
+
+<!-- STEP 3 -->
+<div id="sec-tapping" class="hidden">
+  <div class="card" id="setting-card">
+    <div class="eyebrow">태핑 설정</div>
+    <div class="setting-grid">
+      <div class="setting-item">
+        <label>레벨</label>
+        <select id="level-sel" onchange="updateLevel()">
+          <option value="1">레벨 1: 엄지+검지</option>
+          <option value="2">레벨 2: +중지</option>
+          <option value="3">레벨 3: +약지</option>
+          <option value="4">레벨 4: +소지</option>
+          <option value="5">레벨 5: +주먹</option>
+        </select>
+      </div>
+      <div class="setting-item">
+        <label>속도</label>
+        <select id="speed-sel">
+          <option value="1200">1 (느림)</option>
+          <option value="1000">2</option>
+          <option value="850">3</option>
+          <option value="700" selected>4</option>
+          <option value="580">5 (보통)</option>
+          <option value="480">6</option>
+          <option value="400">7</option>
+          <option value="330">8</option>
+          <option value="270">9</option>
+          <option value="220">10 (빠름)</option>
+        </select>
+      </div>
+    </div>
+    <div style="font-size:10.5px;color:#7a6e5f;margin-bottom:6px;letter-spacing:.05em">패턴 모드</div>
+    <div class="pattern-btns">
+      <button class="pbtn sel" id="pb-sym" onclick="selPattern('sym')">좌우 대칭</button>
+      <button class="pbtn" id="pb-asym" onclick="selPattern('asym')">좌우 비대칭</button>
+    </div>
+    <div class="level-desc" id="level-desc">엄지와 검지만 사용합니다. 화면에 표시되는 손에 따라 해당 손의 엄지와 검지를 마주치세요.</div>
+    <button class="btn start" onclick="startTapping()">시작</button>
+  </div>
+
+  <div id="tapping-stage" class="hidden">
+    <div class="card">
+      <div class="intention-box" id="intention-reminder"></div>
+      <div class="stat-row">
+        <div class="stat-box"><div class="stat-num" id="count">0</div><div class="stat-lbl">총 횟수</div></div>
+        <div class="stat-box"><div class="stat-num" id="elapsed">0:00</div><div class="stat-lbl">경과 시간</div></div>
+      </div>
+      <div class="current-cmd">
+        <div class="cmd-hand" id="cmd-hand">—</div>
+        <div class="cmd-fingers" id="cmd-fingers">시작 버튼을 눌러주세요</div>
+        <div class="cmd-sub" id="cmd-sub"></div>
+      </div>
+      <div class="hands-wrap">
+        <div class="hand-box">
+          <div class="hand-lbl">왼손</div>
+          <div class="fingers-row">
+            <div class="finger" id="lf-소지">소지</div>
+            <div class="finger" id="lf-약지">약지</div>
+            <div class="finger" id="lf-중지">중지</div>
+            <div class="finger" id="lf-검지">검지</div>
+            <div class="finger" id="lf-엄지">엄지</div>
+          </div>
+          <button class="fist-btn" id="lf-주먹">주먹 쥐기</button>
+        </div>
+        <div class="hand-box">
+          <div class="hand-lbl">오른손</div>
+          <div class="fingers-row">
+            <div class="finger" id="rf-엄지">엄지</div>
+            <div class="finger" id="rf-검지">검지</div>
+            <div class="finger" id="rf-중지">중지</div>
+            <div class="finger" id="rf-약지">약지</div>
+            <div class="finger" id="rf-소지">소지</div>
+          </div>
+          <button class="fist-btn" id="rf-주먹">주먹 쥐기</button>
+        </div>
+      </div>
+      <button class="btn stop" onclick="stopTapping()">정지 — 결과 확인</button>
+    </div>
+  </div>
+</div>
+
+<!-- STEP 4 -->
+<div id="sec-result" class="hidden">
+  <div class="card">
+    <div class="eyebrow">STEP 4 · 정화 후 측정</div>
+    <p style="font-size:13px;color:#5a4e3f;line-height:1.7;margin-bottom:4px">다시 그 사안을 떠올렸을 때<br>지금 불편함은 얼마나 남아있나요?</p>
+    <div class="sud-wrap">
+      <div class="sud-labels"><span>0 없음</span><span>10 극심</span></div>
+      <input type="range" id="sud-after" min="0" max="10" value="3" oninput="updateAfter(this.value)">
+      <div class="sud-value" id="sud-after-num">3</div>
+      <div class="sud-desc" id="sud-after-desc">경미 — 여전히 있지만 가벼워짐</div>
+    </div>
+    <button class="btn" onclick="showFinal()">변화 확인하기</button>
+  </div>
+</div>
+
+<div id="sec-final" class="hidden">
+  <div class="card">
+    <div class="eyebrow">정화 결과</div>
+    <div class="sud-compare">
+      <div class="sud-box before"><div class="num" id="r-before">-</div><div class="lbl">정화 전</div></div>
+      <div class="sud-arrow">→</div>
+      <div class="sud-box after"><div class="num" id="r-after">-</div><div class="lbl">정화 후</div></div>
+    </div>
+    <div style="text-align:center"><div class="drop-badge" id="r-badge"></div></div>
+    <div class="result-msg" id="r-msg"></div>
+    <div class="eyebrow">오행 음원 처방</div>
+    <p style="font-size:11px;color:#7a6e5f;margin-bottom:10px">정화 후 에너지를 안착시키는 음원</p>
+    <div id="music-list"></div>
+    <button class="btn-ghost" onclick="resetAll()" style="margin-top:12px">새 정화 시작</button>
+  </div>
+</div>
+
+</div>
+<script>
+let S={intention:'',sudBefore:5,sudAfter:3,level:1,speed:700,pattern:'sym',count:0,startTime:null,tapTimer:null,tickTimer:null,seqIdx:0};
+const SUD_DESC=['0 — 완전히 평온합니다','1 — 거의 느껴지지 않습니다','2 — 아주 약하게 남아있습니다','3 — 경미하게 느껴집니다','4 — 약간 신경 쓰입니다','5 — 중간 — 신경이 쓰이는 상태','6 — 꽤 불편합니다','7 — 상당히 힘듭니다','8 — 매우 강렬합니다','9 — 극심하게 괴롭습니다','10 — 견디기 어려운 수준'];
+const LF=['엄지','검지','중지','약지','소지'];
+const LEVEL_F={1:['엄지','검지'],2:['엄지','검지','중지'],3:['엄지','검지','중지','약지'],4:['엄지','검지','중지','약지','소지'],5:['엄지','검지','중지','약지','소지','주먹']};
+const LEVEL_DESC={1:'엄지와 검지만 사용합니다. 화면에 표시되는 손에 따라 해당 손의 엄지와 검지를 마주치세요.',2:'엄지·검지·중지를 순서대로 엄지와 마주칩니다. 양손이 동시에 표시되면 양손 모두 수행합니다.',3:'엄지에 검지·중지·약지를 순서대로 마주칩니다. 리듬을 유지하며 따라오세요.',4:'엄지에 검지부터 소지까지 순서대로 마주칩니다. 속도를 일정하게 유지하세요.',5:'엄지에 네 손가락을 순서대로 마주친 뒤 주먹을 쥡니다. 가장 높은 난이도입니다.'};
+const MUSIC={water:{icon:'💧',name:'흐르는 물처럼 고요한 음원',freq:'396Hz',desc:'두려움·불안 해소, 실존적 정화'},wood:{icon:'🌿',name:'잔잔하고 따뜻한 선율',freq:'528Hz',desc:'고착 패턴 변환, 생명력 회복'},fire:{icon:'🔥',name:'생명력을 깨우는 리듬',freq:'417Hz',desc:'부정 에너지 정화, 활기 회복'},metal:{icon:'🔔',name:'맑고 투명한 울림',freq:'741Hz',desc:'명료한 판단력, 독소 정화'},earth:{icon:'🌱',name:'묵직하고 안정된 울림',freq:'888Hz',desc:'풍요·안정감, 현실 착지'}};
+
+function updateSud(v){document.getElementById('sud-num').textContent=v;document.getElementById('sud-desc').textContent=SUD_DESC[+v];S.sudBefore=+v;}
+function updateAfter(v){document.getElementById('sud-after-num').textContent=v;document.getElementById('sud-after-desc').textContent=SUD_DESC[+v];S.sudAfter=+v;}
+function setStep(n){['st1','st2','st3','st4'].forEach((id,i)=>{const el=document.getElementById(id);el.className='step'+(i<n-1?' done':i===n-1?' active':'');});}
+function show(...ids){ids.forEach(id=>document.getElementById(id).classList.remove('hidden'));}
+function hide(...ids){ids.forEach(id=>document.getElementById(id).classList.add('hidden'));}
+function goStep1(){hide('sec-sud','sec-tapping','sec-result','sec-final');show('sec-input');setStep(1);}
+function goStep2(){const v=document.getElementById('intention').value.trim();if(!v){alert('정화할 사안을 먼저 입력해주세요');return;}S.intention=v;hide('sec-input');show('sec-sud');setStep(2);}
+function goStep3(){hide('sec-sud');show('sec-tapping');setStep(3);}
+function updateLevel(){S.level=+document.getElementById('level-sel').value;document.getElementById('level-desc').textContent=LEVEL_DESC[S.level];}
+function selPattern(p){S.pattern=p;document.getElementById('pb-sym').classList.toggle('sel',p==='sym');document.getElementById('pb-asym').classList.toggle('sel',p==='asym');}
+
+function buildSeq(){
+  const f=LEVEL_F[S.level];const seq=[];
+  if(S.pattern==='sym'){f.forEach(x=>seq.push({l:x,r:x}));}
+  else{f.forEach((x,i)=>{if(i%2===0)seq.push({l:x,r:null});else seq.push({l:null,r:x});});}
+  return seq;
+}
+
+function clearHands(){
+  [...LF,'주먹'].forEach(f=>{
+    const l=document.getElementById('lf-'+f);const r=document.getElementById('rf-'+f);
+    if(l)l.className=f==='주먹'?'fist-btn':'finger';
+    if(r)r.className=f==='주먹'?'fist-btn':'finger';
+  });
+}
+
+function highlight(step){
+  clearHands();
+  if(step.l){const el=document.getElementById('lf-'+step.l);if(el)el.classList.add('al');}
+  if(step.r){const el=document.getElementById('rf-'+step.r);if(el)el.classList.add('ar');}
+  const hand=step.l&&step.r?'양손':step.l?'왼손':'오른손';
+  const finger=step.l||step.r;
+  document.getElementById('cmd-hand').textContent=hand;
+  document.getElementById('cmd-fingers').textContent=finger==='주먹'?'주먹을 쥐세요':finger+'손가락';
+  document.getElementById('cmd-sub').textContent=step.l&&step.r?'양손 동시':step.l?'왼손':'오른손';
+}
+
+let seq=[];
+function startTapping(){
+  S.speed=+document.getElementById('speed-sel').value;
+  S.count=0;S.seqIdx=0;S.startTime=Date.now();seq=buildSeq();
+  document.getElementById('intention-reminder').textContent='「'+S.intention+'」— 이것을 떠올리면서 손가락을 움직이세요';
+  document.getElementById('count').textContent='0';document.getElementById('elapsed').textContent='0:00';
+  clearHands();hide('setting-card');show('tapping-stage');
+  S.tickTimer=setInterval(()=>{const sec=Math.floor((Date.now()-S.startTime)/1000);document.getElementById('elapsed').textContent=Math.floor(sec/60)+':'+String(sec%60).padStart(2,'0');},500);
+  function tick(){highlight(seq[S.seqIdx%seq.length]);S.seqIdx++;if(S.seqIdx%seq.length===0)S.count++;document.getElementById('count').textContent=S.count;S.tapTimer=setTimeout(tick,S.speed);}
+  tick();
+}
+
+function stopTapping(){
+  clearTimeout(S.tapTimer);clearInterval(S.tickTimer);clearHands();
+  document.getElementById('cmd-hand').textContent='—';document.getElementById('cmd-fingers').textContent='수고하셨습니다';document.getElementById('cmd-sub').textContent='';
+  hide('sec-tapping');
+  const def=Math.max(0,S.sudBefore-2);document.getElementById('sud-after').value=def;updateAfter(def);
+  show('sec-result');setStep(4);document.getElementById('sec-result').scrollIntoView({behavior:'smooth'});
+}
+
+function showFinal(){
+  S.sudAfter=+document.getElementById('sud-after').value;
+  const drop=S.sudBefore-S.sudAfter;
+  document.getElementById('r-before').textContent=S.sudBefore;document.getElementById('r-after').textContent=S.sudAfter;
+  const badge=document.getElementById('r-badge');
+  if(drop>0){badge.textContent=drop+'점 감소';badge.style.background='var(--jade)';}
+  else if(drop===0){badge.textContent='변화 없음 — 한 번 더 해보세요';badge.style.background='var(--gold)';}
+  else{badge.textContent='수치 상승 — 더 깊이 진행 중';badge.style.background='var(--red)';}
+  document.getElementById('r-msg').textContent=S.sudAfter<=2?'에너지가 크게 정화됐습니다. 지금 이 가벼움이 원래 당신의 기준점입니다. 이 상태를 온몸으로 느껴보세요.':S.sudAfter<=5?'흐름이 부드러워졌습니다. 아래 음원으로 이 상태를 안착시키거나, 내일 한 번 더 반복해보세요.':'처음보다 에너지가 움직이기 시작했습니다. 이 사안은 여러 겹의 정화가 필요할 수 있습니다. 오늘 하루 틈틈이 반복해보세요.';
+  const keys=S.sudAfter>=7?['water','metal']:S.sudAfter>=4?['wood','water']:['earth','wood'];
+  document.getElementById('music-list').innerHTML=keys.map(k=>`<div class="music-row"><div class="music-icon">${MUSIC[k].icon}</div><div class="music-info"><div class="music-name">${MUSIC[k].name}</div><div class="music-desc">${MUSIC[k].freq} · ${MUSIC[k].desc}</div></div><span class="music-badge">준비중</span></div>`).join('');
+  hide('sec-result');show('sec-final');document.getElementById('sec-final').scrollIntoView({behavior:'smooth'});
+}
+
+function resetAll(){
+  clearTimeout(S.tapTimer);clearInterval(S.tickTimer);
+  S={intention:'',sudBefore:5,sudAfter:3,level:1,speed:700,pattern:'sym',count:0,startTime:null,tapTimer:null,tickTimer:null,seqIdx:0};
+  document.getElementById('intention').value='';
+  document.getElementById('sud-slider').value=5;updateSud(5);
+  document.getElementById('level-sel').value=1;updateLevel();
+  selPattern('sym');
+  hide('sec-sud','sec-result','sec-final','tapping-stage');
+  show('sec-input','setting-card');hide('sec-tapping');
+  setStep(1);window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+</html>

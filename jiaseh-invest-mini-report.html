@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>투자 물상 진단 · 지아세 知我世</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;700;900&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1a1410;
+  --paper:#fff8f0;
+  --paper-card:#fffcf7;
+  --accent:#c96a1a;
+  --accent-lt:#e8954a;
+  --accent-bg:rgba(201,106,26,.09);
+  --accent-line:rgba(201,106,26,.22);
+  --teal:#2a7a6b;
+  --teal-bg:rgba(42,122,107,.08);
+  --red:#a3402c;
+  --red-bg:rgba(163,64,44,.08);
+  --line:#ead8c8;
+  --mid:#7a6858;
+  --shadow:rgba(0,0,0,.06);
+  --maxw:700px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Sans KR',sans-serif;background:var(--paper);color:var(--ink);line-height:1.75;min-height:100vh}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 18px 100px}
+.topbar{display:flex;align-items:center;justify-content:center;gap:7px;
+  padding:14px 0 10px;
+  border-bottom:1px solid var(--line);
+  font-size:11px;letter-spacing:.4em;color:var(--accent);font-weight:700;
+}
+.topbar-logo{width:20px;height:20px;border-radius:5px;flex-shrink:0}
+b{color:var(--accent);font-weight:800}
+
+header{text-align:center;padding:44px 0 8px}
+.tier-tag{display:inline-block;background:var(--accent-bg);border:1px solid var(--accent-line);border-radius:100px;font-size:11px;font-weight:700;color:var(--accent);letter-spacing:.18em;padding:4px 14px;margin-bottom:18px}
+.hero-emoji{font-size:36px;display:block;margin-bottom:10px;line-height:1}
+.hero-title{font-family:'Noto Serif KR',serif;font-size:27px;font-weight:900;letter-spacing:.01em;line-height:1.35}
+.hero-title em{color:var(--accent);font-style:normal}
+.hero-sub{font-size:13.5px;color:var(--mid);margin-top:12px;line-height:1.8}
+.rule{height:1px;background:linear-gradient(90deg,transparent,var(--line),transparent);margin:24px 0}
+
+.price-subtle{text-align:center;margin:10px 0 0;font-size:22px;font-weight:900;color:var(--ink);font-family:'Noto Serif KR',serif}
+.price-subtle span{font-size:13px;font-weight:400;color:var(--mid);margin-left:4px}
+
+.btn-main{display:block;width:100%;max-width:320px;margin:0 auto;background:var(--accent);color:#fff;text-align:center;padding:15px 0;border-radius:100px;font-size:15px;font-weight:700;letter-spacing:.04em;text-decoration:none;box-shadow:0 4px 18px rgba(201,124,46,.28)}
+.btn-main:active{transform:scale(.97)}
+.btn-ghost{display:block;width:100%;max-width:320px;margin:10px auto 0;border:1.5px solid var(--accent);color:var(--accent);text-align:center;padding:13px 0;border-radius:100px;font-size:14px;font-weight:700;letter-spacing:.04em;text-decoration:none}
+
+section{margin-top:20px}
+.card{background:var(--paper-card);border:1px solid var(--line);border-radius:12px;padding:22px 20px;box-shadow:0 1px 6px var(--shadow)}
+.eyebrow{font-size:10.5px;letter-spacing:.22em;color:var(--accent);font-weight:700;margin-bottom:6px}
+.sec-title{font-family:'Noto Serif KR',serif;font-size:19px;font-weight:900;letter-spacing:.01em;margin-bottom:12px}
+.sec-lead{font-size:13.5px;color:#555;line-height:1.8;margin-bottom:14px}
+
+.concern-list{display:flex;flex-direction:column;gap:9px}
+.concern-item{display:flex;align-items:flex-start;gap:10px;background:var(--accent-bg);border:1px solid var(--accent-line);border-radius:10px;padding:12px 14px;font-size:13.5px;color:#2e2010;line-height:1.6}
+.concern-item .ic{flex:0 0 18px;color:var(--accent);font-size:15px}
+
+/* ── 다크 시세표 미리보기 (도구 화면 그대로 발췌) ── */
+.dark-preview{background:#0F0D0B;border-radius:10px;padding:18px 16px;margin-top:6px;border:1px solid #2A2620}
+.dp-head{display:flex;justify-content:space-between;align-items:center;padding-bottom:12px;border-bottom:1px solid #2A2620;margin-bottom:12px}
+.dp-name{font-family:'Noto Serif KR',serif;color:#EDE3CF;font-size:15px}
+.dp-code{font-size:10px;color:#6b6557;margin-top:2px;font-family:monospace}
+.dp-badge{font-size:18px;color:#C8A24A;font-weight:700;font-family:'Noto Serif KR',serif}
+.dp-row{display:flex;gap:8px;font-size:12px;padding:6px 0;color:#cfc6b3}
+.dp-row .arr{width:14px;flex:0 0 14px}
+.dp-row.up .arr{color:#6FA287}
+.dp-row.down .arr{color:#B5573D}
+.dp-sub{font-size:10.5px;color:#7e7665;margin-top:1px}
+.dp-foot{font-size:10px;color:#5a544a;margin-top:10px;padding-top:10px;border-top:1px solid #2A2620;line-height:1.6}
+
+.spec-list{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:4px}
+.spec-item{background:var(--accent-bg);border:1px solid var(--accent-line);border-radius:8px;padding:12px 14px}
+.spec-key{font-size:10.5px;color:var(--mid);letter-spacing:.1em;font-weight:700;margin-bottom:4px}
+.spec-val{font-size:14px;font-weight:900;color:var(--ink)}
+
+.compare-table{width:100%;border-collapse:collapse;margin-top:10px;font-size:12px}
+.compare-table th,.compare-table td{border:1px solid var(--line);padding:9px 8px;text-align:center;line-height:1.5}
+.compare-table th{font-weight:700;background:var(--accent-bg);color:var(--ink);font-size:11px}
+.compare-table td:first-child{text-align:left;color:var(--mid);font-size:11.5px}
+
+.faq-list{display:flex;flex-direction:column;gap:0;margin-top:4px}
+.faq-item{border-bottom:1px solid var(--line)}
+.faq-item:last-child{border-bottom:none}
+.faq-q{display:flex;justify-content:space-between;align-items:center;padding:14px 0;font-size:13.5px;font-weight:700;cursor:pointer;color:var(--ink);gap:8px}
+.faq-q .arrow{font-size:14px;color:var(--accent);transition:.2s}
+.faq-a{display:none;font-size:13px;color:#6a6055;line-height:1.8;padding:0 0 14px}
+.faq-item.open .faq-a{display:block}
+.faq-item.open .arrow{transform:rotate(180deg)}
+
+.upsell-box{border:1px dashed var(--accent-line);border-radius:8px;padding:14px 16px;margin-top:14px;font-size:13px;color:#6a6055;line-height:1.7}
+.upsell-box b{color:var(--accent)}
+
+.foot{text-align:center;font-size:11px;color:var(--mid);padding:30px 0 10px;line-height:1.8}
+
+.cta-fixed{position:fixed;bottom:0;left:0;right:0;background:#fffaf3;border-top:1px solid var(--line);
+  display:flex;align-items:center;justify-content:space-between;padding:12px 18px;box-shadow:0 -2px 14px rgba(0,0,0,.06);z-index:50}
+.cf-left .cf-label{font-size:10px;color:var(--mid);margin-bottom:2px}
+.cf-left .cf-price{font-family:'Noto Serif KR',serif;font-size:20px;font-weight:900;color:var(--accent)}
+.cf-btn{background:var(--accent);color:#fff;font-size:14px;font-weight:700;padding:12px 22px;border-radius:100px;text-decoration:none}
+.oheng-divider{display:flex;justify-content:center;gap:6px;margin-top:14px}
+.oheng-divider span{width:7px;height:7px;border-radius:50%;display:inline-block}
+.oheng-divider span:nth-child(1){background:#3a8a4a}
+.oheng-divider span:nth-child(2){background:#c0392b}
+.oheng-divider span:nth-child(3){background:#9a7b3f}
+.oheng-divider span:nth-child(4){background:#7d8388}
+.oheng-divider span:nth-child(5){background:#2c3e6b}
+</style>
+</head>
+<body>
+
+<div class="topbar"><img src="./jiaseh_symbol_traced2_dark.png" class="topbar-logo" alt="지아세">知 我 世 · JIASEH</div>
+
+<div class="wrap">
+  <header>
+    <div class="tier-tag">TIER 0 · 즉답·체험</div>
+    <span class="hero-emoji">📊</span>
+    <div class="hero-title">내 사주엔 원래<br><em>어떤 자산</em>이 맞을까</div>
+    <div class="hero-sub">생년월일만 입력하면, 받쳐주는 자산군과<br>반복적으로 손실 나는 자산군을 바로 짚어드립니다.</div>
+    <div class="rule"></div>
+    <a href="http://pf.kakao.com/_xnZAxfX" class="btn-main">지금 진단받기 →</a>
+    <a href="#sample" class="btn-ghost">먼저 샘플 보기</a>
+    <div class="oheng-divider"><span></span><span></span><span></span><span></span><span></span></div>
+</header>
+
+  <section>
+    <div class="card">
+      <div class="eyebrow">공감</div>
+      <div class="sec-title">이런 경험, 있으신가요</div>
+      <div class="concern-list">
+        <div class="concern-item"><span class="ic">·</span>왜 항상 같은 자산에서만 반복적으로 손실이 나는지 모르겠다</div>
+        <div class="concern-item"><span class="ic">·</span>손절하고 나면 한참을 스스로 탓하게 된다</div>
+        <div class="concern-item"><span class="ic">·</span>남들 따라 들어갔다가 꼭지에서 물리는 패턴이 반복된다</div>
+        <div class="concern-item"><span class="ic">·</span>내 성향에 맞는 투자 방식이 따로 있을 것 같은데 감으로만 판단해왔다</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="sample">
+    <div class="card">
+      <div class="eyebrow">샘플</div>
+      <div class="sec-title">이런 결과를 받아보실 수 있어요</div>
+      <p class="sec-lead">일간 하나만으로 받쳐주는 자산군과 반복 손실 자산군을 구분합니다.</p>
+
+      <div class="dark-preview">
+        <div class="dp-head">
+          <div>
+            <div class="dp-name">갑목(甲) 님</div>
+            <div class="dp-code">DAY-MASTER · 木</div>
+          </div>
+          <div class="dp-badge">木</div>
+        </div>
+        <div class="dp-row up"><span class="arr">▲</span><div><div>🌳 성장 계열</div><div class="dp-sub">글로벌 기술지수 · 성장주</div></div></div>
+        <div class="dp-row up"><span class="arr">▲</span><div><div>🌊 유동성 계열</div><div class="dp-sub">원유 · 환율흐름 · 디지털자산군</div></div></div>
+        <div class="dp-row down"><span class="arr">▼</span><div><div>💰 금융 · 경화 계열 (반복 손실 ★)</div><div class="dp-sub">금 · 달러 · 금융지수</div></div></div>
+        <div class="dp-foot">이 계열에서 자꾸 막힌다면 판단력 문제가 아닙니다. 당신의 기운과 그 자산의 흐름이 구조적으로 부딪히기 때문입니다.</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="card">
+      <div class="eyebrow">상품 안내</div>
+      <div class="sec-title">무엇을 받게 되나요</div>
+      <div class="spec-list">
+        <div class="spec-item"><div class="spec-key">분량</div><div class="spec-val">결과 카드 1장</div></div>
+        <div class="spec-item"><div class="spec-key">납기</div><div class="spec-val">신청 후 순차 안내</div></div>
+        <div class="spec-item"><div class="spec-key">산출 기준</div><div class="spec-val">일간 오행 간이 판별</div></div>
+        <div class="spec-item"><div class="spec-key">술사 검수</div><div class="spec-val">자동 생성 · 미검수</div></div>
+      </div>
+      <div class="upsell-box" style="margin-top:16px">
+        <b>8개 자산군 전체 + 격국·희기신 기준 정밀 매칭 — 돈 테마 50,000</b><br>
+        미니는 일간만으로 보는 간이 판별입니다. 격국·용신·희기신까지 반영한 정밀 매칭과 재물 황금기 타이밍은 돈 테마에서 확인하실 수 있습니다.
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="card">
+      <div class="eyebrow">상품 비교</div>
+      <div class="sec-title">어떤 걸 선택할까요</div>
+      <table class="compare-table">
+        <thead><tr><th></th><th style="color:var(--accent)">투자 물상 진단<br><small style="font-weight:400">9,900원</small></th><th>돈 테마<br><small style="font-weight:400">50,000원</small></th></tr></thead>
+        <tbody>
+          <tr><td>산출 기준</td><td style="font-weight:900;color:var(--accent)">일간 간이</td><td>격국·희기신 정밀</td></tr>
+          <tr><td>받쳐주는 자산군</td><td>2종</td><td>전체 매칭</td></tr>
+          <tr><td>반복 손실 자산군</td><td>1종</td><td>전체 매칭 + 근거</td></tr>
+          <tr><td>재물 황금기 타이밍</td><td>–</td><td>✓</td></tr>
+          <tr><td>처방(약차·아로마)</td><td>–</td><td>✓</td></tr>
+          <tr><td>납기</td><td>빠른 안내</td><td>3~5일</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <div class="card">
+      <div class="eyebrow">자주 묻는 질문</div>
+      <div class="sec-title">궁금한 점</div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <div class="faq-q">종목을 추천해주나요? <span class="arrow">▾</span></div>
+          <div class="faq-a">아니요. 특정 종목·코인명은 다루지 않습니다. 원유·환율·금·디지털자산군 등 큰 자산 계열(카테고리) 단위로, 내 기운과 맞는 방향·반복적으로 부딪히는 방향만 짚어드립니다.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">생시(태어난 시간)를 몰라도 되나요? <span class="arrow">▾</span></div>
+          <div class="faq-a">네. 이 진단은 일간(태어난 날짜)만으로 산출됩니다. 생년월일만 알면 충분합니다.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">결과가 틀릴 수도 있나요? <span class="arrow">▾</span></div>
+          <div class="faq-a">일간만 보는 간이 판별이라 큰 방향성 참고용입니다. 격국·용신까지 반영한 정밀 진단을 원하시면 돈 테마(50,000)로 이어가시는 것을 권합니다.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="card">
+      <div class="eyebrow">신청</div>
+      <div class="sec-title">지금 바로 받아보세요</div>
+      <p class="sec-lead">결제 후 진단 페이지 링크를 안내드립니다. 생년월일(양/음력)만 입력하면 끝입니다.</p>
+      <a href="http://pf.kakao.com/_xnZAxfX" class="btn-main">9,900원 · 지금 진단받기 →</a>
+    </div>
+  </section>
+
+  <div class="foot">
+    知我世 · 지아세 — 명징투파 자평명리 기반<br>
+    본 콘텐츠는 특정 종목·자산 추천이 아닌 성향·심리 진단 참고용입니다.
+  </div>
+</div>
+
+<div class="cta-fixed">
+  <div class="cf-left">
+    <div class="cf-label">투자 물상 진단 · 미니</div>
+    <div class="cf-price">9,900원</div>
+  </div>
+  <a href="http://pf.kakao.com/_xnZAxfX" class="cf-btn">지금 진단받기</a>
+</div>
+
+<script>
+document.querySelectorAll('.faq-q').forEach(q=>{
+  q.addEventListener('click',()=>{
+    const item=q.closest('.faq-item');
+    const wasOpen=item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+    if(!wasOpen) item.classList.add('open');
+  });
+});
+</script>
+</body>
+</html>
