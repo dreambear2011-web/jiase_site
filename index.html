@@ -17,6 +17,7 @@
 <meta name="twitter:title" content="지아세 · 知我世 — 나를 알면 세상이 보인다">
 <meta name="twitter:description" content="명징투파 자평명리 × 유시자미두수 남파 73궁. 생년월일시 하나로 오늘의 나부터 평생의 뼈대까지.">
 <meta name="twitter:image" content="https://jiase.kr/jiaseh_symbol_traced2_dark.png">
+<meta name="naver-site-verification" content="f2d9d63a4648fa6f473dd171d43a286138ce7e0c" />
 <!-- 만세력 엔진: 격국 웹앱 v2-1 과 동일 CDN (검증됨) -->
 <script src="https://cdn.jsdelivr.net/npm/lunar-javascript@1.7.3/lunar.js"></script>
 <style>
@@ -584,11 +585,11 @@ const LINKS = {
 };
 
 /* ===========================================================================
- * 저장: 메모리 변수 우선. Netlify 배포 시 USE_LOCALSTORAGE=true 로 토글.
+ * 저장: 메모리 변수 우선. Cloudflare Pages 배포 시 USE_LOCALSTORAGE=true 로 토글.
  *  - claude.ai 아티팩트 프리뷰는 localStorage 미작동 → 기본 false (메모리만)
  *  - true 로 켜면 재방문 시 입력 스킵, '오늘의 나'만 갱신
  * =========================================================================== */
-const USE_LOCALSTORAGE = true;    // Netlify 배포용
+const USE_LOCALSTORAGE = true;    // Cloudflare Pages 배포용
 const STORE_KEY = 'jiaseh_p1_state';
 let STATE = { birthYear:null, dob:null };   // dob = {cal,y,mo,d,h,mi,sex,notime,leap,tst,dst}
 
