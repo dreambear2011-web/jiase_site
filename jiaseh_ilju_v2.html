@@ -153,13 +153,55 @@ select:focus{outline:none;border-color:var(--gold)}
 .oheng-divider span:nth-child(4){background:#7d8388}
 .oheng-divider span:nth-child(5){background:#2c3e6b}
 </style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+
+<!-- ═══ RETONE v1 (2026-07-11) · 랜딩과 동일 톤. 문제 시 이 블록만 삭제하면 원복 ═══ -->
+<style id="retone">
+:root{
+  --accent:#B79A57; --accent-tint:#f3ede0;
+  --gold:var(--accent); --gold-lt:#D8C48E;
+  --paper:#FBF7EF; --ink:#2E2A26; --line:#E7DFD1;
+}
+body{
+  font-family:'Pretendard','Pretendard Variable',-apple-system,system-ui,sans-serif;
+  line-height:1.72;
+  background-image:
+    radial-gradient(circle at 16% 6%,var(--accent-tint),transparent 46%),
+    radial-gradient(circle at 84% 88%,var(--accent-tint),transparent 50%);
+  transition:background-color .9s ease;
+}
+h1,h2,h3,.brand,.ch-hanja,.sec-title{font-family:'Nanum Myeongjo',serif}
+h1{font-weight:800;font-size:26px}
+b{transition:color .9s ease}
+.card,.ilju-card,.search-area,.hero{border-radius:16px}
+input,select,textarea,button,.chip,.filter-btn{border-radius:12px}
+.ilju-card{box-shadow:0 1px 2px rgba(46,42,38,.06),0 8px 24px -18px rgba(46,42,38,.2)}
+
+/* 오행 나무 히어로 */
+.hero{
+  aspect-ratio:2/1;width:100%;margin:2px 0 10px;
+  background:url('./jiaseh_tree_hero.jpg') center/contain no-repeat;
+  border-radius:0;
+}
+
+/* 로고 — 아이보리 심볼 · 네이비 타일 · 오행 링 */
+.brand-logo{
+  width:42px;height:42px;border-radius:12px;padding:6px;background:#1E2A3A;
+  box-shadow:0 0 0 2px var(--accent),0 3px 12px rgba(30,42,58,.22);
+  transition:box-shadow .9s ease;
+}
+.brand{letter-spacing:.5em;color:var(--accent);transition:color .9s ease}
+</style>
 </head>
 <body>
 <div class="wrap">
 
 <header>
-  <div class="brand"><a href="https://jiase.kr" style="all:unset;display:contents;cursor:pointer"><img src="./jiaseh_symbol_traced2_dark.png" class="brand-logo" alt="지아세">知 我 世</a></div>
-  <span style="font-size:32px;display:block;margin-bottom:8px">🌳</span>
+  <div class="brand"><a href="https://jiase.kr" style="all:unset;display:contents;cursor:pointer"><img src="./jiaseh_symbol_traced_light_FINAL.png" class="brand-logo" alt="지아세">知 我 世</a></div>
+  <div class="hero" role="img" aria-label="오행 나무"></div>
   <h1>일주론</h1>
   <div class="tagline">태어난 날의 하늘·땅 기운으로 읽는 당신의 <b>결</b></div>
   <div class="oheng-divider"><span></span><span></span><span></span><span></span><span></span></div>
@@ -591,8 +633,18 @@ function setF(f,btn){
 }
 
 /* ── 렌더 ── */
+/* ═══ RETONE · 오행 accent 브리딩 (생성기 팔레트와 1:1) ═══ */
+const RETONE_ACCENT={木:'#6E8B6E',火:'#C85C3C',土:'#C68A38',金:'#B79A57',水:'#46617F'};
+const RETONE_TINT  ={木:'#eaf0e8',火:'#f6e7df',土:'#f5e8d0',金:'#f3ede0',水:'#e6ebf1'};
+function applyAccent(oh){
+  const a=RETONE_ACCENT[oh]||'#B79A57', t=RETONE_TINT[oh]||'#f3ede0';
+  document.documentElement.style.setProperty('--accent',a);
+  document.documentElement.style.setProperty('--accent-tint',t);
+}
+
 function render(){
   const gan=document.getElementById('sel-gan').value;
+  applyAccent(GAN_OH[gan]);   /* RETONE: 고른 하늘 기운으로 페이지가 물든다 */
   const ji =document.getElementById('sel-ji').value;
 
   const list=DB.filter(d=>{
