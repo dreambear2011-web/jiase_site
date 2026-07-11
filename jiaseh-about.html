@@ -114,20 +114,58 @@ b{color:var(--gold);font-weight:800}
   .tool-grid{grid-template-columns:1fr}
 }
 </style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+
+<!-- ═══ RETONE v1 (2026-07-11) · 랜딩과 동일 톤 ═══ -->
+<style id="retone">
+:root{
+  --accent:#B79A57; --accent-tint:#f3ede0;
+  --gold:var(--accent); --gold-lt:#D8C48E;
+  --paper:#FBF7EF; --ink:#2E2A26; --line:#E7DFD1; --card:#F6F1E6; --mid:#8A8175;
+  --jade:#5D7A63; --purple:#5F4A7A; --purple-lt:#8B7AA8;
+  --shadow:0 1px 2px rgba(46,42,38,.06),0 8px 24px -18px rgba(46,42,38,.2);
+}
+body{
+  font-family:'Pretendard','Pretendard Variable',-apple-system,system-ui,sans-serif;
+  line-height:1.72;
+  background-image:
+    radial-gradient(circle at 14% 6%,var(--accent-tint),transparent 44%),
+    radial-gradient(circle at 86% 92%,rgba(93,122,99,.07),transparent 46%);
+}
+.hd-title,.sec-title,.tool-main-name,.tool-main-hanja,.seong-name,.theory-name,.hd-eyebrow{font-family:'Nanum Myeongjo',serif}
+.hd-title{font-weight:800;font-size:27px}
+.sec-title{font-weight:800;font-size:19px}
+.tool-main-name,.seong-name,.theory-name{font-weight:700}
+.card,.tool-main,.tool-mini,.seong-card,.oheng-chip,.disclaimer,.presc-card{border-radius:16px}
+.tool-mini{border-radius:12px}
+.hd-logo{width:26px;height:26px;border-radius:8px;padding:3px;background:#1E2A3A;box-shadow:0 0 0 1.5px var(--accent)}
+.sitemap-links a,.back{color:#5C544B;border-bottom-color:var(--line)}
+
+/* 처방 레이어 */
+.presc-card{background:var(--card);border:1px solid var(--line);padding:16px;margin-top:10px;box-shadow:var(--shadow)}
+.presc-head{display:flex;align-items:center;gap:8px;font-family:'Nanum Myeongjo',serif;font-size:15px;font-weight:700;margin-bottom:6px}
+.presc-head .k{font-size:11px;font-weight:400;color:var(--accent);letter-spacing:.14em}
+.presc-body{font-size:12.5px;color:#4A423A;line-height:1.8}
+.presc-rule{margin-top:12px;padding:12px 14px;border-left:3px solid var(--accent);background:rgba(183,154,87,.07);
+  border-radius:0 12px 12px 0;font-size:12.5px;color:#4A423A;line-height:1.8}
+</style>
 </head>
 <body>
 <div class="wrap">
 
 <div class="hd">
-  <div class="hd-eyebrow"><img src="./jiaseh_symbol_traced2_dark.png" class="hd-logo" alt="지아세">知我世 · 지아세</div>
+  <div class="hd-eyebrow"><img src="./jiaseh_symbol_traced_light_FINAL.png" class="hd-logo" alt="지아세">知我世 · 지아세</div>
   <div class="hd-title">나를 알고(知我)<br>세상으로 나아간다(世)</div>
   <div class="hd-sub">지성으로 시작되는 영성 — 논증이 먼저여야 진정한 변화가 시작됩니다</div>
   <div class="hd-oheng">
-    <span style="background:#3a8a4a"></span>
-    <span style="background:#c0392b"></span>
-    <span style="background:#9a7b3f"></span>
-    <span style="background:#9aa0a6"></span>
-    <span style="background:#2c3e6b"></span>
+    <span style="background:#6E8B6E"></span>
+    <span style="background:#C85C3C"></span>
+    <span style="background:#C68A38"></span>
+    <span style="background:#B79A57"></span>
+    <span style="background:#46617F"></span>
   </div>
 </div>
 
@@ -151,15 +189,15 @@ b{color:var(--gold);font-weight:800}
   <div class="sec-body">지아세는 단일 점법이 아니라, 역할이 다른 여러 동양 술학을 교차 운용합니다. 모든 술학의 공통 언어는 <b>오행(五行)</b>입니다.</div>
 
   <div class="oheng-strip">
-    <div class="oheng-chip" style="background:#3a8a4a">木 목</div>
-    <div class="oheng-chip" style="background:#c0392b">火 화</div>
-    <div class="oheng-chip" style="background:#9a7b3f">土 토</div>
-    <div class="oheng-chip" style="background:#7d8388">金 금</div>
-    <div class="oheng-chip" style="background:#2c3e6b">水 수</div>
+    <div class="oheng-chip" style="background:#6E8B6E">木 목</div>
+    <div class="oheng-chip" style="background:#C85C3C">火 화</div>
+    <div class="oheng-chip" style="background:#C68A38">土 토</div>
+    <div class="oheng-chip" style="background:#B79A57">金 금</div>
+    <div class="oheng-chip" style="background:#46617F">水 수</div>
   </div>
 
   <div style="font-size:11.5px;color:var(--mid);line-height:1.7;margin-top:10px">
-    명리·자미두수 일부·구성기학·성명학(자음오행)·아로마·약차 처방까지 — 오행이 통변의 공통 분류 체계로 전부를 관통합니다.
+    명리·자미두수 일부·구성기학·성명학(자음오행), 그리고 곁들이는 향·차·소리까지 — 오행이 통변의 공통 분류 체계로 전부를 관통합니다.
   </div>
 
   <div style="margin-top:20px">
@@ -169,7 +207,7 @@ b{color:var(--gold);font-weight:800}
       <div class="tool-main-tag">주축 ① · 시간·절대값</div>
       <div class="tool-main-name">명징투파 자평명리</div>
       <div class="tool-main-hanja">明澄透派 子平命理</div>
-      <div class="tool-main-desc">원국·격국·용신·대운·세운으로 "얼마나, 언제"를 봅니다. 보고서의 뼈대이며, 모든 처방(아로마·약차·방위)의 희기신 기준이 됩니다.</div>
+      <div class="tool-main-desc">원국·격국·용신·대운·세운으로 "얼마나, 언제"를 봅니다. 보고서의 뼈대이며, 무엇이 이롭고 무엇이 부담이 되는지(희신·기신)를 정하는 기준입니다.</div>
       <div class="tool-main-role">합충변화를 글자 단위로 추적하는 문파 — 격국 도출 5단계, 종격·화격·내격 판별 순서가 정식 체계로 확립되어 있습니다.</div>
     </div>
 
@@ -185,7 +223,7 @@ b{color:var(--gold);font-weight:800}
   </div>
 
   <div class="eyebrow" style="margin-top:22px">보조 점단 도구</div>
-  <div class="sec-body" style="font-size:12.5px">단발 사안·공간 처방·상담 오프닝에 역할별로 호출됩니다.</div>
+  <div class="sec-body" style="font-size:12.5px">단발 사안·공간·상담 오프닝에 역할별로 호출됩니다.</div>
   <div class="tool-grid">
     <div class="tool-mini">
       <div class="tool-mini-name">래정법</div>
@@ -207,12 +245,22 @@ b{color:var(--gold);font-weight:800}
       <div class="tool-mini-role">공간·방위</div>
       <div class="tool-mini-desc">해마다 달라지는 길방·흉방을 읽어 취기·제화에 씁니다.</div>
     </div>
+    <div class="tool-mini">
+      <div class="tool-mini-name">기문둔갑</div>
+      <div class="tool-mini-role">터·국면</div>
+      <div class="tool-mini-desc">터와 환경의 상의를 읽습니다. 필요한 사안에서만 호출합니다.</div>
+    </div>
+    <div class="tool-mini">
+      <div class="tool-mini-name">오운육기</div>
+      <div class="tool-mini-role">해의 기운·몸</div>
+      <div class="tool-mini-desc">그해의 기후 편중과 취약해지기 쉬운 장기를 읽습니다.</div>
+    </div>
   </div>
 
   <!-- 성명학 -->
   <div class="seong-card">
     <div class="seong-tag">독립 영역 · 성명학</div>
-    <div class="seong-name">정음류 언령술 (正音類 言靈術)</div>
+    <div class="seong-name">정음류 성명학 (正音類 姓名學)</div>
     <div class="seong-desc">명리·자미두수와는 별개의 체계입니다. 이름은 한자가 아니라 <b>소리(말)</b>로 불리고, 불릴 때마다 작용하는 건 발음의 에너지라는 관점에서 출발합니다. 한자는 그 소리를 보완하는 보조 장치입니다.</div>
     <div class="seong-flow">
       <span>자음오행</span><span class="arrow">→</span>
@@ -220,6 +268,42 @@ b{color:var(--gold);font-weight:800}
       <span>81수리</span><span class="arrow">→</span>
       <span>자원오행</span>
     </div>
+    <div class="seong-desc" style="margin:12px 0 0;padding-top:12px;border-top:1px dotted var(--line)">
+      이름이 <b>불리는 소리</b>를 다루는 것이 성명학이라면, 스스로 <b>내는 소리</b>를 다루는 것이 <b>정음류 발성</b>입니다.
+      모음(어·오·옴·아·우)에 오행을 배속해, 부족한 기운은 채우고 넘치는 기운은 흘려보내는 발성으로 씁니다.
+      Se-ah Studio 음원의 챈트 레이어가 여기서 나옵니다.
+    </div>
+  </div>
+</div>
+
+<!-- 처방 레이어 -->
+<div class="section">
+  <div class="eyebrow">곁들임 — 읽고 끝나지 않습니다</div>
+  <div class="sec-title">이해한 뒤에<br>곁에 둘 것들</div>
+  <div class="sec-body">보고서의 중심은 <b>납득</b>입니다. 다만 이해한 것을 일상에 붙들어 둘 손잡이가 있으면 오래 갑니다. 향·차·소리·공간은 그 손잡이입니다. 치료가 아니라, 곁에 두는 결입니다.</div>
+
+  <div class="presc-card">
+    <div class="presc-head">향 <span class="k">아로마</span></div>
+    <div class="presc-body">가장 먼저 닿는 층. 부족한 기운의 결을 닮은 향과, 넘치는 기운을 눅이는 향을 함께 둡니다.</div>
+  </div>
+  <div class="presc-card">
+    <div class="presc-head">차 <span class="k">약차</span></div>
+    <div class="presc-body">향이 즉각적이라면 차는 느리게, 오래 머뭅니다. 어떤 효능을 말하지 않습니다. 그 계절, 그 기운에 어울리는 차를 소개할 뿐입니다.</div>
+  </div>
+  <div class="presc-card">
+    <div class="presc-head">소리 <span class="k">음원 · 발성</span></div>
+    <div class="presc-body">오행마다 결이 다른 음원 10종과 모음 발성. 향과 차가 천천히 스민다면, 소리는 지금 이 순간에 닿습니다. (Se-ah Studio — 제작 중)</div>
+  </div>
+  <div class="presc-card">
+    <div class="presc-head">공간 <span class="k">방위 · 색</span></div>
+    <div class="presc-body">머무는 자리와 향하는 방향, 곁에 두는 색. 하루의 대부분을 보내는 곳이라 누적으로 작용합니다.</div>
+  </div>
+
+  <div class="presc-rule">
+    <b>기준은 하나입니다.</b><br>
+    향이든 차든 소리든 방위든, 무엇이 이롭고 무엇이 부담이 되는지는 <b>명리 원국의 희신·기신</b>에서 나옵니다.
+    자미두수는 <b>어느 영역</b>이 흔들리는지를 짚고, 오행은 명리가 정합니다. 도구마다 다른 답을 내지 않습니다.<br><br>
+    <span style="color:var(--mid);font-size:12px">다만 이것들은 <b>곁들임</b>입니다. 상담의 중심은 언제나 <b>왜 그런가</b>를 납득하는 데 있습니다.</span>
   </div>
 </div>
 
@@ -262,18 +346,25 @@ b{color:var(--gold);font-weight:800}
   </div>
 </div>
 
-<!-- EMDR -->
+<!-- 비움 -->
 <div class="section">
-  <div class="eyebrow">정화 세션 기반</div>
-  <div class="sec-title">EMDR 2.0<br>작업 기억 이론</div>
-  <div class="sec-body">스트레스 유발 요인을 떠올리면서 손가락을 움직이면, 두 가지 과제를 동시에 수행하게 되어 작업 기억이 과부하됩니다. 스트레스 기억을 같은 강도로 유지할 수 없게 되어 기억이 점점 흐릿해지고 감정적으로 덜 강렬해집니다.</div>
+  <div class="eyebrow">정화 세션 — 비움</div>
+  <div class="sec-title">마음의 풍경 하나,<br>좌우의 리듬</div>
+  <div class="sec-body">지금 마음에 떠오른 풍경 하나를 고르고, 좌우를 오가는 리듬을 손끝으로 따라갑니다. 리듬이 쌓이는 동안 고른 풍경이 천천히 밝아집니다.</div>
+
   <div class="card" style="margin-top:14px">
-    <div style="font-size:12px;color:var(--jade);font-weight:700;margin-bottom:6px">SUD — 고통 주관 지수</div>
-    <div style="font-size:12.5px;color:var(--mid);line-height:1.75">Subjective Units of Distress. 0~10 수치로 정화 전후 고통 강도를 측정합니다. SUD 수치에 따라 적합한 음원 난이도가 결정됩니다.</div>
+    <div style="font-size:12px;color:var(--jade);font-weight:700;margin-bottom:6px">왜 좌우인가 — 이중과제 원리</div>
+    <div style="font-size:12.5px;color:var(--mid);line-height:1.75">떠올리는 일과 좌우 리듬을 따라가는 일을 <b>동시에</b> 하면, 마음이 그 장면을 처음의 강도로 붙들고 있기 어려워집니다. 장면이 흐려지는 것이 아니라, <b>붙드는 힘이 느슨해집니다.</b> EMDR 2.0의 작업기억 이론에서 출발했습니다.</div>
   </div>
+
   <div class="card">
-    <div style="font-size:12px;color:var(--jade);font-weight:700;margin-bottom:6px">오행 음원 처방 연계</div>
-    <div style="font-size:12.5px;color:var(--mid);line-height:1.75">정화 후 에너지 안착을 위해 SUD 수치 기반으로 오행별 주파수 음원을 처방합니다. (Se-ah Studio — 준비 중)</div>
+    <div style="font-size:12px;color:var(--jade);font-weight:700;margin-bottom:6px">짙기 — 스스로 매기는 눈금</div>
+    <div style="font-size:12.5px;color:var(--mid);line-height:1.75">전후로 "지금 이 풍경이 얼마나 짙은가"를 스스로 매깁니다. 변화의 크기를 판정하기 위한 것이 아니라, <b>스스로 알아차리기 위한</b> 눈금입니다. 덜 옅어진 날에도 그대로 둡니다.</div>
+  </div>
+
+  <div class="card">
+    <div style="font-size:12px;color:var(--jade);font-weight:700;margin-bottom:6px">비운 뒤 — 온기를 채웁니다</div>
+    <div style="font-size:12.5px;color:var(--mid);line-height:1.75">비우는 것으로 끝나지 않습니다. 세션 끝에서 <b>온유</b>로 이어져, 손끝에 남은 온기를 스스로에게 먼저 건넵니다. 음원을 함께 쓸 경우 그 오행은 <b>명리 원국의 희기신</b>에서 정해집니다.</div>
   </div>
 </div>
 
@@ -287,7 +378,7 @@ b{color:var(--gold);font-weight:800}
   </div>
 </div>
 
-<a href="./지아세_랜딩_P3.html" class="back">← 지아세 홈으로</a>
+<a href="./index.html" class="back">← 지아세 홈으로</a>
 
 </div>
 </body>
