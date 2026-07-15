@@ -8,15 +8,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Nanum+Myeongjo:wght@400;700&display=swap');
 
 :root {
-  --night: #0F0D0B;
-  --deep: #15120E;
-  --mid: #1C1815;
-  --gold: #C8A24A;
-  --gold2: #9a7b3f;
-  --violet: #C05746;
-  --pearl: #EDE3CF;
-  --muted: #9a917e;
-  --dim: #2A2620;
+  --night: #f4efe6;
+  --deep: #efe7d8;
+  --mid: #fdf8ee;
+  --gold: #9a7b3f;
+  --gold2: #c4a661;
+  --violet: #c05040;
+  --pearl: #1a1410;
+  --muted: #5a4f47;
+  --dim: #d8cfbf;
   --glow: rgba(200,162,74,.18);
   --vglow: rgba(192,87,70,.12);
 }
@@ -582,7 +582,7 @@ footer {
   font-size: 11.5px;
   color: var(--dim);
   line-height: 1.8;
-  border-top: 1px solid rgba(255,255,255,.05);
+  border-top: 1px solid rgba(26,20,16,.08);
 }
 
 /* ── SHOOTING STAR ── */
@@ -666,11 +666,23 @@ footer {
 
 <canvas id="starfield"></canvas>
 
+<a href="https://jiase.kr" class="home-nav" aria-label="지아세 홈">
+  <img src="./jiaseh_symbol_traced2_dark.png" alt="지아세">
+  <span>知我世 지아세</span>
+</a>
+<style>
+.home-nav{position:relative;z-index:2;display:flex;align-items:center;gap:9px;
+  max-width:680px;margin:0 auto;padding:16px 20px 4px;text-decoration:none}
+.home-nav img{width:26px;height:26px;object-fit:contain;opacity:.9}
+.home-nav span{font-size:14px;font-weight:700;color:var(--gold);letter-spacing:.02em}
+.home-nav:hover span{color:var(--pearl)}
+</style>
+
 <div class="wrap">
 
   <!-- HERO -->
   <div class="hero">
-    <div class="hero-seal"><img src="./jiaseh_symbol_traced_light_FINAL.png" alt="지아세"></div>
+    <div class="hero-seal"><img src="./jiaseh_symbol_traced2_dark.png" alt="지아세"></div>
     <div class="hero-badge">知我世 지아세 · 작명 선물</div>
     <h1>이름은<br>첫 번째 <em>주문</em>입니다</h1>
     <div class="hero-divider"></div>
@@ -829,7 +841,7 @@ footer {
       if (s.a > 1 || s.a < 0.1) s.da *= -1;
       ctx.beginPath();
       ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(240,236,226,${s.a * 0.6})`;
+      ctx.fillStyle = `rgba(154,123,63,${s.a * 0.35})`;
       ctx.fill();
     }
     // shooting stars
@@ -843,7 +855,7 @@ footer {
       ctx.beginPath();
       ctx.moveTo(sh.x + sh.t * 2.8, sh.y + sh.t);
       ctx.lineTo(sh.x + sh.t * 2.8 - 30, sh.y + sh.t - 10);
-      ctx.strokeStyle = `rgba(232,201,122,${op * 0.7})`;
+      ctx.strokeStyle = `rgba(154,123,63,${op * 0.5})`;
       ctx.lineWidth = 1;
       ctx.stroke();
       if (sh.t > 70) shooters.splice(i, 1);
