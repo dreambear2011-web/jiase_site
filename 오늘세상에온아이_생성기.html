@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
 <title>오늘, 세상에 온 아이 — 탄생 노트 생성기</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -109,6 +110,8 @@
   .block-body{white-space:pre-wrap; font-size:15.5px; line-height:1.75; color:#38332d;}
   .block.thread .block-body,.block.bonus .block-body{color:#4a453d; font-size:15px;}
   .block.thread{border-left:3px solid var(--accent);}
+  .block.blog{border-left:3px dashed var(--accent);}
+  .block.blog .block-body{font-size:15px; color:#4a453d;}
 
   /* ── 게시 체크 ── */
   .footer{
@@ -139,7 +142,7 @@
     <button class="today-btn" id="todayBtn">오늘</button>
     <button class="gen" id="genBtn">생성</button>
   </div>
-  <p class="hint">날짜를 고르고 <b>생성</b>을 누르면 그날 태어난 아이의 5카드·스레드·옵션 블록이 나옵니다. 블록마다 복사 버튼으로 인스타·스레드에 붙여넣으세요.</p>
+  <p class="hint">날짜를 고르고 <b>생성</b>을 누르면 그날 태어난 아이의 5카드·스레드·옵션·<b>블로그(제목·태그·본문)</b> 블록이 나옵니다. 블록마다 복사 버튼으로 인스타·스레드·네이버 블로그에 붙여넣으세요.</p>
 
   <div class="meta" id="meta">
     <div class="meta-top">
@@ -156,7 +159,9 @@
     · 바이오 링크 = 소리오행 위젯 → 선물용 랜딩 <b>(본문 CTA 금지)</b><br>
     · 면책 문구 바이오 상시<br>
     · 캐러셀 첫 장 비율로 나머지 잘림 → 전 슬롯 <b>1080×1350</b> 통일<br>
-    · 인스타=카드 5장(모드1) / 스레드=원리 살짝 공개(모드2) / 블로그=SEO 롱폼(말미 소프트링크만 예외)
+    · 인스타=카드 5장(모드1) / 스레드=원리 살짝 공개(모드2) / 블로그=SEO 롱폼(말미 소프트링크만 예외)<br>
+    · <b>블로그 이미지 5장 = 그날 카드뉴스(텍스트 얹힌 원본)</b>를 리사이즈해 본문 〔이미지 N〕 자리에 삽입 → 매일 다른 원본 (빈 배경 세트 반복 금지 · 네이버 중복이미지 누락 방지)<br>
+    · 블로그 이미지 = 가로 800~1,200px · 500KB 이내 / 파일명에 날짜 키워드 · ALT 텍스트 입력
   </div>
 </div>
 
@@ -203,7 +208,22 @@ function buildDailyContent(y,m,d){
   const card5='[오늘의 상징]\n오늘의 색 · '+COLOR[childEl]+'\n오늘의 꽃 · '+FLOWER[childEl][iF]+'\n\n이름 한 줄 · '+NAME_TEASER[relation][iT]+'이 이 아이에게 어울려요.\n정확한 이름은 이 아이가 태어난 \u0027시간\u0027까지 담아야 완성됩니다. 오늘의 결 위에 시간의 결을 더하면, 세상에 하나뿐인 이름이 돼요.';
   const blessingBonus='[부모가 채워주면 더 빛나는 기운]\n이 아이가 이미 가진 결은 그대로 두어도 충분히 빛나요. 여기에 살짝 더해 주면 좋은 기운이 있다면 — '+FILL_CARE[fillEl];
   const threadText=dateStr+', 오늘 태어난 아이의 결을 사주로 읽어봅니다.\n\n오늘 온 아이는 \u0027'+ilgan+'('+childEl+')\u0027의 날에 왔어요. '+ILGAN_GYEOL[ilgan]+'을 타고났습니다.\n\n그리고 지금은 '+seasonName+', '+seasonEl+'의 기운이 무르익는 계절이죠. '+REL_PRINCIPLE[relation]+'\n\n그래서 이 아이에게 잘 어울리는 건 \u0027'+fillEl+'의 흐름\u0027 — '+FILL_CARE[fillEl]+'\n\n정확한 이름은 태어난 시간까지 담아야 완성됩니다.';
-  return {meta:{dateStr,ilju,ilgan,childEl,monthZhi,seasonEl,seasonName,relation,relLabel:REL_LABEL[relation],fillEl,color:COLOR[childEl],flower:FLOWER[childEl][iF]},instaCards:[card1,card2,card3,card4,card5],blessingBonus,threadText};
+
+  // ── 네이버 블로그 SEO 롱폼 (이미지 5장 · 섹션 사이 삽입 / 말미 소프트링크만 예외) ──
+  const SOFT_LINK='https://jiase.kr';   // ← 배포 후 선물용 랜딩 URL로 교체 가능
+  const IMG=(n,cap)=>'\n\n〔 이미지 '+n+' — '+cap+' 〕';
+  const blogTitle=dateStr+" 태어난 아이 — 사주로 읽는 '오늘의 결' 탄생 노트";
+  const blogTags=['오늘태어난아이','신생아사주','아기이름','작명','일주','오행',m+'월생',seasonName+'생',childEl+'일간','지아세'].map(t=>'#'+t).join(' ');
+  const blogBody=[
+    dateStr+', 세상에 아이 하나가 왔습니다.\n'+seasonName+'의 한복판에 도착한, 세상에서 가장 작고 귀한 손님이에요.\n\n태어난 정확한 시간은 아직 몰라도, 오늘 하루 세상에 온 모든 아이가 함께 안고 온 \u0027날의 결\u0027이 있습니다. 사주에서는 이 하루의 기둥을 일주(日柱)라고 불러요. 오늘은 \u0027'+ilju+'\u0027의 날입니다. 그 결을 가만히 읽어볼게요.'+IMG(1,'환영 · 탄생 선물'),
+    '▪ 오늘의 하늘 · '+seasonName+'의 기운\n\n'+SEASON_SKY[seasonEl]+'\n이런 날에 온 아이는, 이 계절의 기운을 첫 숨으로 안고 태어납니다.'+IMG(2,'오늘의 하늘 · 계절 풍경'),
+    '▪ 아이의 결 · '+ilgan+'('+childEl+')의 날에 온 아이\n\n이 아이 안에는 '+ILGAN_GYEOL[ilgan]+'이 있어요.\n\n'+REL_PRINCIPLE[relation]+'\n\n'+relStory+IMG(3,'아이의 결 · 오늘 오행 삽화'),
+    '▪ 부모에게 드리는 편지\n\n'+BLESSING[iB]+'\n\n이 아이의 반짝임은 이미 안에 들어 있어요. 여기에 살짝 더해 주면 좋은 기운이 딱 하나 있다면 — '+FILL_CARE[fillEl]+IMG(4,'편지 · 편지봉투'),
+    '▪ 오늘의 상징, 그리고 이름\n\n오늘의 색은 '+COLOR[childEl]+'이에요.\n오늘의 꽃은 '+FLOWER[childEl][iF]+'.\n\n이름 한 줄로 미리 그려보면, '+NAME_TEASER[relation][iT]+'이 이 아이에게 잘 어울려요.\n다만 정확한 이름은 이 아이가 태어난 \u0027시간\u0027까지 담아야 완성됩니다. 오늘의 결 위에 시간의 결을 더하면, 세상에 하나뿐인 이름이 돼요.'+IMG(5,'오늘의 상징 · 오늘의 꽃'),
+    '오늘 이 아이를 맞이한 모든 분께, 진심으로 축하를 전합니다. 무엇을 더 하지 않아도, 곁에 있어 주는 것만으로 이미 충분해요.\n\n→ 오늘 온 아이에게 어울리는 이름의 첫 실마리, 소리오행부터 무료로 살펴볼 수 있어요: '+SOFT_LINK+'\n\n본 콘텐츠는 전통 명리에 기반한 예방적 자기이해 콘텐츠이며, 의료·심리 상담을 대체하지 않습니다.'
+  ].join('\n\n');
+
+  return {meta:{dateStr,ilju,ilgan,childEl,monthZhi,seasonEl,seasonName,relation,relLabel:REL_LABEL[relation],fillEl,color:COLOR[childEl],flower:FLOWER[childEl][iF]},instaCards:[card1,card2,card3,card4,card5],blessingBonus,threadText,blog:{title:blogTitle,tags:blogTags,body:blogBody}};
 }
 
 /* ─────────────── UI ─────────────── */
@@ -251,6 +271,9 @@ function render(){
   c.instaCards.forEach((card,i)=>items.push({label:CARD_LABELS[i],body:card,cls:''}));
   items.push({label:'스레드 · 모드2',body:c.threadText,cls:'thread'});
   items.push({label:'옵션 · 부모가 채워주면',body:c.blessingBonus,cls:'bonus'});
+  items.push({label:'블로그 · SEO 제목',body:c.blog.title,cls:'blog'});
+  items.push({label:'블로그 · 태그',body:c.blog.tags,cls:'blog'});
+  items.push({label:'블로그 · 본문 (이미지 5장 자리 포함)',body:c.blog.body,cls:'blog'});
 
   const box=$('blocks'); box.innerHTML='';
   items.forEach((it,idx)=>{
