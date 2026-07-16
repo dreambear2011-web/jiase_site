@@ -603,7 +603,7 @@ input,select,textarea,button,.naming-mode-btn,.pay-cta,.invest-cta{border-radius
       <div class="it-row up"><span class="ar">▲</span>받쳐주는 자산군 — 2종 매칭</div>
       <div class="it-row down"><span class="ar">▼</span>반복 손실 자산군 — 왜 자꾸 막히는지 근거와 함께</div>
 
-      <a href="./jiaseh-invest-mini-report.html" class="it-cta">9,900원 · 지금 진단받기 →</a>
+      <a href="./jiaseh-invest-mini-report.html" class="it-cta">지금 진단받기 →</a>
     </div>
   </section>
   <!-- ════════ 7. 상담 신청 · 결제 입구 ════════ -->
@@ -1946,32 +1946,32 @@ function renderPay(){
     return `<a href="${esc(link)}" class="${gcls}"><div style="flex:1">` +
       `<div class="${ncls}">${esc(name)}${bHtml}</div>` +
       `<div class="pay-sub">${esc(sub)}</div></div>` +
-      `<div><div class="pay-price">${esc(price)}<span class="won">원</span></div>${cHtml}</div></a>`;
+      `<div><div class="pay-price" style="font-weight:500;opacity:.55;font-size:13px">자세히 →</div></div></a>`;
   }
   let h='';
 
   // TIER 0
   h+='<div class="tier-group"><div class="tier-eyebrow">TIER 0 &nbsp;즉답·체험</div>';
-  h+=item('AI 명리 리포트','술사 미검수 · 자동 생성','4,900',LINKS.aiReport,false);
-  h+=item('AI 자미 리포트','별자리 체감 지도 자동 생성','9,900',LINKS.aiZiwei,false);
-  h+=item('단시점 답변','지금 이 결정 하나 — 즉답','15,000 / 3건 35,000',LINKS.singleQ,false);
-  h+=item('결정에너지','전환점의 방향 잡기 · 전환점 입구','30,000',LINKS.ketsuei,false);
-  h+=item('케미카드','관계 에너지 체크 (가족·직장·연애)','10,000 / 18,000 / 45,000~',LINKS.kemi1,false);
+  h+=item('AI 명리 리포트','내 사주의 큰 줄기를 지금 바로','4,900',LINKS.aiReport,false);
+  h+=item('AI 자미 리포트','내가 삶을 어떻게 겪는지, 체감의 지도','9,900',LINKS.aiZiwei,false);
+  h+=item('단시점 답변','지금 이 질문 하나, 바로 답을 드려요','15,000 / 3건 35,000',LINKS.singleQ,false);
+  h+=item('결정에너지','갈림길에서 어디로 가야 할지','30,000',LINKS.ketsuei,false);
+  h+=item('케미카드','그 사람과 나, 왜 그렇게 흐르는지','10,000 / 18,000 / 45,000~',LINKS.kemi1,false);
   h+='</div>';
 
   // TIER 1
   h+='<div class="tier-group"><div class="tier-eyebrow">TIER 1 &nbsp;정밀 진단</div>';
-  h+=item('운명 설계도','명리 원국·격국·대운·세운 A4 15~25p','50,000',LINKS.diagReport,false);
-  h+=item('체감 지도','자미두수 73궁 평생/대한/세운 A4 10~15p','70,000',LINKS.ziweiReport,false);
-  h+=item('골든크로스','설계도+지도 교차 충돌 해석 통합','100,000',LINKS.goldenCross,true,'Signature','따로 구매 시 120,000');
+  h+=item('운명 설계도','타고난 결부터 인생의 흐름까지, 가장 깊이','50,000',LINKS.diagReport,false);
+  h+=item('체감 지도','내가 삶을 어떻게 느끼며 사는지, 평생의 지도','70,000',LINKS.ziweiReport,false);
+  h+=item('골든크로스','객관과 체감을 겹쳐 보는, 가장 입체적인 나','100,000',LINKS.goldenCross,true,'Signature','따로 구매 시 120,000');
   h+='</div>';
 
   // TIER 2
-  h+='<div class="tier-group"><div class="tier-eyebrow">TIER 2 &nbsp;테마 리포트 · 각 50,000</div>';
-  h+=item('일','커리어 테마 집중 분석 A4 5~8p','50,000',LINKS.workP,false);
-  h+=item('돈','재물·투자 테마 집중 분석 A4 5~8p','50,000',LINKS.moneyP,false);
-  h+=item('연애패턴','나의 연애 테마 집중 분석 A4 5~8p','50,000',LINKS.loveP,false);
-  h+=item('터','공간·이동 테마 집중 분석 A4 5~8p','50,000',LINKS.spaceP,false);
+  h+='<div class="tier-group"><div class="tier-eyebrow">TIER 2 &nbsp;테마 리포트</div>';
+  h+=item('일','내게 맞는 일과 때를, 하나만 깊게','50,000',LINKS.workP,false);
+  h+=item('돈','돈이 들어오고 나가는 나만의 길','50,000',LINKS.moneyP,false);
+  h+=item('연애패턴','나는 왜 늘 이런 사랑을 하는지','50,000',LINKS.loveP,false);
+  h+=item('터','나를 살리는 자리와 방향','50,000',LINKS.spaceP,false);
   h+='</div>';
 
   // 작명
@@ -1979,26 +1979,24 @@ function renderPay(){
   h+='<div class="pay-item naming-combo" style="cursor:default">'+
        '<div style="flex:1">'+
          '<div class="pay-name">이름진단</div>'+
-         '<div class="pay-sub">소리오행 · 81수리 · 자원오행 — 성인·신생아 모드로 진단합니다</div>'+
+         '<div class="pay-sub">지금 이름이 나와 맞는지, 소리부터 짚어드려요</div>'+
          '<div class="naming-modes">'+
            `<a href="${esc(LINKS.namingAdult)}" class="naming-mode-btn">성인 이름 진단 →</a>`+
            `<a href="${esc(LINKS.namingGift)}" class="naming-mode-btn">신생아 이름 짓기 →</a>`+
          '</div>'+
        '</div>'+
-       '<div><div class="pay-price">15,000<span class="won">원</span></div>'+
-       '<div class="pay-compare">작명 신청 시 차감</div></div>'+
      '</div>';
   h+='</div>';
 
   // TIER 3
   h+='<div class="tier-group"><div class="tier-eyebrow">TIER 3 &nbsp;정기 경영</div>';
-  h+=item('세운 정기 리딩','연 1회 · 대운×세운 교차 + 월운 12개월 A4 5~8p','20,000',LINKS.sewoon,false);
-  h+=item('분기 에너지 점검','분기 1회 · 이달의 방향 체크 A4 2~3p','15,000',LINKS.bungi,false);
+  h+=item('세운 정기 리딩','올 한 해 나의 흐름과 달마다의 리듬','20,000',LINKS.sewoon,false);
+  h+=item('분기 에너지 점검','요즘 어디로 흐르는지, 분기마다 가볍게','15,000',LINKS.bungi,false);
   h+='</div>';
 
   h+='<div class="pay-divider"></div>';
   h+=`<a href="${LINKS.kakao}" class="pay-cta">카카오 채널로 문의하기</a>`;
-  h+='<div class="pay-note">결제 후 3~5일 납품 (TIER 3는 1~2일) · 시간 불명 시 풀이 가능 · AI 리포트는 빠른 발송<br>골든크로스: 설계도+지도 따로 120,000 vs 골든크로스 100,000</div>';
+  h+='<div class="pay-note">결제 후 3~5일 납품 (TIER 3는 1~2일) · 시간 불명 시 풀이 가능 · AI 리포트는 빠른 발송</div>';
 
   out.innerHTML=h;
 }

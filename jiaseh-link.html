@@ -34,37 +34,36 @@
   .wrap{width:100%; max-width:440px}
 
   /* ── 브랜드 ── */
-  .brand{text-align:center; position:relative; padding:8px 0 26px}
+  .brand{text-align:center; position:relative; padding:8px 0 22px}
   .seal{position:relative; width:76px; height:76px; margin:0 auto 16px; display:grid; place-items:center}
-  .seal::before{ /* 은은한 호흡 글로우 = 시그니처 */
-    content:""; position:absolute; inset:-24px; border-radius:50%;
-    background:radial-gradient(circle, rgba(184,146,74,.20), rgba(184,146,74,0) 66%);
-  }
+  .seal::before{content:""; position:absolute; inset:-24px; border-radius:50%;
+    background:radial-gradient(circle, rgba(184,146,74,.20), rgba(184,146,74,0) 66%)}
   .seal img{width:76px; height:76px; object-fit:contain; position:relative; z-index:1}
-  .seal .fallback{
-    position:relative; z-index:1; width:76px; height:76px; border-radius:50%;
+  .seal .fallback{position:relative; z-index:1; width:76px; height:76px; border-radius:50%;
     border:1.5px solid var(--gold); color:var(--gold); font-family:var(--serif);
-    font-size:34px; display:grid; place-items:center;
-  }
-  .logo{font-family:var(--serif); font-weight:800; letter-spacing:.14em;
-    font-size:34px; margin:0; padding-left:.14em}
+    font-size:34px; display:grid; place-items:center}
+  .logo{font-family:var(--serif); font-weight:800; letter-spacing:.14em; font-size:34px; margin:0; padding-left:.14em}
   .tag{font-family:var(--serif); color:var(--ink-soft); font-size:15px; letter-spacing:.02em; margin:10px 0 0}
-  .lead{font-size:13.5px; color:var(--ink-soft); margin:20px 0 0}
+  .lead{font-size:13.5px; color:var(--ink-soft); margin:18px 0 0}
 
-  /* ── 도메인 버튼 ── */
-  .links{display:flex; flex-direction:column; gap:11px; margin-top:20px}
-  .card{
-    display:flex; align-items:center; gap:14px; text-decoration:none; color:inherit;
-    background:var(--paper); border:1px solid var(--line); border-radius:16px;
-    padding:16px 17px; transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;
-    box-shadow:0 1px 2px rgba(46,42,36,.03);
-  }
+  /* ── 그룹 라벨 ── */
+  .group-label{display:flex; align-items:center; gap:10px; margin:24px 2px 12px;
+    font-size:11.5px; letter-spacing:.14em; color:var(--ink-soft)}
+  .group-label::after{content:""; flex:1; height:1px; background:var(--line)}
+
+  /* ── 버튼 ── */
+  .links{display:flex; flex-direction:column; gap:11px}
+  .card{display:flex; align-items:center; gap:14px; text-decoration:none; color:inherit;
+    background:var(--paper); border:1px solid var(--line); border-radius:16px; padding:16px 17px;
+    transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+    box-shadow:0 1px 2px rgba(46,42,36,.03)}
   .card .dot{flex:0 0 auto; width:10px; height:10px; border-radius:50%; background:var(--dot);
     box-shadow:0 0 0 4px color-mix(in srgb, var(--dot) 16%, transparent)}
   .card .txt{display:flex; flex-direction:column; gap:3px; flex:1 1 auto; min-width:0}
-  .card .txt b{font-size:16px; font-weight:600; letter-spacing:-.01em}
+  .card .txt b{font-size:16px; font-weight:600; letter-spacing:-.01em; display:flex; align-items:center; gap:7px}
   .card .txt small{font-size:12.5px; color:var(--ink-soft)}
-  .card .txt .free{color:var(--gold); font-weight:600}
+  .free-pill{font-size:10.5px; font-weight:700; letter-spacing:.02em; color:#fff; background:var(--gold);
+    padding:2px 7px; border-radius:999px; line-height:1.5}
   .card .arw{flex:0 0 auto; color:var(--ink-soft); font-size:17px; transition:transform .18s ease}
   .card:hover,.card:focus-visible{transform:translateY(-2px); box-shadow:0 6px 18px rgba(46,42,36,.08);
     border-color:color-mix(in srgb, var(--dot) 45%, var(--line)); outline:none}
@@ -73,15 +72,12 @@
 
   /* ── 무료 데일리 ── */
   .daily{margin-top:26px; text-align:center}
-  .daily-h{font-size:12px; letter-spacing:.12em; color:var(--ink-soft); margin:0 0 12px;
-    position:relative}
-  .daily-h::before,.daily-h::after{content:""; position:absolute; top:50%; width:34px; height:1px;
-    background:var(--line)}
-  .daily-h::before{left:calc(50% - 88px)} .daily-h::after{right:calc(50% - 88px)}
+  .daily-h{font-size:12px; letter-spacing:.12em; color:var(--ink-soft); margin:0 0 12px; position:relative}
+  .daily-h::before,.daily-h::after{content:""; position:absolute; top:50%; width:34px; height:1px; background:var(--line)}
+  .daily-h::before{left:calc(50% - 92px)} .daily-h::after{right:calc(50% - 92px)}
   .chips{display:flex; flex-wrap:wrap; justify-content:center; gap:8px}
-  .chip{text-decoration:none; color:var(--ink-soft); font-size:13px;
-    border:1px solid var(--line); border-radius:999px; padding:8px 14px; background:var(--paper);
-    transition:color .18s, border-color .18s}
+  .chip{text-decoration:none; color:var(--ink-soft); font-size:13px; border:1px solid var(--line);
+    border-radius:999px; padding:8px 14px; background:var(--paper); transition:color .18s, border-color .18s}
   .chip:hover,.chip:focus-visible{color:var(--gold); border-color:var(--gold); outline:none}
 
   /* ── 푸터 ── */
@@ -89,16 +85,13 @@
   .foot p{font-size:11px; color:var(--ink-soft); line-height:1.6; margin:0}
   .foot .copy{margin-top:10px; font-family:var(--serif); letter-spacing:.1em; color:#B7AD9C}
 
-  /* ── 로드 연출 (모션 최소) ── */
   @media (prefers-reduced-motion: no-preference){
     .seal::before{animation:breathe 5.5s ease-in-out infinite}
     .card{opacity:0; transform:translateY(8px); animation:rise .5s ease forwards}
-    .links .card:nth-child(1){animation-delay:.05s}
-    .links .card:nth-child(2){animation-delay:.10s}
-    .links .card:nth-child(3){animation-delay:.15s}
-    .links .card:nth-child(4){animation-delay:.20s}
-    .links .card:nth-child(5){animation-delay:.25s}
-    .links .card:nth-child(6){animation-delay:.30s}
+    .links .card:nth-child(1){animation-delay:.04s}
+    .links .card:nth-child(2){animation-delay:.09s}
+    .links .card:nth-child(3){animation-delay:.14s}
+    .links .card:nth-child(4){animation-delay:.19s}
     @keyframes breathe{0%,100%{opacity:.55; transform:scale(.94)}50%{opacity:1; transform:scale(1.06)}}
     @keyframes rise{to{opacity:1; transform:none}}
   }
@@ -108,7 +101,7 @@
   <main class="wrap">
     <header class="brand">
       <div class="seal">
-        <img src="https://jiase.kr/jiaseh_symbol_traced_light_FINAL.png" alt="지아세 심볼"
+        <img src="https://jiase.kr/jiaseh_symbol_light_trans.png" alt="지아세 심볼"
              onerror="this.style.display='none';document.getElementById('seal-fb').style.display='grid'">
         <span class="fallback" id="seal-fb" style="display:none" aria-hidden="true">知</span>
       </div>
@@ -117,12 +110,32 @@
       <p class="lead">궁금한 이야기를 골라보세요.</p>
     </header>
 
-    <nav class="links" aria-label="도메인 바로가기">
+    <p class="group-label">가볍게 시작</p>
+    <nav class="links" aria-label="가볍게 시작">
       <a class="card" href="https://jiase.kr/" style="--dot:#7A8B5A">
         <span class="dot"></span>
-        <span class="txt"><b>나의 기질</b><small><span class="free">무료</span> · 오행으로 보는 나</small></span>
+        <span class="txt"><b>나의 오행 <em class="free-pill">무료</em></b><small>오행으로 보는 나</small></span>
         <span class="arw" aria-hidden="true">→</span>
       </a>
+      <a class="card" href="https://jiase.kr/이름진단" style="--dot:#B8924A">
+        <span class="dot"></span>
+        <span class="txt"><b>이름 테스트 <em class="free-pill">무료</em></b><small>소리오행으로 보는 이름</small></span>
+        <span class="arw" aria-hidden="true">→</span>
+      </a>
+      <a class="card" href="https://jiase.kr/정화" style="--dot:#6E7F8C">
+        <span class="dot"></span>
+        <span class="txt"><b>정화 세션 <em class="free-pill">무료</em></b><small>마음을 비우는 시간</small></span>
+        <span class="arw" aria-hidden="true">→</span>
+      </a>
+      <a class="card" href="https://jiase.kr/단시점" style="--dot:#C46A5A">
+        <span class="dot"></span>
+        <span class="txt"><b>단시점</b><small>지금 이 질문 하나, 바로 답</small></span>
+        <span class="arw" aria-hidden="true">→</span>
+      </a>
+    </nav>
+
+    <p class="group-label">더 깊이 보기</p>
+    <nav class="links" aria-label="더 깊이 보기">
       <a class="card" href="https://jiase.kr/케미카드" style="--dot:#C46A5A">
         <span class="dot"></span>
         <span class="txt"><b>인연과 관계</b><small>나와 그 사람의 케미</small></span>
@@ -138,12 +151,7 @@
         <span class="txt"><b>커리어와 일</b><small>내 일의 결</small></span>
         <span class="arw" aria-hidden="true">→</span>
       </a>
-      <a class="card" href="https://jiase.kr/정화" style="--dot:#8FA07E">
-        <span class="dot"></span>
-        <span class="txt"><b>건강과 에너지</b><small><span class="free">무료</span> · 나를 돌보는 정화</small></span>
-        <span class="arw" aria-hidden="true">→</span>
-      </a>
-      <a class="card" href="https://jiase.kr/세운" style="--dot:#A98A5E">
+      <a class="card" href="https://jiase.kr/세운" style="--dot:#8FA07E">
         <span class="dot"></span>
         <span class="txt"><b>대운과 흐름</b><small>지금 내 흐름이 어디쯤인지</small></span>
         <span class="arw" aria-hidden="true">→</span>
