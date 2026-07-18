@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>지아세 知我世 · 나의 결 읽기</title>
-<meta name="description" content="요즘 나, 왜 이럴까. 태어난 날 하나로 타고난 결을 짚어드려요. 시간은 묻지 않아요.">
+<meta name="description" content="요즘 나, 왜 이럴까. 태어난 날 하나로 내 사주 뼈대와 타고난 결을 짚어드려요. 시간은 넣어도 되고 안 넣어도 돼요.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap">
@@ -69,11 +69,14 @@
 
   /* 입력 */
   .field label{display:block;font-size:13px;color:var(--ink-soft);margin:0 0 7px 2px}
-  input[type=date]{width:100%;font:inherit;font-size:17px;color:var(--ink);
+  input[type=date],input[type=time]{width:100%;font:inherit;font-size:17px;color:var(--ink);
     background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
-  input[type=date]:focus-visible{outline:none;border-color:var(--el)}
-  .note{font-size:12.5px;color:var(--ink-soft);margin:9px 2px 0;display:flex;gap:6px;align-items:center}
-  .note::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--el);flex:none}
+  input[type=date]:focus-visible,input[type=time]:focus-visible{outline:none;border-color:var(--el)}
+  .field + .field{margin-top:12px}
+  .opt-tag{font-size:11px;font-weight:600;color:var(--el);background:var(--el-wash);
+    border-radius:99px;padding:2px 8px;margin-left:6px;vertical-align:middle}
+  .note{font-size:12.5px;color:var(--ink-soft);margin:9px 2px 0;display:flex;gap:6px;align-items:flex-start}
+  .note::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--el);flex:none;margin-top:.55em}
 
   .btn{appearance:none;border:none;cursor:pointer;font:inherit;font-weight:700;font-size:16px;
     color:#fff;background:var(--el);border-radius:14px;padding:16px;width:100%;
@@ -87,27 +90,64 @@
     cursor:pointer;padding:6px 2px;align-self:flex-start}
   .back:hover{color:var(--ink)}
 
-  /* ── 결과 ── */
-  .breath{position:relative;padding:26px 22px 24px;border-radius:var(--radius);overflow:hidden;
+  /* ── 결과 컨테이너 ── */
+  .breath{position:relative;padding:22px 18px 20px;border-radius:var(--radius);overflow:hidden;
     background:var(--card);border:1px solid var(--line)}
   .breath::before{content:"";position:absolute;inset:-40% -20% auto -20%;height:180%;
     background:radial-gradient(60% 60% at 30% 20%, var(--el-wash), transparent 70%);
     animation:breathe 7s ease-in-out infinite;z-index:0}
   @keyframes breathe{0%,100%{opacity:.55;transform:scale(1)}50%{opacity:1;transform:scale(1.08)}}
   .breath>*{position:relative;z-index:1}
+
+  .stack{display:flex;flex-direction:column;gap:14px;width:100%}
+  .xcard{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:18px 18px 17px;animation:rise .5s ease both}
+  .xtag{display:inline-block;font-size:12.5px;font-weight:700;letter-spacing:.02em;
+    color:var(--el);background:var(--el-wash);border-radius:99px;padding:4px 11px;margin-bottom:11px}
   .el-tag{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--el);
-    font-weight:600;letter-spacing:.04em}
+    font-weight:600;letter-spacing:.04em;margin-bottom:8px}
   .el-dot{width:9px;height:9px;border-radius:50%;background:var(--el)}
-  .one{font-size:23px;line-height:1.45;margin:12px 0 0;font-weight:800}
-  .keys{list-style:none;margin:18px 0 0;padding:0;display:flex;flex-direction:column;gap:9px}
+  .one{font-size:22px;line-height:1.45;margin:6px 0 0;font-weight:800}
+  .one2{font-size:16.5px;line-height:1.62;color:var(--ink);margin:2px 0 8px;font-weight:600}
+  .para{font-size:14.5px;line-height:1.78;color:var(--ink);margin:12px 0 0}
+  .para b{font-weight:600}
+  .xsub{font-size:13.5px;line-height:1.75;color:var(--ink-soft);margin:10px 0 0}
+  .keys{list-style:none;margin:16px 0 0;padding:0;display:flex;flex-direction:column;gap:9px}
   .keys li{position:relative;padding-left:20px;font-size:15px}
   .keys li::before{content:"";position:absolute;left:2px;top:.62em;width:8px;height:2px;background:var(--el);border-radius:2px}
-  .care{margin:18px 0 0;padding:14px 16px;background:var(--el-wash);border-radius:13px;
-    font-size:14.5px;color:var(--ink)}
-  .tieback{margin:16px 2px 0;font-size:14.5px;color:var(--ink-soft)}
-  .tieback b{color:var(--ink);font-weight:600}
+  .care{margin:16px 0 0;padding:14px 16px;background:var(--el-wash);border-radius:13px;
+    font-size:14.5px;color:var(--ink);line-height:1.7}
 
-  /* ── 흐름 / 핸드오프 ── */
+  /* 명식(사주팔자) 도표 */
+  .mingsik{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin:4px 0 0}
+  .mcol{display:flex;flex-direction:column;gap:6px;text-align:center}
+  .mcol .mh{font-size:11px;color:var(--ink-soft);letter-spacing:.06em}
+  .mcell{border:1px solid var(--line);border-radius:12px;padding:9px 4px;background:var(--cream)}
+  .mcell .hz{font-family:"Nanum Myeongjo",serif;font-size:26px;font-weight:700;line-height:1.1;display:block}
+  .mcell .kr{font-size:11px;color:var(--ink-soft);margin-top:2px;display:block}
+  .mcol.self .mcell{border-color:var(--el);background:var(--el-wash)}
+  .mcol.self .hz{color:var(--el)}
+  .mcol.empty .hz{color:var(--line);font-weight:400}
+  .mnote{font-size:12.5px;color:var(--ink-soft);margin:12px 0 0;line-height:1.7}
+  .mnote b{color:var(--ink);font-weight:600}
+
+  /* 오행 5기운 막대(숫자·등급 비노출) */
+  .ohaeng{display:flex;flex-direction:column;gap:10px;margin:4px 0 0}
+  .obar{display:grid;grid-template-columns:34px 1fr;align-items:center;gap:10px}
+  .obar .on{font-size:13px;color:var(--ink-soft)}
+  .obar .otrack{height:10px;border-radius:99px;background:var(--line-soft);overflow:hidden}
+  .obar .ofill{height:100%;border-radius:99px;transition:width .7s cubic-bezier(.2,.7,.2,1)}
+  .obar.max .on{color:var(--ink);font-weight:700}
+  .obar.min .on{color:var(--ink-soft)}
+
+  .tieback{margin:14px 2px 0;font-size:14.5px;color:var(--ink-soft);line-height:1.7}
+  .tieback b{color:var(--ink);font-weight:600}
+  .inlink{display:inline-flex;align-items:center;gap:5px;margin-top:12px;font-size:13.5px;
+    font-weight:600;color:var(--el);text-decoration:none}
+  .inlink:hover{text-decoration:underline}
+  #unlock{margin-top:16px}
+
+  /* ── 흐름 / 핸드오프(→ 랜딩) ── */
   .blur-teaser{position:relative;border:1px dashed var(--line);border-radius:16px;
     padding:18px;overflow:hidden;background:var(--line-soft)}
   .blur-teaser .locked{filter:blur(5px);opacity:.7;user-select:none;font-size:14.5px;line-height:1.9}
@@ -135,9 +175,10 @@
   .foot a{color:var(--ink-soft)}
 
   @media (prefers-reduced-motion:reduce){
-    .screen{animation:none}.breath::before{animation:none;opacity:.7}
+    .screen,.xcard{animation:none}.breath::before{animation:none;opacity:.7}
+    .obar .ofill{transition:none}
   }
-  @media (min-width:520px){ h1{font-size:30px} .one{font-size:25px} }
+  @media (min-width:520px){ h1{font-size:30px} .one{font-size:24px} }
 </style>
 </head>
 <body>
@@ -152,8 +193,8 @@
     <!-- S0 · 훅 -->
     <section class="screen active" id="s0" aria-label="시작">
       <span class="eyebrow">오늘의 나, 한 걸음</span>
-      <h1 class="display">요즘 마음에<br>가장 걸리는 게<br>있다면요</h1>
-      <p class="lede">뭐든 하나만 골라주세요. 자책하려는 게 아니에요 — <b>그 마음이 어디서 나오는지</b> 태어난 날로 짚어드릴게요.</p>
+      <h1 class="display">요즘 나,<br>왜 이럴까<br>싶다면요</h1>
+      <p class="lede">뭐든 하나만 골라주세요. 자책하려는 게 아니에요 — <b>그 마음이 어디서 나오는지</b> 태어난 날로 짚어드릴게요. 결제도, 가입도 없어요.</p>
       <div class="opts">
         <button class="opt" data-go="late"><span class="ot">열심히 하는데 결과가 늦게 와요</span><span class="oarrow">→</span></button>
         <button class="opt" data-go="on"><span class="ot">쉬어도 쉰 것 같지가 않아요</span><span class="oarrow">→</span></button>
@@ -162,7 +203,7 @@
       </div>
     </section>
 
-    <!-- S1 · 공감 브릿지 + 날짜 -->
+    <!-- S1 · 공감 브릿지 + 생년월일(시 선택) -->
     <section class="screen" id="s1" aria-label="공감과 생년월일">
       <button class="back" data-back="0">← 다시 고르기</button>
       <span class="eyebrow" id="b-eye">그 마음, 이렇게 읽혀요</span>
@@ -171,42 +212,46 @@
       <div class="field">
         <label for="birth">태어난 날 (양력)</label>
         <input type="date" id="birth" min="1930-01-01" max="2025-12-31">
-        <p class="note">시간은 묻지 않아요. 태어난 날짜 하나면 결이 보여요.</p>
       </div>
-      <button class="btn" id="reveal" disabled>내 결 확인하기</button>
+      <div class="field">
+        <label for="btime">태어난 시각 <span class="opt-tag">넣으면 8글자 완성</span></label>
+        <input type="time" id="btime">
+        <p class="note">시각을 모르면 비워두세요. 날짜만으로도 여섯 글자와 타고난 결이 보여요. 시각을 넣으면 사주 여덟 글자가 채워져요.</p>
+      </div>
+      <button class="btn" id="reveal" disabled>내 사주 뼈대 보기</button>
     </section>
 
-    <!-- S2 · 무료 체험 연쇄(누적형 하이브리드) -->
+    <!-- S2 · 나의 결(누적형) -->
     <section class="screen" id="s2" aria-label="나의 결">
+      <button class="back" data-back="1">← 다시 입력</button>
       <span class="eyebrow" id="r-eye">태어난 날 하나로, 이만큼 보여요</span>
       <div class="breath"><div class="stack" id="stack"></div></div>
       <p class="tieback" id="r-tie"></p>
       <button class="btn" id="unlock"></button>
     </section>
 
-    <!-- S3 · 흐름 / 핸드오프 -->
-    <section class="screen" id="s3" aria-label="흐름과 다음 걸음">
+    <!-- S3 · 흐름 / 랜딩 핸드오프 -->
+    <section class="screen" id="s3" aria-label="다음 걸음">
+      <button class="back" data-back="2">← 결과 다시 보기</button>
       <span class="eyebrow">뼈대 위에 얹히는 것</span>
       <h2 class="display">타고난 결은 그대로,<br>흐름은 매년 바뀌어요</h2>
-      <p class="lede">방금 본 게 <b>변하지 않는 뼈대</b>라면, 그 위에 시간의 흐름이 얹혀요. <b>언제 차오르고 언제 숨 고를지</b>가 여기서 갈립니다.</p>
+      <p class="lede">방금 본 게 <b>변하지 않는 뼈대</b>라면, 그 위에 시간의 흐름이 얹혀요. <b>언제 차오르고 언제 숨 고를지</b>가 여기서 갈립니다. 그 전체 그림은 지아세 홈에서 무료로 이어져요.</p>
       <div class="blur-teaser" aria-hidden="true">
-        <div class="locked">올해는 차오르는 구간에 들어섭니다 · 특히 무렵부터 흐름이 열리고 · 이 시기엔 힘을 아끼는 편이 · 다음 도약의 발판은</div>
-        <div class="cap">이 흐름은 태어난 날의 결과 함께 읽을 때 보여요</div>
+        <div class="locked">올해는 차오르는 구간에 들어섭니다 · 특히 무렵부터 흐름이 열리고 · 이 시기엔 힘을 아끼는 편이 · 곁에 두면 좋은 것은 · 다음 도약의 발판은</div>
+        <div class="cap">전체 흐름·곁들임은 지아세 홈에서 무료로 이어져요</div>
       </div>
       <div class="cta-col">
-        <a class="cta lead-cta" id="cta-ai" href="https://jiase.kr/명리리포트">
-          <span><span class="ct">내 흐름, 가볍게 먼저 보기</span><span class="cs">타고난 결 + 지금 흐름 · AI 리포트</span></span><span class="cend">→</span>
+        <a class="cta lead-cta" href="https://jiase.kr" target="_blank" rel="noopener">
+          <span><span class="ct">사주 전체 그림 보러가기</span><span class="cs">뼈대 전체 + 열두 자리 힘 · 무료로 이어보기</span></span><span class="cend">→</span>
         </a>
-        <a class="cta" id="cta-diag" href="https://jiase.kr/설계도">
-          <span><span class="ct">뿌리부터 깊이 설계하기</span><span class="cs">원국·흐름·곁들임까지 · 운명 설계도</span></span><span class="cend">→</span>
-        </a>
-        <a class="cta" href="https://jiase.kr/link">
-          <span><span class="ct">다른 이야기도 둘러보기</span><span class="cs">관계·돈·일·흐름 전체 메뉴</span></span><span class="cend">→</span>
+        <a class="cta" href="https://jiase.kr" target="_blank" rel="noopener">
+          <span><span class="ct">급한 질문 하나 있나요?</span><span class="cs">오늘의 단시점 4종 · 지아세 홈에서 무료</span></span><span class="cend">→</span>
         </a>
       </div>
       <div class="daily">
-        <a class="chip" href="https://telegram.me/TodayMind_bot">매일 · 오늘의 나</a>
-        <a class="chip" href="http://pf.kakao.com/_xnZAxfX">카카오로 소식 받기</a>
+        <a class="chip" href="https://jiase.kr/온유" target="_blank" rel="noopener">잠깐 쉬어가기 · 자애명상</a>
+        <a class="chip" href="https://telegram.me/TodayMind_bot" target="_blank" rel="noopener">매일 · 오늘의 나</a>
+        <a class="chip" href="http://pf.kakao.com/_xnZAxfX" target="_blank" rel="noopener">카카오로 소식 받기</a>
       </div>
       <p class="rest">답을 너무 자주 구하면 마음이 오히려 흔들려요.<br>오늘 받은 한 줄에 잠시 머물러 보셔도 좋아요.</p>
     </section>
@@ -218,27 +263,24 @@
   </footer>
 </div>
 
-<!-- 오행분포(년월일 3주) 산출용 — 검증 엔진, 카드③에만 사용. 실패 시 카드③만 우아하게 생략 -->
+<!-- 만세력 산출 엔진(년·월·시주·오행분포) — 검증 엔진. 실패 시 해당 부분만 우아하게 축소 -->
 <script src="https://cdn.jsdelivr.net/npm/lunar-javascript@1.7.3/lunar.js"></script>
-<style>
-  .stack{display:flex;flex-direction:column;gap:14px;width:100%}
-  .xcard{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
-    padding:18px 18px 16px;animation:rise .5s ease both}
-  @keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
-  .xtag{display:inline-block;font-size:12.5px;font-weight:700;letter-spacing:.02em;
-    color:var(--el);background:var(--el-wash);border-radius:99px;padding:4px 11px;margin-bottom:9px}
-  .one2{font-size:16.5px;line-height:1.6;color:var(--ink);margin:2px 0 6px;font-weight:600}
-  .xsub{font-size:14px;line-height:1.7;color:var(--ink-soft);margin:0}
-  #unlock{margin-top:16px}
-</style>
 
 <script>
-/* ===== 만세력 엔진 (bornbone v2 검증 완료 — 변경 금지) ===== */
+/* ===== 일주 만세력 엔진 (bornbone v2 검증 완료 — 변경 금지) ===== */
 const GAN="갑을병정무기경신임계";
 const GAN_O=["木","木","火","火","土","土","金","金","水","水"];
 const JI="자축인묘진사오미신유술해";
 function jdn(y,m,d){const a=Math.floor((14-m)/12),yy=y+4800-a,mm=m+12*a-3;return d+Math.floor((153*mm+2)/5)+365*yy+Math.floor(yy/4)-Math.floor(yy/100)+Math.floor(yy/400)-32045;}
 function dayPillar(y,m,d){const i=(jdn(y,m,d)+49)%60;return GAN[i%10]+JI[i%12];}
+
+/* ===== 한자↔한글 간지 (명식 표기용) ===== */
+const HZ_GAN={甲:"갑",乙:"을",丙:"병",丁:"정",戊:"무",己:"기",庚:"경",辛:"신",壬:"임",癸:"계"};
+const HZ_JI ={子:"자",丑:"축",寅:"인",卯:"묘",辰:"진",巳:"사",午:"오",未:"미",申:"신",酉:"유",戌:"술",亥:"해"};
+const KR2HZ_GAN={갑:"甲",을:"乙",병:"丙",정:"丁",무:"戊",기:"己",경:"庚",신:"辛",임:"壬",계:"癸"};
+const KR2HZ_JI ={자:"子",축:"丑",인:"寅",묘:"卯",진:"辰",사:"巳",오:"午",미:"未",신:"申",유:"酉",술:"戌",해:"亥"};
+const GAN_HZ="甲乙丙丁戊己庚辛壬癸";
+const JI_HZ ="子丑寅卯辰巳午未申酉戌亥";
 
 /* ===== 일간 기질 10종 (bornbone v2 검증 완료) ===== */
 const ILGAN={
@@ -254,13 +296,18 @@ const ILGAN={
   계:{one:"조용히 스며들어 끝내 길을 내는 사람",keys:["깊은 직관","섬세한 감수성","부드러운 끈기"],care:"혼자 끌어안고 가라앉지 말고, 자주 털어놓으면 가벼워집니다."}
 };
 
-/* ===== 오행 = 일상어 + 톤 컬러 (모드1: 전문용어 비노출) ===== */
+/* ===== 오행 = 일상어 + 성질 문단 + 톤 컬러 (모드1: 전문용어 비노출) ===== */
 const EL={
-  木:{name:"나무",poem:"위로 곧게 자라는",color:"#4E7C5B",wash:"rgba(78,124,91,.11)"},
-  火:{name:"불", poem:"환하게 번지는",  color:"#B54A3A",wash:"rgba(181,74,58,.10)"},
-  土:{name:"흙", poem:"묵직하게 품는",  color:"#B5843F",wash:"rgba(181,132,63,.11)"},
-  金:{name:"쇠", poem:"맑게 벼려진",    color:"#9A8A5E",wash:"rgba(154,138,94,.12)"},
-  水:{name:"물", poem:"깊이 흐르는",    color:"#3E6182",wash:"rgba(62,97,130,.10)"}
+  木:{name:"나무",poem:"위로 곧게 자라는",color:"#4E7C5B",wash:"rgba(78,124,91,.11)",
+      nature:"새로 시작하고 위로 뻗어나가는 힘이에요. 계획을 세우고 자라려는 마음이 강해서, 목표가 생기면 눈이 반짝여요. 대신 꺾이거나 갇히는 상황을 답답해하니, 굽어 자라도 나무는 나무라는 걸 기억하면 한결 편안해져요."},
+  火:{name:"불", poem:"환하게 번지는",  color:"#B54A3A",wash:"rgba(181,74,58,.10)",
+      nature:"환하게 번지고 드러나는 힘이에요. 감정도 표현도 빠르고 솔직해서 사람을 끌어당기는데, 확 타오른 만큼 확 식기도 해요. 불씨를 오래 데우는 연습이 당신을 더 멀리 데려가요."},
+  土:{name:"흙", poem:"묵직하게 품는",  color:"#B5843F",wash:"rgba(181,132,63,.11)",
+      nature:"품고 버티고 이어주는 힘이에요. 급하게 서두르기보다 묵직하게 자리를 지키며 사람과 일을 끌어안아요. 다 떠안다 지치지 않게, 가끔 내려놓는 결이 곁들여지면 더 단단해져요."},
+  金:{name:"쇠", poem:"맑게 벼려진",    color:"#9A8A5E",wash:"rgba(154,138,94,.12)",
+      nature:"다듬고 가려내고 맺는 힘이에요. 기준이 분명하고 핵심을 꿰뚫어 봐서 마무리가 깔끔한데, 날이 너무 서면 스스로도 베여요. 부드럽게 벼려도 쇠는 쇠예요."},
+  水:{name:"물", poem:"깊이 흐르는",    color:"#3E6182",wash:"rgba(62,97,130,.10)",
+      nature:"흐르고 스며들고 읽어내는 힘이에요. 상황을 넓게 보고 유연하게 흘러가며 깊이 생각하는데, 너무 흐르면 중심을 놓치기도 해요. 가끔 닻을 내리면 그 지혜가 더 빛나요."}
 };
 
 /* ===== 고민 → 온기 브릿지 (엔진 근거: §49-7 온기 36편) ===== */
@@ -309,36 +356,95 @@ function todayTone(P){
   return "오늘은 살짝 눌리는 듯한 날이에요. 무리하지 않으면 오히려 편안해져요.";
 }
 
-/* 내 안의 강한/여린 기운 — 년월일 3주 오행 분포(최강1·최약1만, 수치 비노출) */
+/* ===== 만세력(lunar) — 년·월·시주 + 오행분포 =====
+   실패해도 일주 엔진(위)만으로 결과가 나오도록 전부 방어 처리 */
 const _SOLAR=(typeof Solar!=="undefined")?Solar:(window.Solar||null);
 const _STEM={甲:"木",乙:"木",丙:"火",丁:"火",戊:"土",己:"土",庚:"金",辛:"金",壬:"水",癸:"水"};
 const _BR  ={子:"水",丑:"土",寅:"木",卯:"木",辰:"土",巳:"火",午:"火",未:"土",申:"金",酉:"金",戌:"土",亥:"水"};
-function distribution(y,m,d){
-  if(!_SOLAR) return null;
-  try{
-    const l=_SOLAR.fromYmd(y,m,d).getLunar();
-    const chars=(l.getYearInGanZhiByLiChun()+l.getMonthInGanZhiExact()+l.getDayInGanZhi());
-    const cnt={木:0,火:0,土:0,金:0,水:0};
-    for(const ch of chars){ if(_STEM[ch])cnt[_STEM[ch]]++; else if(_BR[ch])cnt[_BR[ch]]++; }
-    const order=["木","火","土","金","水"];
-    let strong=order[0],weak=order[0];
-    order.forEach(e=>{ if(cnt[e]>cnt[strong])strong=e; if(cnt[e]<cnt[weak])weak=e; });
-    return {strong,weak};
-  }catch(e){ return null; }
+
+/* 시주 = 진태양시(-32분) 시지 + 시두법 시간(일간 기준). 랜딩 만세력과 동일 규칙 */
+function hourPillar(dayGanHz, h, min){
+  let t = h*60 + min - 32;                 // 진태양시 보정(서울 경도)
+  t = ((t % 1440) + 1440) % 1440;          // 하루 안으로 래핑(자시 당일유지)
+  const hf = t/60;
+  const bIdx = Math.floor(((hf+1)%24)/2) % 12;    // 23~01=子 … 경계 odd시
+  const base = ((GAN_HZ.indexOf(dayGanHz) % 5) * 2) % 10;  // 시두 子시 천간
+  const sIdx = (base + bIdx) % 10;
+  return GAN_HZ[sIdx] + JI_HZ[bIdx];
+}
+/* 사주 기둥: {year,month,day,time} 각 한자 2글자. day=검증 일주엔진, 년월=만세력, 시=시두 */
+function pillars(y,m,d,hm){
+  const dpk=dayPillar(y,m,d);
+  const dayHz=KR2HZ_GAN[dpk[0]]+KR2HZ_JI[dpk[1]];
+  const out={day:dayHz};
+  if(_SOLAR){
+    try{
+      const l=_SOLAR.fromYmd(y,m,d).getLunar();
+      out.year =l.getYearInGanZhiByLiChun();
+      out.month=l.getMonthInGanZhiExact();
+    }catch(e){}
+  }
+  if(hm) out.time=hourPillar(dayHz[0], hm[0], hm[1]);
+  return out;
+}
+
+/* 오행 분포: 있는 기둥 전부 카운트(시주 포함 시 8글자, 없으면 6글자) */
+function distribution(pl){
+  const cnt={木:0,火:0,土:0,金:0,水:0};
+  ['year','month','day','time'].forEach(k=>{
+    const gz=pl[k]; if(!gz) return;
+    for(const ch of gz){ if(_STEM[ch])cnt[_STEM[ch]]++; else if(_BR[ch])cnt[_BR[ch]]++; }
+  });
+  const total=Object.values(cnt).reduce((a,b)=>a+b,0);
+  if(!total) return null;
+  const order=["木","火","土","金","水"];
+  let strong=order[0],weak=order[0];
+  order.forEach(e=>{ if(cnt[e]>cnt[strong])strong=e; if(cnt[e]<cnt[weak])weak=e; });
+  return {cnt,total,strong,weak,max:cnt[strong]};
+}
+
+/* 명식 도표 HTML */
+function mingsikHTML(pl){
+  const cols=[['시','time'],['일','day'],['월','month'],['년','year']]; // 표기 관례: 시일월년
+  const cells=cols.map(([label,key])=>{
+    const gz=pl[key];
+    if(!gz){
+      return `<div class="mcol empty"><div class="mh">${label}</div>
+        <div class="mcell"><span class="hz">·</span><span class="kr">미상</span></div>
+        <div class="mcell"><span class="hz">·</span><span class="kr">&nbsp;</span></div></div>`;
+    }
+    const g=gz[0], j=gz[1];
+    const self = key==='day' ? ' self' : '';
+    return `<div class="mcol${self}"><div class="mh">${label}${key==='day'?' · 나':''}</div>
+      <div class="mcell"><span class="hz">${g}</span><span class="kr">${HZ_GAN[g]||''}</span></div>
+      <div class="mcell"><span class="hz">${j}</span><span class="kr">${HZ_JI[j]||''}</span></div></div>`;
+  }).join('');
+  return `<div class="mingsik">${cells}</div>`;
+}
+
+/* 오행 5기운 막대 HTML (숫자·등급 비노출) */
+function ohaengHTML(dist){
+  const order=["木","火","土","金","水"];
+  const rows=order.map(e=>{
+    const c=EL[e], n=dist.cnt[e];
+    const w=Math.max(10, Math.round(n/dist.max*100)); // 최대=100%, 최소도 최소폭 보장
+    const cls=(e===dist.strong?'max':(e===dist.weak?'min':''));
+    return `<div class="obar ${cls}"><span class="on">${c.name}</span>
+      <div class="otrack"><div class="ofill" style="width:${w}%;background:${c.color}"></div></div></div>`;
+  }).join('');
+  return `<div class="ohaeng">${rows}</div>`;
 }
 
 /* ===== 흐름 제어 ===== */
-let picked=null, resultReady=false;
+let picked=null;
 const scr=id=>document.getElementById(id);
 const spineI=[...document.querySelectorAll('.spine i')];
 function show(step){
-  ['s0','s1','s2','s3'].forEach((s,i)=>{
-    const el=scr(s); const on=(i===step);
-    el.classList.toggle('active',on);
-  });
+  ['s0','s1','s2','s3'].forEach((s,i)=>scr(s).classList.toggle('active',i===step));
   spineI.forEach((i,idx)=>i.classList.toggle('on',idx<=step));
-  document.querySelector('.stage').scrollTop=0;
-  window.scrollTo({top:0,behavior:'instant'in window?'instant':'auto'});
+  if(step===1){ const bi=scr('birth'),rv=scr('reveal'); if(bi&&rv) rv.disabled=!bi.value; }  // 뒤로 와도 재확인 가능
+  const st=document.querySelector('.stage'); if(st) st.scrollTop=0;
+  window.scrollTo({top:0,behavior:('instant'in window)?'instant':'auto'});
 }
 function setEl(elKey){
   const e=EL[elKey]; const r=document.documentElement.style;
@@ -357,7 +463,7 @@ document.querySelectorAll('.opt').forEach(b=>b.addEventListener('click',()=>{
 document.querySelectorAll('[data-back]').forEach(b=>b.addEventListener('click',()=>show(+b.dataset.back)));
 
 /* 날짜 입력 → 버튼 활성 */
-const birth=scr('birth'), reveal=scr('reveal');
+const birth=scr('birth'), btime=scr('btime'), reveal=scr('reveal');
 birth.addEventListener('input',()=>{ reveal.disabled=!birth.value; });
 
 /* 결과 산출 */
@@ -365,40 +471,59 @@ const HANDOFF="이 결 위에 뭐가 얹히는지 보기 →";
 reveal.addEventListener('click',()=>{
   if(!birth.value) return;
   const [y,m,d]=birth.value.split('-').map(Number);
+  const hm = btime.value ? btime.value.split(':').map(Number) : null;
   const dp=dayPillar(y,m,d);
   const ilgan=dp[0];
   const el=GAN_O[GAN.indexOf(ilgan)];
   const g=ILGAN[ilgan], e=EL[el], br=BRIDGE[picked];
   setEl(el);
 
-  // 체험 카드 연쇄 (온기 사다리 · 클릭 언락 + 세로 누적)
+  const pl=pillars(y,m,d,hm);
+  const dist=distribution(pl);
+  const eightNote = pl.time
+    ? "여덟 글자가 모두 채워졌어요. 가운데 아래, 진하게 표시된 글자가 <b>당신의 중심</b>이에요."
+    : "시각을 넣지 않아 <b>여섯 글자</b>가 보여요. 가운데 아래, 진하게 표시된 글자가 <b>당신의 중심</b>이에요. 시각까지 넣으면 여덟 글자가 완성돼요.";
+
   const cards=[];
-  // ① 타고난 결
+
+  // ① 내 사주 뼈대 (명식) — 앵커
   cards.push({html:
-    `<div class="xcard"><span class="xtag">타고난 결</span>
-     <span class="el-tag" style="margin-bottom:8px"><span class="el-dot"></span>${e.name}의 결 — ${e.poem} 사람</span>
+    `<div class="xcard"><span class="xtag">내 사주 뼈대</span>
+     ${mingsikHTML(pl)}
+     <p class="mnote">${eightNote}</p></div>`});
+
+  // ② 타고난 결 (일간 중심 · 랜딩급 문단)
+  cards.push({reveal:"내 중심의 결, 자세히 →", html:
+    `<div class="xcard"><span class="xtag">타고난 결 · 나의 중심</span>
+     <span class="el-tag"><span class="el-dot"></span>${e.name}(${el})의 결 — ${e.poem} 사람</span>
      <p class="one display">${g.one}</p>
+     <p class="para">${e.nature}</p>
      <ul class="keys">${g.keys.map(k=>`<li>${k}</li>`).join('')}</ul>
      <p class="care">${g.care}</p></div>`});
-  // ② 오늘의 나
-  cards.push({reveal:"오늘의 흐름도 볼까요 →", html:
-    `<div class="xcard"><span class="xtag">오늘의 나</span>
-     <p class="one2">${todayTone(el)}</p>
-     <p class="xsub">내일이면 또 달라져요. 매일 아침 한 줄로 받아볼 수도 있어요.</p></div>`});
-  // ③ 강한·여린 기운 (년월일 3주 — lunar 없으면 자동 생략)
-  const dist=distribution(y,m,d);
+
+  // ③ 내 안의 다섯 기운 (오행 강약 · 시각화)
   if(dist){
-    const s=EL[dist.strong].name, w=EL[dist.weak].name;
-    cards.push({reveal:"내 안의 강한·여린 기운 →", html:
-      `<div class="xcard"><span class="xtag">내 안의 기운</span>
-       <p class="one2">가장 힘 있는 건 <b>${s}의 기운</b>, 가장 여린 건 <b>${w}의 기운</b>이에요.</p>
-       <p class="xsub">${s}은 타고난 힘이고, ${w}은 채워가면 좋은 여백이에요. 둘 다 당신을 이루는 결이에요.</p></div>`});
+    const s=EL[dist.strong], w=EL[dist.weak];
+    cards.push({reveal:"내 안의 다섯 기운 →", html:
+      `<div class="xcard"><span class="xtag">내 안의 다섯 기운</span>
+       ${ohaengHTML(dist)}
+       <p class="para">가장 힘 있는 건 <b>${s.name}의 기운</b>이에요. 타고난 무기이자 가장 편하게 쓰는 힘이라, ${s.name} 이야기를 들으면 “내 얘기”처럼 들릴 거예요.</p>
+       <p class="para">가장 여린 건 <b>${w.name}의 기운</b>이에요. 부족한 게 아니라 채워가면 좋은 여백이라, ${w.name}을 곁에 두면 결이 한결 고르게 돌아요.</p>
+       <p class="xsub">여기선 어느 기운이 크고 어느 기운이 여린지, 결의 모양만 보여드려요. 정확한 균형과 그에 맞는 곁들임은 지아세 홈에서 이어서 볼 수 있어요.</p></div>`});
   }
-  // ④ 일주 한 줄
+
+  // ④ 일주 한 줄 + 일주론 연결
   cards.push({reveal:"내 일주 한 줄로 보기 →", html:
     `<div class="xcard"><span class="xtag">한 줄로 요약하면</span>
      <p class="one display">${ILJU60[dp]||g.one}</p>
-     <p class="xsub">태어난 날의 두 글자가 그리는 결이에요.</p></div>`});
+     <p class="xsub">태어난 날의 두 글자(${KR2HZ_GAN[ilgan]}${KR2HZ_JI[dp[1]]})가 그리는 결이에요. 예순 가지 결 중 당신의 자리예요.</p>
+     <a class="inlink" href="https://jiase.kr/일주론" target="_blank" rel="noopener">이 두 글자의 결, 더 깊이 보기 →</a></div>`});
+
+  // ⑤ 오늘의 나 (재방문 훅)
+  cards.push({reveal:"오늘의 내 흐름 →", html:
+    `<div class="xcard"><span class="xtag">오늘의 나</span>
+     <p class="one2">${todayTone(el)}</p>
+     <p class="xsub">타고난 결은 그대로여도, 하루하루 얹히는 기운은 매일 달라져요. 매일 아침 한 줄로 받아볼 수도 있어요.</p></div>`});
 
   const stack=scr('stack'), unlock=scr('unlock');
   let idx=0;
@@ -415,7 +540,6 @@ reveal.addEventListener('click',()=>{
     if(idx<cards.length){ paint(); const st=document.querySelector('.stage'); if(st) st.scrollTop=st.scrollHeight; }
     else { show(3); }
   };
-  resultReady=true;
   show(2);
 });
 
