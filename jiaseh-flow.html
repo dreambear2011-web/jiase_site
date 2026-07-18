@@ -251,6 +251,16 @@
     border:1px solid var(--line);animation:heroIn 1.1s cubic-bezier(.2,.7,.2,1) both}
   @keyframes heroIn{from{opacity:0;transform:scale(1.03)}to{opacity:1;transform:none}}
   @media (prefers-reduced-motion:reduce){.hero{animation:none}}
+  .cmeet{display:flex;align-items:center;justify-content:center;gap:14px;margin:2px 0 4px}
+  .cnode{display:flex;flex-direction:column;align-items:center;gap:6px;flex:none}
+  .cdot{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;
+    font-family:"Nanum Myeongjo",serif;font-size:22px;font-weight:700;color:#fff;
+    box-shadow:0 6px 18px -10px rgba(43,38,34,.55)}
+  .cnode span{font-size:11.5px;color:var(--ink-soft);letter-spacing:.04em}
+  .clink{flex:1;max-width:88px;text-align:center;font-size:11px;color:var(--el);
+    letter-spacing:.1em;font-weight:700;position:relative;padding-top:16px}
+  .clink::before{content:"";position:absolute;top:6px;left:0;right:0;height:1px;
+    background:linear-gradient(90deg,transparent,var(--el),transparent)}
 </style>
 </head>
 <body>
@@ -286,6 +296,11 @@
         <button class="mitem" data-hub="saju">
           <span class="micon" data-el="金"></span>
           <span class="mtxt"><span class="mt">내 사주 · 일주</span><span class="ms">여덟 글자와 타고난 결</span></span>
+          <span class="marrow">→</span></button>
+
+        <button class="mitem" data-hub="chemi">
+          <span class="micon" data-el="火"></span>
+          <span class="mtxt"><span class="mt">우리 케미</span><span class="ms">두 사람의 기운이 어떻게 만나는지</span></span>
           <span class="marrow">→</span></button>
 
         <a class="mitem" href="https://jiase.kr/이름진단" target="_blank" rel="noopener">
@@ -380,6 +395,46 @@
         <a class="chip" href="http://pf.kakao.com/_xnZAxfX" target="_blank" rel="noopener">카카오로 소식 받기</a>
       </div>
       <p class="rest">답을 너무 자주 구하면 마음이 오히려 흔들려요.<br>오늘 받은 한 줄에 잠시 머물러 보셔도 좋아요.</p>
+    </section>
+
+    <!-- S4 · 우리 케미 -->
+    <section class="screen" id="s4" aria-label="우리 케미">
+      <button class="back" data-back="0">← 처음으로</button>
+      <span class="eyebrow">우리 케미</span>
+      <h2 class="display">두 사람의 기운,<br>어떻게 만날까요</h2>
+      <p class="lede">태어난 날만 있으면 돼요. 궁합을 점치는 게 아니라, <b>두 결이 만나는 방식</b>을 보는 거예요.</p>
+
+      <div class="field">
+        <label>나</label>
+        <div class="ymd">
+          <input class="ymd-in yr" id="ay" type="text" inputmode="numeric" maxlength="4" placeholder="1990" aria-label="내 태어난 해">
+          <span class="ymd-s">년</span>
+          <input class="ymd-in" id="am" type="text" inputmode="numeric" maxlength="2" placeholder="6" aria-label="내 태어난 달">
+          <span class="ymd-s">월</span>
+          <input class="ymd-in" id="ad" type="text" inputmode="numeric" maxlength="2" placeholder="15" aria-label="내 태어난 일">
+          <span class="ymd-s">일</span>
+        </div>
+      </div>
+      <div class="field">
+        <label>상대</label>
+        <div class="ymd">
+          <input class="ymd-in yr" id="by2" type="text" inputmode="numeric" maxlength="4" placeholder="1992" aria-label="상대 태어난 해">
+          <span class="ymd-s">년</span>
+          <input class="ymd-in" id="bm2" type="text" inputmode="numeric" maxlength="2" placeholder="3" aria-label="상대 태어난 달">
+          <span class="ymd-s">월</span>
+          <input class="ymd-in" id="bd2" type="text" inputmode="numeric" maxlength="2" placeholder="8" aria-label="상대 태어난 일">
+          <span class="ymd-s">일</span>
+        </div>
+        <p class="note">연인·가족·친구·직장 동료 누구든 괜찮아요. 좋고 나쁨을 가르는 게 아니라 결의 모양을 보는 거예요.</p>
+      </div>
+      <button class="btn" id="chemiGo" disabled>우리 케미 보기</button>
+
+      <div id="chemiOut" style="display:none">
+        <div class="breath" style="margin-top:4px"><div class="stack" id="cstack"></div></div>
+        <a class="cta lead-cta" style="margin-top:14px" href="https://jiase.kr/#s-input" target="_blank" rel="noopener">
+          <span><span class="ct">두 사람 사주 더 자세히</span><span class="cs">지아세 홈에서 무료로 이어보기</span></span><span class="cend">→</span>
+        </a>
+      </div>
     </section>
   </main>
 
@@ -570,7 +625,8 @@ const scr=id=>document.getElementById(id);
 const spineI=[...document.querySelectorAll('.spine i')];
 function show(step){
   ['s0','s1','s2','s3'].forEach((s,i)=>scr(s).classList.toggle('active',i===step));
-  spineI.forEach((i,idx)=>i.classList.toggle('on',idx<=step));
+  scr('s4').classList.toggle('active',step===4);
+  spineI.forEach((i,idx)=>i.classList.toggle('on', step===4 ? idx<=1 : idx<=step));
   if(step===1){ if(typeof syncBtn==='function') syncBtn(); }  // 뒤로 와도 재확인 가능
   const st=document.querySelector('.stage'); if(st) st.scrollTop=0;
   window.scrollTo({top:0,behavior:('instant'in window)?'instant':'auto'});
@@ -606,7 +662,10 @@ function toInput(key){
   show(1);
 }
 document.querySelectorAll('.mitem[data-hub]').forEach(function(b){
-  b.addEventListener('click',function(){ toInput(b.dataset.hub); });
+  b.addEventListener('click',function(){
+    if(b.dataset.hub==='chemi'){ show(4); return; }
+    toInput(b.dataset.hub);
+  });
 });
 
 /* 결과 산출 */
@@ -695,6 +754,73 @@ reveal.addEventListener('click',()=>{
     else { show(3); }
   };
   show(2);
+});
+
+
+/* ===== 우리 케미 — 오행 관계 (모드1 · 온기 프레임) ===== */
+const CHEMI={
+  same:{tag:"닮은 결", t:"말하지 않아도 아는 사이",
+    b:"두 사람이 <b>같은 기운</b>을 쓰고 있어요. 비슷한 속도로 움직이고 비슷한 데서 힘이 빠져서, 설명하지 않아도 통하는 게 많아요.",
+    c:"편한 만큼 서로의 약한 지점도 같아요. 둘 다 지칠 때는 밖에서 다른 결을 한 번 빌려오면 훨씬 수월해져요."},
+  give:{tag:"내가 주는 결", t:"내가 기운을 건네는 사이",
+    b:"당신의 기운이 <b>상대를 자라게</b> 하는 방향으로 흘러요. 함께 있으면 상대가 편안해지고, 당신은 챙겨주는 자리에 자연스럽게 서게 돼요.",
+    c:"주는 쪽이 먼저 지치기 쉬워요. 당신이 받는 시간도 있어야 이 흐름이 오래가요."},
+  take:{tag:"내가 받는 결", t:"곁에 있으면 채워지는 사이",
+    b:"상대의 기운이 <b>당신을 채워주는</b> 방향이에요. 함께 있으면 기운이 나고, 막혔던 게 풀리는 느낌을 자주 받아요.",
+    c:"받는 게 당연해지지 않게, 고맙다는 말을 자주 건네면 이 결이 더 깊어져요."},
+  lead:{tag:"내가 이끄는 결", t:"내가 방향을 잡는 사이",
+    b:"당신이 <b>먼저 정하고 이끄는</b> 자리에 서게 되는 관계예요. 일이 굴러가게 만드는 힘은 있지만, 상대가 따라오는 속도는 다를 수 있어요.",
+    c:"밀기 전에 한 번 물어보면, 끌고 가는 게 아니라 함께 가는 관계가 돼요."},
+  push:{tag:"긴장이 있는 결", t:"나를 움직이게 하는 사이",
+    b:"상대의 기운이 <b>당신을 긴장시키는</b> 방향이에요. 편하지만은 않은데, 그 긴장이 당신을 게으르지 않게 만들어요. 성장은 대개 이런 관계에서 와요.",
+    c:"부딪힘이 아니라 자극으로 쓰면 이 관계가 가장 크게 남아요. 거리를 조금 두면 더 편해져요."}
+};
+function chemiKind(a,b){
+  if(a===b) return 'same';
+  if(GEN[a]===b) return 'give';
+  if(GEN[b]===a) return 'take';
+  if(KE[a]===b)  return 'lead';
+  return 'push';
+}
+const ay=scr('ay'),am=scr('am'),ad=scr('ad'),by2=scr('by2'),bm2=scr('bm2'),bd2=scr('bd2'),chemiGo=scr('chemiGo');
+function rd(y,m,d){
+  if(!y.value||!m.value||!d.value) return null;
+  const Y=+y.value,M=+m.value,D=+d.value;
+  if(Y<1930||Y>2030||M<1||M>12||D<1||D>31) return null;
+  const t=new Date(Y,M-1,D);
+  if(t.getFullYear()!==Y||t.getMonth()!==M-1||t.getDate()!==D) return null;
+  return [Y,M,D];
+}
+function chemiSync(){ chemiGo.disabled = !(rd(ay,am,ad) && rd(by2,bm2,bd2)); }
+[ay,am,ad,by2,bm2,bd2].forEach(function(el){
+  el.addEventListener('input',function(){
+    el.value=el.value.replace(/[^0-9]/g,'');
+    const order=[ay,am,ad,by2,bm2,bd2], i=order.indexOf(el);
+    if(el.value.length>=+el.getAttribute('maxlength') && el!==ad && el!==bd2 && order[i+1]) order[i+1].focus();
+    chemiSync();
+  });
+});
+chemiGo.addEventListener('click',function(){
+  const A=rd(ay,am,ad), B=rd(by2,bm2,bd2); if(!A||!B) return;
+  const ga=dayPillar(A[0],A[1],A[2])[0], gb=dayPillar(B[0],B[1],B[2])[0];
+  const ea=GAN_O[GAN.indexOf(ga)], eb=GAN_O[GAN.indexOf(gb)];
+  const kind=chemiKind(ea,eb), C=CHEMI[kind];
+  const EA=EL[ea], EB=EL[eb];
+  setEl(ea);
+  const LINKTXT={same:'나란히',give:'→ 건넴',take:'← 받음',lead:'→ 이끎',push:'← 자극'};
+  scr('cstack').innerHTML =
+    '<div class="xcard"><span class="xtag">'+C.tag+'</span>'+
+    '<div class="cmeet">'+
+      '<div class="cnode"><div class="cdot" style="background:'+EA.color+'">'+ea+'</div><span>나 · '+EA.name+'</span></div>'+
+      '<div class="clink">'+LINKTXT[kind]+'</div>'+
+      '<div class="cnode"><div class="cdot" style="background:'+EB.color+'">'+eb+'</div><span>상대 · '+EB.name+'</span></div>'+
+    '</div>'+
+    '<p class="one display" style="margin-top:12px">'+C.t+'</p>'+
+    '<p class="para">'+C.b+'</p>'+
+    '<div class="care">'+C.c+'</div>'+
+    '<p class="xsub">태어난 날의 기운만으로 본 결이에요. 두 사람의 사주 전체를 겹쳐 보면 훨씬 또렷해져요.</p></div>';
+  scr('chemiOut').style.display='block';
+  setTimeout(function(){ scr('chemiOut').scrollIntoView({behavior:'smooth',block:'nearest'}); },80);
 });
 
 /* 딥링크: ?to=late|on|wall|curious → 사주 입력으로 바로 진입(게시물별 랜딩) */
