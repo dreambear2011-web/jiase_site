@@ -69,9 +69,16 @@
 
   /* 입력 */
   .field label{display:block;font-size:13px;color:var(--ink-soft);margin:0 0 7px 2px}
-  input[type=date],input[type=time]{width:100%;font:inherit;font-size:17px;color:var(--ink);
+  input[type=time]{width:100%;font:inherit;font-size:17px;color:var(--ink);
     background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
-  input[type=date]:focus-visible,input[type=time]:focus-visible{outline:none;border-color:var(--el)}
+  input[type=time]:focus-visible{outline:none;border-color:var(--el)}
+  .ymd{display:flex;align-items:center;gap:8px}
+  .ymd-in{font:inherit;font-size:17px;color:var(--ink);background:var(--card);
+    border:1px solid var(--line);border-radius:14px;padding:14px 10px;text-align:center;min-width:0;flex:1}
+  .ymd-in.yr{flex:1.7}
+  .ymd-in:focus-visible{outline:none;border-color:var(--el)}
+  .ymd-in::placeholder{color:var(--line)}
+  .ymd-s{font-size:14px;color:var(--ink-soft);flex:none;margin-left:-2px}
   .field + .field{margin-top:12px}
   .opt-tag{font-size:11px;font-weight:600;color:var(--el);background:var(--el-wash);
     border-radius:99px;padding:2px 8px;margin-left:6px;vertical-align:middle}
@@ -210,12 +217,24 @@
       <h2 class="display" id="b-title"></h2>
       <p class="lede" id="b-lede"></p>
       <div class="field">
-        <label for="birth">태어난 날 (양력)</label>
-        <input type="date" id="birth" min="1930-01-01" max="2025-12-31">
+        <label for="by">태어난 날 (양력)</label>
+        <div class="ymd">
+          <input class="ymd-in yr" id="by" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="4" placeholder="1990" aria-label="태어난 해">
+          <span class="ymd-s">년</span>
+          <input class="ymd-in" id="bm" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="2" placeholder="6" aria-label="태어난 달">
+          <span class="ymd-s">월</span>
+          <input class="ymd-in" id="bd" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="2" placeholder="15" aria-label="태어난 일">
+          <span class="ymd-s">일</span>
+        </div>
       </div>
       <div class="field">
-        <label for="btime">태어난 시각 <span class="opt-tag">넣으면 8글자 완성</span></label>
-        <input type="time" id="btime">
+        <label for="bh">태어난 시각 <span class="opt-tag">넣으면 8글자 완성</span></label>
+        <div class="ymd">
+          <input class="ymd-in" id="bh" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="2" placeholder="13" aria-label="태어난 시">
+          <span class="ymd-s">시</span>
+          <input class="ymd-in" id="bmin" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="2" placeholder="30" aria-label="태어난 분">
+          <span class="ymd-s">분</span>
+        </div>
         <p class="note">시각을 모르면 비워두세요. 날짜만으로도 여섯 글자와 타고난 결이 보여요. 시각을 넣으면 사주 여덟 글자가 채워져요.</p>
       </div>
       <button class="btn" id="reveal" disabled>내 사주 뼈대 보기</button>
@@ -442,7 +461,7 @@ const spineI=[...document.querySelectorAll('.spine i')];
 function show(step){
   ['s0','s1','s2','s3'].forEach((s,i)=>scr(s).classList.toggle('active',i===step));
   spineI.forEach((i,idx)=>i.classList.toggle('on',idx<=step));
-  if(step===1){ const bi=scr('birth'),rv=scr('reveal'); if(bi&&rv) rv.disabled=!bi.value; }  // 뒤로 와도 재확인 가능
+  if(step===1){ if(typeof syncBtn==='function') syncBtn(); }  // 뒤로 와도 재확인 가능
   const st=document.querySelector('.stage'); if(st) st.scrollTop=0;
   window.scrollTo({top:0,behavior:('instant'in window)?'instant':'auto'});
 }
@@ -462,16 +481,40 @@ document.querySelectorAll('.opt').forEach(b=>b.addEventListener('click',()=>{
 /* 뒤로 */
 document.querySelectorAll('[data-back]').forEach(b=>b.addEventListener('click',()=>show(+b.dataset.back)));
 
-/* 날짜 입력 → 버튼 활성 */
-const birth=scr('birth'), btime=scr('btime'), reveal=scr('reveal');
-birth.addEventListener('input',()=>{ reveal.disabled=!birth.value; });
+/* 날짜 자판 입력: 숫자만 허용 + 자동 다음칸 이동 + 유효성 검사 */
+const by=scr('by'), bm=scr('bm'), bd=scr('bd'), bh=scr('bh'), bmin=scr('bmin'), reveal=scr('reveal');
+const numOnly=el=>{ el.value=el.value.replace(/[^0-9]/g,''); };
+function readYMD(){
+  const y=+by.value, m=+bm.value, d=+bd.value;
+  if(!by.value||!bm.value||!bd.value) return null;
+  if(y<1930||y>2030||m<1||m>12||d<1||d>31) return null;
+  const t=new Date(y,m-1,d);
+  if(t.getFullYear()!==y||t.getMonth()!==m-1||t.getDate()!==d) return null; // 2월 30일 등 차단
+  return [y,m,d];
+}
+function readHM(){
+  if(!bh.value&&!bmin.value) return null;
+  const h=+bh.value, mi=+(bmin.value||0);
+  if(bh.value==='' || h<0||h>23||mi<0||mi>59) return null;
+  return [h,mi];
+}
+function syncBtn(){ reveal.disabled = !readYMD(); }
+[by,bm,bd,bh,bmin].forEach(el=>el.addEventListener('input',()=>{
+  numOnly(el);
+  const max=+el.getAttribute('maxlength');
+  if(el.value.length>=max){ // 다 채우면 다음 칸으로
+    const order=[by,bm,bd,bh,bmin], i=order.indexOf(el);
+    if(el!==bd && i>-1 && order[i+1]) order[i+1].focus();
+  }
+  syncBtn();
+}));
 
 /* 결과 산출 */
 const HANDOFF="이 결 위에 뭐가 얹히는지 보기 →";
 reveal.addEventListener('click',()=>{
-  if(!birth.value) return;
-  const [y,m,d]=birth.value.split('-').map(Number);
-  const hm = btime.value ? btime.value.split(':').map(Number) : null;
+  const ymd=readYMD(); if(!ymd) return;
+  const [y,m,d]=ymd;
+  const hm=readHM();
   const dp=dayPillar(y,m,d);
   const ilgan=dp[0];
   const el=GAN_O[GAN.indexOf(ilgan)];
