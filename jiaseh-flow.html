@@ -1,0 +1,429 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>지아세 知我世 · 나의 결 읽기</title>
+<meta name="description" content="요즘 나, 왜 이럴까. 태어난 날 하나로 타고난 결을 짚어드려요. 시간은 묻지 않아요.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+  :root{
+    --cream:#FBF7EF; --card:#FFFCF6; --ink:#2B2622; --ink-soft:#6B6157;
+    --line:#E7DECE; --line-soft:#F0E9DB;
+    --el:#8A7B66;            /* 기운 확정 전 브랜드 뉴트럴(따뜻한 토프) */
+    --el-wash:rgba(138,123,102,.10);
+    --radius:20px;
+    --maxw:480px;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0;background:var(--cream);color:var(--ink)}
+  body{
+    font-family:"Pretendard",system-ui,-apple-system,sans-serif;
+    line-height:1.65; -webkit-font-smoothing:antialiased;
+    min-height:100dvh; display:flex; justify-content:center;
+    padding:env(safe-area-inset-top) 18px calc(env(safe-area-inset-bottom) + 18px);
+  }
+  .display{font-family:"Nanum Myeongjo",serif}
+
+  .shell{width:100%; max-width:var(--maxw); display:flex; flex-direction:column; min-height:100dvh}
+
+  /* ── 상단 스파인(진행 = 실제 순서) ── */
+  .head{display:flex; align-items:center; gap:12px; padding:14px 2px 6px}
+  .seal{width:30px;height:30px;border:1.4px solid var(--el);border-radius:50%;
+    display:grid;place-items:center;font-family:"Nanum Myeongjo",serif;font-size:15px;color:var(--el);
+    transition:border-color .8s ease,color .8s ease}
+  .spine{flex:1;display:flex;gap:6px}
+  .spine i{flex:1;height:3px;border-radius:3px;background:var(--line);transition:background .5s ease}
+  .spine i.on{background:var(--el)}
+  .brandword{font-size:12px;letter-spacing:.14em;color:var(--ink-soft)}
+
+  /* ── 스크린 ── */
+  .stage{flex:1;position:relative;display:flex;flex-direction:column;justify-content:center}
+  .screen{display:none;animation:rise .55s cubic-bezier(.2,.7,.2,1) both}
+  .screen.active{display:flex;flex-direction:column;gap:18px;padding:8px 0 4px}
+  @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+  .eyebrow{font-size:12.5px;letter-spacing:.16em;color:var(--el);font-weight:600;transition:color .8s ease}
+  h1,h2{margin:0;font-weight:800;letter-spacing:-.01em}
+  h1{font-size:27px;line-height:1.35}
+  h2{font-size:24px;line-height:1.4}
+  .lede{margin:0;color:var(--ink-soft);font-size:15.5px}
+  .lede b{color:var(--ink);font-weight:600}
+
+  /* 선택 카드 */
+  .opts{display:flex;flex-direction:column;gap:11px;margin-top:2px}
+  .opt{appearance:none;border:1px solid var(--line);background:var(--card);color:var(--ink);
+    text-align:left;padding:16px 18px;border-radius:16px;font:inherit;cursor:pointer;
+    display:flex;align-items:center;justify-content:space-between;gap:12px;
+    transition:transform .15s ease,border-color .2s ease,box-shadow .2s ease}
+  .opt .ot{font-size:16px;font-weight:600}
+  .opt .oarrow{color:var(--el);opacity:.55;transition:opacity .2s,transform .2s}
+  .opt:hover,.opt:focus-visible{border-color:var(--el);box-shadow:0 6px 22px -14px rgba(43,38,34,.35);outline:none}
+  .opt:hover .oarrow,.opt:focus-visible .oarrow{opacity:1;transform:translateX(3px)}
+  .opt:active{transform:scale(.99)}
+  .opt.ghost{background:transparent;border-style:dashed;color:var(--ink-soft)}
+  .opt.ghost .ot{font-weight:500;font-size:15px}
+
+  /* 입력 */
+  .field label{display:block;font-size:13px;color:var(--ink-soft);margin:0 0 7px 2px}
+  input[type=date]{width:100%;font:inherit;font-size:17px;color:var(--ink);
+    background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+  input[type=date]:focus-visible{outline:none;border-color:var(--el)}
+  .note{font-size:12.5px;color:var(--ink-soft);margin:9px 2px 0;display:flex;gap:6px;align-items:center}
+  .note::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--el);flex:none}
+
+  .btn{appearance:none;border:none;cursor:pointer;font:inherit;font-weight:700;font-size:16px;
+    color:#fff;background:var(--el);border-radius:14px;padding:16px;width:100%;
+    transition:filter .2s ease,transform .12s ease;letter-spacing:.01em}
+  .btn:hover{filter:brightness(1.05)} .btn:active{transform:scale(.99)}
+  .btn:disabled{opacity:.4;cursor:default}
+  .btn.soft{background:transparent;color:var(--el);border:1px solid var(--el)}
+  .btn.soft:hover{background:var(--el-wash);filter:none}
+
+  .back{background:none;border:none;color:var(--ink-soft);font:inherit;font-size:13.5px;
+    cursor:pointer;padding:6px 2px;align-self:flex-start}
+  .back:hover{color:var(--ink)}
+
+  /* ── 결과 ── */
+  .breath{position:relative;padding:26px 22px 24px;border-radius:var(--radius);overflow:hidden;
+    background:var(--card);border:1px solid var(--line)}
+  .breath::before{content:"";position:absolute;inset:-40% -20% auto -20%;height:180%;
+    background:radial-gradient(60% 60% at 30% 20%, var(--el-wash), transparent 70%);
+    animation:breathe 7s ease-in-out infinite;z-index:0}
+  @keyframes breathe{0%,100%{opacity:.55;transform:scale(1)}50%{opacity:1;transform:scale(1.08)}}
+  .breath>*{position:relative;z-index:1}
+  .el-tag{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--el);
+    font-weight:600;letter-spacing:.04em}
+  .el-dot{width:9px;height:9px;border-radius:50%;background:var(--el)}
+  .one{font-size:23px;line-height:1.45;margin:12px 0 0;font-weight:800}
+  .keys{list-style:none;margin:18px 0 0;padding:0;display:flex;flex-direction:column;gap:9px}
+  .keys li{position:relative;padding-left:20px;font-size:15px}
+  .keys li::before{content:"";position:absolute;left:2px;top:.62em;width:8px;height:2px;background:var(--el);border-radius:2px}
+  .care{margin:18px 0 0;padding:14px 16px;background:var(--el-wash);border-radius:13px;
+    font-size:14.5px;color:var(--ink)}
+  .tieback{margin:16px 2px 0;font-size:14.5px;color:var(--ink-soft)}
+  .tieback b{color:var(--ink);font-weight:600}
+
+  /* ── 흐름 / 핸드오프 ── */
+  .blur-teaser{position:relative;border:1px dashed var(--line);border-radius:16px;
+    padding:18px;overflow:hidden;background:var(--line-soft)}
+  .blur-teaser .locked{filter:blur(5px);opacity:.7;user-select:none;font-size:14.5px;line-height:1.9}
+  .blur-teaser .cap{position:absolute;inset:0;display:grid;place-items:center;text-align:center;
+    font-size:13px;color:var(--ink-soft);padding:0 24px}
+  .cta-col{display:flex;flex-direction:column;gap:10px;margin-top:4px}
+  .cta{display:flex;align-items:center;justify-content:space-between;gap:12px;text-decoration:none;
+    color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:16px;padding:15px 18px;
+    transition:border-color .2s,box-shadow .2s,transform .12s}
+  .cta:hover{border-color:var(--el);box-shadow:0 6px 22px -14px rgba(43,38,34,.35)}
+  .cta:active{transform:scale(.99)}
+  .cta .ct{font-weight:600;font-size:15.5px}
+  .cta .cs{font-size:12.5px;color:var(--ink-soft);margin-top:2px}
+  .cta .cend{color:var(--el);font-size:18px;flex:none}
+  .cta.lead-cta{background:var(--el);border-color:var(--el)}
+  .cta.lead-cta .ct,.cta.lead-cta .cs,.cta.lead-cta .cend{color:#fff}
+  .cta.lead-cta .cs{opacity:.85}
+  .daily{display:flex;gap:8px;flex-wrap:wrap;margin-top:2px}
+  .chip{text-decoration:none;font-size:12.5px;color:var(--ink-soft);border:1px solid var(--line);
+    border-radius:999px;padding:8px 13px;background:var(--card)}
+  .chip:hover{border-color:var(--el);color:var(--ink)}
+  .rest{font-size:13.5px;color:var(--ink-soft);text-align:center;margin:6px 4px 0;line-height:1.7}
+
+  .foot{padding:20px 4px 8px;font-size:11px;color:var(--ink-soft);opacity:.85;line-height:1.6;text-align:center}
+  .foot a{color:var(--ink-soft)}
+
+  @media (prefers-reduced-motion:reduce){
+    .screen{animation:none}.breath::before{animation:none;opacity:.7}
+  }
+  @media (min-width:520px){ h1{font-size:30px} .one{font-size:25px} }
+</style>
+</head>
+<body>
+<div class="shell">
+  <div class="head">
+    <div class="seal display" id="seal">知</div>
+    <div class="spine" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i></div>
+    <span class="brandword">知我世</span>
+  </div>
+
+  <main class="stage">
+    <!-- S0 · 훅 -->
+    <section class="screen active" id="s0" aria-label="시작">
+      <span class="eyebrow">오늘의 나, 한 걸음</span>
+      <h1 class="display">요즘 마음에<br>가장 걸리는 게<br>있다면요</h1>
+      <p class="lede">뭐든 하나만 골라주세요. 자책하려는 게 아니에요 — <b>그 마음이 어디서 나오는지</b> 태어난 날로 짚어드릴게요.</p>
+      <div class="opts">
+        <button class="opt" data-go="late"><span class="ot">열심히 하는데 결과가 늦게 와요</span><span class="oarrow">→</span></button>
+        <button class="opt" data-go="on"><span class="ot">쉬어도 쉰 것 같지가 않아요</span><span class="oarrow">→</span></button>
+        <button class="opt" data-go="wall"><span class="ot">자꾸 비슷한 벽을 만나요</span><span class="oarrow">→</span></button>
+        <button class="opt ghost" data-go="curious"><span class="ot">딱히 없어요, 그냥 내 결이 궁금해요</span><span class="oarrow">→</span></button>
+      </div>
+    </section>
+
+    <!-- S1 · 공감 브릿지 + 날짜 -->
+    <section class="screen" id="s1" aria-label="공감과 생년월일">
+      <button class="back" data-back="0">← 다시 고르기</button>
+      <span class="eyebrow" id="b-eye">그 마음, 이렇게 읽혀요</span>
+      <h2 class="display" id="b-title"></h2>
+      <p class="lede" id="b-lede"></p>
+      <div class="field">
+        <label for="birth">태어난 날 (양력)</label>
+        <input type="date" id="birth" min="1930-01-01" max="2025-12-31">
+        <p class="note">시간은 묻지 않아요. 태어난 날짜 하나면 결이 보여요.</p>
+      </div>
+      <button class="btn" id="reveal" disabled>내 결 확인하기</button>
+    </section>
+
+    <!-- S2 · 무료 체험 연쇄(누적형 하이브리드) -->
+    <section class="screen" id="s2" aria-label="나의 결">
+      <span class="eyebrow" id="r-eye">태어난 날 하나로, 이만큼 보여요</span>
+      <div class="breath"><div class="stack" id="stack"></div></div>
+      <p class="tieback" id="r-tie"></p>
+      <button class="btn" id="unlock"></button>
+    </section>
+
+    <!-- S3 · 흐름 / 핸드오프 -->
+    <section class="screen" id="s3" aria-label="흐름과 다음 걸음">
+      <span class="eyebrow">뼈대 위에 얹히는 것</span>
+      <h2 class="display">타고난 결은 그대로,<br>흐름은 매년 바뀌어요</h2>
+      <p class="lede">방금 본 게 <b>변하지 않는 뼈대</b>라면, 그 위에 시간의 흐름이 얹혀요. <b>언제 차오르고 언제 숨 고를지</b>가 여기서 갈립니다.</p>
+      <div class="blur-teaser" aria-hidden="true">
+        <div class="locked">올해는 차오르는 구간에 들어섭니다 · 특히 무렵부터 흐름이 열리고 · 이 시기엔 힘을 아끼는 편이 · 다음 도약의 발판은</div>
+        <div class="cap">이 흐름은 태어난 날의 결과 함께 읽을 때 보여요</div>
+      </div>
+      <div class="cta-col">
+        <a class="cta lead-cta" id="cta-ai" href="https://jiase.kr/명리리포트">
+          <span><span class="ct">내 흐름, 가볍게 먼저 보기</span><span class="cs">타고난 결 + 지금 흐름 · AI 리포트</span></span><span class="cend">→</span>
+        </a>
+        <a class="cta" id="cta-diag" href="https://jiase.kr/설계도">
+          <span><span class="ct">뿌리부터 깊이 설계하기</span><span class="cs">원국·흐름·곁들임까지 · 운명 설계도</span></span><span class="cend">→</span>
+        </a>
+        <a class="cta" href="https://jiase.kr/link">
+          <span><span class="ct">다른 이야기도 둘러보기</span><span class="cs">관계·돈·일·흐름 전체 메뉴</span></span><span class="cend">→</span>
+        </a>
+      </div>
+      <div class="daily">
+        <a class="chip" href="https://telegram.me/TodayMind_bot">매일 · 오늘의 나</a>
+        <a class="chip" href="http://pf.kakao.com/_xnZAxfX">카카오로 소식 받기</a>
+      </div>
+      <p class="rest">답을 너무 자주 구하면 마음이 오히려 흔들려요.<br>오늘 받은 한 줄에 잠시 머물러 보셔도 좋아요.</p>
+    </section>
+  </main>
+
+  <footer class="foot">
+    본 서비스는 의료법·정신건강복지법상 의료행위·심리치료가 아니며, 예방적 자기관리 및 의사결정 지원을 목적으로 합니다.<br>
+    © 지아세 知我世
+  </footer>
+</div>
+
+<!-- 오행분포(년월일 3주) 산출용 — 검증 엔진, 카드③에만 사용. 실패 시 카드③만 우아하게 생략 -->
+<script src="https://cdn.jsdelivr.net/npm/lunar-javascript@1.7.3/lunar.js"></script>
+<style>
+  .stack{display:flex;flex-direction:column;gap:14px;width:100%}
+  .xcard{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:18px 18px 16px;animation:rise .5s ease both}
+  @keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  .xtag{display:inline-block;font-size:12.5px;font-weight:700;letter-spacing:.02em;
+    color:var(--el);background:var(--el-wash);border-radius:99px;padding:4px 11px;margin-bottom:9px}
+  .one2{font-size:16.5px;line-height:1.6;color:var(--ink);margin:2px 0 6px;font-weight:600}
+  .xsub{font-size:14px;line-height:1.7;color:var(--ink-soft);margin:0}
+  #unlock{margin-top:16px}
+</style>
+
+<script>
+/* ===== 만세력 엔진 (bornbone v2 검증 완료 — 변경 금지) ===== */
+const GAN="갑을병정무기경신임계";
+const GAN_O=["木","木","火","火","土","土","金","金","水","水"];
+const JI="자축인묘진사오미신유술해";
+function jdn(y,m,d){const a=Math.floor((14-m)/12),yy=y+4800-a,mm=m+12*a-3;return d+Math.floor((153*mm+2)/5)+365*yy+Math.floor(yy/4)-Math.floor(yy/100)+Math.floor(yy/400)-32045;}
+function dayPillar(y,m,d){const i=(jdn(y,m,d)+49)%60;return GAN[i%10]+JI[i%12];}
+
+/* ===== 일간 기질 10종 (bornbone v2 검증 완료) ===== */
+const ILGAN={
+  갑:{one:"한번 정하면 끝까지 밀고 나가는 사람",keys:["큰 그림을 그리는 추진력","사람을 끌고 가는 리더 기질","굽히지 않는 소신"],care:"가끔은 돌아가도 된다는 걸 받아들이면 훨씬 가벼워집니다."},
+  을:{one:"어떤 환경에서도 적응하며 끝내 살아남는 사람",keys:["부드러운 처세","끈질긴 생활력","사람 사이를 잇는 유연함"],care:"다 맞춰주다 자신을 잃지 않도록, 내 욕심도 챙기면 좋습니다."},
+  병:{one:"어디서든 환하게 빛나고 분위기를 끌어올리는 사람",keys:["밝은 존재감","솔직하고 시원한 표현","사람을 모으는 힘"],care:"감정이 빨리 타오르고 식으니, 한 박자 쉬어가면 좋습니다."},
+  정:{one:"조용히 깊게 자기 세계를 밝히는 사람",keys:["섬세한 집중력","따뜻한 배려","끝까지 파고드는 몰입"],care:"속으로만 태우지 말고, 가끔 꺼내 보이면 가벼워집니다."},
+  무:{one:"묵직하게 중심을 잡고 사람을 품는 사람",keys:["흔들리지 않는 안정감","믿고 맡길 수 있는 신뢰","버티는 뚝심"],care:"너무 다 떠안지 말고, 가끔은 내려놓아도 괜찮습니다."},
+  기:{one:"조용히 키우고 보듬어 결실을 내는 사람",keys:["세심한 관리력","실속 있는 현실 감각","사람을 길러내는 포용"],care:"생각이 많아 결정을 미루지 않도록, 첫발을 가볍게 떼면 좋습니다."},
+  경:{one:"맺고 끊음이 분명하고 추진력 있는 사람",keys:["분명한 결단력","의리와 정의감","밀어붙이는 실행력"],care:"강하게 부딪히기 전에 한 번 더 헤아리면 좋습니다."},
+  신:{one:"겉은 부드럽지만 기준이 분명한 사람",keys:["디테일을 놓치지 않는 감각","핵심을 꿰뚫는 판단력","휘둘리지 않는 중심"],care:"너무 날을 세우지 않아도 당신의 가치는 충분합니다."},
+  임:{one:"멈추지 않고 흐르며 큰 흐름을 읽는 사람",keys:["넓은 시야","상황에 맞춘 임기응변","사람을 끌어안는 포용력"],care:"흐름에 휩쓸리지 않게, 가끔 닻을 내리면 좋습니다."},
+  계:{one:"조용히 스며들어 끝내 길을 내는 사람",keys:["깊은 직관","섬세한 감수성","부드러운 끈기"],care:"혼자 끌어안고 가라앉지 말고, 자주 털어놓으면 가벼워집니다."}
+};
+
+/* ===== 오행 = 일상어 + 톤 컬러 (모드1: 전문용어 비노출) ===== */
+const EL={
+  木:{name:"나무",poem:"위로 곧게 자라는",color:"#4E7C5B",wash:"rgba(78,124,91,.11)"},
+  火:{name:"불", poem:"환하게 번지는",  color:"#B54A3A",wash:"rgba(181,74,58,.10)"},
+  土:{name:"흙", poem:"묵직하게 품는",  color:"#B5843F",wash:"rgba(181,132,63,.11)"},
+  金:{name:"쇠", poem:"맑게 벼려진",    color:"#9A8A5E",wash:"rgba(154,138,94,.12)"},
+  水:{name:"물", poem:"깊이 흐르는",    color:"#3E6182",wash:"rgba(62,97,130,.10)"}
+};
+
+/* ===== 고민 → 온기 브릿지 (엔진 근거: §49-7 온기 36편) ===== */
+const BRIDGE={
+  late:{eye:"그 마음, 이렇게 읽혀요", title:"늦은 게 아니라,\n시간표가 다른 거예요",
+        lede:"결과가 바로 안 오는 건 부족해서가 아니에요. <b>늦게 도착하도록 설계된 사람</b>이 있거든요. 그 시간표가 어떻게 짜여 있는지, 태어난 날로 짚어드릴게요.",
+        tie:"당신이 고른 <b>“결과가 늦게 온다”</b>는 마음도, 사실 이 결에서 나와요. 부족함이 아니라 리듬이에요."},
+  on:{eye:"그 마음, 이렇게 읽혀요", title:"게으름이 아니라,\n늘 켜져 있는 거예요",
+        lede:"쉬어도 안 쉬어지는 건 <b>기질이 늘 켜져 있어서</b>예요. 끄는 법만 알면 되는 사람이죠. 그 스위치가 어디 있는지, 태어난 날로 짚어드릴게요.",
+        tie:"당신이 고른 <b>“쉬어도 쉰 것 같지 않다”</b>는 마음도, 이 결의 다른 얼굴이에요. 문제가 아니라 에너지예요."},
+  wall:{eye:"그 마음, 이렇게 읽혀요", title:"반복되는 건,\n결이 또렷해서예요",
+        lede:"비슷한 벽을 자주 만난다면, 그건 <b>당신이 반응하는 결이 또렷해서</b>예요. 또렷하면 바꿀 자리도 정확히 보입니다. 그 결이 뭔지, 태어난 날로 짚어드릴게요.",
+        tie:"당신이 고른 <b>“비슷한 벽”</b>도, 이 또렷한 결에서 나와요. 또렷하다는 건, 바꿀 지점도 분명하다는 뜻이에요."},
+  curious:{eye:"좋아요, 결부터 볼까요", title:"타고난 결은\n생각보다 또렷해요",
+        lede:"거창한 고민이 없어도 괜찮아요. 태어난 날 하나면, <b>당신이 어떤 결로 생긴 사람인지</b>가 보여요. 가볍게 시작해요.",
+        tie:"방금 본 게 당신의 타고난 결이에요. 여기서부터 흐름을 얹으면, 훨씬 많은 게 보입니다."}
+};
+
+/* ===== 일주 60갑자 한 줄 (ilju.js 검증 DB) ===== */
+const ILJU60={
+  갑자:"먼저 달리되 요령 있게 돌아가는 사람",갑인:"스스로 길을 만들며 앞으로 나아가는 사람",갑진:"성과를 향해 담백하게 움직이는 사람",갑오:"표현하고 만들어내며 묵묵히 쌓는 사람",갑신:"전례 없이 새 길을 여는 사람",갑술:"성과를 향해 꿋꿋하게 노력하는 사람",
+  을축:"성과를 향해 담백하게 적응하는 사람",을묘:"내 방식대로 끝까지 해내는 사람",을사:"표현하며 매일 새로워지는 사람",을미:"성과를 향해 꿋꿋하게 버티는 사람",을유:"틀을 벗어나 새 방식을 찾는 사람",을해:"배우며 묵묵히 쌓아가는 사람",
+  병자:"용의주도하게 자리를 준비하는 사람",병인:"따뜻하게 배우고 밝히는 사람",병진:"보여주는 힘으로 표현하는 사람",병오:"단숨에 정상을 향해 달리는 사람",병신:"눈치 빠르게 성과를 읽는 사람",병술:"표현하며 차곡차곡 모아가는 사람",
+  정축:"집중하며 차곡차곡 모아가는 사람",정묘:"눈치 빠르게 배우고 집중하는 사람",정사:"깊이 집중하며 정점을 향해 달리는 사람",정미:"표현하는 힘이 빛나는 사람",정유:"따뜻하게 성과를 쌓아가는 사람",정해:"용의주도하게 자리를 준비하는 사람",
+  무자:"용의주도하게 성과를 준비하는 사람",무인:"따뜻하게 버티며 자리를 지키는 사람",무진:"보여주는 힘으로 밀어붙이는 사람",무오:"배움으로 무장하고 정점을 향해 달리는 사람",무신:"눈치 빠르게 표현하는 사람",무술:"차곡차곡 모으며 버티는 사람",
+  기축:"차곡차곡 모으며 품는 사람",기묘:"눈치 빠르게 자리를 잡는 사람",기사:"배움으로 무장하고 정점을 향해 품는 사람",기미:"보여주는 힘으로 품는 사람",기유:"따뜻하게 표현하며 길러내는 사람",기해:"용의주도하게 성과를 품는 사람",
+  경자:"결단하며 묵묵히 쌓는 사람",경인:"전례 없이 성과를 향해 달리는 사람",경진:"배움으로 무장하고 꿋꿋하게 결단하는 사람",경오:"매일 새로워지며 자리를 잡는 사람",경신:"결단하고 밀어붙이며 발이 땅에 닿는 사람",경술:"배움으로 담백하게 결단하는 사람",
+  신축:"배움으로 무장하고 꿋꿋하게 가려내는 사람",신묘:"전례 없이 성과를 가려내는 사람",신사:"묵묵히 자리를 지키며 가려내는 사람",신미:"배움으로 담백하게 가려내는 사람",신유:"섬세하게 가려내며 발이 땅에 닿는 사람",신해:"매일 새로워지며 가려내는 사람",
+  임자:"넓게 품으며 정점을 향해 달리는 사람",임인:"눈치 빠르게 표현하며 흐르는 사람",임진:"차곡차곡 모으며 자리를 지키는 사람",임오:"용의주도하게 성과를 향해 흐르는 사람",임신:"따뜻하게 배우며 넓게 품는 사람",임술:"보여주는 힘으로 자리를 지키는 사람",
+  계축:"보여주는 힘으로 자리를 스미는 사람",계묘:"따뜻하게 표현하며 스며드는 사람",계사:"용의주도하게 성과를 향해 스미는 사람",계미:"차곡차곡 모으며 자리를 스미는 사람",계유:"눈치 빠르게 배우며 스미는 사람",계해:"끝까지 스며들며 정점을 향해 달리는 사람"
+};
+
+/* ===== 오행 생극 (오늘의 나 판정용) ===== */
+const GEN={木:"火",火:"土",土:"金",金:"水",水:"木"};
+const KE ={木:"土",土:"水",水:"火",火:"金",金:"木"};
+
+/* 오늘의 나 — 오늘 일진 기운 × 내 기운 (모드1 일상어, 재방문 훅) */
+function todayTone(P){
+  const n=new Date();
+  const t=dayPillar(n.getFullYear(),n.getMonth()+1,n.getDate());
+  const T=GAN_O[GAN.indexOf(t[0])];
+  if(T===P)      return "오늘은 같은 결의 기운이 겹치는 날이에요. 하던 일에 힘이 한결 실려요.";
+  if(GEN[T]===P) return "오늘은 기운을 채워 받는 날이에요. 배우고 흡수하기에 좋아요.";
+  if(GEN[P]===T) return "오늘은 안에서 밖으로 잘 나가는 날이에요. 표현하고 움직이기 좋아요.";
+  if(KE[P]===T)  return "오늘은 손에 잡히는 걸 붙잡아 밀어붙이기 좋은 날이에요.";
+  return "오늘은 살짝 눌리는 듯한 날이에요. 무리하지 않으면 오히려 편안해져요.";
+}
+
+/* 내 안의 강한/여린 기운 — 년월일 3주 오행 분포(최강1·최약1만, 수치 비노출) */
+const _SOLAR=(typeof Solar!=="undefined")?Solar:(window.Solar||null);
+const _STEM={甲:"木",乙:"木",丙:"火",丁:"火",戊:"土",己:"土",庚:"金",辛:"金",壬:"水",癸:"水"};
+const _BR  ={子:"水",丑:"土",寅:"木",卯:"木",辰:"土",巳:"火",午:"火",未:"土",申:"金",酉:"金",戌:"土",亥:"水"};
+function distribution(y,m,d){
+  if(!_SOLAR) return null;
+  try{
+    const l=_SOLAR.fromYmd(y,m,d).getLunar();
+    const chars=(l.getYearInGanZhiByLiChun()+l.getMonthInGanZhiExact()+l.getDayInGanZhi());
+    const cnt={木:0,火:0,土:0,金:0,水:0};
+    for(const ch of chars){ if(_STEM[ch])cnt[_STEM[ch]]++; else if(_BR[ch])cnt[_BR[ch]]++; }
+    const order=["木","火","土","金","水"];
+    let strong=order[0],weak=order[0];
+    order.forEach(e=>{ if(cnt[e]>cnt[strong])strong=e; if(cnt[e]<cnt[weak])weak=e; });
+    return {strong,weak};
+  }catch(e){ return null; }
+}
+
+/* ===== 흐름 제어 ===== */
+let picked=null, resultReady=false;
+const scr=id=>document.getElementById(id);
+const spineI=[...document.querySelectorAll('.spine i')];
+function show(step){
+  ['s0','s1','s2','s3'].forEach((s,i)=>{
+    const el=scr(s); const on=(i===step);
+    el.classList.toggle('active',on);
+  });
+  spineI.forEach((i,idx)=>i.classList.toggle('on',idx<=step));
+  document.querySelector('.stage').scrollTop=0;
+  window.scrollTo({top:0,behavior:'instant'in window?'instant':'auto'});
+}
+function setEl(elKey){
+  const e=EL[elKey]; const r=document.documentElement.style;
+  r.setProperty('--el',e.color); r.setProperty('--el-wash',e.wash);
+}
+
+/* 훅 선택 */
+document.querySelectorAll('.opt').forEach(b=>b.addEventListener('click',()=>{
+  picked=b.dataset.go; const br=BRIDGE[picked];
+  scr('b-eye').textContent=br.eye;
+  scr('b-title').innerHTML=br.title.replace(/\n/g,'<br>');
+  scr('b-lede').innerHTML=br.lede;
+  show(1);
+}));
+/* 뒤로 */
+document.querySelectorAll('[data-back]').forEach(b=>b.addEventListener('click',()=>show(+b.dataset.back)));
+
+/* 날짜 입력 → 버튼 활성 */
+const birth=scr('birth'), reveal=scr('reveal');
+birth.addEventListener('input',()=>{ reveal.disabled=!birth.value; });
+
+/* 결과 산출 */
+const HANDOFF="이 결 위에 뭐가 얹히는지 보기 →";
+reveal.addEventListener('click',()=>{
+  if(!birth.value) return;
+  const [y,m,d]=birth.value.split('-').map(Number);
+  const dp=dayPillar(y,m,d);
+  const ilgan=dp[0];
+  const el=GAN_O[GAN.indexOf(ilgan)];
+  const g=ILGAN[ilgan], e=EL[el], br=BRIDGE[picked];
+  setEl(el);
+
+  // 체험 카드 연쇄 (온기 사다리 · 클릭 언락 + 세로 누적)
+  const cards=[];
+  // ① 타고난 결
+  cards.push({html:
+    `<div class="xcard"><span class="xtag">타고난 결</span>
+     <span class="el-tag" style="margin-bottom:8px"><span class="el-dot"></span>${e.name}의 결 — ${e.poem} 사람</span>
+     <p class="one display">${g.one}</p>
+     <ul class="keys">${g.keys.map(k=>`<li>${k}</li>`).join('')}</ul>
+     <p class="care">${g.care}</p></div>`});
+  // ② 오늘의 나
+  cards.push({reveal:"오늘의 흐름도 볼까요 →", html:
+    `<div class="xcard"><span class="xtag">오늘의 나</span>
+     <p class="one2">${todayTone(el)}</p>
+     <p class="xsub">내일이면 또 달라져요. 매일 아침 한 줄로 받아볼 수도 있어요.</p></div>`});
+  // ③ 강한·여린 기운 (년월일 3주 — lunar 없으면 자동 생략)
+  const dist=distribution(y,m,d);
+  if(dist){
+    const s=EL[dist.strong].name, w=EL[dist.weak].name;
+    cards.push({reveal:"내 안의 강한·여린 기운 →", html:
+      `<div class="xcard"><span class="xtag">내 안의 기운</span>
+       <p class="one2">가장 힘 있는 건 <b>${s}의 기운</b>, 가장 여린 건 <b>${w}의 기운</b>이에요.</p>
+       <p class="xsub">${s}은 타고난 힘이고, ${w}은 채워가면 좋은 여백이에요. 둘 다 당신을 이루는 결이에요.</p></div>`});
+  }
+  // ④ 일주 한 줄
+  cards.push({reveal:"내 일주 한 줄로 보기 →", html:
+    `<div class="xcard"><span class="xtag">한 줄로 요약하면</span>
+     <p class="one display">${ILJU60[dp]||g.one}</p>
+     <p class="xsub">태어난 날의 두 글자가 그리는 결이에요.</p></div>`});
+
+  const stack=scr('stack'), unlock=scr('unlock');
+  let idx=0;
+  const paint=()=>{
+    stack.insertAdjacentHTML('beforeend',cards[idx].html);
+    scr('r-tie').innerHTML = idx===0 ? br.tie : '';
+    idx++;
+    unlock.textContent = idx<cards.length ? cards[idx].reveal : HANDOFF;
+    unlock.className   = idx<cards.length ? 'btn' : 'btn soft';
+  };
+  stack.innerHTML=''; scr('r-tie').innerHTML=''; unlock.className='btn';
+  paint();                                   // 카드① 즉시 노출
+  unlock.onclick=()=>{
+    if(idx<cards.length){ paint(); const st=document.querySelector('.stage'); if(st) st.scrollTop=st.scrollHeight; }
+    else { show(3); }
+  };
+  resultReady=true;
+  show(2);
+});
+
+/* 딥링크: ?to=late|on|wall|curious → 특정 훅 프리셋(광고·게시물별 랜딩) */
+(function(){
+  const to=new URLSearchParams(location.search).get('to');
+  if(to && BRIDGE[to]){ const b=document.querySelector(`.opt[data-go="${to}"]`); if(b) b.click(); }
+})();
+</script>
+</body>
+</html>
